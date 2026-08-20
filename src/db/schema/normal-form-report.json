@@ -1,0 +1,2507 @@
+{
+  "appliedCorrection": {
+    "movedTo": [
+      "GameHOMM8.LawTier1Seals",
+      "GameHOMM8.LawTier2Seals",
+      "GameHOMM8.LawTier3Seals",
+      "GameHOMM8.LawTier4Seals",
+      "GameHOMM8.LawTier5Seals"
+    ],
+    "rationale": "Tier thresholds depend on the game/tier, while Cumulative is a property of an individual law.",
+    "removed": "CumulativeSealsRequired",
+    "retainedLawFlag": "Cumulative BOOLEAN",
+    "table": "FactionLaw"
+  },
+  "jsonbPolicy": "PostgreSQL JSONB is treated as one typed value for 2NF. It is retained only where the diagram declares JSONB; relational identities and foreign keys remain columns.",
+  "result": "pass",
+  "scope": "All non-*_cid tables",
+  "sourceSha256": "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673",
+  "summary": {
+    "cidExempt": 26,
+    "passing": 147,
+    "tables": 173
+  },
+  "tables": [
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Ability"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AbilityHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AbilityHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AbilityHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AbilityHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AbilityHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AbilityHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AbilityHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Ability_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AbilityHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "AdventureObject"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AdventureObjectHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AdventureObjectHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AdventureObjectHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AdventureObjectHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AdventureObjectHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AdventureObjectHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AdventureObjectHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObject_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AdventureObjectHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Artifact"
+    },
+    {
+      "candidateKeys": [
+        [
+          "ArtifactComponent_cid"
+        ],
+        [
+          "Game_id",
+          "CompositeArtifact_id",
+          "ComponentArtifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "ArtifactComponent_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "ArtifactComponent"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Artifact_id"
+        ]
+      ],
+      "primaryKey": [
+        "Artifact_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "ArtifactResourceCost_cid"
+        ],
+        [
+          "Game_id",
+          "Artifact_id",
+          "Resource_id"
+        ]
+      ],
+      "primaryKey": [
+        "ArtifactResourceCost_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "ArtifactResourceCost"
+    },
+    {
+      "candidateKeys": [
+        [
+          "ArtifactSetBonusHOMM5_id"
+        ]
+      ],
+      "primaryKey": [
+        "ArtifactSetBonusHOMM5_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactSetBonusHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "ArtifactSetHOMM5_id"
+        ],
+        [
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "ArtifactSetHOMM5_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ArtifactSetHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Game_id"
+        ],
+        [
+          "NeutralMagicSchool_id"
+        ]
+      ],
+      "primaryKey": [
+        "Game_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "AstrologyHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Building"
+    },
+    {
+      "candidateKeys": [
+        [
+          "BuildingCreature_cid"
+        ],
+        [
+          "Game_id",
+          "Building_id",
+          "Creature_id",
+          "Relation"
+        ]
+      ],
+      "primaryKey": [
+        "BuildingCreature_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "BuildingCreature"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "BuildingHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "BuildingHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "BuildingHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "BuildingHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "BuildingHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "BuildingHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "BuildingHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "Building_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "BuildingHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "BuildingRequirement_cid"
+        ],
+        [
+          "Game_id",
+          "Building_id",
+          "RequiredBuilding_id"
+        ]
+      ],
+      "primaryKey": [
+        "BuildingRequirement_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "BuildingRequirement"
+    },
+    {
+      "candidateKeys": [
+        [
+          "BuildingResourceCost_cid"
+        ],
+        [
+          "Game_id",
+          "Building_id",
+          "Resource_id"
+        ]
+      ],
+      "primaryKey": [
+        "BuildingResourceCost_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "BuildingResourceCost"
+    },
+    {
+      "candidateKeys": [
+        [
+          "BuildingUpgrade_cid"
+        ],
+        [
+          "Game_id",
+          "BaseBuilding_id",
+          "UpgradedBuilding_id"
+        ]
+      ],
+      "primaryKey": [
+        "BuildingUpgrade_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "BuildingUpgrade"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Campaign_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Campaign_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Campaign"
+    },
+    {
+      "candidateKeys": [
+        [
+          "CampaignHero_cid"
+        ],
+        [
+          "Game_id",
+          "Campaign_id",
+          "Hero_id"
+        ]
+      ],
+      "primaryKey": [
+        "CampaignHero_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "CampaignHero"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Campaign_id"
+        ]
+      ],
+      "primaryKey": [
+        "Campaign_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CampaignHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Campaign_id"
+        ]
+      ],
+      "primaryKey": [
+        "Campaign_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CampaignHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Campaign_id"
+        ]
+      ],
+      "primaryKey": [
+        "Campaign_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CampaignHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Campaign_id"
+        ]
+      ],
+      "primaryKey": [
+        "Campaign_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CampaignHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "CampaignScenario_cid"
+        ],
+        [
+          "Game_id",
+          "Campaign_id",
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "CampaignScenario_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "CampaignScenario"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Creature"
+    },
+    {
+      "candidateKeys": [
+        [
+          "CreatureAbility_cid"
+        ],
+        [
+          "Game_id",
+          "Creature_id",
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "CreatureAbility_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "CreatureAbility"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CreatureHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CreatureHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CreatureHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CreatureHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CreatureHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CreatureHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CreatureHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Creature_id"
+        ]
+      ],
+      "primaryKey": [
+        "Creature_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "CreatureHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "CreatureResourceCost_cid"
+        ],
+        [
+          "Game_id",
+          "Creature_id",
+          "Resource_id"
+        ]
+      ],
+      "primaryKey": [
+        "CreatureResourceCost_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "CreatureResourceCost"
+    },
+    {
+      "candidateKeys": [
+        [
+          "CreatureSpell_cid"
+        ],
+        [
+          "Game_id",
+          "Creature_id",
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "CreatureSpell_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "CreatureSpell"
+    },
+    {
+      "candidateKeys": [
+        [
+          "CreatureUpgrade_cid"
+        ],
+        [
+          "Game_id",
+          "BaseCreature_id",
+          "UpgradedCreature_id"
+        ]
+      ],
+      "primaryKey": [
+        "CreatureUpgrade_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "CreatureUpgrade"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Expansion_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Expansion_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Expansion"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Faction"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "FactionHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "FactionHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "FactionHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "FactionHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "FactionHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "FactionHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "FactionHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "Faction_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "FactionHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "FactionLaw_id"
+        ],
+        [
+          "Faction_id",
+          "Code"
+        ],
+        [
+          "Faction_id",
+          "Tier",
+          "ScreenSide",
+          "SlotIndex"
+        ]
+      ],
+      "primaryKey": [
+        "FactionLaw_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "FactionLaw"
+    },
+    {
+      "candidateKeys": [
+        [
+          "FactionMagicSchoolHOMM5_cid"
+        ],
+        [
+          "Game_id",
+          "Faction_id",
+          "MagicSchool_id",
+          "Ruleset"
+        ]
+      ],
+      "primaryKey": [
+        "FactionMagicSchoolHOMM5_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "FactionMagicSchoolHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "FactionNativeTerrainHOMM5_cid"
+        ],
+        [
+          "Game_id",
+          "Faction_id",
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "FactionNativeTerrainHOMM5_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "FactionNativeTerrainHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "FactionSpell_cid"
+        ],
+        [
+          "Game_id",
+          "Faction_id",
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "FactionSpell_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "FactionSpell"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Game_id"
+        ],
+        [
+          "SeriesCode"
+        ]
+      ],
+      "primaryKey": [
+        "Game_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "Game"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Game_id"
+        ]
+      ],
+      "primaryKey": [
+        "Game_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "GameHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "GameResource_cid"
+        ],
+        [
+          "Game_id",
+          "Resource_id"
+        ]
+      ],
+      "primaryKey": [
+        "GameResource_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "GameResource"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Hero_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Hero_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Hero"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "HeroClass"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClassAbility_cid"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClassAbility_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "HeroClassAbility"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroClassHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroClassHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroClassHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroClassHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroClassHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroClassHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroClassHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClass_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClass_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroClassHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClassPrimarySkillHOMM4_cid"
+        ],
+        [
+          "Game_id",
+          "HeroClass_id",
+          "Skill_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClassPrimarySkillHOMM4_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "HeroClassPrimarySkillHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Hero_id"
+        ]
+      ],
+      "primaryKey": [
+        "Hero_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Hero_id"
+        ]
+      ],
+      "primaryKey": [
+        "Hero_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Hero_id"
+        ]
+      ],
+      "primaryKey": [
+        "Hero_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Hero_id"
+        ]
+      ],
+      "primaryKey": [
+        "Hero_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Hero_id"
+        ]
+      ],
+      "primaryKey": [
+        "Hero_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Hero_id"
+        ]
+      ],
+      "primaryKey": [
+        "Hero_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "HeroHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroSkill_cid"
+        ],
+        [
+          "Game_id",
+          "Hero_id",
+          "Skill_id"
+        ]
+      ],
+      "primaryKey": [
+        "HeroSkill_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "HeroSkill"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Lore_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Lore_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Lore"
+    },
+    {
+      "candidateKeys": [
+        [
+          "LoreFull_cid"
+        ]
+      ],
+      "primaryKey": [
+        "LoreFull_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "LoreFull"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MagicSchool_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "MagicSchool_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "MagicSchool"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MagicSchool_id"
+        ]
+      ],
+      "primaryKey": [
+        "MagicSchool_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MagicSchoolHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MagicSchool_id"
+        ]
+      ],
+      "primaryKey": [
+        "MagicSchool_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MagicSchoolHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MagicSchool_id"
+        ]
+      ],
+      "primaryKey": [
+        "MagicSchool_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MagicSchoolHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MagicSchool_id"
+        ]
+      ],
+      "primaryKey": [
+        "MagicSchool_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MagicSchoolHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MagicSchool_id"
+        ]
+      ],
+      "primaryKey": [
+        "MagicSchool_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MagicSchoolHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Map"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MapHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MapHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MapHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MapHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MapHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MapHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MapHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Map_id"
+        ]
+      ],
+      "primaryKey": [
+        "Map_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MapHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MapObjectPresence_cid"
+        ],
+        [
+          "Game_id",
+          "Map_id",
+          "AdventureObject_id"
+        ]
+      ],
+      "primaryKey": [
+        "MapObjectPresence_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "MapObjectPresence"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MapTerrain_cid"
+        ],
+        [
+          "Game_id",
+          "Map_id",
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "MapTerrain_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "MapTerrain"
+    },
+    {
+      "candidateKeys": [
+        [
+          "MediaAsset_id"
+        ]
+      ],
+      "primaryKey": [
+        "MediaAsset_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "MediaAsset"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Patch_id"
+        ]
+      ],
+      "primaryKey": [
+        "Patch_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "Patch"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Resource_id"
+        ],
+        [
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Resource_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "Resource"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Resource_id"
+        ]
+      ],
+      "primaryKey": [
+        "Resource_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ResourceHOMM1To5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Resource_id"
+        ]
+      ],
+      "primaryKey": [
+        "Resource_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ResourceHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Scenario"
+    },
+    {
+      "candidateKeys": [
+        [
+          "ScenarioConnection_cid"
+        ],
+        [
+          "Game_id",
+          "FromScenario_id",
+          "ToScenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "ScenarioConnection_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "ScenarioConnection"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ScenarioHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ScenarioHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ScenarioHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ScenarioHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ScenarioHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ScenarioHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ScenarioHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Scenario_id"
+        ]
+      ],
+      "primaryKey": [
+        "Scenario_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "ScenarioHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Screenshot_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Screenshot_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Screenshot"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Skill_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Skill_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Skill"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Skill_id"
+        ]
+      ],
+      "primaryKey": [
+        "Skill_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SkillHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Skill_id"
+        ]
+      ],
+      "primaryKey": [
+        "Skill_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SkillHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Skill_id"
+        ]
+      ],
+      "primaryKey": [
+        "Skill_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SkillHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Skill_id"
+        ]
+      ],
+      "primaryKey": [
+        "Skill_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SkillHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Skill_id"
+        ]
+      ],
+      "primaryKey": [
+        "Skill_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SkillHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Skill_id"
+        ]
+      ],
+      "primaryKey": [
+        "Skill_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SkillHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Soundtrack_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Soundtrack_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Soundtrack"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Soundtrack_id"
+        ]
+      ],
+      "primaryKey": [
+        "Soundtrack_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SoundtrackHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Soundtrack_id"
+        ]
+      ],
+      "primaryKey": [
+        "Soundtrack_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SoundtrackHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Soundtrack_id"
+        ]
+      ],
+      "primaryKey": [
+        "Soundtrack_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SoundtrackHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Soundtrack_id"
+        ]
+      ],
+      "primaryKey": [
+        "Soundtrack_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SoundtrackHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Soundtrack_id"
+        ]
+      ],
+      "primaryKey": [
+        "Soundtrack_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SoundtrackHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Soundtrack_id"
+        ]
+      ],
+      "primaryKey": [
+        "Soundtrack_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SoundtrackHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Soundtrack_id"
+        ]
+      ],
+      "primaryKey": [
+        "Soundtrack_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SoundtrackHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Spell"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SpellHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SpellHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SpellHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SpellHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SpellHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ],
+        [
+          "Ability_id"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SpellHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SpellHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Spell_id"
+        ]
+      ],
+      "primaryKey": [
+        "Spell_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "SpellHOMM8"
+    },
+    {
+      "candidateKeys": [
+        [
+          "SpellMagicSchool_cid"
+        ],
+        [
+          "Game_id",
+          "Spell_id",
+          "MagicSchool_id"
+        ]
+      ],
+      "primaryKey": [
+        "SpellMagicSchool_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "SpellMagicSchool"
+    },
+    {
+      "candidateKeys": [
+        [
+          "SpellResourceCostHOMM5_cid"
+        ],
+        [
+          "Game_id",
+          "Spell_id",
+          "Resource_id",
+          "Ruleset"
+        ]
+      ],
+      "primaryKey": [
+        "SpellResourceCostHOMM5_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "SpellResourceCostHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Terrain_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Terrain_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Terrain"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "Terrain_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "TerrainHOMM1"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "Terrain_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "TerrainHOMM2"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "Terrain_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "TerrainHOMM3"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "Terrain_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "TerrainHOMM4"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "Terrain_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "TerrainHOMM5"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "Terrain_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "TerrainHOMM6"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Terrain_id"
+        ]
+      ],
+      "primaryKey": [
+        "Terrain_id"
+      ],
+      "reason": "Single-column primary key and no composite candidate key, so no partial-key dependency is possible.",
+      "status": "2NF-audited",
+      "table": "TerrainHOMM7"
+    },
+    {
+      "candidateKeys": [
+        [
+          "TownScreen_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "TownScreen_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "TownScreen"
+    },
+    {
+      "candidateKeys": [
+        [
+          "TownScreenBuilding_cid"
+        ],
+        [
+          "Game_id",
+          "TownScreen_id",
+          "Building_id"
+        ]
+      ],
+      "primaryKey": [
+        "TownScreenBuilding_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "TownScreenBuilding"
+    },
+    {
+      "candidateKeys": [
+        [
+          "Video_id"
+        ],
+        [
+          "Game_id",
+          "Code"
+        ]
+      ],
+      "primaryKey": [
+        "Video_id"
+      ],
+      "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
+      "status": "2NF-audited",
+      "table": "Video"
+    }
+  ],
+  "target": "Second Normal Form (2NF)"
+}
