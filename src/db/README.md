@@ -14,8 +14,9 @@ Current contract:
 ## Five-minute start
 
 1. Read [ARCHITECTURE.md](ARCHITECTURE.md) once.
-2. Copy [data/template.json](data/template.json) to a cumulative working file,
-   normally `src/db/data/heroeswatch.json`.
+2. Open [data/heroeswatch.json](data/heroeswatch.json) to extend the cumulative
+   data. Use [data/template.json](data/template.json) only when starting a new,
+   empty bundle.
 3. Add rows using the rules in [DATA_ENTRY.md](DATA_ENTRY.md).
 4. Validate before handing the file back:
 
@@ -59,9 +60,13 @@ existing schema.
 - `postgres/schema.sql`, the initial migration, JSON Schema, template, normal
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
-- The checked-in handoff intentionally contains no content loader and no game
-  rows. Data may be entered directly in a PostgreSQL GUI, or the cumulative
-  JSON can be integrated later by application code after review.
+- The schema baselines contain no game rows. Reviewed content lives in the
+  cumulative JSON; the first batch contains the nine classic Heroes III
+  factions and their supporting records.
+- [data/homm3-factions.sql](data/homm3-factions.sql) applies that batch in one
+  transaction after review. See [data/README.md](data/README.md) for sources
+  and the read-only verification query. A general-purpose content loader is
+  not included.
 
 To verify that generated files are current:
 
