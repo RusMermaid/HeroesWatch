@@ -48,7 +48,7 @@ automatically.
 The Heroes IV batch adds 78 records for Haven, Academy, Necropolis, Asylum,
 Preserve, Stronghold, and 26 creatures outside the standard town lineups.
 It covers the base game, The Gathering Storm, and Winds of War using the
-unmodified Winds of War ruleset. The cumulative JSON now contains 107 rows.
+unmodified Winds of War ruleset.
 
 Neutral creatures retain their faction alignment; they are not a seventh
 town faction. The batch includes the eight Creature Portal units and records
@@ -63,3 +63,18 @@ which creatures can be purchased under this ruleset.
 
 Validate the cumulative JSON, review the sources, and execute the complete SQL
 import in a fresh query session against the existing `heroes_watch` schema.
+
+## Heroes I and Heroes II Gold factions
+
+This batch contributes 26 records: two games, four release records, ten
+factions, and ten shared-PK details. It adds the original Heroes I and Heroes
+II rosters, with The Succession Wars as the Heroes II base game, The Price of
+Loyalty as its expansion, and Gold as the compilation. The cumulative JSON
+contains 133 records across Heroes I-IV.
+
+- [Sources and input mapping](homm1-homm2-factions.sources.md) explains the
+  Heroes I town-type labels and the Heroes II release names.
+- [SQL import](homm1-homm2-factions.sql) applies the complete 26-row batch in
+  one transaction against the existing schema.
+- [Faction review](homm1-homm2-factions.review.sql) displays all ten factions.
+- [Release review](homm1-homm2-releases.review.sql) displays all four releases.

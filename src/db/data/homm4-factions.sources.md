@@ -102,8 +102,8 @@ Field decisions:
 ## Architecture and verification
 
 This adds 78 rows: 1 Game, 3 Expansion, 5 MagicSchool, 5 Terrain, 6 Faction,
-6 FactionHOMM4, 26 Creature, and 26 CreatureHOMM4. The cumulative total is 107
-rows, including the existing 29 Heroes III rows. All 173 table arrays remain
+6 FactionHOMM4, 26 Creature, and 26 CreatureHOMM4. Immediately after this batch,
+the cumulative total was 107 rows, including 29 Heroes III rows. All 173 table arrays remain
 present. Generic/detail pairs share `_key`; independent physical IDs are
 omitted. Every new relationship resolves inside the bundle and stays in HOMM4.
 
@@ -111,7 +111,7 @@ omitted. Every new relationship resolves inside the bundle and stays in HOMM4.
 node src/db/tools/validate.mjs src/db/data/heroeswatch.json
 ```
 
-Validation output:
+Validation output when this batch was added:
 
 ```text
 Valid HeroesWatch data bundle: 173 tables, 107 rows.

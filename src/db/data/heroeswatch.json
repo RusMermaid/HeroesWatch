@@ -1,7 +1,7 @@
 {
   "$schema": "../schema/data.schema.json",
   "formatVersion": 1,
-  "notes": "Cumulative researched Heroes III and IV content. Sources: homm3-factions.sources.md and homm4-factions.sources.md. Heroes IV creature values use the original rules with Winds of War installed. Keep _key values stable.",
+  "notes": "Cumulative researched Heroes I-IV content. Sources: homm1-homm2-factions.sources.md, homm3-factions.sources.md, and homm4-factions.sources.md. Heroes II covers The Succession Wars, The Price of Loyalty, and Gold. Heroes IV uses the original Winds of War rules. Keep _key values stable.",
   "tables": {
     "Ability": [],
     "AbilityHOMM1": [],
@@ -904,6 +904,42 @@
         "Kind": "Expansion",
         "ReleaseDate": null,
         "Description": null
+      },
+      {
+        "_key": "homm1.expansion.base",
+        "Game_id": "homm1.game",
+        "Code": "BASE",
+        "Name": "Heroes of Might and Magic",
+        "Kind": "BaseGame",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm2.expansion.sw",
+        "Game_id": "homm2.game",
+        "Code": "SW",
+        "Name": "The Succession Wars",
+        "Kind": "BaseGame",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm2.expansion.pol",
+        "Game_id": "homm2.game",
+        "Code": "POL",
+        "Name": "The Price of Loyalty",
+        "Kind": "Expansion",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm2.expansion.gold",
+        "Game_id": "homm2.game",
+        "Code": "GOLD",
+        "Name": "Heroes of Might and Magic II Gold",
+        "Kind": "Compilation",
+        "ReleaseDate": null,
+        "Description": null
       }
     ],
     "Faction": [
@@ -1041,10 +1077,148 @@
         "Description": null,
         "IntroducedInExpansion_id": "homm4.expansion.base",
         "MediaAsset_id": null
+      },
+      {
+        "_key": "homm1.faction.knight",
+        "Game_id": "homm1.game",
+        "Code": "KNIGHT",
+        "Name": "Knight",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm1.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm1.faction.sorceress",
+        "Game_id": "homm1.game",
+        "Code": "SORCERESS",
+        "Name": "Sorceress",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm1.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm1.faction.warlock",
+        "Game_id": "homm1.game",
+        "Code": "WARLOCK",
+        "Name": "Warlock",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm1.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm1.faction.barbarian",
+        "Game_id": "homm1.game",
+        "Code": "BARBARIAN",
+        "Name": "Barbarian",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm1.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm2.faction.knight",
+        "Game_id": "homm2.game",
+        "Code": "KNIGHT",
+        "Name": "Knight",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm2.expansion.sw",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm2.faction.sorceress",
+        "Game_id": "homm2.game",
+        "Code": "SORCERESS",
+        "Name": "Sorceress",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm2.expansion.sw",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm2.faction.barbarian",
+        "Game_id": "homm2.game",
+        "Code": "BARBARIAN",
+        "Name": "Barbarian",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm2.expansion.sw",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm2.faction.necromancer",
+        "Game_id": "homm2.game",
+        "Code": "NECROMANCER",
+        "Name": "Necromancer",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm2.expansion.sw",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm2.faction.warlock",
+        "Game_id": "homm2.game",
+        "Code": "WARLOCK",
+        "Name": "Warlock",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm2.expansion.sw",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm2.faction.wizard",
+        "Game_id": "homm2.game",
+        "Code": "WIZARD",
+        "Name": "Wizard",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm2.expansion.sw",
+        "MediaAsset_id": null
       }
     ],
-    "FactionHOMM1": [],
-    "FactionHOMM2": [],
+    "FactionHOMM1": [
+      {
+        "_key": "homm1.faction.knight",
+        "TownType": "Farm"
+      },
+      {
+        "_key": "homm1.faction.sorceress",
+        "TownType": "Forest"
+      },
+      {
+        "_key": "homm1.faction.warlock",
+        "TownType": "Mountain"
+      },
+      {
+        "_key": "homm1.faction.barbarian",
+        "TownType": "Plains"
+      }
+    ],
+    "FactionHOMM2": [
+      {
+        "_key": "homm2.faction.knight",
+        "Alignment": "Good",
+        "MageGuildMaxLevel": 5
+      },
+      {
+        "_key": "homm2.faction.sorceress",
+        "Alignment": "Good",
+        "MageGuildMaxLevel": 5
+      },
+      {
+        "_key": "homm2.faction.barbarian",
+        "Alignment": "Evil",
+        "MageGuildMaxLevel": 5
+      },
+      {
+        "_key": "homm2.faction.necromancer",
+        "Alignment": "Evil",
+        "MageGuildMaxLevel": 5
+      },
+      {
+        "_key": "homm2.faction.warlock",
+        "Alignment": "Evil",
+        "MageGuildMaxLevel": 5
+      },
+      {
+        "_key": "homm2.faction.wizard",
+        "Alignment": "Good",
+        "MageGuildMaxLevel": 5
+      }
+    ],
     "FactionHOMM3": [
       {
         "_key": "homm3.faction.castle",
@@ -1170,6 +1344,22 @@
         "SeriesCode": "HOMM4",
         "DisplayOrder": 4,
         "Name": "Heroes of Might and Magic IV",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm1.game",
+        "SeriesCode": "HOMM1",
+        "DisplayOrder": 1,
+        "Name": "Heroes of Might and Magic",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm2.game",
+        "SeriesCode": "HOMM2",
+        "DisplayOrder": 2,
+        "Name": "Heroes of Might and Magic II",
         "ReleaseDate": null,
         "Description": null
       }
