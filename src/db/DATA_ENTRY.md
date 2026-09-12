@@ -5,11 +5,14 @@ database IDs or understanding the SQLDesigner canvas.
 
 ## Start a batch
 
-Copy `src/db/data/template.json` to the cumulative working file:
+Extend the existing cumulative working file. If it does not exist yet, copy
+`src/db/data/template.json` to:
 
 ```text
 src/db/data/heroeswatch.json
 ```
+
+Never overwrite existing cumulative data with the empty template.
 
 Keep every table key in the file. Leave unrelated tables as empty arrays. The
 working file is self-contained: every referenced `_key` must exist somewhere

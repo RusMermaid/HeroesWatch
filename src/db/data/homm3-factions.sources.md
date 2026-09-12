@@ -86,7 +86,7 @@ Run from the repository root:
 node src/db/tools/validate.mjs src/db/data/heroeswatch.json
 ```
 
-Validation passed:
+Validation passed for the initial Heroes III-only bundle on 2026-09-06:
 
 ```text
 Valid HeroesWatch data bundle: 173 tables, 29 rows.

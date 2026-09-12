@@ -25,9 +25,9 @@ See [`../DATA_ENTRY.md`](../DATA_ENTRY.md) for the complete workflow.
 
 ## Heroes III faction batch
 
-The cumulative file contains nine classic factions, their shared-PK
+The Heroes III batch contributes nine classic factions, their shared-PK
 `FactionHOMM3` details, and the referenced game, releases, and terrains: 29
-records in total. It uses Shadow of Death mechanics with Armageddon's Blade
+records. It uses Shadow of Death mechanics with Armageddon's Blade
 content enabled, including Grass as Conflux's native terrain.
 
 - [Sources and mapping](homm3-factions.sources.md) records the research,
@@ -42,3 +42,24 @@ content enabled, including Grass as Conflux's native terrain.
 The SQL import is a snapshot of this batch. Later JSON edits require a
 corresponding reviewed database application; they do not update PostgreSQL
 automatically.
+
+## Heroes IV factions and neutral creatures
+
+The Heroes IV batch adds 78 records for Haven, Academy, Necropolis, Asylum,
+Preserve, Stronghold, and 26 creatures outside the standard town lineups.
+It covers the base game, The Gathering Storm, and Winds of War using the
+unmodified Winds of War ruleset. The cumulative JSON now contains 107 rows.
+
+Neutral creatures retain their faction alignment; they are not a seventh
+town faction. The batch includes the eight Creature Portal units and records
+which creatures can be purchased under this ruleset.
+
+- [Sources and field mapping](homm4-factions.sources.md) explains provenance,
+  recruitment, melee versus ranged statistics, and movement conversion.
+- [SQL import](homm4-factions.sql) applies the 78 Heroes IV records in one
+  transaction, preserving existing content and rejecting conflicting facts.
+- [Faction review](homm4-factions.review.sql) displays the six towns.
+- [Creature review](homm4-creatures.review.sql) displays all 26 creatures.
+
+Validate the cumulative JSON, review the sources, and execute the complete SQL
+import in a fresh query session against the existing `heroes_watch` schema.

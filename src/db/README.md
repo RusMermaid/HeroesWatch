@@ -61,11 +61,12 @@ existing schema.
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
 - The schema baselines contain no game rows. Reviewed content lives in the
-  cumulative JSON; the first batch contains the nine classic Heroes III
-  factions and their supporting records.
+  cumulative JSON: nine Heroes III factions, six Heroes IV factions, 26 Heroes
+  IV non-town creatures, and their supporting records (107 rows in total).
 - [data/homm3-factions.sql](data/homm3-factions.sql) applies that batch in one
-  transaction after review. See [data/README.md](data/README.md) for sources
-  and the read-only verification query. A general-purpose content loader is
+  transaction after review. [data/homm4-factions.sql](data/homm4-factions.sql)
+  applies the Heroes IV batch. See [data/README.md](data/README.md) for sources
+  and read-only verification queries. A general-purpose content loader is
   not included.
 
 To verify that generated files are current:
