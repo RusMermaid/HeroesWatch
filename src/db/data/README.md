@@ -106,6 +106,22 @@ Lost Tales of Axeoth reuses existing faction identities.
 - [Faction review](homm7-factions.review.sql) displays the seven factions.
 - [Release review](homm7-releases.review.sql) displays the three releases.
 
-The cumulative JSON contains 194 records across Heroes I-IV and VI-VII. Execute
+## Heroes III town creatures
+
+This batch adds all 126 creatures from the nine original factions: seven base
+units and seven upgrades per town. It uses classic Shadow of Death mechanics
+with Armageddon's Blade content enabled. The 465 new rows include complete
+creature details, 63 upgrade links, 140 recruitment-cost relationships, and
+five shared resources with Heroes III membership.
+
+- [Sources and normalization](homm3-creatures.sources.md) documents classic
+  versus HotA values, base growth, per-attack damage, size, and release provenance.
+- [SQL import](homm3-creatures.sql) applies the batch after the Heroes III
+  faction import, with conflict checks and foreign keys enabled.
+- [Summary review](homm3-creatures.summary.sql) checks all nine faction rosters.
+- [Creature review](homm3-creatures.review.sql) displays all 126 creatures,
+  their statistics, costs, upgrade targets, and introduction releases.
+
+The cumulative JSON contains 659 records across Heroes I-IV and VI-VII. Execute
 each reviewed batch SQL separately in a fresh query session; changes to JSON
 do not automatically update the database.

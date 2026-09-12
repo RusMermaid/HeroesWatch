@@ -76,8 +76,8 @@ or a claim that every hero class can attain it.
   In particular, no inferred relational IDs are embedded in `EffectByMastery`.
 
 The batch adds 32 rows: 1 Game, 3 Expansion, 7 Faction, 7 FactionHOMM7,
-7 Skill, and 7 SkillHOMM7. The cumulative bundle contains 194 records and
-retains all 173 table arrays.
+7 Skill, and 7 SkillHOMM7. At the time of this batch, the cumulative bundle
+contained 194 records and retained all 173 table arrays.
 
 ## Validation and database application
 
@@ -85,7 +85,7 @@ retains all 173 table arrays.
 node src/db/tools/validate.mjs src/db/data/heroeswatch.json
 ```
 
-Validation output:
+Validation output at the time of this batch:
 
 ```text
 Valid HeroesWatch data bundle: 173 tables, 194 rows.
