@@ -1,7 +1,7 @@
 {
   "$schema": "../schema/data.schema.json",
   "formatVersion": 1,
-  "notes": "Cumulative researched Heroes I-IV and VI content. Sources: the corresponding *-factions.sources.md files. Includes original games and the documented expansions. Keep _key values stable.",
+  "notes": "Cumulative researched Heroes I-IV and VI-VII content. Sources: the corresponding *-factions.sources.md files. Includes the original games and documented expansions. Keep _key values stable.",
   "tables": {
     "Ability": [
       {
@@ -1104,6 +1104,33 @@
         "Kind": "Expansion",
         "ReleaseDate": null,
         "Description": "Standalone expansion introducing Dungeon and adding Dungeon and Necropolis campaigns."
+      },
+      {
+        "_key": "homm7.expansion.base",
+        "Game_id": "homm7.game",
+        "Code": "BASE",
+        "Name": "Might & Magic Heroes VII",
+        "Kind": "BaseGame",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm7.expansion.ltoa",
+        "Game_id": "homm7.game",
+        "Code": "LTOA",
+        "Name": "Lost Tales of Axeoth",
+        "Kind": "Expansion",
+        "ReleaseDate": null,
+        "Description": "Free campaign content package containing Unity and Every Dog Has His Day."
+      },
+      {
+        "_key": "homm7.expansion.tbf",
+        "Game_id": "homm7.game",
+        "Code": "TBF",
+        "Name": "Trial by Fire",
+        "Kind": "Expansion",
+        "ReleaseDate": null,
+        "Description": "Standalone expansion introducing the Fortress faction."
       }
     ],
     "Faction": [
@@ -1385,6 +1412,69 @@
         "Description": null,
         "IntroducedInExpansion_id": "homm6.expansion.sod",
         "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.faction.haven",
+        "Game_id": "homm7.game",
+        "Code": "HAVEN",
+        "Name": "Haven",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.faction.academy",
+        "Game_id": "homm7.game",
+        "Code": "ACADEMY",
+        "Name": "Academy",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.faction.necropolis",
+        "Game_id": "homm7.game",
+        "Code": "NECROPOLIS",
+        "Name": "Necropolis",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.faction.stronghold",
+        "Game_id": "homm7.game",
+        "Code": "STRONGHOLD",
+        "Name": "Stronghold",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.faction.sylvan",
+        "Game_id": "homm7.game",
+        "Code": "SYLVAN",
+        "Name": "Sylvan",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.faction.dungeon",
+        "Game_id": "homm7.game",
+        "Code": "DUNGEON",
+        "Name": "Dungeon",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.faction.fortress",
+        "Game_id": "homm7.game",
+        "Code": "FORTRESS",
+        "Name": "Fortress",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.tbf",
+        "MediaAsset_id": null
       }
     ],
     "FactionHOMM1": [
@@ -1573,7 +1663,43 @@
         "UniqueBuildingLimit": 2
       }
     ],
-    "FactionHOMM7": [],
+    "FactionHOMM7": [
+      {
+        "_key": "homm7.faction.haven",
+        "Alignment": "Good",
+        "RacialSkill_id": "homm7.skill.righteousness"
+      },
+      {
+        "_key": "homm7.faction.academy",
+        "Alignment": "Good",
+        "RacialSkill_id": "homm7.skill.metamagic"
+      },
+      {
+        "_key": "homm7.faction.necropolis",
+        "Alignment": "Evil",
+        "RacialSkill_id": "homm7.skill.necromancy"
+      },
+      {
+        "_key": "homm7.faction.stronghold",
+        "Alignment": "Neutral",
+        "RacialSkill_id": "homm7.skill.bloodrage"
+      },
+      {
+        "_key": "homm7.faction.sylvan",
+        "Alignment": "Good",
+        "RacialSkill_id": "homm7.skill.natures.revenge"
+      },
+      {
+        "_key": "homm7.faction.dungeon",
+        "Alignment": "Evil",
+        "RacialSkill_id": "homm7.skill.shroud.of.malassa"
+      },
+      {
+        "_key": "homm7.faction.fortress",
+        "Alignment": "Neutral",
+        "RacialSkill_id": "homm7.skill.rune.magic"
+      }
+    ],
     "FactionHOMM8": [],
     "FactionLaw": [],
     "FactionMagicSchoolHOMM5": [],
@@ -1617,6 +1743,14 @@
         "SeriesCode": "HOMM6",
         "DisplayOrder": 6,
         "Name": "Might & Magic Heroes VI",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm7.game",
+        "SeriesCode": "HOMM7",
+        "DisplayOrder": 7,
+        "Name": "Might & Magic Heroes VII",
         "ReleaseDate": null,
         "Description": null
       }
@@ -1718,12 +1852,126 @@
     "ScenarioHOMM7": [],
     "ScenarioHOMM8": [],
     "Screenshot": [],
-    "Skill": [],
+    "Skill": [
+      {
+        "_key": "homm7.skill.righteousness",
+        "Game_id": "homm7.game",
+        "Code": "RIGHTEOUSNESS",
+        "Name": "Righteousness",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.skill.metamagic",
+        "Game_id": "homm7.game",
+        "Code": "METAMAGIC",
+        "Name": "Metamagic",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.skill.necromancy",
+        "Game_id": "homm7.game",
+        "Code": "NECROMANCY",
+        "Name": "Necromancy",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.skill.bloodrage",
+        "Game_id": "homm7.game",
+        "Code": "BLOODRAGE",
+        "Name": "Bloodrage",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.skill.natures.revenge",
+        "Game_id": "homm7.game",
+        "Code": "NATURES_REVENGE",
+        "Name": "Nature's Revenge",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.skill.shroud.of.malassa",
+        "Game_id": "homm7.game",
+        "Code": "SHROUD_OF_MALASSA",
+        "Name": "Shroud of Malassa",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm7.skill.rune.magic",
+        "Game_id": "homm7.game",
+        "Code": "RUNE_MAGIC",
+        "Name": "Rune Magic",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm7.expansion.tbf",
+        "MediaAsset_id": null
+      }
+    ],
     "SkillHOMM2": [],
     "SkillHOMM3": [],
     "SkillHOMM4": [],
     "SkillHOMM5": [],
-    "SkillHOMM7": [],
+    "SkillHOMM7": [
+      {
+        "_key": "homm7.skill.righteousness",
+        "SkillKind": "Faction",
+        "MagicSchool_id": null,
+        "MaxMastery": "Grandmaster",
+        "EffectByMastery": null
+      },
+      {
+        "_key": "homm7.skill.metamagic",
+        "SkillKind": "Faction",
+        "MagicSchool_id": null,
+        "MaxMastery": "Grandmaster",
+        "EffectByMastery": null
+      },
+      {
+        "_key": "homm7.skill.necromancy",
+        "SkillKind": "Faction",
+        "MagicSchool_id": null,
+        "MaxMastery": "Grandmaster",
+        "EffectByMastery": null
+      },
+      {
+        "_key": "homm7.skill.bloodrage",
+        "SkillKind": "Faction",
+        "MagicSchool_id": null,
+        "MaxMastery": "Grandmaster",
+        "EffectByMastery": null
+      },
+      {
+        "_key": "homm7.skill.natures.revenge",
+        "SkillKind": "Faction",
+        "MagicSchool_id": null,
+        "MaxMastery": "Grandmaster",
+        "EffectByMastery": null
+      },
+      {
+        "_key": "homm7.skill.shroud.of.malassa",
+        "SkillKind": "Faction",
+        "MagicSchool_id": null,
+        "MaxMastery": "Grandmaster",
+        "EffectByMastery": null
+      },
+      {
+        "_key": "homm7.skill.rune.magic",
+        "SkillKind": "Faction",
+        "MagicSchool_id": null,
+        "MaxMastery": "Grandmaster",
+        "EffectByMastery": null
+      }
+    ],
     "SkillHOMM8": [],
     "Soundtrack": [],
     "SoundtrackHOMM1": [],

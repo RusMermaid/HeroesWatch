@@ -73,8 +73,8 @@ stored in the generic `Faction` row.
   resource, or magic-guild fields. None are invented for this batch.
 
 The batch adds 29 rows: 1 Game, 4 Expansion, 6 Faction, 6 FactionHOMM6,
-6 Ability, and 6 AbilityHOMM6. The cumulative bundle contains 162 records and
-retains every one of the 173 table arrays.
+6 Ability, and 6 AbilityHOMM6. At the time of this batch, the cumulative bundle
+contained 162 records and retained every one of the 173 table arrays.
 
 ## Validation and database application
 
@@ -82,7 +82,7 @@ retains every one of the 173 table arrays.
 node src/db/tools/validate.mjs src/db/data/heroeswatch.json
 ```
 
-Validation output:
+Validation output at the time of this batch:
 
 ```text
 Valid HeroesWatch data bundle: 173 tables, 162 rows.

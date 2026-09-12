@@ -92,6 +92,20 @@ reuse existing faction identities.
 - [Faction review](homm6-factions.review.sql) displays the six factions.
 - [Release review](homm6-releases.review.sql) displays the four releases.
 
-The cumulative JSON contains 162 records across Heroes I-IV and VI. Execute
+## Heroes VII factions and expansions
+
+This batch contributes 32 records for Haven, Academy, Necropolis, Stronghold,
+Sylvan, Dungeon, and Fortress, their racial skills, and release provenance.
+It covers the base game, Lost Tales of Axeoth (Unity and Every Dog Has His
+Day), and Trial by Fire. Fortress and Rune Magic originate in Trial by Fire;
+Lost Tales of Axeoth reuses existing faction identities.
+
+- [Sources and mapping](homm7-factions.sources.md) documents alignment, racial
+  skills, Grandmaster maximum mastery, and package classifications.
+- [SQL import](homm7-factions.sql) applies the complete Heroes VII batch.
+- [Faction review](homm7-factions.review.sql) displays the seven factions.
+- [Release review](homm7-releases.review.sql) displays the three releases.
+
+The cumulative JSON contains 194 records across Heroes I-IV and VI-VII. Execute
 each reviewed batch SQL separately in a fresh query session; changes to JSON
 do not automatically update the database.
