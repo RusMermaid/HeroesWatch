@@ -1,15 +1,143 @@
 {
   "$schema": "../schema/data.schema.json",
   "formatVersion": 1,
-  "notes": "Cumulative researched Heroes I-IV content. Sources: homm1-homm2-factions.sources.md, homm3-factions.sources.md, and homm4-factions.sources.md. Heroes II covers The Succession Wars, The Price of Loyalty, and Gold. Heroes IV uses the original Winds of War rules. Keep _key values stable.",
+  "notes": "Cumulative researched Heroes I-IV and VI content. Sources: the corresponding *-factions.sources.md files. Includes original games and the documented expansions. Keep _key values stable.",
   "tables": {
-    "Ability": [],
+    "Ability": [
+      {
+        "_key": "homm6.ability.guardian.angel",
+        "Game_id": "homm6.game",
+        "Code": "GUARDIAN_ANGEL",
+        "Name": "Guardian Angel",
+        "Description": "Protects allied Haven creatures from damage during combat.",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.ability.gating",
+        "Game_id": "homm6.game",
+        "Code": "GATING",
+        "Name": "Gating",
+        "Description": "Summons Inferno reinforcements during combat.",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.ability.necromancy",
+        "Game_id": "homm6.game",
+        "Code": "NECROMANCY",
+        "Name": "Necromancy",
+        "Description": "Raises allied undead creatures during combat.",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.ability.honor",
+        "Game_id": "homm6.game",
+        "Code": "HONOR",
+        "Name": "Honor",
+        "Description": "Improves the defenses of allied Sanctuary creatures during combat.",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.ability.bloodrage",
+        "Game_id": "homm6.game",
+        "Code": "BLOODRAGE",
+        "Name": "Bloodrage",
+        "Description": "Improves the initiative and offensive strength of allied Stronghold creatures during combat.",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.ability.shroud.of.malassa",
+        "Game_id": "homm6.game",
+        "Code": "SHROUD_OF_MALASSA",
+        "Name": "Shroud of Malassa",
+        "Description": "Makes allied Dungeon creatures temporarily invisible during combat.",
+        "MediaAsset_id": null
+      }
+    ],
     "AbilityHOMM1": [],
     "AbilityHOMM2": [],
     "AbilityHOMM3": [],
     "AbilityHOMM4": [],
     "AbilityHOMM5": [],
-    "AbilityHOMM6": [],
+    "AbilityHOMM6": [
+      {
+        "_key": "homm6.ability.guardian.angel",
+        "AbilityKind": "Faction",
+        "Branch": null,
+        "Subbranch": null,
+        "MagicSchool_id": null,
+        "Tier": null,
+        "ReputationPath": null,
+        "IsActive": true,
+        "Cooldown": null,
+        "ManaCost": null,
+        "Mechanics": null
+      },
+      {
+        "_key": "homm6.ability.gating",
+        "AbilityKind": "Faction",
+        "Branch": null,
+        "Subbranch": null,
+        "MagicSchool_id": null,
+        "Tier": null,
+        "ReputationPath": null,
+        "IsActive": true,
+        "Cooldown": null,
+        "ManaCost": null,
+        "Mechanics": null
+      },
+      {
+        "_key": "homm6.ability.necromancy",
+        "AbilityKind": "Faction",
+        "Branch": null,
+        "Subbranch": null,
+        "MagicSchool_id": null,
+        "Tier": null,
+        "ReputationPath": null,
+        "IsActive": true,
+        "Cooldown": null,
+        "ManaCost": null,
+        "Mechanics": null
+      },
+      {
+        "_key": "homm6.ability.honor",
+        "AbilityKind": "Faction",
+        "Branch": null,
+        "Subbranch": null,
+        "MagicSchool_id": null,
+        "Tier": null,
+        "ReputationPath": null,
+        "IsActive": true,
+        "Cooldown": null,
+        "ManaCost": null,
+        "Mechanics": null
+      },
+      {
+        "_key": "homm6.ability.bloodrage",
+        "AbilityKind": "Faction",
+        "Branch": null,
+        "Subbranch": null,
+        "MagicSchool_id": null,
+        "Tier": null,
+        "ReputationPath": null,
+        "IsActive": true,
+        "Cooldown": null,
+        "ManaCost": null,
+        "Mechanics": null
+      },
+      {
+        "_key": "homm6.ability.shroud.of.malassa",
+        "AbilityKind": "Faction",
+        "Branch": null,
+        "Subbranch": null,
+        "MagicSchool_id": null,
+        "Tier": null,
+        "ReputationPath": null,
+        "IsActive": true,
+        "Cooldown": null,
+        "ManaCost": null,
+        "Mechanics": null
+      }
+    ],
     "AbilityHOMM7": [],
     "AbilityHOMM8": [],
     "AdventureObject": [],
@@ -940,6 +1068,42 @@
         "Kind": "Compilation",
         "ReleaseDate": null,
         "Description": null
+      },
+      {
+        "_key": "homm6.expansion.base",
+        "Game_id": "homm6.game",
+        "Code": "BASE",
+        "Name": "Might & Magic Heroes VI",
+        "Kind": "BaseGame",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm6.expansion.potss",
+        "Game_id": "homm6.game",
+        "Code": "POTSS",
+        "Name": "Pirates of the Savage Sea Adventure Pack",
+        "Kind": "Expansion",
+        "ReleaseDate": null,
+        "Description": "Adventure-pack DLC for the base game featuring a Stronghold campaign."
+      },
+      {
+        "_key": "homm6.expansion.dm",
+        "Game_id": "homm6.game",
+        "Code": "DM",
+        "Name": "Danse Macabre Adventure Pack",
+        "Kind": "Expansion",
+        "ReleaseDate": null,
+        "Description": "Adventure-pack DLC for the base game featuring a Necropolis campaign."
+      },
+      {
+        "_key": "homm6.expansion.sod",
+        "Game_id": "homm6.game",
+        "Code": "SOD",
+        "Name": "Shades of Darkness",
+        "Kind": "Expansion",
+        "ReleaseDate": null,
+        "Description": "Standalone expansion introducing Dungeon and adding Dungeon and Necropolis campaigns."
       }
     ],
     "Faction": [
@@ -1167,6 +1331,60 @@
         "Description": null,
         "IntroducedInExpansion_id": "homm2.expansion.sw",
         "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.faction.haven",
+        "Game_id": "homm6.game",
+        "Code": "HAVEN",
+        "Name": "Haven",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm6.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.faction.inferno",
+        "Game_id": "homm6.game",
+        "Code": "INFERNO",
+        "Name": "Inferno",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm6.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.faction.necropolis",
+        "Game_id": "homm6.game",
+        "Code": "NECROPOLIS",
+        "Name": "Necropolis",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm6.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.faction.sanctuary",
+        "Game_id": "homm6.game",
+        "Code": "SANCTUARY",
+        "Name": "Sanctuary",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm6.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.faction.stronghold",
+        "Game_id": "homm6.game",
+        "Code": "STRONGHOLD",
+        "Name": "Stronghold",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm6.expansion.base",
+        "MediaAsset_id": null
+      },
+      {
+        "_key": "homm6.faction.dungeon",
+        "Game_id": "homm6.game",
+        "Code": "DUNGEON",
+        "Name": "Dungeon",
+        "Description": null,
+        "IntroducedInExpansion_id": "homm6.expansion.sod",
+        "MediaAsset_id": null
       }
     ],
     "FactionHOMM1": [
@@ -1323,7 +1541,38 @@
       }
     ],
     "FactionHOMM5": [],
-    "FactionHOMM6": [],
+    "FactionHOMM6": [
+      {
+        "_key": "homm6.faction.haven",
+        "FactionAbility_id": "homm6.ability.guardian.angel",
+        "UniqueBuildingLimit": 2
+      },
+      {
+        "_key": "homm6.faction.inferno",
+        "FactionAbility_id": "homm6.ability.gating",
+        "UniqueBuildingLimit": 2
+      },
+      {
+        "_key": "homm6.faction.necropolis",
+        "FactionAbility_id": "homm6.ability.necromancy",
+        "UniqueBuildingLimit": 2
+      },
+      {
+        "_key": "homm6.faction.sanctuary",
+        "FactionAbility_id": "homm6.ability.honor",
+        "UniqueBuildingLimit": 2
+      },
+      {
+        "_key": "homm6.faction.stronghold",
+        "FactionAbility_id": "homm6.ability.bloodrage",
+        "UniqueBuildingLimit": 2
+      },
+      {
+        "_key": "homm6.faction.dungeon",
+        "FactionAbility_id": "homm6.ability.shroud.of.malassa",
+        "UniqueBuildingLimit": 2
+      }
+    ],
     "FactionHOMM7": [],
     "FactionHOMM8": [],
     "FactionLaw": [],
@@ -1360,6 +1609,14 @@
         "SeriesCode": "HOMM2",
         "DisplayOrder": 2,
         "Name": "Heroes of Might and Magic II",
+        "ReleaseDate": null,
+        "Description": null
+      },
+      {
+        "_key": "homm6.game",
+        "SeriesCode": "HOMM6",
+        "DisplayOrder": 6,
+        "Name": "Might & Magic Heroes VI",
         "ReleaseDate": null,
         "Description": null
       }

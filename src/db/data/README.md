@@ -69,8 +69,7 @@ import in a fresh query session against the existing `heroes_watch` schema.
 This batch contributes 26 records: two games, four release records, ten
 factions, and ten shared-PK details. It adds the original Heroes I and Heroes
 II rosters, with The Succession Wars as the Heroes II base game, The Price of
-Loyalty as its expansion, and Gold as the compilation. The cumulative JSON
-contains 133 records across Heroes I-IV.
+Loyalty as its expansion, and Gold as the compilation.
 
 - [Sources and input mapping](homm1-homm2-factions.sources.md) explains the
   Heroes I town-type labels and the Heroes II release names.
@@ -78,3 +77,21 @@ contains 133 records across Heroes I-IV.
   one transaction against the existing schema.
 - [Faction review](homm1-homm2-factions.review.sql) displays all ten factions.
 - [Release review](homm1-homm2-releases.review.sql) displays all four releases.
+
+## Heroes VI factions and expansions
+
+This batch contributes 29 records for Haven, Inferno, Necropolis, Sanctuary,
+Stronghold, and Dungeon, their faction abilities, and release provenance.
+It covers the base game, Pirates of the Savage Sea, Danse Macabre, and Shades
+of Darkness. Dungeon is introduced in Shades of Darkness; the adventure packs
+reuse existing faction identities.
+
+- [Sources and mapping](homm6-factions.sources.md) documents the six abilities,
+  the limit of two unique buildings per town, and release classifications.
+- [SQL import](homm6-factions.sql) applies the complete Heroes VI batch.
+- [Faction review](homm6-factions.review.sql) displays the six factions.
+- [Release review](homm6-releases.review.sql) displays the four releases.
+
+The cumulative JSON contains 162 records across Heroes I-IV and VI. Execute
+each reviewed batch SQL separately in a fresh query session; changes to JSON
+do not automatically update the database.

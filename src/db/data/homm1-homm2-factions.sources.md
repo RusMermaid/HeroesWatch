@@ -74,7 +74,8 @@ created for the expansion or compilation.
   No schema, dictionary, template, or initial migration changes are needed.
 
 The batch contributes 26 records. With the existing 107 Heroes III/IV records,
-the cumulative bundle contains 133 rows and retains all 173 table arrays.
+the cumulative bundle contained 133 rows when this batch was added and
+retained all 173 table arrays.
 
 ## Validation and PostgreSQL application
 
@@ -82,7 +83,7 @@ the cumulative bundle contains 133 rows and retains all 173 table arrays.
 node src/db/tools/validate.mjs src/db/data/heroeswatch.json
 ```
 
-Validation passed:
+Validation passed when this batch was added:
 
 ```text
 Valid HeroesWatch data bundle: 173 tables, 133 rows.
@@ -104,3 +105,11 @@ Use [the faction review](homm1-homm2-factions.review.sql) to inspect all ten
 factions and [the release review](homm1-homm2-releases.review.sql) to inspect
 the four release records. A dash in the faction review means that a field is
 not modeled for that title; it is a display value only.
+
+On 2026-09-12, the previously pending SQL batch was applied successfully to
+local PostgreSQL 18, database `HeroesWatch.net`, through pgAdmin 4. Foreign
+keys were checked before commit, and the post-commit query returned all ten
+Heroes I/II factions with the town types, alignments, and mage-guild values
+documented above.
+A fresh pgAdmin session independently returned the same ten factions after
+commit, completing the previously pending database verification.

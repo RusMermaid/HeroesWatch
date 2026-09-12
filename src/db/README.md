@@ -62,13 +62,14 @@ existing schema.
 - New content belongs in the cumulative data JSON, not in the schema files.
 - The schema baselines contain no game rows. Reviewed content lives in the
   cumulative JSON: four Heroes I factions, six Heroes II factions, nine Heroes
-  III factions, six Heroes IV factions, 26 Heroes IV non-town creatures, and
-  their supporting records (133 rows in total).
+  III factions, six Heroes IV factions, six Heroes VI factions, 26 Heroes IV
+  non-town creatures, and their supporting records (162 rows in total).
 - [data/homm3-factions.sql](data/homm3-factions.sql) applies that batch in one
   transaction after review. [data/homm4-factions.sql](data/homm4-factions.sql)
   applies the Heroes IV batch, and
   [data/homm1-homm2-factions.sql](data/homm1-homm2-factions.sql) applies Heroes
-  I and II. See [data/README.md](data/README.md) for sources
+  I and II. [data/homm6-factions.sql](data/homm6-factions.sql) applies Heroes VI.
+  See [data/README.md](data/README.md) for sources
   and read-only verification queries. A general-purpose content loader is
   not included.
 
