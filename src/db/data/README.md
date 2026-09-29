@@ -51,6 +51,11 @@ All pre-existing non-null values are preserved.
   [spin-offs](manual-spin-offs.sources.md).
 - Read-only PostgreSQL queries: [manual library](manual-library.review.sql)
   and [six unresolved conflicts](manual-conflicts.review.sql).
+- [Smaller manual import](manual-import.sql): 3,939 new/enriched/dependency
+  rows from the cumulative catalog. Generate it with
+  `node src/db/tools/build-manual-sql.mjs`; it uses the normal transactional
+  importer. [Application status](CATALOG_STATUS.md#manual-batch-postgresql-status)
+  records the interrupted pgAdmin step.
 
 RPGs use the universal catalog and actual school relationships; no RPG rows
 are placed in Heroes-specific details. Scans and earlier editions are labeled.
