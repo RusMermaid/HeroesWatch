@@ -1,0 +1,83 @@
+name: Original catalog verification
+on:
+  push:
+    branches: [data/original-catalog-expansion-20260929]
+  pull_request:
+    branches: [heroes.watch_data.manipulation]
+    paths: ['src/db/**', '.github/workflows/original-catalog.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: original-catalog-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: catalog_test
+          POSTGRES_PASSWORD: isolated_ci_only
+          POSTGRES_DB: catalog_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U catalog_test -d catalog_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - name: Build cumulative catalog when the builder is present
+        run: |
+          if test -f src/db/tools/build-original-catalog.mjs; then
+            node src/db/tools/build-original-catalog.mjs
+          fi
+      - name: Validate cumulative JSON
+        run: node src/db/tools/validate.mjs src/db/data/heroeswatch.json
+      - name: Verify schema and import in disposable PostgreSQL
+        env:
+          PGHOST: localhost
+          PGPORT: 5432
+          PGUSER: catalog_test
+          PGPASSWORD: isolated_ci_only
+          PGDATABASE: catalog_test
+        run: |
+          psql -X -v ON_ERROR_STOP=1 -f src/db/HeroesWatch.sql
+          if test -f src/db/data/original-catalog.sql; then
+            psql -X -v ON_ERROR_STOP=1 -f src/db/data/original-catalog.sql
+            psql -X -v ON_ERROR_STOP=1 -f src/db/data/original-catalog.sql
+            psql -X -v ON_ERROR_STOP=1 -f src/db/data/original-catalog.review.sql
+          fi
+          if test -f src/db/tools/test-original-catalog.mjs; then
+            node src/db/tools/test-original-catalog.mjs
+          fi
+      - name: Commit validated generated catalog on the feature branch only
+        if: github.event_name == 'push' && github.ref_name == 'data/original-catalog-expansion-20260929'
+        run: |
+          if test -f src/db/tools/build-original-catalog.mjs; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add src/db/data/heroeswatch.json
+            for f in original-catalog.sql original-catalog.review.sql original-catalog.coverage.json; do
+              test ! -f src/db/data/$f || git add src/db/data/$f
+            done
+            git diff --cached --quiet || git commit -m 'Generate and verify original catalog data [skip ci]'
+            git push origin HEAD:data/original-catalog-expansion-20260929
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: heroeswatch-catalog-verification
+          path: |
+            src/db/schema
+            src/db/tools
+            src/db/data
+            src/db/HeroesWatch.sql
+            src/db/ARCHITECTURE.md
+            src/db/DATA_DICTIONARY.md
+          retention-days: 7
