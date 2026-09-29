@@ -3,7 +3,7 @@
 ## 1. System purpose
 
 HeroesWatch is a cross-game reference platform for the Heroes of Might and
-Magic series. Its database is an encyclopedia/catalog model: it describes
+Magic series and related Might and Magic RPGs and spin-offs. Its database is an encyclopedia/catalog model: it describes
 games, releases, factions, heroes, creatures, magic, towns, maps, campaigns,
 media, and the relationships between them.
 
@@ -19,6 +19,23 @@ The database is designed to support:
 It is not a save-game database. Runtime player state—current armies, captured
 towns, combat turns, inventories, multiplayer sessions, and map-instance
 ownership—is outside this model.
+
+### Related Might and Magic titles
+
+RPGs and spin-offs receive independent `Game.SeriesCode` values (`MM1`–`MM10`,
+`MMSX`, `MMCRUS`, `MMWARRIORS`, `MMSHIFTERS`, and `MMLEGENDS`). Their identities,
+actual magic schools, equipment and source documents use the universal catalog
+and applicable junctions. They never use a Heroes-specific detail table.
+The current contract has no RPG detail tables; sourced numeric facts can be
+summarized in descriptions, with their manual page evidence retained alongside
+the content. Adding queryable RPG statistics requires a future schema change.
+
+Local reference manuals are `MediaAsset` records of kind `File`, with SHA-256
+checksums and edition metadata. Their relative URIs resolve from `src/db`.
+The PDF bytes remain in the ignored local manual library. A manual assigned as
+an entity's source media is not a portrait or playable map file. Source-page
+observations and unresolved differences live in the manual comparison files;
+they do not silently replace established values from a different ruleset.
 
 ## 2. Architectural shape
 

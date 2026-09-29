@@ -1,9 +1,39 @@
 # Catalog coverage and PostgreSQL handoff
 
-Updated 2026-09-30. The cumulative [JSON](heroeswatch.json) contains **27,915
-rows across 173 table arrays**. This batch adds 15,328 rows to the previous
-12,587-row catalog. Existing records, architectural layers, schema and initial
-migration are retained.
+Updated 2026-09-30. The cumulative [JSON](heroeswatch.json) contains **30,481
+rows across 173 table arrays**. The manual import adds **2,566 rows** to the
+previous 27,915-row catalog and fills **774 previously null fields**. All earlier
+rows and non-null values are retained. The schema and initial migration are
+unchanged.
+
+## Manual import and comparison
+
+The local collection contains 38 files, deduplicated by SHA-256 into **36 PDF
+source records**. The import adds 2,156 RPG rows, 316 spin-off rows, 57 Heroes
+rows, 36 manual records and one comparison-report media record. Supported Heroes
+fills comprise 568 fields in I–III and 206 in IV–VI.
+
+Might and Magic I–X, Swords of Xeen, Crusaders, Warriors, Shifters and Legends
+have independent game identities and use generic catalogs. Platform differences
+in Crusaders are labeled explicitly. There are no new RPG-specific tables.
+The original PDFs are stored locally and excluded from Git; PostgreSQL stores
+their metadata and relative file URIs.
+
+The [manual report](MANUAL_COMPARISON.md) records **7,264 observations**:
+6,286 matches, 163 edition/reference differences, six unresolved existing-value
+conflicts, and documented gaps, manual errors and naming variants. No existing
+non-null mechanic was replaced. The fan Heroes VIII proposal and mod manuals
+have metadata only; no authentic Heroes VII or Olden Era manual was found.
+
+On 2026-09-30, the [six-conflict query](manual-conflicts.review.sql) was run in
+the live **HeroesWatch.net** database through pgAdmin. It returned all six rows
+in 99 ms; every database value matched the retained catalog baseline. This
+confirms those six live values, not every field in the full comparison report.
+
+Sources and scope: [I–III](manual-homm1-3.sources.md),
+[IV–VI](manual-homm4-6.sources.md), [RPGs](manual-mm-rpg.sources.md),
+[spin-offs](manual-spin-offs.sources.md), [inventory](manual-inventory.json),
+and [per-row evidence](manual-content-evidence.json).
 
 ## Requested scope
 
@@ -33,7 +63,7 @@ mechanics and factions. HOMM8 is this repository's identifier for
 | II | 66 | 14 | — | 65 | 99 | 6 | 89 |
 | III | 141 | 32 | 4 | 70 | 141 | 20 | 187 |
 | IV | 74 | 36 | 5 | 151 | 205 | 18 | 215 |
-| V | 177 | 25 | 6 | 80 | 92 | 13 | 150 |
+| V | 177 | 25 | 6 | 80 | 93 | 13 | 150 |
 | VI | 109 | Ability model | 7 | 89 | 224 | 11 | 101 |
 | VII | 156 | 24 | 7 | 70 | 224 | 11 | 141 |
 | Olden Era | 146 | 30 | 4 | 93 | 302 | 3 | 194 |
@@ -138,10 +168,10 @@ do not belong in the repository. An empty database first needs the existing
 schema-only `HeroesWatch.sql`; never execute that baseline over a populated
 schema. Old individual batch scripts remain historical snapshots.
 
-## Earlier verification and current execution policy
+## Earlier verification and execution policy
 
 The following results describe the earlier catalog/importer work. Per the
-latest user instruction, this 15,328-row addition does not run a test suite,
+user's instruction at that stage, the 15,328-row addition did not run a test suite,
 independent database comparison, or optional review query. The SQL builder's
 required contract validation and normal PostgreSQL constraints still apply.
 
@@ -162,13 +192,13 @@ required contract validation and normal PostgreSQL constraints still apply.
 The earlier complete-import check used an isolated local test cluster.
 Repeat-import and conflict tests used the 7,917-row catalog.
 
-## PostgreSQL application
+## Earlier PostgreSQL application
 
 On 2026-09-30, the cumulative **27,915-row import committed successfully** to
 the registered **HeroesWatch.net** database on PostgreSQL 18, through the
 user's authenticated pgAdmin session. The execution response was `COMMIT`
 and "Query returned successfully in 56 secs 581 msec."
 
-pgAdmin remains open on `catalog.sql` and its successful execution result.
+At that handoff, pgAdmin was open on `catalog.sql` and its successful result.
 No optional review queries, independent row comparison or test suite were run
 for this addition, following the user's instruction to skip verification.

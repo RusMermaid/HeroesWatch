@@ -40,6 +40,7 @@ ScaffoldingReadMe.txt
 .env
 .codex-tmp/
 src/db/data/research/
+src/db/manuals/files/
 
 # Others
 .DS_Store

@@ -61,11 +61,14 @@ existing schema.
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
 - The schema baselines contain no game rows. Reviewed content lives in the
-  cumulative JSON: 27,915 rows across Heroes I–VIII, including classes, heroes,
+  cumulative JSON: 30,481 rows across Heroes I–VIII and related Might and Magic
+  RPGs and spin-offs, including classes, heroes,
   town buildings, dwellings, creatures, skills, magic, artifacts, campaigns
   and map objects for each title's actual mechanics and official expansions.
   [Coverage and known gaps](data/CATALOG_STATUS.md) lists counts, provenance,
   unresolved details, and the completed PostgreSQL application.
+  [The manual comparison](data/MANUAL_COMPARISON.md) records source disagreements,
+  edition differences and page evidence from the supplied local PDFs.
 - [data/catalog.sql](data/catalog.sql) is the complete cumulative content
   import, generated with `node src/db/tools/build-content-sql.mjs`. It preserves
   local identities and facts and rejects conflicts. Inspect results with
