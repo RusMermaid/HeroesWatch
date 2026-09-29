@@ -61,10 +61,15 @@ existing schema.
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
 - The schema baselines contain no game rows. Reviewed content lives in the
-  cumulative JSON: four Heroes I factions, six Heroes II factions, nine Heroes
-  III factions, six Heroes IV factions, six Heroes VI factions, seven Heroes
-  VII factions, 126 Heroes III town creatures, 26 Heroes IV non-town creatures,
-  and their supporting records (659 rows in total).
+  cumulative JSON: 12,587 rows across Heroes I–VIII, including classes, heroes,
+  town buildings, external dwellings and III skills, magic, artifacts,
+  campaigns and map objects.
+  [Coverage and known gaps](data/CATALOG_STATUS.md) lists counts, provenance,
+  unresolved details, and the pending target-database application.
+- [data/catalog.sql](data/catalog.sql) is the complete cumulative content
+  import, generated with `node src/db/tools/build-content-sql.mjs`. It preserves
+  local identities and facts and rejects conflicts. Inspect results with
+  [data/catalog.review.sql](data/catalog.review.sql).
 - [data/homm3-factions.sql](data/homm3-factions.sql) applies that batch in one
   transaction after review. [data/homm4-factions.sql](data/homm4-factions.sql)
   applies the Heroes IV batch, and
@@ -74,8 +79,8 @@ existing schema.
   [data/homm3-creatures.sql](data/homm3-creatures.sql) applies the Heroes III
   town creature roster after its faction batch.
   See [data/README.md](data/README.md) for sources
-  and read-only verification queries. A general-purpose content loader is
-  not included.
+  and read-only verification queries. These earlier files are historical
+  snapshots; the cumulative import above includes their reviewed content.
 
 To verify that generated files are current:
 

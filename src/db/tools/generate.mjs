@@ -685,7 +685,8 @@ async function emit(filePath, content, check) {
     } catch {
       throw new Error(`Generated file is missing: ${filePath}`);
     }
-    if (existing !== content) {
+    // Git may check text files out as CRLF on Windows.
+    if (existing.replace(/\r\n/g, "\n") !== content.replace(/\r\n/g, "\n")) {
       throw new Error(`Generated file is stale: ${filePath}`);
     }
     return;

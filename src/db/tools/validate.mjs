@@ -198,6 +198,62 @@ async function main() {
     });
   }
 
+  // Foreign keys prove existence; game ownership is an ingestion invariant.
+  // Shared-PK details inherit ownership from their generic catalog row.
+  const rowsByKey = new Map(schema.tables.map((table) => [
+    table.name,
+    new Map((bundle.tables?.[table.name] ?? []).filter((row) => row && typeof row === "object").map((row) => [row._key, row])),
+  ]));
+  function referencedRow(foreignKey, value) {
+    if (typeof value === "string") return rowsByKey.get(foreignKey.referencedTable)?.get(value);
+    return (bundle.tables?.[foreignKey.referencedTable] ?? []).find((row) => row?.[foreignKey.referencedColumns[0]] === value);
+  }
+  function owner(table, row, visited = new Set()) {
+    if (!row) return null;
+    if (table.name === "Game") return row;
+    const identity = `${table.name}:${row._key}`;
+    if (visited.has(identity)) return null;
+    visited.add(identity);
+    const gameKey = table.foreignKeys.find((fk) => fk.columns[0] === "Game_id");
+    if (gameKey) return referencedRow(gameKey, row.Game_id) ?? null;
+    const parentKey = table.foreignKeys.find((fk) => table.primaryKey.includes(fk.columns[0]));
+    if (parentKey) {
+      return owner(tableByName.get(parentKey.referencedTable), referencedRow(parentKey, row[parentKey.columns[0]] ?? row._key), visited);
+    }
+    const ownershipColumn = {
+      FactionLaw: "Faction_id",
+      ArtifactSetHOMM5: "IntroducedInExpansion_id",
+      ArtifactSetBonusHOMM5: "ArtifactSetHOMM5_id",
+    }[table.name];
+    const inherited = table.foreignKeys.find((fk) => fk.columns[0] === ownershipColumn);
+    if (inherited && row[ownershipColumn] != null) {
+      return owner(tableByName.get(inherited.referencedTable), referencedRow(inherited, row[ownershipColumn]), visited);
+    }
+    return null;
+  }
+  for (const table of schema.tables) {
+    for (const [index, row] of (bundle.tables?.[table.name] ?? []).entries()) {
+      if (!row || typeof row !== "object") continue;
+      const game = owner(table, row);
+      const detailGame = table.name === "FactionLaw" ? "HOMM8" : table.name.match(/HOMM[1-8]$/)?.[0];
+      if (detailGame && game && game.SeriesCode !== detailGame) {
+        fail(`${rowLabel(table.name, row, index)} belongs to ${game.SeriesCode}, but ${table.name} requires ${detailGame}`, errors);
+      }
+      for (const foreignKey of table.foreignKeys) {
+        const column = foreignKey.columns[0];
+        const value = row[column] ?? (table.primaryKey.includes(column) ? row._key : null);
+        if (value === null || value === undefined) continue;
+        const parentGame = owner(tableByName.get(foreignKey.referencedTable), referencedRow(foreignKey, value));
+        if (detailGame && parentGame && parentGame.SeriesCode !== detailGame) {
+          fail(`${rowLabel(table.name, row, index)}.${column} belongs to ${parentGame.SeriesCode}, but ${table.name} requires ${detailGame}`, errors);
+        }
+        if (game && parentGame && parentGame._key !== game._key) {
+          fail(`${rowLabel(table.name, row, index)}.${column} crosses games (${game.SeriesCode} to ${parentGame.SeriesCode})`, errors);
+        }
+      }
+    }
+  }
+
   if (errors.length > 0) {
     console.error(`Validation failed with ${errors.length} error(s):`);
     for (const error of errors) console.error(`- ${error}`);
