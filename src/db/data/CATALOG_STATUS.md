@@ -1,16 +1,17 @@
 # Catalog coverage and PostgreSQL handoff
 
-Reviewed 2026-09-29. The cumulative [JSON](heroeswatch.json) contains **12,587
-rows across 173 table arrays**, including 11,928 additions. All 659 previously
-committed rows are preserved exactly. The schema, architectural layers, and
-initial migration are unchanged.
+Updated 2026-09-30. The cumulative [JSON](heroeswatch.json) contains **27,915
+rows across 173 table arrays**. This batch adds 15,328 rows to the previous
+12,587-row catalog. Existing records, architectural layers, schema and initial
+migration are retained.
 
 ## Requested scope
 
-The catalog uses the actual factions from Heroes I–VIII for classes,
-heroes, town buildings, and external dwellings. The separate skills, magic,
-campaigns, artifacts, and general map-object request applies to Heroes III
-and its official expansions. HOMM8 is this repository's identifier for
+The latest request extends every listed category across Heroes I–VIII and
+their official expansions: factions, classes, heroes, town buildings,
+external dwellings, faction and neutral creatures, skills, schools, spells,
+artifacts, campaigns and general adventure objects. Each game uses its own
+mechanics and factions. HOMM8 is this repository's identifier for
 **Olden Era**, whose released Early Access build 25061458 supplies the data.
 
 | Game | Factions | Classes | Named heroes | Town buildings | Map dwellings |
@@ -22,7 +23,26 @@ and its official expansions. HOMM8 is this repository's identifier for
 | V, Hammers of Fate, Tribes of the East | 8 | 8 | 124 | 292 | 34 |
 | VI, adventure packs, Shades of Darkness | 6 | 36 | 139 | 185 | 18 |
 | VII, Lost Tales of Axeoth, Trial by Fire | 7 | 44 | 132 | 343 | 21 |
-| Olden Era Early Access | 6 | 12 | 108 standard | 206 levels | 57 |
+| Olden Era Early Access | 6 | 12 | 112 | 206 levels | 57 |
+
+## Additional category coverage
+
+| Game | Creatures | Skills | Schools | Spells | Artifacts | Campaigns | Map objects, including dwellings |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| I | 28 | 4 | — | 29 | 39 | 1 | 41 |
+| II | 66 | 14 | — | 65 | 99 | 6 | 89 |
+| III | 141 | 32 | 4 | 70 | 141 | 20 | 187 |
+| IV | 74 | 36 | 5 | 151 | 205 | 18 | 215 |
+| V | 177 | 25 | 6 | 80 | 92 | 13 | 150 |
+| VI | 109 | Ability model | 7 | 89 | 224 | 11 | 101 |
+| VII | 156 | 24 | 7 | 70 | 224 | 11 | 141 |
+| Olden Era | 146 | 30 | 4 | 93 | 302 | 3 | 194 |
+
+Heroes I and II do not have spell schools. Heroes VI progression uses its
+ability tree, represented by `AbilityHOMM6`, rather than invented conventional
+skill rows. Olden Era's three campaign groups are Main Story, Tutorial and
+Challenges; only released Act I is represented for the main story. Artifact
+counts include sourced quest items and scroll variants, as documented below.
 
 Heroes VI also adds six adventure-map forts. Faction-neutral sites are included
 in the dwelling counts. IV's advanced classes are not exclusive to one town.
@@ -50,8 +70,16 @@ unofficial content are excluded.
   and Drakonia have scenario-dependent classes and retain null class FKs.
 - Some hero class references and optional mechanics remain null. Same-name
   Heroes V entries with multiple playable classes are documented as such.
-  Olden Era covers the 108 standard heroes; campaign/tutorial variants and
-  unused definitions are not presented as additional verified heroes.
+  Olden Era covers the 108 standard heroes plus four named Act I protagonists;
+  unused and unlocalized definitions are not presented as released heroes.
+- Forty VI/VII creature identities lack a complete detail row because required
+  statistics remain unavailable or ambiguous. Unsupported artifact classes
+  in I/IV/VI/VII retain generic identities. The schema's ENUMs are not changed
+  merely to force incomplete source values into detail tables.
+- Spell and artifact identities are complete against the documented source
+  rosters; many optional effect formulas, upgrade prices, perk prerequisites
+  and historical balance variations remain unencoded. Source notes distinguish
+  direct values from the uniquely invertible VI defense calculations.
 - The current architecture has no dwelling-object-to-faction/creature
   junction. Objects are separate catalog rows, and no hidden relationship
   arrays are inserted in JSONB. Town recruitment uses `BuildingCreature`.
@@ -66,6 +94,11 @@ unofficial content are excluded.
 [III terrain](homm3-terrain.sources.md), [IV](homm4-catalog.sources.md),
 [V](homm5-catalog.sources.md), [VI](homm6-catalog.sources.md),
 [VII](homm7-catalog.sources.md), [Olden Era](homm8-catalog.sources.md).
+
+Latest additions: [I–IV](remaining-homm1-4.sources.md),
+[V](remaining-homm5.sources.md), [VI–VII](remaining-homm6-7.sources.md),
+[Olden Era](remaining-homm8.sources.md). Eight additional game-resource
+memberships follow directly from sourced recruitment or building costs.
 
 Only structured facts and concise mechanics enter the bundle. Research
 fragments and raw source caches are ignored; they are not alternate imports.
@@ -87,6 +120,10 @@ IDs, preserves existing IDs and non-null values, fills sourced missing values,
 and rejects conflicting facts. Foreign keys remain enabled; the complete
 transaction is checked before commit. The only helpers are temporary objects.
 Sequence gaps after a failed attempt are normal PostgreSQL behavior.
+`ArtifactSetBonusHOMM5` has no declared alternate unique key; the importer
+matches its set, required piece count and optional class under the table lock.
+Ambiguous existing or incoming matches stop the import rather than creating
+duplicate bonuses. This policy adds no schema constraint or migration.
 
 Run the whole file in a fresh pgAdmin Query Tool session connected to the
 intended database, then run [catalog.review.sql](catalog.review.sql). For psql:
@@ -101,7 +138,12 @@ do not belong in the repository. An empty database first needs the existing
 schema-only `HeroesWatch.sql`; never execute that baseline over a populated
 schema. Old individual batch scripts remain historical snapshots.
 
-## Verification completed
+## Earlier verification and current execution policy
+
+The following results describe the earlier catalog/importer work. Per the
+latest user instruction, this 15,328-row addition does not run a test suite,
+independent database comparison, or optional review query. The SQL builder's
+required contract validation and normal PostgreSQL constraints still apply.
 
 - Structural validation, same-game FK checks, game-detail ownership, unique
   keys, and catalog regression tests passed.
@@ -117,10 +159,16 @@ schema. Old individual batch scripts remain historical snapshots.
   `standard_conforming_strings` initially off. Apostrophes, backslashes and
   dollar-quote delimiters round-tripped correctly. All review queries executed.
 
-The complete-import check used an isolated local test cluster. Earlier
-repeat-import and conflict tests used the 7,917-row catalog and the same
-importer. **Application to the user's registered `HeroesWatch.net` database
-remains pending PostgreSQL authentication.** pgAdmin was opened but requested
-the postgres password; no new catalog transaction was submitted there.
-The user requested no further verification. The prepared import may be executed
-after signing in, without running the optional review queries.
+The earlier complete-import check used an isolated local test cluster.
+Repeat-import and conflict tests used the 7,917-row catalog.
+
+## PostgreSQL application
+
+On 2026-09-30, the cumulative **27,915-row import committed successfully** to
+the registered **HeroesWatch.net** database on PostgreSQL 18, through the
+user's authenticated pgAdmin session. The execution response was `COMMIT`
+and "Query returned successfully in 56 secs 581 msec."
+
+pgAdmin remains open on `catalog.sql` and its successful execution result.
+No optional review queries, independent row comparison or test suite were run
+for this addition, following the user's instruction to skip verification.

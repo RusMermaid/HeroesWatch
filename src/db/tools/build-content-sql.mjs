@@ -45,6 +45,12 @@ const identifier = (table, key) => JSON.stringify([table, key]);
 const compare = (a, b) => a < b ? -1 : a > b ? 1 : 0;
 const nodes = new Map();
 const incomingBusinessKeys = new Map();
+// The diagram gives set bonuses an independent identity but no alternate
+// unique key. Match their actual set/piece-count/class condition explicitly.
+// The importer locks the table and rejects ambiguous existing or incoming rows.
+const importIdentityPolicies = {
+  ArtifactSetBonusHOMM5: ['ArtifactSetHOMM5_id', 'RequiredPieceCount', 'HeroClass_id'],
+};
 
 // Only identity-defining dependencies must be acyclic. Other FK cycles work
 // because all identities are known before any complete row is inserted.
@@ -64,7 +70,7 @@ for (const table of schema.tables) {
     delete values._key;
     if (identityKind === 'shared' && values[pk] === undefined) values[pk] = row._key;
     if (identityKind === 'text' && values[pk] === undefined) values[pk] = row._key;
-    const businessKey = identityKind === 'shared' ? [pk] : table.unique.find(columns => columns.every(column => Object.hasOwn(values, column) || columnByName.get(column).nullable));
+    const businessKey = identityKind === 'shared' ? [pk] : table.unique.find(columns => columns.every(column => Object.hasOwn(values, column) || columnByName.get(column).nullable)) ?? importIdentityPolicies[table.name];
     if (identityKind === 'generated' && !businessKey) throw new Error(`${table.name}/${row._key}: no complete declared business key; add a reviewed identity policy before importing this table`);
     if (businessKey) {
       const signature = JSON.stringify([table.name, businessKey, businessKey.map(column => values[column])]);
