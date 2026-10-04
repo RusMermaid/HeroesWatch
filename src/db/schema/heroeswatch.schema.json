@@ -7,10 +7,10 @@
     "targetNormalForm": "2NF"
   },
   "counts": {
-    "columns": 1285,
-    "enums": 159,
-    "foreignKeys": 349,
-    "tables": 173
+    "columns": 1304,
+    "enums": 160,
+    "foreignKeys": 450,
+    "tables": 176
   },
   "database": "HeroesWatchNet",
   "enums": [
@@ -104,6 +104,16 @@
       "values": [
         "Advanced",
         "Expert"
+      ]
+    },
+    {
+      "column": "Relation",
+      "name": "Enum__AdventureObjectCreature__Relation",
+      "table": "AdventureObjectCreature",
+      "values": [
+        "Recruits",
+        "Guards",
+        "Transforms"
       ]
     },
     {
@@ -423,6 +433,15 @@
       ]
     },
     {
+      "column": "Affinity",
+      "name": "Enum__ArtifactHOMM7__Affinity",
+      "table": "ArtifactHOMM7",
+      "values": [
+        "Might",
+        "Magic"
+      ]
+    },
+    {
       "column": "Class",
       "name": "Enum__ArtifactHOMM7__Class",
       "table": "ArtifactHOMM7",
@@ -430,15 +449,6 @@
         "Minor",
         "Major",
         "Relic"
-      ]
-    },
-    {
-      "column": "Affinity",
-      "name": "Enum__ArtifactHOMM7__Affinity",
-      "table": "ArtifactHOMM7",
-      "values": [
-        "Might",
-        "Magic"
       ]
     },
     {
@@ -552,6 +562,15 @@
       ]
     },
     {
+      "column": "Movement",
+      "name": "Enum__CreatureHOMM1__Movement",
+      "table": "CreatureHOMM1",
+      "values": [
+        "Ground",
+        "Flying"
+      ]
+    },
+    {
       "column": "Speed",
       "name": "Enum__CreatureHOMM1__Speed",
       "table": "CreatureHOMM1",
@@ -559,15 +578,6 @@
         "Slow",
         "Medium",
         "Fast"
-      ]
-    },
-    {
-      "column": "Movement",
-      "name": "Enum__CreatureHOMM1__Movement",
-      "table": "CreatureHOMM1",
-      "values": [
-        "Ground",
-        "Flying"
       ]
     },
     {
@@ -600,6 +610,15 @@
       ]
     },
     {
+      "column": "GrowthPeriod",
+      "name": "Enum__CreatureHOMM4__GrowthPeriod",
+      "table": "CreatureHOMM4",
+      "values": [
+        "Daily",
+        "Weekly"
+      ]
+    },
+    {
       "column": "Movement",
       "name": "Enum__CreatureHOMM4__Movement",
       "table": "CreatureHOMM4",
@@ -607,15 +626,6 @@
         "Ground",
         "Flying",
         "Teleporting"
-      ]
-    },
-    {
-      "column": "GrowthPeriod",
-      "name": "Enum__CreatureHOMM4__GrowthPeriod",
-      "table": "CreatureHOMM4",
-      "values": [
-        "Daily",
-        "Weekly"
       ]
     },
     {
@@ -641,13 +651,12 @@
       ]
     },
     {
-      "column": "Tier",
-      "name": "Enum__CreatureHOMM6__Tier",
+      "column": "AttackType",
+      "name": "Enum__CreatureHOMM6__AttackType",
       "table": "CreatureHOMM6",
       "values": [
-        "Core",
-        "Elite",
-        "Champion"
+        "Might",
+        "Magic"
       ]
     },
     {
@@ -663,12 +672,13 @@
       ]
     },
     {
-      "column": "AttackType",
-      "name": "Enum__CreatureHOMM6__AttackType",
+      "column": "Movement",
+      "name": "Enum__CreatureHOMM6__Movement",
       "table": "CreatureHOMM6",
       "values": [
-        "Might",
-        "Magic"
+        "Ground",
+        "Flying",
+        "Teleporting"
       ]
     },
     {
@@ -682,19 +692,9 @@
       ]
     },
     {
-      "column": "Movement",
-      "name": "Enum__CreatureHOMM6__Movement",
-      "table": "CreatureHOMM6",
-      "values": [
-        "Ground",
-        "Flying",
-        "Teleporting"
-      ]
-    },
-    {
       "column": "Tier",
-      "name": "Enum__CreatureHOMM7__Tier",
-      "table": "CreatureHOMM7",
+      "name": "Enum__CreatureHOMM6__Tier",
+      "table": "CreatureHOMM6",
       "values": [
         "Core",
         "Elite",
@@ -714,16 +714,6 @@
       ]
     },
     {
-      "column": "WarfareRole",
-      "name": "Enum__CreatureHOMM7__WarfareRole",
-      "table": "CreatureHOMM7",
-      "values": [
-        "Attack",
-        "Support",
-        "Siege"
-      ]
-    },
-    {
       "column": "Movement",
       "name": "Enum__CreatureHOMM7__Movement",
       "table": "CreatureHOMM7",
@@ -731,6 +721,26 @@
         "Ground",
         "Flying",
         "Teleporting"
+      ]
+    },
+    {
+      "column": "Tier",
+      "name": "Enum__CreatureHOMM7__Tier",
+      "table": "CreatureHOMM7",
+      "values": [
+        "Core",
+        "Elite",
+        "Champion"
+      ]
+    },
+    {
+      "column": "WarfareRole",
+      "name": "Enum__CreatureHOMM7__WarfareRole",
+      "table": "CreatureHOMM7",
+      "values": [
+        "Attack",
+        "Support",
+        "Siege"
       ]
     },
     {
@@ -853,16 +863,6 @@
       ]
     },
     {
-      "column": "Ruleset",
-      "name": "Enum__FactionMagicSchoolHOMM5__Ruleset",
-      "table": "FactionMagicSchoolHOMM5",
-      "values": [
-        "BaseGame",
-        "HammersOfFate",
-        "TribesOfTheEast"
-      ]
-    },
-    {
       "column": "AccessType",
       "name": "Enum__FactionMagicSchoolHOMM5__AccessType",
       "table": "FactionMagicSchoolHOMM5",
@@ -874,12 +874,13 @@
       ]
     },
     {
-      "column": "ReleaseStatus",
-      "name": "Enum__GameHOMM8__ReleaseStatus",
-      "table": "GameHOMM8",
+      "column": "Ruleset",
+      "name": "Enum__FactionMagicSchoolHOMM5__Ruleset",
+      "table": "FactionMagicSchoolHOMM5",
       "values": [
-        "EarlyAccess",
-        "FullRelease"
+        "BaseGame",
+        "HammersOfFate",
+        "TribesOfTheEast"
       ]
     },
     {
@@ -888,6 +889,15 @@
       "table": "GameHOMM8",
       "values": [
         "Hex"
+      ]
+    },
+    {
+      "column": "ReleaseStatus",
+      "name": "Enum__GameHOMM8__ReleaseStatus",
+      "table": "GameHOMM8",
+      "values": [
+        "EarlyAccess",
+        "FullRelease"
       ]
     },
     {
@@ -914,6 +924,16 @@
       ]
     },
     {
+      "column": "AvailabilityKind",
+      "name": "Enum__HeroClassAbility__AvailabilityKind",
+      "table": "HeroClassAbility",
+      "values": [
+        "Standard",
+        "Special",
+        "Ultimate"
+      ]
+    },
+    {
       "column": "MinimumMastery",
       "name": "Enum__HeroClassAbility__MinimumMastery",
       "table": "HeroClassAbility",
@@ -933,16 +953,6 @@
       "values": [
         "All",
         "Any"
-      ]
-    },
-    {
-      "column": "AvailabilityKind",
-      "name": "Enum__HeroClassAbility__AvailabilityKind",
-      "table": "HeroClassAbility",
-      "values": [
-        "Standard",
-        "Special",
-        "Ultimate"
       ]
     },
     {
@@ -1130,16 +1140,6 @@
       ]
     },
     {
-      "column": "SizeClass",
-      "name": "Enum__MapHOMM1__SizeClass",
-      "table": "MapHOMM1",
-      "values": [
-        "Small",
-        "Medium",
-        "Large"
-      ]
-    },
-    {
       "column": "ReleaseAvailability",
       "name": "Enum__MapHOMM1__ReleaseAvailability",
       "table": "MapHOMM1",
@@ -1148,6 +1148,16 @@
         "Windows95",
         "MacOS",
         "Multiple"
+      ]
+    },
+    {
+      "column": "SizeClass",
+      "name": "Enum__MapHOMM1__SizeClass",
+      "table": "MapHOMM1",
+      "values": [
+        "Small",
+        "Medium",
+        "Large"
       ]
     },
     {
@@ -1170,17 +1180,6 @@
       ]
     },
     {
-      "column": "SizeClass",
-      "name": "Enum__MapHOMM4__SizeClass",
-      "table": "MapHOMM4",
-      "values": [
-        "Small",
-        "Medium",
-        "Large",
-        "ExtraLarge"
-      ]
-    },
-    {
       "column": "RequiredContentPack",
       "name": "Enum__MapHOMM4__RequiredContentPack",
       "table": "MapHOMM4",
@@ -1192,13 +1191,11 @@
     },
     {
       "column": "SizeClass",
-      "name": "Enum__MapHOMM5__SizeClass",
-      "table": "MapHOMM5",
+      "name": "Enum__MapHOMM4__SizeClass",
+      "table": "MapHOMM4",
       "values": [
-        "Duel",
-        "Tiny",
         "Small",
-        "Normal",
+        "Medium",
         "Large",
         "ExtraLarge"
       ]
@@ -1225,6 +1222,19 @@
       ]
     },
     {
+      "column": "SizeClass",
+      "name": "Enum__MapHOMM5__SizeClass",
+      "table": "MapHOMM5",
+      "values": [
+        "Duel",
+        "Tiny",
+        "Small",
+        "Normal",
+        "Large",
+        "ExtraLarge"
+      ]
+    },
+    {
       "column": "MapKind",
       "name": "Enum__MapHOMM6__MapKind",
       "table": "MapHOMM6",
@@ -1234,6 +1244,17 @@
         "Skirmish",
         "Duel",
         "Multiplayer"
+      ]
+    },
+    {
+      "column": "MapKind",
+      "name": "Enum__MapHOMM7__MapKind",
+      "table": "MapHOMM7",
+      "values": [
+        "Campaign",
+        "Scenario",
+        "Skirmish",
+        "Combat"
       ]
     },
     {
@@ -1248,17 +1269,6 @@
         "Big",
         "BigBroad",
         "Huge"
-      ]
-    },
-    {
-      "column": "MapKind",
-      "name": "Enum__MapHOMM7__MapKind",
-      "table": "MapHOMM7",
-      "values": [
-        "Campaign",
-        "Scenario",
-        "Skirmish",
-        "Combat"
       ]
     },
     {
@@ -1374,18 +1384,6 @@
       ]
     },
     {
-      "column": "ScenarioKind",
-      "name": "Enum__ScenarioHOMM8__ScenarioKind",
-      "table": "ScenarioHOMM8",
-      "values": [
-        "Campaign",
-        "Standalone",
-        "Tutorial",
-        "Challenge",
-        "Other"
-      ]
-    },
-    {
       "column": "GameMode",
       "name": "Enum__ScenarioHOMM8__GameMode",
       "table": "ScenarioHOMM8",
@@ -1398,12 +1396,15 @@
       ]
     },
     {
-      "column": "SkillKind",
-      "name": "Enum__SkillHOMM4__SkillKind",
-      "table": "SkillHOMM4",
+      "column": "ScenarioKind",
+      "name": "Enum__ScenarioHOMM8__ScenarioKind",
+      "table": "ScenarioHOMM8",
       "values": [
-        "Primary",
-        "Secondary"
+        "Campaign",
+        "Standalone",
+        "Tutorial",
+        "Challenge",
+        "Other"
       ]
     },
     {
@@ -1420,14 +1421,11 @@
     },
     {
       "column": "SkillKind",
-      "name": "Enum__SkillHOMM5__SkillKind",
-      "table": "SkillHOMM5",
+      "name": "Enum__SkillHOMM4__SkillKind",
+      "table": "SkillHOMM4",
       "values": [
-        "Regular",
-        "Magic",
-        "Racial",
-        "Shatter",
-        "Shout"
+        "Primary",
+        "Secondary"
       ]
     },
     {
@@ -1442,13 +1440,14 @@
     },
     {
       "column": "SkillKind",
-      "name": "Enum__SkillHOMM7__SkillKind",
-      "table": "SkillHOMM7",
+      "name": "Enum__SkillHOMM5__SkillKind",
+      "table": "SkillHOMM5",
       "values": [
-        "Might",
+        "Regular",
         "Magic",
-        "Neutral",
-        "Faction"
+        "Racial",
+        "Shatter",
+        "Shout"
       ]
     },
     {
@@ -1464,12 +1463,12 @@
     },
     {
       "column": "SkillKind",
-      "name": "Enum__SkillHOMM8__SkillKind",
-      "table": "SkillHOMM8",
+      "name": "Enum__SkillHOMM7__SkillKind",
+      "table": "SkillHOMM7",
       "values": [
         "Might",
         "Magic",
-        "General",
+        "Neutral",
         "Faction"
       ]
     },
@@ -1481,6 +1480,17 @@
         "Basic",
         "Advanced",
         "Expert"
+      ]
+    },
+    {
+      "column": "SkillKind",
+      "name": "Enum__SkillHOMM8__SkillKind",
+      "table": "SkillHOMM8",
+      "values": [
+        "Might",
+        "Magic",
+        "General",
+        "Faction"
       ]
     },
     {
@@ -1499,6 +1509,16 @@
       ]
     },
     {
+      "column": "AudioFormat",
+      "name": "Enum__SoundtrackHOMM1__AudioFormat",
+      "table": "SoundtrackHOMM1",
+      "values": [
+        "DigitalAudio",
+        "MIDI",
+        "RedBookCD"
+      ]
+    },
+    {
       "column": "ReleaseVariant",
       "name": "Enum__SoundtrackHOMM1__ReleaseVariant",
       "table": "SoundtrackHOMM1",
@@ -1511,12 +1531,11 @@
     },
     {
       "column": "AudioFormat",
-      "name": "Enum__SoundtrackHOMM1__AudioFormat",
-      "table": "SoundtrackHOMM1",
+      "name": "Enum__SoundtrackHOMM2__AudioFormat",
+      "table": "SoundtrackHOMM2",
       "values": [
-        "DigitalAudio",
         "MIDI",
-        "RedBookCD"
+        "CDStereoRedbook"
       ]
     },
     {
@@ -1530,11 +1549,12 @@
     },
     {
       "column": "AudioFormat",
-      "name": "Enum__SoundtrackHOMM2__AudioFormat",
-      "table": "SoundtrackHOMM2",
+      "name": "Enum__SoundtrackHOMM3__AudioFormat",
+      "table": "SoundtrackHOMM3",
       "values": [
         "MIDI",
-        "CDStereoRedbook"
+        "DigitalAudio",
+        "CDStereo"
       ]
     },
     {
@@ -1551,10 +1571,9 @@
     },
     {
       "column": "AudioFormat",
-      "name": "Enum__SoundtrackHOMM3__AudioFormat",
-      "table": "SoundtrackHOMM3",
+      "name": "Enum__SoundtrackHOMM4__AudioFormat",
+      "table": "SoundtrackHOMM4",
       "values": [
-        "MIDI",
         "DigitalAudio",
         "CDStereo"
       ]
@@ -1572,8 +1591,8 @@
     },
     {
       "column": "AudioFormat",
-      "name": "Enum__SoundtrackHOMM4__AudioFormat",
-      "table": "SoundtrackHOMM4",
+      "name": "Enum__SoundtrackHOMM5__AudioFormat",
+      "table": "SoundtrackHOMM5",
       "values": [
         "DigitalAudio",
         "CDStereo"
@@ -1592,8 +1611,8 @@
     },
     {
       "column": "AudioFormat",
-      "name": "Enum__SoundtrackHOMM5__AudioFormat",
-      "table": "SoundtrackHOMM5",
+      "name": "Enum__SoundtrackHOMM6__AudioFormat",
+      "table": "SoundtrackHOMM6",
       "values": [
         "DigitalAudio",
         "CDStereo"
@@ -1610,8 +1629,8 @@
     },
     {
       "column": "AudioFormat",
-      "name": "Enum__SoundtrackHOMM6__AudioFormat",
-      "table": "SoundtrackHOMM6",
+      "name": "Enum__SoundtrackHOMM7__AudioFormat",
+      "table": "SoundtrackHOMM7",
       "values": [
         "DigitalAudio",
         "CDStereo"
@@ -1626,15 +1645,6 @@
         "LostTalesOfAxeoth",
         "TrialByFire",
         "Complete"
-      ]
-    },
-    {
-      "column": "AudioFormat",
-      "name": "Enum__SoundtrackHOMM7__AudioFormat",
-      "table": "SoundtrackHOMM7",
-      "values": [
-        "DigitalAudio",
-        "CDStereo"
       ]
     },
     {
@@ -1780,10 +1790,28 @@
     }
   ],
   "formatVersion": 1,
+  "integrity": {
+    "gameOwnership": "Composite foreign keys plus deferred inherited/global ownership checks",
+    "globalTables": [
+      "Resource",
+      "MediaAsset"
+    ],
+    "inheritedOwners": {
+      "ArtifactSetBonusHOMM5": "ArtifactSetHOMM5_id",
+      "ArtifactSetHOMM5": "IntroducedInExpansion_id",
+      "FactionLaw": "Faction_id"
+    },
+    "prerequisiteGroups": "HeroClassAbilityRequirementGroup defines positive-numbered alternative paths. All/Any combines atoms inside one set. A native FK requires every grouped atom to use the group's mode. NULL group and mode means an association without a documented prerequisite group, not proof of no prerequisites."
+  },
   "postgresSchema": "heroes_watch",
   "source": {
     "diagram": "https://sql-designer.com/diagrams/932ebd44-bda4-45c2-a3e5-0358c579e076",
     "kind": "SQLDesigner",
+    "overlay": {
+      "migration": "0002_relationship_integrity.sql",
+      "module": "src/db/tools/schema-overlay.mjs",
+      "version": 2
+    },
     "sha256": "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673"
   },
   "tables": [
@@ -1901,6 +1929,10 @@
         "Ability_id"
       ],
       "unique": [
+        [
+          "Game_id",
+          "Ability_id"
+        ],
         [
           "Game_id",
           "Code"
@@ -2909,6 +2941,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__AdventureObject__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -2919,7 +2967,338 @@
       "unique": [
         [
           "Game_id",
+          "AdventureObject_id"
+        ],
+        [
+          "Game_id",
           "Code"
+        ]
+      ]
+    },
+    {
+      "columns": [
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "generatedIdentity": false,
+          "importGenerated": true,
+          "name": "AdventureObjectCreature_cid",
+          "nullable": false,
+          "postgresType": "TEXT",
+          "primaryKey": true,
+          "sqlDesignerType": "TEXT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Game_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "AdventureObject_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Creature_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": [
+            "Recruits",
+            "Guards",
+            "Transforms"
+          ],
+          "name": "Relation",
+          "nullable": false,
+          "postgresType": "Enum__AdventureObjectCreature__Relation",
+          "primaryKey": false,
+          "sqlDesignerType": "ENUM('Recruits','Guards','Transforms')",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Notes",
+          "nullable": true,
+          "postgresType": "TEXT",
+          "primaryKey": false,
+          "sqlDesignerType": "TEXT",
+          "unique": false,
+          "unsigned": false
+        }
+      ],
+      "comment": null,
+      "foreignKeys": [
+        {
+          "columns": [
+            "AdventureObject_id"
+          ],
+          "deferrable": true,
+          "name": "fk__AdventureObjectCreature__AdventureObject_id__Adv_da27d54440",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "AdventureObject_id"
+          ],
+          "referencedTable": "AdventureObject",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Creature_id"
+          ],
+          "deferrable": true,
+          "name": "fk__AdventureObjectCreature__Creature_id__Creature",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Creature_id"
+          ],
+          "referencedTable": "Creature",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id"
+          ],
+          "deferrable": true,
+          "name": "fk__AdventureObjectCreature__Game_id__Game",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id"
+          ],
+          "referencedTable": "Game",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "AdventureObject_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__AdventureObjectCreature__AdventureObject_id_ec25487e4f",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "AdventureObject_id"
+          ],
+          "referencedTable": "AdventureObject",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__AdventureObjectCreature__Creature_id__Creature",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "referencedTable": "Creature",
+          "relationship": "one-to-many"
+        }
+      ],
+      "kind": "junction",
+      "name": "AdventureObjectCreature",
+      "primaryKey": [
+        "AdventureObjectCreature_cid"
+      ],
+      "unique": [
+        [
+          "Game_id",
+          "AdventureObject_id",
+          "Creature_id",
+          "Relation"
+        ]
+      ]
+    },
+    {
+      "columns": [
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "generatedIdentity": false,
+          "importGenerated": true,
+          "name": "AdventureObjectFaction_cid",
+          "nullable": false,
+          "postgresType": "TEXT",
+          "primaryKey": true,
+          "sqlDesignerType": "TEXT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Game_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "AdventureObject_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Faction_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Notes",
+          "nullable": true,
+          "postgresType": "TEXT",
+          "primaryKey": false,
+          "sqlDesignerType": "TEXT",
+          "unique": false,
+          "unsigned": false
+        }
+      ],
+      "comment": null,
+      "foreignKeys": [
+        {
+          "columns": [
+            "AdventureObject_id"
+          ],
+          "deferrable": true,
+          "name": "fk__AdventureObjectFaction__AdventureObject_id__AdventureObject",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "AdventureObject_id"
+          ],
+          "referencedTable": "AdventureObject",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk__AdventureObjectFaction__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id"
+          ],
+          "deferrable": true,
+          "name": "fk__AdventureObjectFaction__Game_id__Game",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id"
+          ],
+          "referencedTable": "Game",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "AdventureObject_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__AdventureObjectFaction__AdventureObject_id__63f7f5d800",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "AdventureObject_id"
+          ],
+          "referencedTable": "AdventureObject",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__AdventureObjectFaction__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
+          "relationship": "one-to-many"
+        }
+      ],
+      "kind": "junction",
+      "name": "AdventureObjectFaction",
+      "primaryKey": [
+        "AdventureObjectFaction_cid"
+      ],
+      "unique": [
+        [
+          "Game_id",
+          "AdventureObject_id",
+          "Faction_id"
         ]
       ]
     },
@@ -4259,6 +4638,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Artifact__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -4267,6 +4662,10 @@
         "Artifact_id"
       ],
       "unique": [
+        [
+          "Game_id",
+          "Artifact_id"
+        ],
         [
           "Game_id",
           "Code"
@@ -4368,6 +4767,38 @@
             "Game_id"
           ],
           "referencedTable": "Game",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "ComponentArtifact_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__ArtifactComponent__ComponentArtifact_id__Artifact",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Artifact_id"
+          ],
+          "referencedTable": "Artifact",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "CompositeArtifact_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__ArtifactComponent__CompositeArtifact_id__Artifact",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Artifact_id"
+          ],
+          "referencedTable": "Artifact",
           "relationship": "one-to-many"
         }
       ],
@@ -5676,6 +6107,38 @@
           ],
           "referencedTable": "Resource",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Artifact_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__ArtifactResourceCost__Artifact_id__Artifact",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Artifact_id"
+          ],
+          "referencedTable": "Artifact",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Resource_id"
+          ],
+          "deferrable": true,
+          "name": "fk_resource__ArtifactResourceCost",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Resource_id"
+          ],
+          "referencedTable": "GameResource",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -5792,7 +6255,17 @@
       "primaryKey": [
         "ArtifactSetBonusHOMM5_id"
       ],
-      "unique": []
+      "unique": [],
+      "uniqueConstraints": [
+        {
+          "columns": [
+            "ArtifactSetHOMM5_id",
+            "RequiredPieceCount",
+            "HeroClass_id"
+          ],
+          "nullsNotDistinct": true
+        }
+      ]
     },
     {
       "columns": [
@@ -6069,6 +6542,22 @@
           ],
           "referencedTable": "MagicSchool",
           "relationship": "one-to-one"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "NeutralMagicSchool_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__AstrologyHOMM8__NeutralMagicSchool_id__MagicSchool",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "MagicSchool_id"
+          ],
+          "referencedTable": "MagicSchool",
+          "relationship": "one-to-one"
         }
       ],
       "kind": "game-detail",
@@ -6236,6 +6725,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Building__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -6244,6 +6749,10 @@
         "Building_id"
       ],
       "unique": [
+        [
+          "Game_id",
+          "Building_id"
+        ],
         [
           "Game_id",
           "Code"
@@ -6361,6 +6870,38 @@
             "Game_id"
           ],
           "referencedTable": "Game",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__BuildingCreature__Building_id__Building",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "referencedTable": "Building",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__BuildingCreature__Creature_id__Creature",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "referencedTable": "Creature",
           "relationship": "one-to-many"
         }
       ],
@@ -7590,6 +8131,38 @@
           ],
           "referencedTable": "Building",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__BuildingRequirement__Building_id__Building",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "referencedTable": "Building",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "RequiredBuilding_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__BuildingRequirement__RequiredBuilding_id__Building",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "referencedTable": "Building",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -7713,6 +8286,38 @@
           ],
           "referencedTable": "Resource",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__BuildingResourceCost__Building_id__Building",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "referencedTable": "Building",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Resource_id"
+          ],
+          "deferrable": true,
+          "name": "fk_resource__BuildingResourceCost",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Resource_id"
+          ],
+          "referencedTable": "GameResource",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -7820,6 +8425,38 @@
           "onDelete": "NO ACTION",
           "onUpdate": "NO ACTION",
           "referencedColumns": [
+            "Building_id"
+          ],
+          "referencedTable": "Building",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "BaseBuilding_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__BuildingUpgrade__BaseBuilding_id__Building",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "referencedTable": "Building",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "UpgradedBuilding_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__BuildingUpgrade__UpgradedBuilding_id__Building",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
             "Building_id"
           ],
           "referencedTable": "Building",
@@ -7971,6 +8608,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Campaign__Expansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -7979,6 +8632,10 @@
         "Campaign_id"
       ],
       "unique": [
+        [
+          "Game_id",
+          "Campaign_id"
+        ],
         [
           "Game_id",
           "Code"
@@ -8138,6 +8795,54 @@
           ],
           "referencedTable": "Scenario",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CampaignHero__Campaign_id__Campaign",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "referencedTable": "Campaign",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Hero_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CampaignHero__Hero_id__Hero",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Hero_id"
+          ],
+          "referencedTable": "Hero",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "StartingScenario_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CampaignHero__StartingScenario_id__Scenario",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Scenario_id"
+          ],
+          "referencedTable": "Scenario",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -8150,6 +8855,10 @@
           "Game_id",
           "Campaign_id",
           "Hero_id"
+        ],
+        [
+          "Game_id",
+          "CampaignHero_cid"
         ]
       ]
     },
@@ -8641,6 +9350,38 @@
           ],
           "referencedTable": "Scenario",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CampaignScenario__Campaign_id__Campaign",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "referencedTable": "Campaign",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Scenario_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CampaignScenario__Scenario_id__Scenario",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Scenario_id"
+          ],
+          "referencedTable": "Scenario",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -8788,6 +9529,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Creature__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -8799,6 +9556,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Creature_id"
         ]
       ]
     },
@@ -8909,6 +9670,38 @@
             "Game_id"
           ],
           "referencedTable": "Game",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Ability_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CreatureAbility__Ability_id__Ability",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Ability_id"
+          ],
+          "referencedTable": "Ability",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CreatureAbility__Creature_id__Creature",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "referencedTable": "Creature",
           "relationship": "one-to-many"
         }
       ],
@@ -11313,6 +12106,38 @@
           ],
           "referencedTable": "Resource",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CreatureResourceCost__Creature_id__Creature",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "referencedTable": "Creature",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Resource_id"
+          ],
+          "deferrable": true,
+          "name": "fk_resource__CreatureResourceCost",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Resource_id"
+          ],
+          "referencedTable": "GameResource",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -11479,6 +12304,38 @@
           ],
           "referencedTable": "Spell",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CreatureSpell__Creature_id__Creature",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "referencedTable": "Creature",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Spell_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CreatureSpell__Spell_id__Spell",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Spell_id"
+          ],
+          "referencedTable": "Spell",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -11586,6 +12443,38 @@
           "onDelete": "NO ACTION",
           "onUpdate": "NO ACTION",
           "referencedColumns": [
+            "Creature_id"
+          ],
+          "referencedTable": "Creature",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "BaseCreature_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CreatureUpgrade__BaseCreature_id__Creature",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Creature_id"
+          ],
+          "referencedTable": "Creature",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "UpgradedCreature_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__CreatureUpgrade__UpgradedCreature_id__Creature",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
             "Creature_id"
           ],
           "referencedTable": "Creature",
@@ -11726,6 +12615,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Expansion_id"
         ]
       ]
     },
@@ -11861,6 +12754,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Faction__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -11872,6 +12781,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Faction_id"
         ]
       ]
     },
@@ -13100,6 +14013,38 @@
           ],
           "referencedTable": "MagicSchool",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__FactionMagicSchoolHOMM5__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "MagicSchool_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__FactionMagicSchoolHOMM5__MagicSchool_id__MagicSchool",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "MagicSchool_id"
+          ],
+          "referencedTable": "MagicSchool",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -13236,6 +14181,38 @@
           ],
           "referencedTable": "Terrain",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__FactionNativeTerrainHOMM5__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Terrain_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__FactionNativeTerrainHOMM5__Terrain_id__Terrain",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Terrain_id"
+          ],
+          "referencedTable": "Terrain",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -13252,6 +14229,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "\"SelectionWeight\" >= 0",
+          "name": "ck__FactionSpell__SelectionWeight"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -13314,6 +14297,18 @@
           "sqlDesignerType": "SMALLINT",
           "unique": false,
           "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "SelectionWeight",
+          "nullable": true,
+          "postgresType": "INTEGER",
+          "primaryKey": false,
+          "sqlDesignerType": "INTEGER",
+          "unique": false,
+          "unsigned": false
         }
       ],
       "comment": null,
@@ -13355,6 +14350,38 @@
           "onDelete": "NO ACTION",
           "onUpdate": "NO ACTION",
           "referencedColumns": [
+            "Spell_id"
+          ],
+          "referencedTable": "Spell",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__FactionSpell__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Spell_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__FactionSpell__Spell_id__Spell",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
             "Spell_id"
           ],
           "referencedTable": "Spell",
@@ -13659,6 +14686,22 @@
           ],
           "referencedTable": "Game",
           "relationship": "one-to-one"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "CurrentPatch_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__GameHOMM8__CurrentPatch_id__Patch",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Patch_id"
+          ],
+          "referencedTable": "Patch",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "game-detail",
@@ -13831,6 +14874,22 @@
             "Resource_id"
           ],
           "referencedTable": "Resource",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__GameResource__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
           "relationship": "one-to-many"
         }
       ],
@@ -14016,6 +15075,38 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "HeroClass_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Hero__HeroClass_id__HeroClass",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "HeroClass_id"
+          ],
+          "referencedTable": "HeroClass",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Hero__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -14027,6 +15118,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Hero_id"
         ]
       ]
     },
@@ -14179,6 +15274,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClass__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -14190,10 +15301,20 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "HeroClass_id"
         ]
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "(\"RequirementSet\" IS NULL AND \"RequirementMode\" IS NULL) OR (\"RequirementSet\" IS NOT NULL AND \"RequirementSet\" > 0 AND \"RequirementMode\" IS NOT NULL)",
+          "name": "ck__HeroClassAbility__requirement_group"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -14392,6 +15513,28 @@
         },
         {
           "columns": [
+            "Game_id",
+            "HeroClass_id",
+            "Ability_id",
+            "RequirementSet",
+            "RequirementMode"
+          ],
+          "deferrable": true,
+          "name": "fk__HeroClassAbility__requirement_group",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "HeroClass_id",
+            "Ability_id",
+            "RequirementSet",
+            "RequirementMode"
+          ],
+          "referencedTable": "HeroClassAbilityRequirementGroup",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
             "Skill_id"
           ],
           "deferrable": true,
@@ -14403,6 +15546,70 @@
           ],
           "referencedTable": "Skill",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Ability_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClassAbility__Ability_id__Ability",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Ability_id"
+          ],
+          "referencedTable": "Ability",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "HeroClass_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClassAbility__HeroClass_id__HeroClass",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "HeroClass_id"
+          ],
+          "referencedTable": "HeroClass",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "RequiredAbility_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClassAbility__RequiredAbility_id__Ability",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Ability_id"
+          ],
+          "referencedTable": "Ability",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Skill_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClassAbility__Skill_id__Skill",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Skill_id"
+          ],
+          "referencedTable": "Skill",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -14410,7 +15617,205 @@
       "primaryKey": [
         "HeroClassAbility_cid"
       ],
-      "unique": []
+      "unique": [],
+      "uniqueConstraints": [
+        {
+          "columns": [
+            "Game_id",
+            "HeroClass_id",
+            "Ability_id",
+            "RequirementSet",
+            "RequiredAbility_id",
+            "Skill_id",
+            "MinimumMastery"
+          ],
+          "nullsNotDistinct": true
+        }
+      ]
+    },
+    {
+      "checks": [
+        {
+          "expression": "\"RequirementSet\" > 0",
+          "name": "ck__HeroClassAbilityRequirementGroup__positive_set"
+        }
+      ],
+      "columns": [
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "generatedIdentity": false,
+          "importGenerated": true,
+          "name": "HeroClassAbilityRequirementGroup_cid",
+          "nullable": false,
+          "postgresType": "TEXT",
+          "primaryKey": true,
+          "sqlDesignerType": "TEXT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Game_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "HeroClass_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Ability_id",
+          "nullable": false,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "RequirementSet",
+          "nullable": false,
+          "postgresType": "SMALLINT",
+          "primaryKey": false,
+          "sqlDesignerType": "SMALLINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": [
+            "All",
+            "Any"
+          ],
+          "name": "RequirementMode",
+          "nullable": false,
+          "postgresType": "Enum__HeroClassAbility__RequirementMode",
+          "primaryKey": false,
+          "sqlDesignerType": "ENUM('All','Any')",
+          "unique": false,
+          "unsigned": false
+        }
+      ],
+      "comment": null,
+      "foreignKeys": [
+        {
+          "columns": [
+            "Ability_id"
+          ],
+          "deferrable": true,
+          "name": "fk__HeroClassAbilityRequirementGroup__Ability_id__Ability",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Ability_id"
+          ],
+          "referencedTable": "Ability",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id"
+          ],
+          "deferrable": true,
+          "name": "fk__HeroClassAbilityRequirementGroup__Game_id__Game",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id"
+          ],
+          "referencedTable": "Game",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "HeroClass_id"
+          ],
+          "deferrable": true,
+          "name": "fk__HeroClassAbilityRequirementGroup__HeroClass_id__HeroClass",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "HeroClass_id"
+          ],
+          "referencedTable": "HeroClass",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Ability_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClassAbilityRequirementGroup__Ability_id__Ability",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Ability_id"
+          ],
+          "referencedTable": "Ability",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "HeroClass_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClassAbilityRequirementGroup__HeroClass_6e64c5a2c8",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "HeroClass_id"
+          ],
+          "referencedTable": "HeroClass",
+          "relationship": "one-to-many"
+        }
+      ],
+      "kind": "junction",
+      "name": "HeroClassAbilityRequirementGroup",
+      "primaryKey": [
+        "HeroClassAbilityRequirementGroup_cid"
+      ],
+      "unique": [
+        [
+          "Game_id",
+          "HeroClass_id",
+          "Ability_id",
+          "RequirementSet"
+        ],
+        [
+          "Game_id",
+          "HeroClass_id",
+          "Ability_id",
+          "RequirementSet",
+          "RequirementMode"
+        ]
+      ]
     },
     {
       "columns": [
@@ -15849,6 +17254,38 @@
           ],
           "referencedTable": "Skill",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "HeroClass_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClassPrimarySkillHOMM4__HeroClass_id__HeroClass",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "HeroClass_id"
+          ],
+          "referencedTable": "HeroClass",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Skill_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroClassPrimarySkillHOMM4__Skill_id__Skill",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Skill_id"
+          ],
+          "referencedTable": "Skill",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -17016,6 +18453,38 @@
           ],
           "referencedTable": "Skill",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Hero_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroSkill__Hero_id__Hero",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Hero_id"
+          ],
+          "referencedTable": "Hero",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Skill_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__HeroSkill__Skill_id__Skill",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Skill_id"
+          ],
+          "referencedTable": "Skill",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -17209,6 +18678,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Lore__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -17220,6 +18705,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Lore_id"
         ]
       ]
     },
@@ -17365,6 +18854,18 @@
           "sqlDesignerType": "TEXT",
           "unique": false,
           "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "Faction_id",
+          "nullable": true,
+          "postgresType": "BIGINT",
+          "primaryKey": false,
+          "sqlDesignerType": "BIGINT",
+          "unique": false,
+          "unsigned": false
         }
       ],
       "comment": null,
@@ -17395,6 +18896,20 @@
             "CampaignHero_cid"
           ],
           "referencedTable": "CampaignHero",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk__LoreFull__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
           "relationship": "one-to-many"
         },
         {
@@ -17466,6 +18981,118 @@
           ],
           "referencedTable": "Scenario",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__LoreFull__Campaign_id__Campaign",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "referencedTable": "Campaign",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "CampaignHero_cid"
+          ],
+          "deferrable": true,
+          "name": "fk_game__LoreFull__CampaignHero_cid__CampaignHero",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "CampaignHero_cid"
+          ],
+          "referencedTable": "CampaignHero",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__LoreFull__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Hero_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__LoreFull__Hero_id__Hero",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Hero_id"
+          ],
+          "referencedTable": "Hero",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Lore_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__LoreFull__Lore_id__Lore",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Lore_id"
+          ],
+          "referencedTable": "Lore",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Map_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__LoreFull__Map_id__Map",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Map_id"
+          ],
+          "referencedTable": "Map",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Scenario_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__LoreFull__Scenario_id__Scenario",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Scenario_id"
+          ],
+          "referencedTable": "Scenario",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -17482,7 +19109,8 @@
           "Campaign_id",
           "Scenario_id",
           "Map_id",
-          "LinkRole"
+          "LinkRole",
+          "Faction_id"
         ]
       ]
     },
@@ -17603,6 +19231,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "MagicSchool_id"
         ]
       ]
     },
@@ -18287,6 +19919,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Map__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -18298,6 +19946,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Map_id"
         ]
       ]
     },
@@ -19283,6 +20935,38 @@
           ],
           "referencedTable": "Map",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "AdventureObject_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__MapObjectPresence__AdventureObject_id__AdventureObject",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "AdventureObject_id"
+          ],
+          "referencedTable": "AdventureObject",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Map_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__MapObjectPresence__Map_id__Map",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Map_id"
+          ],
+          "referencedTable": "Map",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -19390,6 +21074,38 @@
           "onDelete": "NO ACTION",
           "onUpdate": "NO ACTION",
           "referencedColumns": [
+            "Terrain_id"
+          ],
+          "referencedTable": "Terrain",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Map_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__MapTerrain__Map_id__Map",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Map_id"
+          ],
+          "referencedTable": "Map",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Terrain_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__MapTerrain__Terrain_id__Terrain",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
             "Terrain_id"
           ],
           "referencedTable": "Terrain",
@@ -19788,6 +21504,22 @@
           ],
           "referencedTable": "Game",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Patch__Expansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -19796,6 +21528,10 @@
         "Patch_id"
       ],
       "unique": [
+        [
+          "Game_id",
+          "Patch_id"
+        ],
         [
           "Game_id",
           "Version",
@@ -20241,6 +21977,38 @@
           ],
           "referencedTable": "Map",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Scenario__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Map_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Scenario__Map_id__Map",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Map_id"
+          ],
+          "referencedTable": "Map",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -20252,6 +22020,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Scenario_id"
         ]
       ]
     },
@@ -20377,6 +22149,38 @@
           "onDelete": "NO ACTION",
           "onUpdate": "NO ACTION",
           "referencedColumns": [
+            "Scenario_id"
+          ],
+          "referencedTable": "Scenario",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "FromScenario_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__ScenarioConnection__FromScenario_id__Scenario",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Scenario_id"
+          ],
+          "referencedTable": "Scenario",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "ToScenario_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__ScenarioConnection__ToScenario_id__Scenario",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
             "Scenario_id"
           ],
           "referencedTable": "Scenario",
@@ -21497,6 +23301,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Screenshot__Expansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -21643,6 +23463,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Skill__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -21654,6 +23490,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Skill_id"
         ]
       ]
     },
@@ -22586,6 +24426,54 @@
           ],
           "referencedTable": "Terrain",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Soundtrack__Campaign_id__Campaign",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "referencedTable": "Campaign",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Soundtrack__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Terrain_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Soundtrack__Terrain_id__Terrain",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Terrain_id"
+          ],
+          "referencedTable": "Terrain",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -23326,6 +25214,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Spell__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -23337,6 +25241,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Spell_id"
         ]
       ]
     },
@@ -24544,6 +26452,38 @@
           ],
           "referencedTable": "Spell",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "MagicSchool_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__SpellMagicSchool__MagicSchool_id__MagicSchool",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "MagicSchool_id"
+          ],
+          "referencedTable": "MagicSchool",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Spell_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__SpellMagicSchool__Spell_id__Spell",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Spell_id"
+          ],
+          "referencedTable": "Spell",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "junction",
@@ -24679,6 +26619,22 @@
           "onDelete": "NO ACTION",
           "onUpdate": "NO ACTION",
           "referencedColumns": [
+            "Spell_id"
+          ],
+          "referencedTable": "Spell",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Spell_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__SpellResourceCostHOMM5__Spell_id__Spell",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
             "Spell_id"
           ],
           "referencedTable": "Spell",
@@ -24849,6 +26805,22 @@
           ],
           "referencedTable": "MediaAsset",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "IntroducedInExpansion_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Terrain__IntroducedInExpansion_id__Expansion",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Expansion_id"
+          ],
+          "referencedTable": "Expansion",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -24860,6 +26832,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "Terrain_id"
         ]
       ]
     },
@@ -25462,6 +27438,22 @@
           ],
           "referencedTable": "Game",
           "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__TownScreen__Faction_id__Faction",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Faction_id"
+          ],
+          "referencedTable": "Faction",
+          "relationship": "one-to-many"
         }
       ],
       "kind": "catalog",
@@ -25473,6 +27465,10 @@
         [
           "Game_id",
           "Code"
+        ],
+        [
+          "Game_id",
+          "TownScreen_id"
         ]
       ]
     },
@@ -25580,6 +27576,38 @@
           "onDelete": "NO ACTION",
           "onUpdate": "NO ACTION",
           "referencedColumns": [
+            "TownScreen_id"
+          ],
+          "referencedTable": "TownScreen",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__TownScreenBuilding__Building_id__Building",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Building_id"
+          ],
+          "referencedTable": "Building",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "TownScreen_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__TownScreenBuilding__TownScreen_id__TownScreen",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
             "TownScreen_id"
           ],
           "referencedTable": "TownScreen",
@@ -25782,6 +27810,38 @@
           "onDelete": "NO ACTION",
           "onUpdate": "NO ACTION",
           "referencedColumns": [
+            "Scenario_id"
+          ],
+          "referencedTable": "Scenario",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Video__Campaign_id__Campaign",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Campaign_id"
+          ],
+          "referencedTable": "Campaign",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Scenario_id"
+          ],
+          "deferrable": true,
+          "name": "fk_game__Video__Scenario_id__Scenario",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
             "Scenario_id"
           ],
           "referencedTable": "Scenario",

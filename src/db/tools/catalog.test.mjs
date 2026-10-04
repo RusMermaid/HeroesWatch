@@ -13,7 +13,8 @@ test("Heroes III contains the complete classic magic and artifact catalogs", () 
   assert.equal(count("SpellMagicSchool"), 76);
   assert.equal(count("Artifact"), 141);
   assert.equal(count("ArtifactComponent"), 49);
-  assert.equal(new Set(tables.ArtifactComponent.map((row) => row.CompositeArtifact_id)).size, 12);
+  assert.equal(new Set(tables.ArtifactComponent.filter((row) => row.Game_id === "homm3.game")
+    .map((row) => row.CompositeArtifact_id)).size, 12);
   for (const row of tables.ArtifactComponent) assert.notEqual(row.ComponentArtifact_id, row.CompositeArtifact_id);
 });
 

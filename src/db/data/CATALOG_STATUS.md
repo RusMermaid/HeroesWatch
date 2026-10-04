@@ -1,12 +1,12 @@
 # Catalog coverage and PostgreSQL handoff
 
-Updated 2026-09-30. The cumulative [JSON](heroeswatch.json) contains **30,481
-rows across 173 table arrays**. The manual import adds **2,566 rows** to the
-previous 27,915-row catalog and fills **774 previously null fields**. All earlier
-rows and non-null values are retained. The schema and initial migration are
-unchanged.
+Updated 2026-10-04. The cumulative [JSON](heroeswatch.json) contains **40,023
+rows across 176 table arrays**. The [relationship and integrity touch-ups](TOUCHUPS_STATUS.md)
+add 9,542 rows to the 30,481-row manual catalog, fill 1,233 null fields and
+correct six fort labels. Stable keys and the immutable initial migration are
+preserved. The current schema uses reviewed overlay version 2 and migration 0002.
 
-## Manual import and comparison
+## Earlier manual import and comparison
 
 The local collection contains 38 files, deduplicated by SHA-256 into **36 PDF
 source records**. The import adds 2,156 RPG rows, 316 spin-off rows, 57 Heroes
@@ -55,7 +55,7 @@ The cumulative SQL's deterministic check passed. No separate regression test
 suite was run for this content batch. The six live discrepancy checks above
 were performed as part of the requested manual comparison.
 
-## Requested scope
+## Original requested catalog scope
 
 The latest request extends every listed category across Heroes I–VIII and
 their official expansions: factions, classes, heroes, town buildings,
@@ -122,17 +122,18 @@ unofficial content are excluded.
   Heroes V entries with multiple playable classes are documented as such.
   Olden Era covers the 108 standard heroes plus four named Act I protagonists;
   unused and unlocalized definitions are not presented as released heroes.
-- Forty VI/VII creature identities lack a complete detail row because required
-  statistics remain unavailable or ambiguous. Unsupported artifact classes
+- Thirty-five VI/VII creature identities still lack a complete detail row because
+  required statistics remain unavailable or ambiguous; five were recovered in
+  the touch-up. Unsupported artifact classes
   in I/IV/VI/VII retain generic identities. The schema's ENUMs are not changed
   merely to force incomplete source values into detail tables.
 - Spell and artifact identities are complete against the documented source
   rosters; many optional effect formulas, upgrade prices, perk prerequisites
   and historical balance variations remain unencoded. Source notes distinguish
   direct values from the uniquely invertible VI defense calculations.
-- The current architecture has no dwelling-object-to-faction/creature
-  junction. Objects are separate catalog rows, and no hidden relationship
-  arrays are inserted in JSONB. Town recruitment uses `BuildingCreature`.
+- Dwelling-object-to-faction/creature relationships now use
+  `AdventureObjectFaction` and `AdventureObjectCreature`. Town recruitment uses
+  `BuildingCreature`; these are separate relationships.
 - This is a researched reference catalog, not a complete transcription of
   biographies, all mechanics, campaign mission graphs, decorative scenery,
   or every custom named hero instance in shipped scripts.

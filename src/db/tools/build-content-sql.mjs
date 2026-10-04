@@ -45,9 +45,8 @@ const identifier = (table, key) => JSON.stringify([table, key]);
 const compare = (a, b) => a < b ? -1 : a > b ? 1 : 0;
 const nodes = new Map();
 const incomingBusinessKeys = new Map();
-// The diagram gives set bonuses an independent identity but no alternate
-// unique key. Match their actual set/piece-count/class condition explicitly.
-// The importer locks the table and rejects ambiguous existing or incoming rows.
+// Legacy schema imports use this identity policy. The current schema has a
+// matching UNIQUE NULLS NOT DISTINCT constraint for the same business key.
 const importIdentityPolicies = {
   ArtifactSetBonusHOMM5: ['ArtifactSetHOMM5_id', 'RequiredPieceCount', 'HeroClass_id'],
 };
@@ -55,14 +54,14 @@ const importIdentityPolicies = {
 // Only identity-defining dependencies must be acyclic. Other FK cycles work
 // because all identities are known before any complete row is inserted.
 for (const table of schema.tables) {
-  if (table.primaryKey.length !== 1 || table.foreignKeys.some(fk => fk.columns.length !== 1 || fk.referencedColumns.length !== 1)) {
-    if (bundle.tables[table.name].length) throw new Error(`${table.name}: this importer requires single-column primary and foreign keys`);
+  if (table.primaryKey.length !== 1) {
+    if (bundle.tables[table.name].length) throw new Error(`${table.name}: this importer requires a single-column primary key`);
   }
   for (const row of bundle.tables[table.name]) {
     const pk = table.primaryKey[0];
     const columnByName = new Map(table.columns.map(column => [column.name, column]));
     const pkColumn = columnByName.get(pk);
-    const parent = table.foreignKeys.find(fk => fk.columns[0] === pk);
+    const parent = table.foreignKeys.find(fk => fk.columns.length === 1 && fk.columns[0] === pk);
     const identityKind = parent ? 'shared' : pkColumn.generatedIdentity ? 'generated' : pkColumn.postgresType === 'TEXT' ? 'text' : null;
     if (!identityKind) throw new Error(`${table.name}: unsupported identity type`);
     if (identityKind === 'generated' && row[pk] !== undefined) throw new Error(`${table.name}/${row._key}: omit generated primary key ${pk}; identity is resolved by the declared business key`);
@@ -70,13 +69,10 @@ for (const table of schema.tables) {
     delete values._key;
     if (identityKind === 'shared' && values[pk] === undefined) values[pk] = row._key;
     if (identityKind === 'text' && values[pk] === undefined) values[pk] = row._key;
-    const businessKey = identityKind === 'shared' ? [pk] : table.unique.find(columns => columns.every(column => Object.hasOwn(values, column) || columnByName.get(column).nullable)) ?? importIdentityPolicies[table.name];
+    const naturalKeys = [...(table.uniqueConstraints ?? []).map(constraint => constraint.columns), ...table.unique]
+      .filter(columns => !columns.includes(pk));
+    const businessKey = identityKind === 'shared' ? [pk] : naturalKeys.find(columns => columns.every(column => Object.hasOwn(values, column) || columnByName.get(column).nullable)) ?? importIdentityPolicies[table.name];
     if (identityKind === 'generated' && !businessKey) throw new Error(`${table.name}/${row._key}: no complete declared business key; add a reviewed identity policy before importing this table`);
-    if (businessKey) {
-      const signature = JSON.stringify([table.name, businessKey, businessKey.map(column => values[column])]);
-      if (incomingBusinessKeys.has(signature)) throw new Error(`${table.name}/${row._key}: business key also supplied by ${incomingBusinessKeys.get(signature)}; nullable key members still require unambiguous import identity`);
-      incomingBusinessKeys.set(signature, row._key);
-    }
     for (const column of table.columns) {
       if (column.default !== null && !column.generatedIdentity && !Object.hasOwn(values, column.name)) throw new Error(`${table.name}/${row._key}: explicitly supply ${column.name}; implicit column defaults need a reviewed import policy`);
     }
@@ -84,13 +80,44 @@ for (const table of schema.tables) {
   }
 }
 
+const primaryAliases = new Map();
+for (const node of nodes.values()) {
+  for (const alias of [node.row._key, node.row[node.pk]]) {
+    if (alias == null) continue;
+    const signature = identifier(node.table.name, alias);
+    const previous = primaryAliases.get(signature);
+    if (previous && previous !== node) throw new Error(`${node.table.name} has ambiguous identity alias ${JSON.stringify(alias)} shared by ${previous.row._key} and ${node.row._key}`);
+    primaryAliases.set(signature, node);
+  }
+}
 function referencedNode(node, fk, value) {
-  if (typeof value === 'string') return nodes.get(identifier(fk.referencedTable, value));
-  return [...nodes.values()].find(candidate => candidate.table.name === fk.referencedTable && candidate.row[fk.referencedColumns[0]] === value);
+  // TEXT junction primary keys can be supplied explicitly and differ from the
+  // portable _key. Validation and subset closure accept those physical values,
+  // so resolve either type through the same collision-checked alias namespace.
+  const target = primaryAliases.get(identifier(fk.referencedTable, value));
+  if (target && fk.referencedColumns[0] === target.pk) return target;
+  return undefined;
+}
+// Resolve FK aliases only after every input identity is known. Otherwise two
+// nullable natural keys can appear different in JSON while referring to the
+// same database row (one uses _key, the other an explicit TEXT junction cid).
+for (const node of nodes.values()) {
+  if (!node.businessKey) continue;
+  const canonicalValues = node.businessKey.map(column => {
+    const value = node.values[column] ?? null;
+    const fk = node.table.foreignKeys.find(candidate => candidate.columns.length === 1 && candidate.columns[0] === column);
+    if (!fk || value === null) return value;
+    const referenced = referencedNode(node, fk, value);
+    if (!referenced) throw new Error(`${node.table.name}/${node.row._key}: missing identity dependency ${column}`);
+    return { table: referenced.table.name, key: referenced.row._key };
+  });
+  const signature = JSON.stringify([node.table.name, node.businessKey, canonicalValues]);
+  if (incomingBusinessKeys.has(signature)) throw new Error(`${node.table.name}/${node.row._key}: business key also supplied by ${incomingBusinessKeys.get(signature)}; nullable key members still require unambiguous import identity`);
+  incomingBusinessKeys.set(signature, node.row._key);
 }
 for (const node of nodes.values()) {
   for (const column of node.businessKey ?? []) {
-    const fk = node.table.foreignKeys.find(candidate => candidate.columns[0] === column);
+    const fk = node.table.foreignKeys.find(candidate => candidate.columns.length === 1 && candidate.columns[0] === column);
     const value = node.values[column];
     if (!fk || value === null || value === undefined) continue;
     const referenced = referencedNode(node, fk, value);
@@ -122,7 +149,9 @@ function sqlValue(node, columnName) {
   const column = node.columnByName.get(columnName);
   const value = node.values[columnName];
   if (value === null || value === undefined) return 'NULL';
-  const fk = node.table.foreignKeys.find(candidate => candidate.columns[0] === columnName);
+  // Composite ownership/group FKs validate the resolved tuple in PostgreSQL.
+  // Physical IDs still resolve through each column's original scalar FK.
+  const fk = node.table.foreignKeys.find(candidate => candidate.columns.length === 1 && candidate.columns[0] === columnName);
   if (fk) {
     const referenced = referencedNode(node, fk, value);
     if (!referenced) throw new Error(`${node.table.name}/${node.row._key}: missing reference ${columnName}`);
@@ -227,7 +256,7 @@ function payload(node, columns, resolvedPrimary = false) {
     const column = node.columnByName.get(name);
     if (resolvedPrimary && name === node.pk) {
       dynamic.push(quoteText(name), `${rowId(node.table.name, node.row._key)}::${typeName(column)}`);
-    } else if (node.table.foreignKeys.some(fk => fk.columns[0] === name) && node.values[name] !== null && node.values[name] !== undefined) {
+    } else if (node.table.foreignKeys.some(fk => fk.columns.length === 1 && fk.columns[0] === name) && node.values[name] !== null && node.values[name] !== undefined) {
       dynamic.push(quoteText(name), sqlValue(node, name));
     } else staticValues[name] = node.values[name] ?? null;
   }

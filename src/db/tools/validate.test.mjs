@@ -75,3 +75,109 @@ test("an unversioned artifact set cannot grant a bonus to another title's class"
   assert.equal(result.status, 1);
   assert.match(result.stderr, /ArtifactSetBonusHOMM5 requires HOMM5/);
 });
+
+test("nested JSON is validated during normal bundle ingestion", () => {
+  const result = validate((tables) => {
+    tables.ArtifactHOMM3[0].Effect = { primarySkillBonuses: { attack: "2" } };
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /primarySkillBonuses.attack must be number/);
+});
+
+test("unprofiled JSON payloads cannot bypass null-only source policy", () => {
+  const result = validate((tables) => {
+    tables.HeroHOMM3[0].SpecialtyEffect = { arbitrary: 123 };
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /no reviewed JSON profile/);
+});
+
+test("costs require resource availability for their title", () => {
+  const result = validate((tables) => {
+    const cost = tables.CreatureResourceCost.find((row) => row.Game_id === "homm3.game");
+    tables.GameResource = tables.GameResource.filter((row) => row.Game_id !== cost.Game_id || row.Resource_id !== cost.Resource_id);
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /resource unavailable in GameResource/);
+});
+
+test("requirement sets and modes must be supplied together", () => {
+  const result = validate((tables) => {
+    tables.HeroClassAbility[0].RequirementSet = 1;
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /requires RequirementSet and RequirementMode together/);
+});
+
+test("the all-class artifact-set identity treats null class as one scope", () => {
+  const result = validate((tables) => {
+    const bonus = tables.ArtifactSetBonusHOMM5.find((row) => row.HeroClass_id == null);
+    assert.ok(bonus);
+    tables.ArtifactSetBonusHOMM5.push({ ...bonus, _key: "test.duplicate.all.class.bonus" });
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /duplicates \(ArtifactSetHOMM5_id, RequiredPieceCount, HeroClass_id\)/);
+});
+
+test("duplicate class ability atoms are rejected even with null requirement fields", () => {
+  const result = validate((tables) => {
+    tables.HeroClassAbility.push({ ...tables.HeroClassAbility[0], _key: "test.duplicate.ability.atom" });
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /duplicates \(Game_id, HeroClass_id, Ability_id, RequirementSet, RequiredAbility_id, Skill_id, MinimumMastery\)/);
+});
+
+test("distinct prerequisite alternatives remain valid and resolve composite group references", () => {
+  const result = validate((tables) => {
+    const ability = tables.HeroClassAbility[0];
+    for (const set of [1, 2]) {
+      tables.HeroClassAbilityRequirementGroup.push({
+        _key: `test.requirement.group.${set}`, Game_id: ability.Game_id,
+        HeroClass_id: ability.HeroClass_id, Ability_id: ability.Ability_id,
+        RequirementSet: set, RequirementMode: "All",
+      });
+      tables.HeroClassAbility.push({ ...ability, _key: `test.requirement.atom.${set}`,
+        RequirementSet: set, RequirementMode: "All" });
+    }
+  });
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test("a composite foreign key checks the full tuple, including group mode", () => {
+  const result = validate((tables) => {
+    const ability = tables.HeroClassAbility[0];
+    tables.HeroClassAbilityRequirementGroup.push({
+      _key: "test.requirement.group", Game_id: ability.Game_id,
+      HeroClass_id: ability.HeroClass_id, Ability_id: ability.Ability_id,
+      RequirementSet: 1, RequirementMode: "All",
+    });
+    ability.RequirementSet = 1;
+    ability.RequirementMode = "Any";
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /references missing HeroClassAbilityRequirementGroup/);
+});
+
+test("composite game ownership accepts a mix of symbolic keys and physical ids", () => {
+  const result = validate((tables) => {
+    const game = tables.Game.find((row) => row._key === "homm3.game");
+    game.Game_id = 900001;
+    const reference = tables.CreatureResourceCost.find((row) => row.Game_id === game._key);
+    reference.Game_id = 900001;
+  });
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test("requirement-group identifiers and spell selection weights enforce their SQL bounds", () => {
+  const result = validate((tables) => {
+    const ability = tables.HeroClassAbility[0];
+    tables.HeroClassAbilityRequirementGroup.push({
+      _key: "test.invalid.group", Game_id: ability.Game_id, HeroClass_id: ability.HeroClass_id,
+      Ability_id: ability.Ability_id, RequirementSet: 0, RequirementMode: "All",
+    });
+    tables.FactionSpell[0].SelectionWeight = -1;
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /RequirementSet must be a positive integer/);
+  assert.match(result.stderr, /SelectionWeight must be a non-negative integer/);
+});

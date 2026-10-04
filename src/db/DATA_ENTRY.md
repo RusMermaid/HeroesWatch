@@ -55,6 +55,9 @@ Rules:
 - Use ISO dates: `YYYY-MM-DD`.
 - Keep numbers as JSON numbers and booleans as `true`/`false`.
 - Do not put relational IDs or extra ad-hoc fields inside JSONB documents.
+- Follow the reviewed [JSON payload profiles](schema/JSON_CONTRACTS.md).
+  Unprofiled JSONB fields accept only null until a source contract is added.
+  Direct GUI edits to JSONB need the same validator before content handoff.
 
 ## Shared-PK game detail
 
@@ -123,7 +126,8 @@ node src/db/tools/validate.mjs src/db/data/heroeswatch.json
 ```
 
 The validator checks table/field names, required values, scalar types, ENUMs,
-duplicate import keys, unique constraints, and references within the bundle.
+duplicate import keys, nullable-safe unique constraints, composite references,
+same-game ownership, resource membership and the source-specific JSON profiles.
 
 Pass along:
 
@@ -133,7 +137,8 @@ Pass along:
 4. no database credentials, local paths, or secrets.
 
 The recipient should review the diff before any database insertion. This
-schema-only handoff does not auto-load content. Rows may be entered through a
-PostgreSQL GUI, or later application/import code may resolve `_key` values.
+schema generation does not auto-load content. The content builders resolve
+`_key` values and generate reviewed transactional imports. Rows may also be
+entered through a PostgreSQL GUI with the same domain rules.
 Any database application must happen in one transaction with foreign keys
 enabled; never disable constraints or delete unrelated rows to make data pass.
