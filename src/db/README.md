@@ -5,17 +5,18 @@ generated from the saved SQLDesigner diagram after the 2NF audit.
 
 Current contract:
 
-- 173 PostgreSQL tables
-- 1,285 fields
-- 349 foreign keys
+- 176 PostgreSQL tables
+- 1,304 fields
+- 450 foreign keys
 - 147 ordinary/shared-PK tables in second normal form
-- 26 explicit `*_cid` junction tables covered by the project exemption
+- 29 explicit `*_cid` junction tables covered by the project exemption
 
 ## Five-minute start
 
 1. Read [ARCHITECTURE.md](ARCHITECTURE.md) once.
-2. Copy [data/template.json](data/template.json) to a cumulative working file,
-   normally `src/db/data/heroeswatch.json`.
+2. Open [data/heroeswatch.json](data/heroeswatch.json) to extend the cumulative
+   data. Use [data/template.json](data/template.json) only when starting a new,
+   empty bundle.
 3. Add rows using the rules in [DATA_ENTRY.md](DATA_ENTRY.md).
 4. Validate before handing the file back:
 
@@ -31,12 +32,12 @@ Current contract:
    - execute the whole file;
    - refresh `Schemas → heroes_watch → Tables`.
 
-   The file creates all 173 tables, types, constraints, indexes, and links,
+   The file creates all 176 tables, types, constraints, indexes, and links,
    but contains no game data.
 
    For a Windows computer, follow [WINDOWS.md](WINDOWS.md). The same SQL file
-   works on macOS and Windows. A schema-only `HeroesWatch.backup` is also
-   included for PostgreSQL Restore tools.
+   works on macOS and Windows. The historical schema-only `HeroesWatch.backup`
+   restores the initial contract and then requires migration 0002.
 
    The equivalent command-line workflow is:
 
@@ -53,15 +54,40 @@ existing schema.
 
 ## What is authoritative?
 
-- `schema/sql-designer.snapshot.json` is the exact saved diagram snapshot.
+- `schema/sql-designer.snapshot.json` is the exact original diagram snapshot.
+  `tools/schema-overlay.mjs` records the reviewed version-2 changes. Together
+  they generate the current contract; the live diagram has not been replaced.
 - `schema/heroeswatch.schema.json` is the compact semantic contract used by
   people and tools.
 - `postgres/schema.sql`, the initial migration, JSON Schema, template, normal
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
-- The checked-in handoff intentionally contains no content loader and no game
-  rows. Data may be entered directly in a PostgreSQL GUI, or the cumulative
-  JSON can be integrated later by application code after review.
+- The schema baselines contain no game rows. Reviewed content lives in the
+  cumulative JSON: 40,023 rows across Heroes I–VIII and related Might and Magic
+  RPGs and spin-offs, including classes, heroes,
+  town buildings, dwellings, creatures, skills, magic, artifacts, campaigns
+  and map objects for each title's actual mechanics and official expansions.
+  [Coverage and known gaps](data/CATALOG_STATUS.md) lists counts, provenance,
+  unresolved details, and PostgreSQL application status.
+  [Screenshot review status](data/TOUCHUPS_STATUS.md) records the new relationships,
+  integrity protections, tests and remaining source gaps.
+  [The manual comparison](data/MANUAL_COMPARISON.md) records source disagreements,
+  edition differences and page evidence from the supplied local PDFs.
+- [data/catalog.sql](data/catalog.sql) is the complete cumulative content
+  import, generated with `node src/db/tools/build-content-sql.mjs`. It preserves
+  local identities and facts and rejects conflicts. Inspect results with
+  [data/catalog.review.sql](data/catalog.review.sql).
+- [data/homm3-factions.sql](data/homm3-factions.sql) applies that batch in one
+  transaction after review. [data/homm4-factions.sql](data/homm4-factions.sql)
+  applies the Heroes IV batch, and
+  [data/homm1-homm2-factions.sql](data/homm1-homm2-factions.sql) applies Heroes
+  I and II. [data/homm6-factions.sql](data/homm6-factions.sql) applies Heroes VI,
+  and [data/homm7-factions.sql](data/homm7-factions.sql) applies Heroes VII.
+  [data/homm3-creatures.sql](data/homm3-creatures.sql) applies the Heroes III
+  town creature roster after its faction batch.
+  See [data/README.md](data/README.md) for sources
+  and read-only verification queries. These earlier files are historical
+  snapshots; the cumulative import above includes their reviewed content.
 
 To verify that generated files are current:
 
@@ -89,9 +115,13 @@ canvas instead of merging it.
 - `schema/data.schema.json`: autocomplete and structural validation contract.
 - `schema/normal-form-report.json`: auditable 2NF result.
 - `postgres/migrations/0001_initial.sql`: immutable initial migration.
+- `postgres/migrations/0002_relationship_integrity.sql`: upgrade an existing
+  initial schema before applying current content; run once.
 - `postgres/verify.sql`: catalog-count verification after applying the DDL.
 - `tools/generate.mjs`: deterministic SQLDesigner-to-PostgreSQL generator.
 - `tools/validate.mjs`: dependency-free data-batch validator.
+- [schema/JSON_CONTRACTS.md](schema/JSON_CONTRACTS.md): JSON payload profiles
+  enforced by the validator and generated JSON Schema.
 
 ## Runtime requirements
 

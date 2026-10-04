@@ -1,0 +1,44 @@
+{
+  "formatVersion": 1,
+  "requiresMigration": "postgres/migrations/0002_relationship_integrity.sql",
+  "corrections": "data/touchups-corrections.sql",
+  "manualCatchup": "data/manual-import.sql",
+  "parts": [
+    {
+      "file": "data/touchups-import-01.sql",
+      "seedRows": 5380,
+      "rows": 6107
+    },
+    {
+      "file": "data/touchups-import-02.sql",
+      "seedRows": 1000,
+      "rows": 1169
+    },
+    {
+      "file": "data/touchups-import-03.sql",
+      "seedRows": 1000,
+      "rows": 1167
+    },
+    {
+      "file": "data/touchups-import-04.sql",
+      "seedRows": 1000,
+      "rows": 1164
+    },
+    {
+      "file": "data/touchups-import-05.sql",
+      "seedRows": 1000,
+      "rows": 1178
+    },
+    {
+      "file": "data/touchups-import-06.sql",
+      "seedRows": 1000,
+      "rows": 1174
+    },
+    {
+      "file": "data/touchups-import-07.sql",
+      "seedRows": 401,
+      "rows": 532
+    }
+  ],
+  "note": "Each part is a self-contained, transactional subset with full FK dependencies. Apply corrections first, then all parts. Repeat imports preserve existing IDs and non-null values."
+}

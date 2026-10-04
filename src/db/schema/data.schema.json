@@ -86,7 +86,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -121,7 +124,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -156,7 +162,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -201,7 +210,10 @@
         },
         "Mechanics": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -267,7 +279,10 @@
         },
         "Mechanics": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -391,7 +406,24 @@
         },
         "Mechanics": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "movementCost": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "reputationPoints": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -502,7 +534,10 @@
         },
         "Mechanics": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -744,6 +779,149 @@
       ],
       "type": "object"
     },
+    "AdventureObjectCreature": {
+      "additionalProperties": false,
+      "properties": {
+        "AdventureObjectCreature_cid": {
+          "description": "Database primary key; normally omitted from human-edited data.",
+          "type": "string"
+        },
+        "AdventureObject_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "Creature_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "Game_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "Notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "Relation": {
+          "enum": [
+            "Recruits",
+            "Guards",
+            "Transforms"
+          ],
+          "type": "string"
+        },
+        "_key": {
+          "description": "Import-only stable key. It is never stored as a database column.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "_key",
+        "Game_id",
+        "AdventureObject_id",
+        "Creature_id",
+        "Relation"
+      ],
+      "type": "object"
+    },
+    "AdventureObjectFaction": {
+      "additionalProperties": false,
+      "properties": {
+        "AdventureObjectFaction_cid": {
+          "description": "Database primary key; normally omitted from human-edited data.",
+          "type": "string"
+        },
+        "AdventureObject_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "Faction_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "Game_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "Notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "_key": {
+          "description": "Import-only stable key. It is never stored as a database column.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "_key",
+        "Game_id",
+        "AdventureObject_id",
+        "Faction_id"
+      ],
+      "type": "object"
+    },
     "AdventureObjectHOMM1": {
       "additionalProperties": false,
       "properties": {
@@ -762,7 +940,18 @@
         },
         "AllowedTerrains": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 128,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
             {
               "type": "null"
             }
@@ -794,7 +983,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -802,7 +994,74 @@
         },
         "Footprint": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "blockedCells": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "x": {
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "type": "integer"
+                      },
+                      "y": {
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4096,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "entrance": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "x": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    },
+                    "y": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "type": "object"
+                },
+                "height": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "width": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "width",
+                "height"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -810,7 +1069,42 @@
         },
         "Guards": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -835,7 +1129,10 @@
         },
         "Rewards": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -888,7 +1185,18 @@
         },
         "AllowedTerrains": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 128,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
             {
               "type": "null"
             }
@@ -912,7 +1220,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -920,7 +1231,74 @@
         },
         "Footprint": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "blockedCells": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "x": {
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "type": "integer"
+                      },
+                      "y": {
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4096,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "entrance": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "x": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    },
+                    "y": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "type": "object"
+                },
+                "height": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "width": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "width",
+                "height"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -928,7 +1306,42 @@
         },
         "Guards": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -936,7 +1349,10 @@
         },
         "Interaction": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -944,7 +1360,10 @@
         },
         "Rewards": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -980,7 +1399,18 @@
         },
         "AllowedTerrains": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 128,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
             {
               "type": "null"
             }
@@ -1002,7 +1432,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1010,7 +1443,74 @@
         },
         "Footprint": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "blockedCells": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "x": {
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "type": "integer"
+                      },
+                      "y": {
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4096,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "entrance": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "x": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    },
+                    "y": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "type": "object"
+                },
+                "height": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "width": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "width",
+                "height"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -1018,7 +1518,42 @@
         },
         "Guards": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -1026,7 +1561,23 @@
         },
         "Interaction": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "requiresHeroVisit": {
+                  "type": "boolean"
+                },
+                "weeklyAccumulation": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "weeklyAccumulation",
+                "requiresHeroVisit"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -1034,7 +1585,10 @@
         },
         "Rewards": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1070,7 +1624,18 @@
         },
         "AllowedTerrains": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 128,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
             {
               "type": "null"
             }
@@ -1092,7 +1657,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1100,7 +1668,74 @@
         },
         "Footprint": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "blockedCells": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "x": {
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "type": "integer"
+                      },
+                      "y": {
+                        "maximum": 2147483647,
+                        "minimum": -2147483648,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 4096,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "entrance": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "x": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    },
+                    "y": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "type": "object"
+                },
+                "height": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "width": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "width",
+                "height"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -1108,7 +1743,42 @@
         },
         "Guards": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -1116,7 +1786,10 @@
         },
         "Interaction": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1124,7 +1797,10 @@
         },
         "Rewards": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1132,7 +1808,10 @@
         },
         "ScriptHooks": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1185,7 +1864,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1193,7 +1875,42 @@
         },
         "Guards": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -1218,7 +1935,10 @@
         },
         "Rewards": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1226,7 +1946,10 @@
         },
         "ScriptHooks": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1300,7 +2023,27 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "dailyIncome": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "resource": {
+                  "maxLength": 256,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "resource",
+                "dailyIncome"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -1393,7 +2136,238 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "Defense": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "Destiny": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "Leadership": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "Magic": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "Might": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "Morale": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "Spirit": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "artifactCount": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "choice": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "Defense": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      },
+                      "Destiny": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      },
+                      "Leadership": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      },
+                      "Magic": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      },
+                      "Might": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      },
+                      "Morale": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      },
+                      "Spirit": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      }
+                    },
+                    "required": [],
+                    "type": "object"
+                  },
+                  "maxItems": 8,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "choices": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "experience": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "gold": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "gold",
+                      "experience"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 16,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "currentMovementBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "dailyIncome": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "defaultGoldCost": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "defaultOreCost": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "defaultWoodCost": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "duration": {
+                  "enum": [
+                    "EndOfWeek"
+                  ],
+                  "type": "string"
+                },
+                "durationBattles": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "experience": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "increment": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "levelIncrease": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "maximum": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "maximumManaMultiplier": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "maximumMovementBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "minimum": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "movement": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "navalMovementBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "requiredSetPieces": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "resource": {
+                  "maxLength": 256,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "restoreMana": {
+                  "type": "boolean"
+                },
+                "reveal": {
+                  "enum": [
+                    "CurrentMapLayer"
+                  ],
+                  "type": "string"
+                },
+                "revealRadius": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "upgradeCostMultiplier": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -1517,7 +2491,10 @@
         },
         "ScriptDefinition": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1719,7 +2696,59 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "attackBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "catapultShotsPerTurn": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "defenseBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "effect": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "goldPerDay": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "knowledgeBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "luckBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "moraleBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "spellPowerBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -1787,7 +2816,53 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "modifiers": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "isCurse": {
+                        "type": "boolean"
+                      },
+                      "kind": {
+                        "maxLength": 128,
+                        "pattern": "^[a-z][a-z0-9_]*$",
+                        "type": "string"
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "maximum": 1000000000000,
+                            "minimum": -1000000000000,
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "value",
+                      "isCurse"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 64,
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "modifiers"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -1868,7 +2943,162 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "alliedDragonBonuses": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "attack": {
+                      "maximum": 1000000000000,
+                      "minimum": -1000000000000,
+                      "type": "number"
+                    },
+                    "defense": {
+                      "maximum": 1000000000000,
+                      "minimum": -1000000000000,
+                      "type": "number"
+                    },
+                    "knowledge": {
+                      "maximum": 1000000000000,
+                      "minimum": -1000000000000,
+                      "type": "number"
+                    },
+                    "power": {
+                      "maximum": 1000000000000,
+                      "minimum": -1000000000000,
+                      "type": "number"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                },
+                "allowsAdjacentRangedAttacks": {
+                  "type": "boolean"
+                },
+                "convertsRemainingLandAndSeaMovement": {
+                  "type": "boolean"
+                },
+                "dailyResources": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "crystal": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "gem": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "gold": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "mercury": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "ore": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "sulfur": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "wood": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                },
+                "excludes": {
+                  "items": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "maxItems": 32,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "excludesExternalDwellings": {
+                  "type": "boolean"
+                },
+                "healthBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "primarySkillBonuses": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "attack": {
+                      "maximum": 1000000000000,
+                      "minimum": -1000000000000,
+                      "type": "number"
+                    },
+                    "defense": {
+                      "maximum": 1000000000000,
+                      "minimum": -1000000000000,
+                      "type": "number"
+                    },
+                    "knowledge": {
+                      "maximum": 1000000000000,
+                      "minimum": -1000000000000,
+                      "type": "number"
+                    },
+                    "power": {
+                      "maximum": 1000000000000,
+                      "minimum": -1000000000000,
+                      "type": "number"
+                    }
+                  },
+                  "required": [],
+                  "type": "object"
+                },
+                "regeneration": {
+                  "type": "boolean"
+                },
+                "removesBoardingAndDisembarkingPenalty": {
+                  "type": "boolean"
+                },
+                "removesDistanceAndObstaclePenalties": {
+                  "type": "boolean"
+                },
+                "restoresAllSpellPointsDaily": {
+                  "type": "boolean"
+                },
+                "spellDurationBonusRounds": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "townCreatureGrowthBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "worksOutsideTown": {
+                  "type": "boolean"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -1936,7 +3166,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -1944,7 +3177,10 @@
         },
         "EquipmentSlots": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -2026,7 +3262,202 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "allowsAdventureFlight": {
+                  "type": "boolean"
+                },
+                "allowsWaterWalking": {
+                  "type": "boolean"
+                },
+                "armyCreatureDamageBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "armyCreatureInitiativeBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "armyCreatureMaximumHealthBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "armyCreatureSpeedBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "armyMagicResistancePercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "armyShootersIgnoreRangePenalty": {
+                  "type": "boolean"
+                },
+                "attackBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "casterCreatureInitiativeBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "coldSpellBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "coldSpellProtectionPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "dailyGold": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "defenseBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "earthSpellDamageBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "enemyCreatureInitiativeReductionPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "enemyEarthSpellDamageReductionPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "enemyLuckBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "enemyMoraleBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "experienceBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "fireSpellBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "fireSpellProtectionPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "flyingCreatureInitiativeBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "groundMeleeCreatureInitiativeBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "heroSpellManaCostMultiplier": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "ignoresRoughTerrainMovementPenalties": {
+                  "type": "boolean"
+                },
+                "knowledgeBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "largeCreatureInitiativeBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "lightningSpellBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "lightningSpellProtectionPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "luckBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "magicResistancePercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "manaGainedPerEnemyManaSpent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "moraleBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "negatesEnemyMindEffectImmunity": {
+                  "type": "boolean"
+                },
+                "preventsRetreatForBothCombatants": {
+                  "type": "boolean"
+                },
+                "rangedCreatureInitiativeBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "smallCreatureInitiativeBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "spellPowerBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "warMachineInitiativeBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -2109,7 +3540,69 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "bonuses": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "attribute": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "level": {
+                        "maximum": 2147483647,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "unit": {
+                        "enum": [
+                          "points",
+                          "percent"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "attribute",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 100,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "experienceThresholds": {
+                  "items": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "maxItems": 100,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "maxLevel": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "bonuses"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -2139,7 +3632,10 @@
         },
         "SetBonuses": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -2201,7 +3697,18 @@
         },
         "AllowedFactions": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 128,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
             {
               "type": "null"
             }
@@ -2233,7 +3740,54 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "bonuses": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "attribute": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "level": {
+                        "maximum": 2147483647,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "unit": {
+                        "enum": [
+                          "points",
+                          "percent"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "maximum": 1000000000000,
+                        "minimum": -1000000000000,
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "attribute",
+                      "value"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 100,
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "bonuses"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -2250,7 +3804,10 @@
         },
         "SetBonuses": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -2569,7 +4126,188 @@
             }
           ]
         },
-        "Effect": {},
+        "Effect": {
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "AllPrimaryAttributes": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "ArmyAttack": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "ArmyCasterManaMultiplier": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "ArmyCasterSpellPowerMultiplier": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "ArmyHealth": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "ArmyMagicProofPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "BansheeHowlAtbCostPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "BansheeHowlEnemyInitiativePercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "BansheeHowlEnemyLuck": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "BansheeHowlEnemyMorale": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "DailyTierSevenCreatures": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "ElementalVisionEffectMultiplier": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "EnemyAttackPercentOnNegativeMorale": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "EnemyDefensePercentOnNegativeMorale": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "EnemyMoraleOnHeroAttack": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "EnemySpeed": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "ExperienceBonusPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "GatingCreatureBonusPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "HeroAtbGainPercentOnPositiveMorale": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "HeroAtbLossPercentOnNegativeMorale": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "HeroAttack": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "HeroAttackAtbRecoveryReductionPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "HeroShootingAtbRecoveryReductionPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "HeroSpellAtbRecoveryReductionPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "MinimumSpellPowerBonus": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "NecromancyCostPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "OpeningBlessings": {
+              "maxLength": 16000,
+              "minLength": 1,
+              "type": "string"
+            },
+            "OpeningBlessingsDurationTurns": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "OpeningBlessingsMastery": {
+              "enum": [
+                "None",
+                "Basic",
+                "Advanced",
+                "Expert"
+              ],
+              "type": "string"
+            },
+            "ShooterAtbRecoveryReductionPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "SpellPowerPercent": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "TierSevenAttack": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "TierSevenDefense": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            },
+            "TierSevenHealth": {
+              "maximum": 1000000000000,
+              "minimum": -1000000000000,
+              "type": "number"
+            }
+          },
+          "required": [],
+          "type": "object"
+        },
         "HeroClass_id": {
           "anyOf": [
             {
@@ -2961,7 +4699,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -3035,7 +4776,29 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "description": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "maximumNecromancyPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "necromancyBonusPercentagePoints": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -3082,7 +4845,10 @@
         },
         "Requirements": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -3117,7 +4883,44 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "creatureGrowthPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "description": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "goldPerDay": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "limitPerPlayer": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "spellLevel": {
+                  "maximum": 5,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "spellsOfferedAtLevel": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -3164,7 +4967,10 @@
         },
         "Requirements": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -3202,7 +5008,48 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "addsDefensiveMoat": {
+                  "type": "boolean"
+                },
+                "addsDefensiveTowers": {
+                  "type": "boolean"
+                },
+                "addsDefensiveWalls": {
+                  "type": "boolean"
+                },
+                "allowsShipConstruction": {
+                  "type": "boolean"
+                },
+                "capturingTownFreesPrisoners": {
+                  "type": "boolean"
+                },
+                "enablesCreatureDwellings": {
+                  "type": "boolean"
+                },
+                "heroRecruitmentLimit": {
+                  "maximum": 2147483647,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "holdsDefeatedEnemyHeroes": {
+                  "type": "boolean"
+                },
+                "recruitmentPeriodDays": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "transportsCreaturesFromTownsAndDwellings": {
+                  "type": "boolean"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -3289,7 +5136,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -3378,7 +5228,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -3468,7 +5321,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -3727,7 +5583,10 @@
         },
         "Condition": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -3997,7 +5856,10 @@
         },
         "CarryoverRules": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -4005,7 +5867,10 @@
         },
         "RatingRule": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -4013,7 +5878,10 @@
         },
         "WarlordSelection": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -4036,7 +5904,10 @@
       "properties": {
         "CampaignAwards": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -4057,7 +5928,10 @@
         },
         "CarryoverRules": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -4065,7 +5939,10 @@
         },
         "SelectableBonuses": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -4115,7 +5992,10 @@
         },
         "CarryoverRules": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -4134,7 +6014,10 @@
         },
         "SelectableBonuses": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -4316,7 +6199,83 @@
       "properties": {
         "AvailabilityCondition": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "description": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "nativeCounters": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "array": {
+                      "items": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "properties": {
+                          "counterSid": {
+                            "maxLength": 256,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "operation": {
+                            "enum": [
+                              "==",
+                              "!=",
+                              ">",
+                              ">=",
+                              "<",
+                              "<="
+                            ],
+                            "type": "string"
+                          },
+                          "value": {
+                            "maximum": 1000000000000,
+                            "minimum": -1000000000000,
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "counterSid",
+                          "operation",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 128,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "logicOperation": {
+                      "enum": [
+                        "And",
+                        "Or"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "logicOperation",
+                    "array"
+                  ],
+                  "type": "object"
+                },
+                "source": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "description",
+                "source"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -4518,7 +6477,10 @@
         },
         "Parameters": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -6553,7 +8515,10 @@
         },
         "TownMechanic": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -6944,7 +8909,11 @@
         },
         "GuaranteedSlotsPerCircle": {
           "anyOf": [
-            {},
+            {
+              "maximum": 5,
+              "minimum": 0,
+              "type": "integer"
+            },
             {
               "type": "null"
             }
@@ -6991,7 +8960,10 @@
       "properties": {
         "CombatBonus": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -7087,6 +9059,16 @@
           ]
         },
         "OccurrenceChance": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "SelectionWeight": {
           "anyOf": [
             {
               "type": "integer"
@@ -7714,7 +9696,16 @@
         "RequirementSet": {
           "anyOf": [
             {
-              "type": "integer"
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "description": "A referenced row's import-only _key",
+                  "minLength": 1,
+                  "type": "string"
+                }
+              ]
             },
             {
               "type": "null"
@@ -7754,12 +9745,85 @@
       ],
       "type": "object"
     },
+    "HeroClassAbilityRequirementGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "Ability_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "Game_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "HeroClassAbilityRequirementGroup_cid": {
+          "description": "Database primary key; normally omitted from human-edited data.",
+          "type": "string"
+        },
+        "HeroClass_id": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "description": "A referenced row's import-only _key",
+              "minLength": 1,
+              "type": "string"
+            }
+          ]
+        },
+        "RequirementMode": {
+          "enum": [
+            "All",
+            "Any"
+          ],
+          "type": "string"
+        },
+        "RequirementSet": {
+          "type": "integer"
+        },
+        "_key": {
+          "description": "Import-only stable key. It is never stored as a database column.",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "_key",
+        "Game_id",
+        "HeroClass_id",
+        "Ability_id",
+        "RequirementSet",
+        "RequirementMode"
+      ],
+      "type": "object"
+    },
     "HeroClassHOMM1": {
       "additionalProperties": false,
       "properties": {
         "ClassEffect": {
           "anyOf": [
-            {},
+            {
+              "maxLength": 16000,
+              "minLength": 1,
+              "type": "string"
+            },
             {
               "type": "null"
             }
@@ -7792,7 +9856,10 @@
         },
         "PrimarySkillChances": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -7800,7 +9867,42 @@
         },
         "StartingArmy": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -7868,7 +9970,83 @@
         },
         "PrimarySkillChances": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "levels10Plus": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "Attack": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Defense": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Knowledge": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Power": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "Attack",
+                    "Defense",
+                    "Power",
+                    "Knowledge"
+                  ],
+                  "type": "object"
+                },
+                "levels2To9": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "Attack": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Defense": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Knowledge": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Power": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "Attack",
+                    "Defense",
+                    "Power",
+                    "Knowledge"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "levels2To9",
+                "levels10Plus"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -7876,7 +10054,99 @@
         },
         "SecondarySkillWeights": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "Archery": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Ballistics": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Diplomacy": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Eagle Eye": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Estates": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Leadership": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Logistics": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Luck": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Mysticism": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Navigation": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Necromancy": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Pathfinding": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Scouting": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Wisdom": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "Archery",
+                "Ballistics",
+                "Diplomacy",
+                "Eagle Eye",
+                "Estates",
+                "Leadership",
+                "Logistics",
+                "Luck",
+                "Mysticism",
+                "Navigation",
+                "Necromancy",
+                "Pathfinding",
+                "Scouting",
+                "Wisdom"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -7884,7 +10154,42 @@
         },
         "StartingArmy": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -7904,7 +10209,10 @@
         },
         "StartingSkills": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -7975,7 +10283,83 @@
         },
         "PrimarySkillChances": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "levels10Plus": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "Attack": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Defense": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Knowledge": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Power": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "Attack",
+                    "Defense",
+                    "Power",
+                    "Knowledge"
+                  ],
+                  "type": "object"
+                },
+                "levels2To9": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "Attack": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Defense": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Knowledge": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "Power": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "Attack",
+                    "Defense",
+                    "Power",
+                    "Knowledge"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "levels2To9",
+                "levels10Plus"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -7983,7 +10367,183 @@
         },
         "SecondarySkillWeights": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "Air Magic": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Archery": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Armorer": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Artillery": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Ballistics": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Diplomacy": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Eagle Eye": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Earth Magic": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Estates": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Fire Magic": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "First Aid": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Intelligence": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Leadership": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Learning": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Logistics": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Luck": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Mysticism": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Navigation": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Necromancy": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Offense": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Pathfinding": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Resistance": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Scholar": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Scouting": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Sorcery": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Tactics": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Water Magic": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "Wisdom": {
+                  "maximum": 100,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "Archery",
+                "Ballistics",
+                "Diplomacy",
+                "Eagle Eye",
+                "Estates",
+                "Leadership",
+                "Logistics",
+                "Luck",
+                "Mysticism",
+                "Navigation",
+                "Necromancy",
+                "Pathfinding",
+                "Scouting",
+                "Wisdom",
+                "Air Magic",
+                "Armorer",
+                "Artillery",
+                "Earth Magic",
+                "Fire Magic",
+                "First Aid",
+                "Intelligence",
+                "Learning",
+                "Offense",
+                "Resistance",
+                "Scholar",
+                "Sorcery",
+                "Tactics",
+                "Water Magic"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -8046,7 +10606,217 @@
       "properties": {
         "ClassBonus": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "chaosSpellResistancePercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "dailySpellPointRecoveryBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "dailySummoningExperienceBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "deathSpellResistancePercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "defenseBonusPercentAgainstChaos": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "defenseBonusPercentAgainstDeath": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "fireAttackDamageMultiplier": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "fireSpellEffectBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "friendlyCreatureMeleeAttackBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "friendlyCreatureMeleeDefenseBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "friendlyCreatureMoraleBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "friendlyCreatureRangedAttackBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "friendlyCreatureRangedDefenseBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "grantsRangedAttack": {
+                  "type": "boolean"
+                },
+                "hasClassAbility": {
+                  "type": "boolean"
+                },
+                "ignoresWards": {
+                  "type": "boolean"
+                },
+                "illusionBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "immuneToFireSpells": {
+                  "type": "boolean"
+                },
+                "luckAlwaysMaximum": {
+                  "type": "boolean"
+                },
+                "meleeAttackBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "meleeAttackCanStun": {
+                  "type": "boolean"
+                },
+                "meleeAttackCausesFear": {
+                  "type": "boolean"
+                },
+                "meleeAttackPoisons": {
+                  "type": "boolean"
+                },
+                "meleeAttackSetsTargetLuckToMinimum": {
+                  "type": "boolean"
+                },
+                "meleeAttackSetsTargetMoraleToMinimum": {
+                  "type": "boolean"
+                },
+                "meleeDamageBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "meleeDefenseBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "meleeLifeDrainFraction": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "moraleAlwaysMaximum": {
+                  "type": "boolean"
+                },
+                "movementBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "permanentFireShield": {
+                  "type": "boolean"
+                },
+                "poisonDuration": {
+                  "enum": [
+                    "Combat"
+                  ],
+                  "type": "string"
+                },
+                "poisonStartsOnHitTurn": {
+                  "type": "boolean"
+                },
+                "preventsTargetRetaliation": {
+                  "type": "boolean"
+                },
+                "rangedAttackBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "rangedDefenseBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "resurrectionBonusPercentagePoints": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "scoutingRadiusBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "speedBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "spellEffectBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "spellPointBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "spellPointCostReduction": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "stunDurationTurns": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "summoningBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "whiteTigerSummoningBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "wolfSummoningBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -8075,7 +10845,10 @@
         },
         "SkillWeights": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -8083,7 +10856,10 @@
         },
         "StartingCombatStats": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -8110,7 +10886,10 @@
         },
         "StartingSkills": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -8191,7 +10970,10 @@
         },
         "SkillWeights": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -8370,7 +11152,10 @@
         },
         "SkillWeights": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -8619,7 +11404,10 @@
         },
         "SpecialtyEffect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -8637,7 +11425,42 @@
         },
         "StartingArmy": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -8706,7 +11529,10 @@
         },
         "SpecialtyEffect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -8724,7 +11550,42 @@
         },
         "StartingArmy": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -8833,7 +11694,10 @@
         },
         "SpecialtyEffect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -8851,7 +11715,42 @@
         },
         "StartingArmy": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -8933,7 +11832,42 @@
         },
         "StartingArmy": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "count": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "creatureKey": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                    "type": "string"
+                  },
+                  "maximum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minimum": {
+                    "maximum": 2147483647,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "creatureKey"
+                ],
+                "type": "object"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -9020,7 +11954,18 @@
         },
         "StartingSpells": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_.:-]+$",
+                "type": "string"
+              },
+              "maxItems": 256,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
             {
               "type": "null"
             }
@@ -9466,7 +12411,90 @@
         },
         "SourceLinks": {
           "anyOf": [
-            {},
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "title": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                      },
+                      "url": {
+                        "maxLength": 16000,
+                        "minLength": 1,
+                        "pattern": "^(https?://|manual:)[^\\s]+$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "url"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "pdfPage": {
+                        "maximum": 2147483647,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "uri": {
+                        "maxLength": 16000,
+                        "minLength": 1,
+                        "pattern": "^manuals/files/[a-f0-9]{12}/manual\\.pdf$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "uri",
+                      "pdfPage"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "pdfPage": {
+                        "maximum": 2147483647,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "printedPage": {
+                        "maximum": 2147483647,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "sha256": {
+                        "pattern": "^[a-f0-9]{64}$",
+                        "type": "string"
+                      },
+                      "title": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "sha256",
+                      "pdfPage"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              },
+              "maxItems": 128,
+              "minItems": 1,
+              "type": "array"
+            },
             {
               "type": "null"
             }
@@ -9515,6 +12543,25 @@
           ]
         },
         "Campaign_id": {
+          "anyOf": [
+            {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "description": "A referenced row's import-only _key",
+                  "minLength": 1,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "Faction_id": {
           "anyOf": [
             {
               "oneOf": [
@@ -10660,7 +13707,10 @@
         },
         "TemplateDefinition": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -10979,7 +14029,10 @@
       "properties": {
         "Changes": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11344,7 +14397,83 @@
       "properties": {
         "Condition": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "description": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "nativeCounters": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "array": {
+                      "items": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "properties": {
+                          "counterSid": {
+                            "maxLength": 256,
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "operation": {
+                            "enum": [
+                              "==",
+                              "!=",
+                              ">",
+                              ">=",
+                              "<",
+                              "<="
+                            ],
+                            "type": "string"
+                          },
+                          "value": {
+                            "maximum": 1000000000000,
+                            "minimum": -1000000000000,
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "counterSid",
+                          "operation",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 128,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "logicOperation": {
+                      "enum": [
+                        "And",
+                        "Or"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "logicOperation",
+                    "array"
+                  ],
+                  "type": "object"
+                },
+                "source": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "description",
+                "source"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -11441,7 +14570,10 @@
         },
         "LossConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11478,7 +14610,10 @@
         },
         "StartingState": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11486,7 +14621,10 @@
         },
         "VictoryConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11508,7 +14646,10 @@
       "properties": {
         "LossConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11529,7 +14670,10 @@
         },
         "StartingBonuses": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11537,7 +14681,10 @@
         },
         "VictoryConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11559,7 +14706,10 @@
       "properties": {
         "CarryoverRules": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11567,7 +14717,10 @@
         },
         "LossConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11588,7 +14741,10 @@
         },
         "StartingBonuses": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11596,7 +14752,10 @@
         },
         "VictoryConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11618,7 +14777,10 @@
       "properties": {
         "CarryoverRules": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11636,7 +14798,10 @@
         },
         "LossConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11668,7 +14833,10 @@
         },
         "VictoryConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11692,7 +14860,10 @@
       "properties": {
         "CarryoverRules": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11720,7 +14891,10 @@
         },
         "LossConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11741,7 +14915,10 @@
         },
         "StartingState": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11749,7 +14926,10 @@
         },
         "VictoryConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11771,7 +14951,10 @@
       "properties": {
         "CarryoverRules": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11799,7 +14982,10 @@
         },
         "LossConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11820,7 +15006,10 @@
         },
         "StartingState": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11828,7 +15017,10 @@
         },
         "VictoryConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11850,7 +15042,10 @@
       "properties": {
         "CarryoverRules": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11878,7 +15073,10 @@
         },
         "LossConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11899,7 +15097,10 @@
         },
         "StartingState": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -11907,7 +15108,10 @@
         },
         "VictoryConditions": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -12019,7 +15223,10 @@
         },
         "Scripts": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -12128,7 +15335,10 @@
         },
         "Subjects": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -12377,7 +15587,95 @@
         },
         "MasteryEffects": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "Advanced": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "maximumSpellLevel": {
+                      "maximum": 5,
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "maximumSpellLevel"
+                  ],
+                  "type": "object"
+                },
+                "Basic": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "maximumSpellLevel": {
+                      "maximum": 5,
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "maximumSpellLevel"
+                  ],
+                  "type": "object"
+                },
+                "Expert": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "maximumSpellLevel": {
+                      "maximum": 5,
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "maximumSpellLevel"
+                  ],
+                  "type": "object"
+                },
+                "Grandmaster": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "maximumSpellLevel": {
+                      "maximum": 5,
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "maximumSpellLevel"
+                  ],
+                  "type": "object"
+                },
+                "Master": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "maximumSpellLevel": {
+                      "maximum": 5,
+                      "minimum": 1,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "maximumSpellLevel"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "Basic",
+                "Advanced",
+                "Expert",
+                "Master",
+                "Grandmaster"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -12538,7 +15836,10 @@
       "properties": {
         "EffectByMastery": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -13356,7 +16657,10 @@
         },
         "Formula": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -13433,7 +16737,21 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "description": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "description"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -13603,7 +16921,177 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "affectsAllFriendlyTargets": {
+                  "type": "boolean"
+                },
+                "affectsAllTargets": {
+                  "type": "boolean"
+                },
+                "affectsBothArmies": {
+                  "type": "boolean"
+                },
+                "cannotAttackStacksWithMoreTotalHitPoints": {
+                  "type": "boolean"
+                },
+                "damageBonusPercentAgainstLevel4": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "displacementYards": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "duration": {
+                  "enum": [
+                    "Combat"
+                  ],
+                  "type": "string"
+                },
+                "durationTurns": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "grantsFirstStrike": {
+                  "type": "boolean"
+                },
+                "grantsFlight": {
+                  "type": "boolean"
+                },
+                "ignoresObstaclePenalty": {
+                  "type": "boolean"
+                },
+                "ignoresRangePenalty": {
+                  "type": "boolean"
+                },
+                "ignoresWallPenalty": {
+                  "type": "boolean"
+                },
+                "meleeDamageBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "meleeDefenseBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "movementBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "movementMultiplier": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "preventsRangedAttacks": {
+                  "type": "boolean"
+                },
+                "quantityScaling": {
+                  "enum": [
+                    "CasterLevel"
+                  ],
+                  "type": "string"
+                },
+                "rangedAttackBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "rangedDefenseBonusPercent": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "relocatesTargetWithinBattlefield": {
+                  "type": "boolean"
+                },
+                "removesAdventureTerrainMovementPenalties": {
+                  "type": "boolean"
+                },
+                "removesAllSpellEffects": {
+                  "type": "boolean"
+                },
+                "removesCombatTerrainMovementPenalties": {
+                  "type": "boolean"
+                },
+                "requiresDemonology": {
+                  "enum": [
+                    "Basic",
+                    "Advanced",
+                    "Expert",
+                    "Master",
+                    "Grandmaster"
+                  ],
+                  "type": "string"
+                },
+                "requiresNatureMagic": {
+                  "enum": [
+                    "Basic",
+                    "Advanced",
+                    "Expert",
+                    "Master",
+                    "Grandmaster"
+                  ],
+                  "type": "string"
+                },
+                "revealsEnemyHeroSkills": {
+                  "type": "boolean"
+                },
+                "revealsExactArmyCounts": {
+                  "type": "boolean"
+                },
+                "setsLuckToMaximum": {
+                  "type": "boolean"
+                },
+                "setsLuckToMinimum": {
+                  "type": "boolean"
+                },
+                "skipsNextAction": {
+                  "type": "boolean"
+                },
+                "speedBonus": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "speedMultiplier": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "spellImmunity": {
+                  "type": "boolean"
+                },
+                "spellPointCostMultiplier": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "spellPointCostReduction": {
+                  "maximum": 1000000000000,
+                  "minimum": -1000000000000,
+                  "type": "number"
+                },
+                "summonsCreatures": {
+                  "type": "boolean"
+                },
+                "transfersBeneficialSpellFromEnemyToRandomAlly": {
+                  "type": "boolean"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -13668,7 +17156,10 @@
         },
         "EffectByMastery": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -13794,7 +17285,79 @@
         },
         "EffectByMastery": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "Expert": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "formula": {
+                      "maxLength": 16000,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "formula"
+                  ],
+                  "type": "object"
+                },
+                "Master": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "formula": {
+                      "maxLength": 16000,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "formula"
+                  ],
+                  "type": "object"
+                },
+                "Novice": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "formula": {
+                      "maxLength": 16000,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "formula"
+                  ],
+                  "type": "object"
+                },
+                "Unskilled": {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "formula": {
+                      "maxLength": 16000,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "formula"
+                  ],
+                  "type": "object"
+                }
+              },
+              "required": [
+                "Unskilled",
+                "Novice",
+                "Expert",
+                "Master"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -14288,7 +17851,10 @@
       "properties": {
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -14343,7 +17909,10 @@
         },
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -14351,7 +17920,10 @@
         },
         "PathfindingCosts": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -14386,7 +17958,21 @@
       "properties": {
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "rulesText": {
+                  "maxLength": 16000,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "rulesText"
+              ],
+              "type": "object"
+            },
             {
               "type": "null"
             }
@@ -14431,7 +18017,10 @@
       "properties": {
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -14476,7 +18065,10 @@
       "properties": {
         "Effect": {
           "anyOf": [
-            {},
+            {
+              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
+              "not": {}
+            },
             {
               "type": "null"
             }
@@ -14720,7 +18312,79 @@
         },
         "Hotspot": {
           "anyOf": [
-            {},
+            {
+              "anyOf": [
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "height": {
+                      "maximum": 2147483647,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "width": {
+                      "maximum": 2147483647,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "x": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "y": {
+                      "maximum": 2147483647,
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y",
+                    "width",
+                    "height"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "polygon": {
+                      "items": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "properties": {
+                          "x": {
+                            "maximum": 2147483647,
+                            "minimum": -2147483648,
+                            "type": "integer"
+                          },
+                          "y": {
+                            "maximum": 2147483647,
+                            "minimum": -2147483648,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "x",
+                          "y"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 256,
+                      "minItems": 3,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "polygon"
+                  ],
+                  "type": "object"
+                }
+              ]
+            },
             {
               "type": "null"
             }
@@ -14960,6 +18624,20 @@
           "default": [],
           "items": {
             "$ref": "#/$defs/AdventureObject"
+          },
+          "type": "array"
+        },
+        "AdventureObjectCreature": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AdventureObjectCreature"
+          },
+          "type": "array"
+        },
+        "AdventureObjectFaction": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/AdventureObjectFaction"
           },
           "type": "array"
         },
@@ -15485,6 +19163,13 @@
           "default": [],
           "items": {
             "$ref": "#/$defs/HeroClassAbility"
+          },
+          "type": "array"
+        },
+        "HeroClassAbilityRequirementGroup": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/HeroClassAbilityRequirementGroup"
           },
           "type": "array"
         },
@@ -16116,6 +19801,8 @@
         "AbilityHOMM7",
         "AbilityHOMM8",
         "AdventureObject",
+        "AdventureObjectCreature",
+        "AdventureObjectFaction",
         "AdventureObjectHOMM1",
         "AdventureObjectHOMM2",
         "AdventureObjectHOMM3",
@@ -16191,6 +19878,7 @@
         "Hero",
         "HeroClass",
         "HeroClassAbility",
+        "HeroClassAbilityRequirementGroup",
         "HeroClassHOMM1",
         "HeroClassHOMM2",
         "HeroClassHOMM3",
