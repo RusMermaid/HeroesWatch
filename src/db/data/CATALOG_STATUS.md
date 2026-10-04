@@ -6,6 +6,13 @@ add 9,542 rows to the 30,481-row manual catalog, fill 1,233 null fields and
 correct six fort labels. Stable keys and the immutable initial migration are
 preserved. The current schema uses reviewed overlay version 2 and migration 0002.
 
+**Live deployment is confirmed:** on **2026-10-04**, pgAdmin committed the
+migration, manual catch-up, corrections and all seven touch-up parts to
+**HeroesWatch.net**. The final review returned **40,023 rows, 176 tables,
+23 games and 36 PDF manual records**, with database owner **postgres**.
+See the [deployment record](live-deployment.json) and
+[review query](live-deployment.review.sql).
+
 ## Earlier manual import and comparison
 
 The local collection contains 38 files, deduplicated by SHA-256 into **36 PDF
@@ -37,23 +44,22 @@ and [per-row evidence](manual-content-evidence.json).
 
 ### Manual-batch PostgreSQL status
 
-The manual-batch application is **not confirmed**. pgAdmin became unresponsive
-while loading the 33 MB cumulative SQL file. An execution input was attempted,
-but no completion or rollback result could be observed; two window-recovery
-attempts timed out. The standard `psql -w` connection had no reusable password.
-The last confirmed full import remains the earlier 27,915-row transaction below.
+The manual batch **committed successfully on 2026-10-04** through pgAdmin in
+**13.342 seconds**, during the deployment recorded above. It is included in the
+confirmed 40,023-row live catalog.
 
-For resuming, [manual-import.sql](manual-import.sql) is a **4.3 MB** subset
+[manual-import.sql](manual-import.sql) remains a **4.3 MB** catch-up subset
 containing 3,939 rows: the manual additions and enriched rows plus their foreign
 key dependencies. It is generated from the cumulative catalog and content
 evidence by `node src/db/tools/build-manual-sql.mjs`. It uses the same transactional
-importer and preserves existing IDs and non-null values. Inspect the pending
-pgAdmin query's result before resuming; repeat application resolves existing rows.
+importer and preserves existing IDs and non-null values. It can bring another
+pre-manual catalog forward; repeat application resolves existing rows.
 
 Both SQL files passed required JSON, relationship and ownership validation.
-The cumulative SQL's deterministic check passed. No separate regression test
-suite was run for this content batch. The six live discrepancy checks above
-were performed as part of the requested manual comparison.
+The cumulative SQL's deterministic check passed. Current regression and isolated
+PostgreSQL results are recorded in the [touch-up review](TOUCHUPS_STATUS.md#schema-and-tests).
+The six live discrepancy checks above remain the evidence for the unresolved
+manual disagreements.
 
 ## Original requested catalog scope
 
@@ -171,10 +177,10 @@ IDs, preserves existing IDs and non-null values, fills sourced missing values,
 and rejects conflicting facts. Foreign keys remain enabled; the complete
 transaction is checked before commit. The only helpers are temporary objects.
 Sequence gaps after a failed attempt are normal PostgreSQL behavior.
-`ArtifactSetBonusHOMM5` has no declared alternate unique key; the importer
-matches its set, required piece count and optional class under the table lock.
+`ArtifactSetBonusHOMM5` has a `UNIQUE NULLS NOT DISTINCT` constraint matching
+the importer's set, required piece count and optional-class identity.
 Ambiguous existing or incoming matches stop the import rather than creating
-duplicate bonuses. This policy adds no schema constraint or migration.
+duplicate bonuses. Migration 0002 adds this database constraint.
 
 Run the whole file in a fresh pgAdmin Query Tool session connected to the
 intended database, then run [catalog.review.sql](catalog.review.sql). For psql:

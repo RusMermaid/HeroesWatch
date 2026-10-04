@@ -66,7 +66,7 @@ continue to work under REPEATABLE READ.
 Fresh bootstrap, upgrade from the populated initial schema, twelve concurrent
 ownership/media cases and five isolation controls passed in disposable local
 test databases on port 55439. Zero invalid rows remained after the final cases.
-These tests do not establish deployment to the user's separate live database.
+The live deployment is recorded below.
 
 All **48 Node tests** pass. On populated isolated PostgreSQL databases, both the
 full import and the smaller-file route produced exactly 40,023 rows and the
@@ -77,7 +77,7 @@ imports changed no data or IDs. See [the test summary](touchups-test-results.jso
 ## Apply to an existing database
 
 1. Apply migration 0002 once. Use `HeroesWatch.sql` only for a new empty database.
-2. Apply `manual-import.sql` if the earlier manual import remains pending.
+2. Apply `manual-import.sql` to catch up a catalog that predates the manual batch.
 3. Apply `touchups-corrections.sql` for the six guarded label corrections.
 4. Apply all seven `touchups-import-*.sql` files in manifest order.
 
@@ -87,9 +87,29 @@ unknown conflicting facts. Repeat application resolves existing rows. The full
 `catalog.sql` is also current, but the smaller files avoid loading one large
 document in pgAdmin. Never reapply the initial bootstrap over a populated schema.
 
-**Live PostgreSQL application is pending.** pgAdmin has remained unresponsive
-while restoring its large saved query tabs. No successful execution result for
-this update has been observed. This section will be updated after live commit.
+## Confirmed live deployment
+
+On **2026-10-04**, migration 0002, the manual catch-up, guarded corrections and
+all seven import parts **committed successfully to HeroesWatch.net** through
+pgAdmin. Parts 03–07 used the reviewed server-file loader, which verified each
+file's SHA-256 before executing it in one transaction.
+
+Parts 03–07 and the final read-only query completed in **22.146 seconds** and returned
+**40,023 rows, 176 tables, 23 games and 36 PDF manual records**. The database
+owner is **postgres**. See the [deployment record](live-deployment.json) and
+[live review query](live-deployment.review.sql).
+
+| Confirmed step | pgAdmin duration |
+|---|---:|
+| Migration 0002 | 33.631 seconds |
+| Manual catch-up | 13.342 seconds |
+| Six guarded label corrections | 0.286 seconds |
+| Import part 01 | 18.146 seconds |
+| Import part 02 | 6.326 seconds |
+
+These live results confirm deployment and the reported totals. The detailed
+field comparisons and repeated-import ID checks are documented in the isolated
+test results above. Remaining source gaps are unchanged.
 
 ## Sources and audit trail
 
