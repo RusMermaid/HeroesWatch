@@ -1,11 +1,12 @@
 {
   "formatVersion": 1,
-  "requiresMigration": "postgres/migrations/0005_creature_numeric_speed.sql",
+  "requiresMigration": "postgres/migrations/0006_catalog_guards.sql",
   "requiresMigrations": [
     "postgres/migrations/0002_relationship_integrity.sql",
     "postgres/migrations/0003_nullable_identity_and_campaign_scope.sql",
     "postgres/migrations/0004_creature_tier_terminology.sql",
-    "postgres/migrations/0005_creature_numeric_speed.sql"
+    "postgres/migrations/0005_creature_numeric_speed.sql",
+    "postgres/migrations/0006_catalog_guards.sql"
   ],
   "corrections": "data/touchups-corrections.sql",
   "creatureTierCorrections": "data/creature-tier-corrections.sql",

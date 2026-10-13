@@ -7,6 +7,7 @@ import { randomBytes } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import {runCatalogConcurrency, runCatalogRepeatableReadControls} from './catalog-concurrency.mjs';
 import { fileURLToPath } from 'node:url';
 import {
   fingerprintSql,
@@ -285,6 +286,8 @@ try {
 
   console.log('Running direct integrity rejection probes ...');
   await psqlFile('src/db/postgres/tests/game-integrity.sql');
+  await psqlFile('src/db/postgres/tests/relational-guards.sql');
+  await psqlFile('src/db/postgres/tests/catalog-guards.sql');
 
   console.log('Running two-session lock-order and isolation probes ...');
   let fixture = -9200;
@@ -295,11 +298,14 @@ try {
     }
   }
   await runRepeatableReadGuard(-9300);
+  console.log('Running catalog graph, resource and town-link concurrency probes ...');
+  const catalogConcurrency = await runCatalogConcurrency({psql, connection, database, env: pgEnv});
+  const catalogRepeatableRead = await runCatalogRepeatableReadControls({psql, connection, database, env: pgEnv});
 
   const schema = JSON.parse(fs.readFileSync(path.join(dbRoot, 'schema/heroeswatch.schema.json'), 'utf8'));
   const bundle = JSON.parse(fs.readFileSync(path.join(dbRoot, 'data/heroeswatch.json'), 'utf8'));
   const sourceRows = Object.values(bundle.tables).reduce((sum, rows) => sum + rows.length, 0);
-  const expectedRows = Number(process.env.HW_EXPECTED_ROWS ?? '43736');
+  const expectedRows = Number(process.env.HW_EXPECTED_ROWS ?? '43932');
   assert.equal(sourceRows, expectedRows,
     `catalog row total changed from ${expectedRows}; review the data change and update HW_EXPECTED_ROWS/TESTING.md deliberately`);
 
@@ -325,6 +331,8 @@ try {
     repeatedImport: 'stable rows and physical IDs',
     directIntegrityProbes: 'passed',
     concurrentOrders: 4,
+    catalogConcurrency,
+    catalogRepeatableRead,
     repeatableReadGuard: 'passed',
   }, null, 2));
 } finally {

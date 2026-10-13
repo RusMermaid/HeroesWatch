@@ -322,6 +322,8 @@ Kind: **junction**. Primary key: `ArtifactComponent_cid`.
 
 Alternate unique keys: `(Game_id, CompositeArtifact_id, ComponentArtifact_id)`.
 
+Check: `"CompositeArtifact_id" <> "ComponentArtifact_id"`.
+
 ## ArtifactHOMM1
 
 Kind: **game-detail**. Primary key: `Artifact_id`.
@@ -461,6 +463,8 @@ Kind: **junction**. Primary key: `ArtifactResourceCost_cid`.
 | `Amount` | `INTEGER` | Yes |  |
 
 Alternate unique keys: `(Game_id, Artifact_id, Resource_id)`.
+
+Check: `"Amount" >= 0`.
 
 ## ArtifactSetBonusHOMM5
 
@@ -670,6 +674,8 @@ Kind: **junction**. Primary key: `BuildingRequirement_cid`.
 
 Alternate unique keys: `(Game_id, Building_id, RequiredBuilding_id)`.
 
+Check: `"Building_id" <> "RequiredBuilding_id"`.
+
 ## BuildingResourceCost
 
 Kind: **junction**. Primary key: `BuildingResourceCost_cid`.
@@ -684,6 +690,8 @@ Kind: **junction**. Primary key: `BuildingResourceCost_cid`.
 
 Alternate unique keys: `(Game_id, Building_id, Resource_id)`.
 
+Check: `"Amount" >= 0`.
+
 ## BuildingUpgrade
 
 Kind: **junction**. Primary key: `BuildingUpgrade_cid`.
@@ -696,6 +704,8 @@ Kind: **junction**. Primary key: `BuildingUpgrade_cid`.
 | `UpgradedBuilding_id` | `BIGINT` | Yes | FK → Building.Building_id; FK → Building.Building_id |
 
 Alternate unique keys: `(Game_id, BaseBuilding_id, UpgradedBuilding_id)`.
+
+Check: `"BaseBuilding_id" <> "UpgradedBuilding_id"`.
 
 ## Campaign
 
@@ -1050,6 +1060,8 @@ Kind: **junction**. Primary key: `CreatureResourceCost_cid`.
 
 Alternate unique keys: `(Game_id, Creature_id, Resource_id)`.
 
+Check: `"Amount" >= 0`.
+
 ## CreatureSpell
 
 Kind: **junction**. Primary key: `CreatureSpell_cid`.
@@ -1079,6 +1091,8 @@ Kind: **junction**. Primary key: `CreatureUpgrade_cid`.
 | `UpgradedCreature_id` | `BIGINT` | Yes | FK → Creature.Creature_id; FK → Creature.Creature_id |
 
 Alternate unique keys: `(Game_id, BaseCreature_id, UpgradedCreature_id)`.
+
+Check: `"BaseCreature_id" <> "UpgradedCreature_id"`.
 
 ## Expansion
 
@@ -1700,6 +1714,8 @@ Kind: **junction**. Primary key: `LoreFull_cid`.
 
 Additional unique key: `(Game_id, Lore_id, Hero_id, CampaignHero_cid, Campaign_id, Scenario_id, Map_id, LinkRole, Faction_id)`; NULL values compare as equal.
 
+Check: `num_nonnulls("Hero_id", "CampaignHero_cid", "Campaign_id", "Scenario_id", "Map_id", "Faction_id") >= 1`.
+
 ## MagicSchool
 
 Kind: **catalog**. Primary key: `MagicSchool_id`.
@@ -2041,6 +2057,8 @@ Kind: **junction**. Primary key: `ScenarioConnection_cid`.
 | `Condition` | `JSONB` | No |  |
 
 Alternate unique keys: `(Game_id, FromScenario_id, ToScenario_id)`.
+
+Check: `"FromScenario_id" <> "ToScenario_id"`.
 
 ## ScenarioHOMM1
 
@@ -2534,6 +2552,8 @@ Kind: **junction**. Primary key: `SpellResourceCostHOMM5_cid`.
 | `Ruleset` | `ENUM(BaseGame | HammersOfFate | TribesOfTheEast)` | Yes |  |
 
 Alternate unique keys: `(Game_id, Spell_id, Resource_id, Ruleset)`.
+
+Check: `"Amount" >= 0`.
 
 ## Terrain
 

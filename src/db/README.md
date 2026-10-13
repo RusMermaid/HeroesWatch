@@ -37,7 +37,7 @@ Current contract:
 
    For a Windows computer, follow [WINDOWS.md](WINDOWS.md). The same SQL file
    works on macOS and Windows. The historical schema-only `HeroesWatch.backup`
-   restores the initial contract and then requires migrations 0002 through 0005,
+   restores the initial contract and then requires migrations 0002 through 0006,
    in that order.
 
    The equivalent command-line workflow is:
@@ -56,7 +56,7 @@ existing schema.
 ## What is authoritative?
 
 - `schema/sql-designer.snapshot.json` is the exact original diagram snapshot.
-  `tools/schema-overlay.mjs` records the reviewed changes through version 5. Together
+  `tools/schema-overlay.mjs` records the reviewed changes through version 6. Together
   they generate the current contract; the live diagram has not been replaced.
 - `schema/heroeswatch.schema.json` is the compact semantic contract used by
   people and tools.
@@ -64,7 +64,7 @@ existing schema.
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
 - The schema baselines contain no game rows. Reviewed content lives in the
-  cumulative JSON: 43,736 rows across Heroes I–VIII and related Might and Magic
+  cumulative JSON: 43,932 rows across Heroes I–VIII and related Might and Magic
   RPGs and spin-offs, including classes, heroes,
   town buildings, dwellings, creatures, skills, magic, artifacts, campaigns
   and map objects for each title's actual mechanics and official expansions.
@@ -82,7 +82,7 @@ existing schema.
   [data/catalog.review.sql](data/catalog.review.sql).
 - [data/research-import.sql](data/research-import.sql) is the smaller, dependency-
   closed October 13 research import for an already populated final-PR catalog.
-  It requires migrations through 0005 and the guarded
+  It requires migrations through 0006 and the guarded
   [creature tier corrections](data/creature-tier-corrections.sql) on older data.
   Use [data/completion.review.sql](data/completion.review.sql) for readable
   creature statistics, ability links, campaign heroes, and shared resources.
@@ -136,6 +136,8 @@ canvas instead of merging it.
   `Level` to `Tier` in Heroes I–IV; spell levels stay unchanged.
 - `postgres/migrations/0005_creature_numeric_speed.sql`: numeric H1/H2 `Speed`
   with generated `SpeedName`. Do not supply the generated name in import JSON.
+- `postgres/migrations/0006_catalog_guards.sql`: cost, lore, graph, resource
+  membership and town-faction safeguards, including reverse edits.
 - [data/creature-tier-corrections.sql](data/creature-tier-corrections.sql): set
   Faerie/Rust/Crystal/Azure Dragon tiers to 8/8/9/10 before current imports.
 - `postgres/verify.sql`: catalog-count verification after applying the DDL.

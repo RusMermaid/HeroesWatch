@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
+import { staticCatalogGuardChecks } from "./catalog-guard-rules.mjs";
 
 const root = new URL("../", import.meta.url);
 const schema = JSON.parse(await readFile(new URL("schema/heroeswatch.schema.json", root), "utf8"));
@@ -12,6 +13,7 @@ const migration = await readFile(new URL("postgres/migrations/0002_relationship_
 const migration3 = await readFile(new URL("postgres/migrations/0003_nullable_identity_and_campaign_scope.sql", root), "utf8");
 const migration4 = await readFile(new URL("postgres/migrations/0004_creature_tier_terminology.sql", root), "utf8");
 const migration5 = await readFile(new URL("postgres/migrations/0005_creature_numeric_speed.sql", root), "utf8");
+const migration6 = await readFile(new URL("postgres/migrations/0006_catalog_guards.sql", root), "utf8");
 const dataSchema = JSON.parse(await readFile(new URL("schema/data.schema.json", root), "utf8"));
 const dictionary = await readFile(new URL("DATA_DICTIONARY.md", root), "utf8");
 
@@ -24,10 +26,11 @@ test("published and deployed migration history remains immutable", () => {
   assert.equal(digest(migration3), "45d2c3c79d4317a1d44e3089ac6f23ac83f0b1863ad59dcae4f665967a295821");
   assert.equal(digest(migration4), "37a0f61de380816653579bbe4774fe4d823b6510d8d0053a91e24f75acf12d4f");
   assert.equal(digest(migration5), "3f3512c3bbea253cc589c475e5eb4017b76a978fcb77e28d53992f41f27558d1");
+  assert.equal(digest(migration6), "151c530ae7ea62ed605d5f42a80e421f84d99581e14226e819ccb372df78ac11");
 });
 
 test("the reviewed overlay keeps the historical initial migration separate", () => {
-  assert.equal(schema.source.overlay.version, 5);
+  assert.equal(schema.source.overlay.version, 6);
   assert.equal(schema.counts.tables, 176);
   assert.ok(!initial.includes('"AdventureObjectCreature"'));
   assert.ok(!initial.includes('"_game_scope_constraint"'));
@@ -85,6 +88,21 @@ test("H1 and H2 speed names are stored generated labels over bounded numeric spe
   assert.match(migration5, /^BEGIN;[\s\S]*COMMIT;\n$/m);
 });
 
+test("static catalog guards preserve valid domains without narrowing lore to one context", () => {
+  for (const rule of staticCatalogGuardChecks) {
+    const table = tables.get(rule.table);
+    assert.ok(table.checks.some(check => check.name === rule.name && check.expression === rule.expression), rule.name);
+    assert.ok(migration6.includes(`ADD CONSTRAINT "${rule.name}" CHECK (${rule.expression});`), rule.name);
+  }
+  const lore = staticCatalogGuardChecks.find(rule => rule.table === "LoreFull");
+  assert.match(lore.expression, />= 1$/);
+  assert.ok(!lore.expression.endsWith(") = 1"), "LoreFull must allow multi-context links");
+  assert.equal(staticCatalogGuardChecks.filter(rule => rule.name.endsWith("__no_self_edge")).length, 5);
+  assert.equal(staticCatalogGuardChecks.filter(rule => rule.name.endsWith("__Amount_nonnegative")).length, 4);
+  assert.doesNotMatch(migration6, /^\s*(?:DELETE FROM|TRUNCATE TABLE|DROP TABLE|ALTER TABLE .* DROP COLUMN)\b/m);
+  assert.match(migration6, /^BEGIN;[\s\S]*COMMIT;\n$/m);
+});
+
 test("direct game ownership is backed by composite foreign keys", () => {
   for (const table of schema.tables) {
     if (!table.columns.some(column => column.name === "Game_id" && !column.nullable)) continue;
@@ -115,19 +133,33 @@ test("prerequisite identity preserves distinct atoms and alternatives", () => {
 });
 
 test("inherited ownership checks are deferred and cover reverse ownership edits", () => {
-  assert.equal((ddl.match(/CREATE CONSTRAINT TRIGGER /g) ?? []).length, schema.counts.tables);
+  assert.equal((ddl.match(/CREATE CONSTRAINT TRIGGER "ct_game_scope__/g) ?? []).length, schema.counts.tables);
   assert.ok(ddl.includes('"_check_scope_descendants"'));
   assert.ok(ddl.includes("FOR SHARE"));
   assert.ok(ddl.includes("DEFERRABLE INITIALLY DEFERRED FOR EACH ROW"));
-  assert.ok(!ddl.includes("pg_advisory"));
+  const ownershipSql = ddl.slice(ddl.indexOf('CREATE FUNCTION "heroes_watch"."_scope_metadata"'),
+    ddl.indexOf('-- Cross-row production guards'));
+  assert.ok(!ownershipSql.includes("pg_advisory"), "game ownership must not serialize unrelated writes with advisory locks");
   assert.ok(ddl.includes("current_setting('transaction_isolation') = 'repeatable read'"));
   assert.ok(ddl.includes("ERRCODE = '0A000'"));
-  const trigger = ddl.slice(ddl.indexOf('CREATE FUNCTION "heroes_watch"."_game_scope_constraint"'));
+  const trigger = ownershipSql.slice(ownershipSql.indexOf('CREATE FUNCTION "heroes_watch"."_game_scope_constraint"'));
   const updateBranch = trigger.indexOf("IF TG_OP = 'UPDATE' THEN");
   const ownershipChange = trigger.indexOf("IF r->(m->>'pk') IS DISTINCT FROM old_r->(m->>'pk')");
   const isolationGuard = trigger.indexOf("current_setting('transaction_isolation')");
   assert.ok(updateBranch >= 0 && updateBranch < ownershipChange && ownershipChange < isolationGuard,
     "The isolation guard must remain inside the ownership-changing UPDATE branch");
+});
+
+test("fresh schema and migration 0006 install and validate production graph guards", () => {
+  for (const token of ["_catalog_graph_metadata", "_catalog_graph_write_lock", "ct_graph_cycle__CreatureUpgrade",
+    "ct_production_resource__FactionHOMM8", "ct_production_town_link__TownScreenBuilding"]) {
+    assert.ok(ddl.includes(token), `fresh schema missing ${token}`);
+    assert.ok(migration6.includes(token), `migration 0006 missing ${token}`);
+  }
+  assert.ok(migration6.indexOf("_catalog_graph_metadata") < migration6.indexOf("$validate_graphs$"));
+  assert.ok(migration6.indexOf("_check_homm8_resource_row") < migration6.indexOf("$validate_production_guards$"));
+  assert.match(migration6, /LOCK TABLE[\s\S]*IN SHARE ROW EXCLUSIVE MODE/);
+  assert.match(migration6, /^BEGIN;[\s\S]*COMMIT;\n$/m);
 });
 
 test("object relationships retain multiplicity and selection weights remain separate", () => {

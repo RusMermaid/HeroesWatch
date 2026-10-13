@@ -29,6 +29,29 @@ export function selectContentClosure(catalog, schema, seeds) {
   const pending = seeds.map(({table, key}) => ({table, key}));
   const homm3Game = (catalog.tables.Game ?? []).find(row => row?.SeriesCode === 'HOMM3');
   const homm3GameKey = homm3Game?._key ?? homm3Game?.Game_id ?? null;
+  const homm8Games = (catalog.tables.Game ?? []).filter(row => row?.SeriesCode === 'HOMM8');
+  const homm8ResourceDependencies = new Map([
+    ['FactionHOMM8', ['SignatureResource_id']],
+    ['AstrologyHOMM8', ['AstrologyPointResource_id', 'InsightResource_id']],
+    ['ResourceHOMM8', ['Resource_id']],
+  ]);
+  function addHomm8ResourceMembership(table, row, column) {
+    if (homm8Games.length !== 1) throw new Error(`Expected exactly one HOMM8 Game identity, found ${homm8Games.length}`);
+    const homm8GameKey = homm8Games[0]._key;
+    const value = row[column] ?? (table.primaryKey.includes(column) ? row._key : null);
+    if (value == null) return;
+    const resource = lookups.get('Resource')?.get(value);
+    if (!resource) throw new Error(`Missing HOMM8 resource dependency ${table.name}/${row._key}/${column}`);
+    const gameResource = tableByName.get('GameResource');
+    const memberships = (catalog.tables.GameResource ?? []).filter(candidate =>
+      canonical(gameResource, 'Game_id', candidate.Game_id) === homm8GameKey &&
+      canonical(gameResource, 'Resource_id', candidate.Resource_id) === resource._key);
+    if (memberships.length !== 1) {
+      throw new Error(`${memberships.length ? 'Ambiguous' : 'Missing'} HOMM8 resource membership ${table.name}/${row._key}/${column}/${resource._key}`);
+    }
+    pending.push({table: 'Resource', key: resource._key});
+    pending.push({table: 'GameResource', key: memberships[0]._key});
+  }
   function addScenarioHomm3Annotations(row) {
     for (const reference of scenarioHomm3Annotations(row)) {
       const target = lookups.get(reference.table)?.get(reference.key);
@@ -50,6 +73,7 @@ export function selectContentClosure(catalog, schema, seeds) {
     if (selected.get(name).has(row._key)) continue;
     selected.get(name).add(row._key);
     if (name === 'ScenarioHOMM3') addScenarioHomm3Annotations(row);
+    for (const column of homm8ResourceDependencies.get(name) ?? []) addHomm8ResourceMembership(table, row, column);
     for (const fk of table.foreignKeys) {
       const values = fk.columns.map(column => row[column] ?? (table.primaryKey.includes(column) ? row._key : null));
       if (values.some(value => value == null)) continue;

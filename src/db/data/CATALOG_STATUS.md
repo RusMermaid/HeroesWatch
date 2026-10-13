@@ -1,7 +1,7 @@
 # Catalog coverage and PostgreSQL handoff
 
 Updated 2026-10-13. The frozen cumulative [JSON](heroeswatch.json) contains
-**43,736 rows across 176 table arrays**. The October 4 deployment receipt is a
+**43,932 rows across 176 table arrays**. The October 4 deployment receipt is a
 historical 40,023-row snapshot using reviewed overlay version 2 and migration
 0002; it is not a live deployment claim for this frozen research package.
 
@@ -27,18 +27,20 @@ its pre-upgrade state; the friend's database was not modified.
 
 ## Frozen 2026-10-13 source-backed research package
 
-The reviewed research merge covered **14 accepted patch files**, adding **3,713
-rows** and filling **667 explicitly null fields**, for the resulting **43,736
+The reviewed research merge covered **16 accepted patch files**, adding **3,909
+rows** and filling **667 explicitly null fields**, for the resulting **43,932
 rows**. Stable identities were preserved. Tier naming, numeric H1 speeds and
 the four dragon tiers are tracked separately from those research fills. The
 package includes H1/H2 manual-backed abilities and starting skills, H3 rules,
 town screens and campaign details, H5 costs/runes,
 terrain/schools and named-hero starts, H8 systems and creature abilities,
-normalized junction completion, H8 hero specializations and Neutral Magic.
+normalized junction completion, H8 hero specializations and Neutral Magic,
+194 positioned faction laws, and Insight resource membership. The latest 196
+rows and migration 0006 are tested but not deployed. Deployment is deferred.
 
 The deterministic audit trail is [research-2026-10-13-evidence.json](research-2026-10-13-evidence.json).
-The generated [research-import.sql](research-import.sql) contains 5,599 rows
-including dependencies. Existing databases need migrations through 0005 and
+The generated [research-import.sql](research-import.sql) contains 5,801 rows
+including dependencies. Existing databases need migrations through 0006 and
 `creature-tier-corrections.sql` before current imports.
 The human completion review is [COMPLETION.md](../reviews/2026-10-13/COMPLETION.md).
 The Oct 4 friend receipt remains historical evidence about that snapshot only.
@@ -171,10 +173,10 @@ unofficial content are excluded.
   source.
 - Olden Era now has supported `GameHOMM8` and `CampaignHOMM8` rows plus the
   reviewed creature-ability graph, but `ScenarioHOMM8`, `MapHOMM8`,
-  `MagicSchoolHOMM8`, `ResourceHOMM8`, `AstrologyHOMM8`, and `FactionLaw` detail
-  rows remain held. Exact law positions/source paths and the Astrology Insight
-  resource identity still need source/schema reconciliation. Neutral Magic is
-  now represented; unsupported negative flags are not asserted.
+  `MagicSchoolHOMM8`, `ResourceHOMM8` and `AstrologyHOMM8` details remain held.
+  All 194 production laws in the reviewed official position table are now
+  present. Insight has a resource parent; Astrology, neutral progression and
+  Insight spending are not conflated without proof. Unknown flags remain unknown.
 - Heroes IV secondary-only ability tables remain held. No generic class-derived
   abilities or HeroSkill rows are added without direct mechanic evidence.
 - Heroes VI/VII source/rank-dependent creature and class details remain held;

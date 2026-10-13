@@ -12,7 +12,7 @@ const read=p=>JSON.parse(fs.readFileSync(path.join(dbRoot,p),'utf8'));
 const catalog=read('data/heroeswatch.json'),schema=read('schema/heroeswatch.schema.json'),audit=read('data/touchups-evidence.json');
 const temp=path.resolve(dbRoot,'../../.codex-tmp/touchups/imports');fs.mkdirSync(temp,{recursive:true});
 const quote=s=>"E'"+s.replaceAll('\\','\\\\').replaceAll("'","''")+"'";
-const correctionLines=['-- Reviewed label corrections. Apply migrations through 0005 first, then these corrections and creature-tier-corrections.sql before current content imports.',
+const correctionLines=['-- Reviewed label corrections. Apply migrations through 0006 first, then these corrections and creature-tier-corrections.sql before current content imports.',
  '-- Changes are guarded by their recorded old values; unknown edits abort.',
  'BEGIN;', 'SET LOCAL standard_conforming_strings = on;', "SET LOCAL lock_timeout = '15s';",
  'LOCK TABLE heroes_watch."AdventureObject" IN SHARE ROW EXCLUSIVE MODE;',
@@ -42,12 +42,13 @@ const presence=seeds.filter(r=>r.table==='MapObjectPresence');
 const groups=[core];
 for(let i=0;i<presence.length;i+=1000)groups.push(presence.slice(i,i+1000));
 const manifest={formatVersion:1,
- requiresMigration:'postgres/migrations/0005_creature_numeric_speed.sql',
+ requiresMigration:'postgres/migrations/0006_catalog_guards.sql',
  requiresMigrations:[
  'postgres/migrations/0002_relationship_integrity.sql',
  'postgres/migrations/0003_nullable_identity_and_campaign_scope.sql',
  'postgres/migrations/0004_creature_tier_terminology.sql',
  'postgres/migrations/0005_creature_numeric_speed.sql',
+ 'postgres/migrations/0006_catalog_guards.sql',
 ],
  corrections:'data/touchups-corrections.sql',creatureTierCorrections:'data/creature-tier-corrections.sql',manualCatchup:'data/manual-import.sql',parts:[],
  note:'Apply only missing migrations in the listed order. Apply both guarded correction files, then manual catch-up and all parts; follow with research-import.sql for current research. Each import is transactional and rejects unknown conflicting facts.'};

@@ -4,9 +4,12 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
-import { applySchemaOverlay, applySchemaOverlayV2, applySchemaOverlayV3, applySchemaOverlayV4 } from "./schema-overlay.mjs";
+import { applySchemaOverlay, applySchemaOverlayV2, applySchemaOverlayV3, applySchemaOverlayV4, applySchemaOverlayV5 } from "./schema-overlay.mjs";
+import { staticCatalogGuardChecks } from "./catalog-guard-rules.mjs";
 import { gameIntegritySql, validateExistingScopeSql } from "./game-integrity-sql.mjs";
 import { jsonColumnSchema } from "./json-contracts.mjs";
+import { graphGuardsSql, validateExistingGraphsSql } from "./graph-guards-sql.mjs";
+import { productionGuardsSql, validateExistingProductionGuardsSql } from "./production-guards-sql.mjs";
 
 const POSTGRES_SCHEMA = "heroes_watch";
 const DIAGRAM_URL =
@@ -379,7 +382,8 @@ function generateDdl(schema) {
     lines.push(statement);
   }
 
-  if (schema.integrity) lines.push("", gameIntegritySql(schema, quoteIdent, quoteLiteral));
+  if (schema.integrity) lines.push("", gameIntegritySql(schema, quoteIdent, quoteLiteral),
+    productionGuardsSql(schema, quoteIdent, quoteLiteral), graphGuardsSql(schema, quoteIdent, quoteLiteral));
   lines.push("", "COMMIT;", "");
   return lines.join("\n");
 }
@@ -699,6 +703,41 @@ function generateOverlayV5Upgrade(before, after) {
   ].join("\n");
 }
 
+function generateOverlayV6Upgrade(before, after) {
+  const ns = quoteIdent(POSTGRES_SCHEMA);
+  const expectedTables = structuredClone(before.tables);
+  const expectedByName = new Map(expectedTables.map(table => [table.name, table]));
+  for (const rule of staticCatalogGuardChecks) {
+    const table = expectedByName.get(rule.table);
+    table.checks ??= [];
+    table.checks.push({ name: rule.name, expression: rule.expression });
+    table.checks.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  if (JSON.stringify(expectedTables) !== JSON.stringify(after.tables) || JSON.stringify(before.enums) !== JSON.stringify(after.enums)) {
+    throw new Error("Overlay version 6 contains changes beyond the reviewed catalog guards.");
+  }
+  const touched = [...new Set(staticCatalogGuardChecks.map(rule => rule.table))].sort();
+  const lines = [
+    "-- Generated forward migration from overlay version 5 to version 6.",
+    "-- Apply once after 0005_creature_numeric_speed.sql.",
+    "-- Adds static catalog guards without deleting, rewriting, or deduplicating content.",
+    "BEGIN;", "",
+    `LOCK TABLE ${touched.map(name => `${ns}.${quoteIdent(name)}`).join(", ")} IN ACCESS EXCLUSIVE MODE;`, "",
+    ...staticCatalogGuardChecks.map(rule =>
+      `ALTER TABLE ${ns}.${quoteIdent(rule.table)} ADD CONSTRAINT ${quoteIdent(rule.name)} CHECK (${rule.expression});`),
+    "",
+    productionGuardsSql(after, quoteIdent, quoteLiteral, { replace: true }),
+    "",
+    graphGuardsSql(after, quoteIdent, quoteLiteral),
+    "",
+    validateExistingProductionGuardsSql(after, quoteIdent, quoteLiteral),
+    "",
+    validateExistingGraphsSql(after, quoteIdent, quoteLiteral),
+    "", "COMMIT;", "",
+  ];
+  return lines.join("\n");
+}
+
 function generateNormalFormReport(schema) {
   const auditedCompositeKeys = new Map([
     [
@@ -946,6 +985,7 @@ async function main() {
   const overlayV2Schema = applySchemaOverlayV2(structuredClone(initialSchema), objectName);
   const overlayV3Schema = applySchemaOverlayV3(structuredClone(overlayV2Schema), objectName);
   const overlayV4Schema = applySchemaOverlayV4(structuredClone(overlayV3Schema), objectName);
+  const overlayV5Schema = applySchemaOverlayV5(structuredClone(overlayV4Schema), objectName);
   const schema = applySchemaOverlay(structuredClone(initialSchema), objectName);
   const ddl = generateDdl(schema);
   const dataSchema = generateDataJsonSchema(schema);
@@ -970,7 +1010,8 @@ async function main() {
     ["postgres/migrations/0002_relationship_integrity.sql", generateUpgrade(initialSchema, overlayV2Schema)],
     ["postgres/migrations/0003_nullable_identity_and_campaign_scope.sql", generateOverlayUpgrade(overlayV2Schema, overlayV3Schema)],
     ["postgres/migrations/0004_creature_tier_terminology.sql", generateOverlayV4Upgrade(overlayV3Schema, overlayV4Schema)],
-    ["postgres/migrations/0005_creature_numeric_speed.sql", generateOverlayV5Upgrade(overlayV4Schema, schema)],
+    ["postgres/migrations/0005_creature_numeric_speed.sql", generateOverlayV5Upgrade(overlayV4Schema, overlayV5Schema)],
+    ["postgres/migrations/0006_catalog_guards.sql", generateOverlayV6Upgrade(overlayV5Schema, schema)],
     ["postgres/verify.sql", verifySql],
     ["data/template.json", json(template)],
     ["DATA_DICTIONARY.md", dictionary],

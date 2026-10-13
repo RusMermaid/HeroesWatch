@@ -1,5 +1,7 @@
 // Reviewed changes after the immutable SQLDesigner export. The original export
 // remains historical evidence; these changes define the current contract.
+import { staticCatalogGuardChecks } from "./catalog-guard-rules.mjs";
+
 export const BASE_SNAPSHOT_SHA256 = "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673";
 
 function column(name, type, nullable = false, extra = {}) {
@@ -200,6 +202,23 @@ export function applySchemaOverlayV5(schema) {
   return schema;
 }
 
+export function applySchemaOverlayV6(schema) {
+  const byName = new Map(schema.tables.map(table => [table.name, table]));
+  for (const rule of staticCatalogGuardChecks) {
+    const table = byName.get(rule.table);
+    if (!table) throw new Error(`Unknown catalog guard table ${rule.table}.`);
+    table.checks ??= [];
+    if (table.checks.some(check => check.name === rule.name)) throw new Error(`Duplicate catalog guard ${rule.name}.`);
+    table.checks.push({ name: rule.name, expression: rule.expression });
+    table.checks.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  schema.source.overlay = { version: 6, module: "src/db/tools/schema-overlay.mjs", migration: "0006_catalog_guards.sql" };
+  schema.integrity.catalogGuards = "Nonnegative costs, at least one LoreFull subject with multi-context links allowed, and no direct graph self-edges; cross-row graph guards are generated separately.";
+  schema.counts = { tables: schema.tables.length, columns: schema.tables.reduce((n, t) => n + t.columns.length, 0),
+    foreignKeys: schema.tables.reduce((n, t) => n + t.foreignKeys.length, 0), enums: schema.enums.length };
+  return schema;
+}
+
 export function applySchemaOverlay(schema, objectName) {
-  return applySchemaOverlayV5(applySchemaOverlayV4(applySchemaOverlayV3(applySchemaOverlayV2(schema, objectName), objectName)));
+  return applySchemaOverlayV6(applySchemaOverlayV5(applySchemaOverlayV4(applySchemaOverlayV3(applySchemaOverlayV2(schema, objectName), objectName))));
 }

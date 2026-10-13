@@ -9,7 +9,7 @@ directory to Windows. Transfer either of these checked-in files:
 The current SQL creates 176 tables, 1,306 fields, 159 ENUM types and 452 foreign
 keys. The backup contains the original 173-table contract and requires
 `postgres/migrations/0002_relationship_integrity.sql` followed by
-the remaining migrations 0003, 0004 and 0005 in order.
+the remaining migrations 0003 through 0006 in order.
 Neither contains game rows.
 
 ## Free software
@@ -51,7 +51,9 @@ Expected result: DBeaver displays 176 tables under the `heroes_watch` schema.
    belong to that campaign.
 8. Execute `postgres/migrations/0004_creature_tier_terminology.sql`, then
    `postgres/migrations/0005_creature_numeric_speed.sql`, once each.
-9. Before importing into an existing catalog, execute
+9. Execute `postgres/migrations/0006_catalog_guards.sql` once. It validates
+   existing rows and rolls back on invalid costs, links or cycles.
+10. Before importing into an existing catalog, execute
    `data/creature-tier-corrections.sql`; then use the current full catalog.
 
 The backup was created with `--schema-only --no-owner --no-privileges`, so it
@@ -75,7 +77,7 @@ The original diagram SHA-256 reported by the verifier remains:
 b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673
 ```
 
-The current contract additionally includes reviewed overlay version 5; the
+The current contract additionally includes reviewed overlay version 6; the
 unchanged diagram hash alone does not describe those added constraints.
 
 The initial SQL is intentionally clean-install only. Run it once in an empty

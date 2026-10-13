@@ -63,6 +63,92 @@ test("a missing membership fails closure even when the global resource exists", 
   assert.throws(() => select(source, [seed("CreatureResourceCost", cost._key)]), /Missing dependency .*Game_id,Resource_id/);
 });
 
+function withHomm8ResourceDetails() {
+  const source = structuredClone(catalog);
+  source.tables.ResourceHOMM8.push({
+    _key: "resource.gold", ResourceRole: "Stockpile", Scope: "Kingdom",
+    IsTradeable: true, IsMineProduced: true, IsPersistent: true,
+    DefaultDailyIncome: null, Mechanics: null,
+  });
+  source.tables.AstrologyHOMM8.push({
+    _key: "homm8.game", NeutralMagicSchool_id: "homm8.magicschool.neutral",
+    AstrologyPointResource_id: "resource.astrology.points", InsightResource_id: "resource.law.points",
+    MaximumSpellLevel: 5, FirstInsightThreshold: null, InsightThresholdIncrease: null,
+    IncomeRule: null, UnlockRule: "Fixture unlock rule.", UpgradeRule: "Fixture upgrade rule.",
+  });
+  return source;
+}
+
+test("HOMM8 global details pull every declared per-game resource membership", () => {
+  const source = withHomm8ResourceDetails();
+  const faction = source.tables.FactionHOMM8[0];
+  const factionClosure = select(source, [seed("FactionHOMM8", faction._key)]);
+  assert.ok(factionClosure.tables.GameResource.some(row =>
+    row.Game_id === "homm8.game" && row.Resource_id === faction.SignatureResource_id));
+
+  const resourceClosure = select(source, [seed("ResourceHOMM8", "resource.gold")]);
+  assert.ok(resourceClosure.tables.GameResource.some(row =>
+    row.Game_id === "homm8.game" && row.Resource_id === "resource.gold"));
+
+  const astrologyClosure = select(source, [seed("AstrologyHOMM8", "homm8.game")]);
+  assert.deepEqual(new Set(astrologyClosure.tables.GameResource.map(row => row.Resource_id)),
+    new Set(["resource.astrology.points", "resource.law.points"]));
+  const { result } = build(astrologyClosure);
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test("HOMM8 resource memberships resolve mixed physical and symbolic aliases", () => {
+  const source = withHomm8ResourceDetails();
+  const game = source.tables.Game.find(row => row.SeriesCode === "HOMM8");
+  const resource = source.tables.Resource.find(row => row._key === "resource.gems");
+  const faction = source.tables.FactionHOMM8.find(row => row.SignatureResource_id === resource._key);
+  const membership = source.tables.GameResource.find(row =>
+    row.Game_id === game._key && row.Resource_id === resource._key);
+  game.Game_id = 88001;
+  resource.Resource_id = 88002;
+  faction.SignatureResource_id = 88002;
+  membership.Game_id = 88001;
+  membership.Resource_id = 88002;
+  membership.GameResource_cid = "physical.homm8.gems.membership";
+
+  const closure = select(source, [seed("FactionHOMM8", faction._key)]);
+  assert.deepEqual(closure.tables.Game.map(row => row._key), [game._key]);
+  assert.deepEqual(closure.tables.Resource.map(row => row._key), [resource._key]);
+  assert.deepEqual(closure.tables.GameResource.map(row => row._key), [membership._key]);
+});
+
+test("each HOMM8 scoped global resource reference fails closed without membership", () => {
+  for (const { table, key, resource } of [
+    { table: "FactionHOMM8", key: catalog.tables.FactionHOMM8[0]._key,
+      resource: catalog.tables.FactionHOMM8[0].SignatureResource_id },
+    { table: "ResourceHOMM8", key: "resource.gold", resource: "resource.gold" },
+    { table: "AstrologyHOMM8", key: "homm8.game", resource: "resource.astrology.points" },
+  ]) {
+    const source = withHomm8ResourceDetails();
+    source.tables.GameResource = source.tables.GameResource.filter(row =>
+      row.Game_id !== "homm8.game" || row.Resource_id !== resource);
+    assert.throws(() => select(source, [seed(table, key)]),
+      new RegExp(`Missing HOMM8 resource membership ${table.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  }
+});
+
+test("a missing HOMM8 membership fails after physical resource aliases are resolved", () => {
+  const source = withHomm8ResourceDetails();
+  const game = source.tables.Game.find(row => row.SeriesCode === "HOMM8");
+  const faction = source.tables.FactionHOMM8[0];
+  const resource = source.tables.Resource.find(row => row._key === faction.SignatureResource_id);
+  const membership = source.tables.GameResource.find(row =>
+    row.Game_id === game._key && row.Resource_id === resource._key);
+  game.Game_id = 88101;
+  resource.Resource_id = 88102;
+  faction.SignatureResource_id = 88102;
+  membership.Game_id = 88101;
+  membership.Resource_id = 88102;
+  source.tables.GameResource = source.tables.GameResource.filter(row => row !== membership);
+  assert.throws(() => select(source, [seed("FactionHOMM8", faction._key)]),
+    /Missing HOMM8 resource membership FactionHOMM8/);
+});
+
 test("a grouped atom pulls its exact prerequisite group without unrelated alternatives", () => {
   const source = withRequirementGroups();
   const closure = select(source, [seed("HeroClassAbility", "test.atom.1")]);
@@ -94,7 +180,7 @@ test("campaign hero closure includes the exact campaign-scenario membership", ()
     row.Game_id === hero.Game_id && row.Campaign_id === hero.Campaign_id && row.Scenario_id === hero.StartingScenario_id));
   const { result, sql } = build(closure);
   assert.equal(result.status, 0, result.stderr);
-  assert.match(sql, /Requires the HeroesWatch schema through postgres\/migrations\/0005_creature_numeric_speed\.sql/);
+  assert.match(sql, /Requires the HeroesWatch schema through postgres\/migrations\/0006_catalog_guards\.sql/);
 });
 
 test("generated display fields are omitted from import INSERT and UPDATE statements", () => {

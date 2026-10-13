@@ -5,6 +5,7 @@ import path from "node:path";
 import process from "node:process";
 import { validateJsonColumn, validatePostgresText } from "./json-contracts.mjs";
 import { scenarioHomm3Annotations } from "./scenario-homm3-annotations.mjs";
+import { validateCatalogGuards } from "./catalog-guards.mjs";
 
 function fail(message, errors) {
   errors.push(message);
@@ -373,6 +374,7 @@ async function main() {
     }
   }
 
+  if (schema.source?.overlay?.version >= 6 && errors.length === 0) errors.push(...validateCatalogGuards(schema, bundle));
   if (errors.length > 0) {
     console.error(`Validation failed with ${errors.length} error(s):`);
     for (const error of errors) console.error(`- ${error}`);

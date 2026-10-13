@@ -89,7 +89,7 @@ the default all-patch scan is not an approved completion recipe and fails closed
 The final accepted list is recorded in `data/research-2026-10-13-evidence.json`.
 The current catalog already contains that merge: do not apply the additions to
 it again. Reproduction requires the pristine final-PR catalog as `--input` and
-explicit selection of the 14 accepted patches, with separate output paths.
+explicit selection of the 16 accepted patches, with separate output paths.
 First run `prepare-catalog-v5.mjs --input PR_BASELINE --output PREPARED_BASELINE`
 to apply the reviewed Tier naming, numeric speed mapping and dragon tiers.
 Then use that prepared file as the research merger's input. The research

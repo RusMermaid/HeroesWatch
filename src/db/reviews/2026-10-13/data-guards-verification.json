@@ -1,0 +1,65 @@
+{
+  "verifiedAtUtc": "2026-10-13T15:12:35Z",
+  "baselineCommit": "1dbe176a94b5bb9429662aa65015f4920d52317c",
+  "schemaVersion": 6,
+  "catalog": {
+    "rows": 43932,
+    "populatedTables": 140,
+    "factionLaws": 194,
+    "resources": 15,
+    "gameResourceMemberships": 57
+  },
+  "delta": {
+    "addedRows": 196,
+    "changedExistingValues": 0,
+    "nullFills": 0,
+    "removedRows": 0,
+    "preservedRowsAndIds": 43736
+  },
+  "researchTotal": {
+    "acceptedPatches": 16,
+    "addedRows": 3909,
+    "nullFills": 667,
+    "researchSqlRowsIncludingDependencies": 5801
+  },
+  "schema": {
+    "tables": 176,
+    "columns": 1306,
+    "foreignKeys": 452,
+    "compositeForeignKeys": 93,
+    "junctions": 29
+  },
+  "nodeTests": {
+    "passed": 114,
+    "failed": 0,
+    "skipped": 0
+  },
+  "postgres": {
+    "version": "18.6 (Homebrew)",
+    "freshImport": "PASS",
+    "repeatImport": "stable rows and IDs",
+    "comparedFields": 258706,
+    "checkedNonNullFkReferences": 174831,
+    "existingOwnershipRaces": 4,
+    "newCatalogRaces": 12,
+    "allRaceOverlapsVerified": true,
+    "newRepeatableReadRejectionAndAllowedEditCases": 3,
+    "populatedV5Upgrade": "PASS; row fingerprint unchanged",
+    "negativeCostBaseline": "23514; whole migration rolled back",
+    "cyclicBaseline": "23514; whole migration rolled back",
+    "fullAndSmallImportsIdentical": true,
+    "restoredLocalBackupUpgrade": "PASS; 196 added; no prior values changed"
+  },
+  "dataAfterSha256": "647e0da358da90d957d816068a403f28d87fc792115f8bf437b3f79a022ee036",
+  "fileSha256": {
+    "data/heroeswatch.json": "fc67a3b9fd5d4a750c9fc773aa7d7db53df8219fe0c10e4eefc2de010929d6f6",
+    "data/catalog.sql": "b25bb1441ccf1a2d3624a094d0cecbf103994ecca02a39e362ec7b29473b643f",
+    "data/research-import.sql": "265376cd7160e0a28316914b72ae9a3734f9df85a10d1d325cff8fb30a82f1e6",
+    "postgres/migrations/0006_catalog_guards.sql": "151c530ae7ea62ed605d5f42a80e421f84d99581e14226e819ccb372df78ac11"
+  },
+  "liveDatabasesModified": false,
+  "deploymentScope": "Deferred to the second PR",
+  "remainingDataGaps": "COMPLETION.md#still-missing",
+  "allGameplayDataComplete": false,
+  "githubChecks": "See current checks on PR #1."
+}

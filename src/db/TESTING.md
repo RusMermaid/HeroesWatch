@@ -23,7 +23,7 @@ and explicit connection settings for a test instance:
 
 ```sh
 HW_TEST_POSTGRES=1 \
-HW_EXPECTED_ROWS=43736 \
+HW_EXPECTED_ROWS=43932 \
 PGHOST=127.0.0.1 \
 PGPORT=5432 \
 PGUSER=postgres \
@@ -54,7 +54,9 @@ The integration suite verifies:
 - the deliberate `REPEATABLE READ` ownership guard, while ordinary content
   updates and valid detail inserts remain allowed;
 - creature Tier names, dragon tiers, numeric base speeds and generated labels;
-- one complete 43,736-row catalog import and exact comparison of every supplied
+- twelve additional graph/resource/town-link races with verified lock overlap;
+- three repeatable-read rejection controls and allowed unrelated edits;
+- one complete 43,932-row catalog import and exact comparison of every supplied
   JSON field and every non-null FK described by the semantic schema;
 - a second import with a whole-database fingerprint proving that rows and
   physical IDs are stable.
@@ -66,3 +68,7 @@ new total has been independently verified.
 GitHub Actions runs the deterministic checks and Node tests once, then runs the
 opt-in integration suite against clean PostgreSQL 16 and 18 service containers.
 It does not deploy, migrate, or connect to a live HeroesWatch database.
+
+With the same explicit test connection, run `node
+src/db/tools/postgres-upgrade-integration.mjs` to check the populated v5-to-v6
+upgrade and atomic rejection of pre-existing negative costs or graph cycles.

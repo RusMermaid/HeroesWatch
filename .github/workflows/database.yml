@@ -79,10 +79,12 @@ jobs:
       - name: Run isolated full-schema and full-catalog regression suite
         env:
           HW_TEST_POSTGRES: "1"
-          HW_EXPECTED_ROWS: "43736"
+          HW_EXPECTED_ROWS: "43932"
           PGHOST: 127.0.0.1
           PGPORT: "5432"
           PGUSER: postgres
           PGPASSWORD: postgres
           PGDATABASE: postgres
-        run: node src/db/tools/postgres-integration.mjs
+        run: |
+          node src/db/tools/postgres-integration.mjs
+          node src/db/tools/postgres-upgrade-integration.mjs

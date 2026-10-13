@@ -359,6 +359,19 @@ updates to content fields remain allowed at REPEATABLE READ. Retry an ownership
 change using one of the supported isolation levels; there is no global write
 lock or serialization of unrelated edits.
 
+Overlay v6 adds nonnegative resource costs, at least one lore subject, acyclic
+component/requirement/upgrade/scenario graphs, H8 resource membership and known
+town-screen/building faction agreement. Reverse edits are checked too. Unknown
+building factions and multi-subject lore remain supported. Graph topology
+writes lock only their game and graph family; relevant edits require READ
+COMMITTED or SERIALIZABLE. `GameResource` cannot be truncated; checked DELETE
+preserves the cross-row protections.
+
+For `FactionLaw`, `Cumulative=true` means each `EffectLevelN` is the complete
+total at that level. Consumers must not add it to earlier level descriptions.
+The new law data uses the dated official Cargo snapshot, not an asserted match
+to every field of the retained Steam build.
+
 ## 8. PostgreSQL physical architecture
 
 ### 8.1 Deployment unit
@@ -371,7 +384,7 @@ no game data.
 
 `HeroesWatch.backup` is the historical schema-only custom-format backup of the
 initial schema. After restoring it, apply `0002_relationship_integrity.sql`
-followed by migrations 0003, 0004 and 0005 in order.
+followed by migrations 0003 through 0006 in order.
 For a new current schema, use `HeroesWatch.sql` directly.
 
 `postgres/migrations/0001_initial.sql` is the immutable initial migration.
@@ -388,6 +401,9 @@ building, and artifact costs. Both earlier migrations remain immutable.
 `0004_creature_tier_terminology.sql` renames the four remaining creature
 `Level` columns. `0005_creature_numeric_speed.sql` converts H1 speed labels to
 numbers and derives H1/H2 `SpeedName` values. Existing migrations are immutable.
+`0006_catalog_guards.sql` installs the guards above and validates existing rows
+in one transaction. It rejects invalid baselines without deleting or repairing
+their data automatically.
 
 ### 8.2 Namespace and identifiers
 

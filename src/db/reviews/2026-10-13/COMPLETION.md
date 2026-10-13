@@ -1,66 +1,59 @@
 # HeroesWatch — PR #1 review
 
-October 13, 2026. Changes extend the existing
-[PR #1](https://github.com/RusMermaid/HeroesWatch/pull/1), starting at `2848f00`.
+October 13, 2026. Updates to the existing
+[PR #1](https://github.com/RusMermaid/HeroesWatch/pull/1).
 
-## Changes
+## Data
 
-- Creature `Level` is now **`Tier`**. Spell levels are unchanged.
-- Faerie/Rust/Crystal/Azure Dragon tiers are **8/8/9/10**, stored directly.
-- H1/H2 `Speed` is numeric. `SpeedName` is generated and cannot disagree with it:
-  H1 uses 1/2/3; H2 uses 2–7. Flying stays separate.
-- The catalog has **43,736 rows**: 3,713 research additions and 667 null fills.
-  This includes H1/H2 abilities and skills, H3 campaign rules and town links,
-  H5 costs/prerequisites/hero starts, and Olden Era abilities, hero
-  specializations, Neutral Magic and fourteen spell memberships.
+**43,932 rows**, including 196 additions since `1dbe176`:
 
-[Exact data audit](../../data/research-2026-10-13-evidence.json) ·
-[Speed evidence](../../research/2026-10-13/creature-terminology.sources.md) ·
-[Olden Era follow-up](../../research/2026-10-13/oldenera-followup.sources.md)
+- 194 Olden Era faction laws with exact positions, costs and source paths.
+- Insight resource identity and its H8 membership.
+- Law effects are short mechanical summaries with source hashes. Each level
+  describes the total effect, not an amount to add to previous levels.
 
-## Architecture
+The laws use the official Cargo snapshot reviewed October 13. No exact mapping
+to the earlier Steam build is claimed.
+[Law sources](../../research/2026-10-13/faction-laws.sources.md) ·
+[Insight sources](../../research/2026-10-13/olden-resources.sources.md) ·
+[Full research audit](../../data/research-2026-10-13-evidence.json)
 
-The identity spine, shared-PK details, `_cid` junctions, single `Hero` catalog
-and indirect lore links are preserved. There are **176 tables, 1,306 columns,
-452 FKs and 29 junction tables**.
+Creature `Tier`, dragon tiers **8/8/9/10**, numeric early-game `Speed` and
+generated `SpeedName` remain unchanged.
 
-Migration 0003 fixes nullable identities, campaign starting-scenario membership
-and H5 rune-resource membership. Migration 0004 renames creature tiers; 0005
-makes early speeds numeric and derives their labels. Existing migrations stay
-immutable. [Junction audit and remaining guards](JUNCTION_AUDIT.md).
+## Database safeguards
 
-## Checks
+Migration **0006** adds:
 
-**94 tests pass.** PostgreSQL 18.6 fresh import, repeated import, restored-backup
-upgrade and concurrency checks pass. Exact reconciliation covers 43,736 rows,
-255,398 supplied fields and 174,633 FK references.
+- Nonnegative costs; zero is valid.
+- Required H8 resource membership, including reverse edits.
+- Matching known town-screen/building factions.
+- At least one lore subject; contextual multiple subjects remain allowed.
+- No self-edges or cycles in component, prerequisite, upgrade and scenario graphs.
 
-The local upgrade preserves all 43,613 prior row IDs. After accounting for
-renamed fields and the speed conversion, only the four dragon tiers change
-existing values. It adds 123 Olden Era rows and fills 108 descriptions.
-The friend's database is untouched.
+The architecture remains **176 tables, 1,306 columns, 452 FKs and 29 junctions**.
+No duplicate catalogs, copied game IDs or deployment roles were added.
+[Guard details](JUNCTION_AUDIT.md).
 
-[Current verification](publication-verification.json) ·
-[Earlier local checkpoint](completion-verification.json) ·
-[Read-only viewer](../../data/completion.review.sql)
+## Tests
 
-## Applying this to an existing database
+**114 tests pass.** PostgreSQL 18.6 checks cover fresh and repeated imports,
+populated v5→v6 upgrades, 16 concurrent writer cases and isolation controls.
+Negative-cost and cyclic baselines reject migration 0006 atomically.
 
-Back up first. Apply only missing migrations in order through **0005**.
-Then run `data/creature-tier-corrections.sql`, followed by `data/catalog.sql`
-and `postgres/verify.sql`. Stop on an unexpected-value conflict; do not delete
-rows to force an import. Historical standalone creature imports use the old
-schema—use the current full catalog instead.
+All 43,932 rows reconcile: **258,706 fields and 174,831 FK references**.
+[Verification](data-guards-verification.json).
 
-## Remaining gaps
+## Still missing
 
 - H6: 16 creature and six class details.
-- H7: 19 warfare details, nine class details, 110 Hall flags and missing
-  creature-ability/recruitment mappings.
-- Olden Era: exact law positions, Insight/Astrology meaning and some required
-  resource/map flags.
-- H4 ability candidates still lack primary per-creature evidence.
-- Some map placements, hero forms, army probabilities and media remain unknown.
+- H7: 19 warfare details, nine class details, 110 Hall flags and some links.
+  [Exact small game packages needed](../../research/2026-10-13/heroes7-final.sources.md).
+- Olden Era: confirmed mapping between Astrology, neutral progression and
+  Insight spending; some resource/map flags.
+- H4 ability evidence and some map placements, hero forms and media.
 
-Small, versioned game-data exports would resolve the main gaps. Missing facts
-have not been turned into invented values. The database is usable, not complete.
+No missing values were invented. **Deployment belongs to the second PR.**
+This batch was tested in disposable databases, not applied to either working
+database. When scheduled, apply missing migrations through 0006 before current
+content imports; the previous tier-correction instructions still apply.

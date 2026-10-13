@@ -1782,6 +1782,7 @@
   "formatVersion": 1,
   "integrity": {
     "campaignHeroStartingScenario": "A non-null starting scenario must be a member of the same campaign.",
+    "catalogGuards": "Nonnegative costs, at least one LoreFull subject with multi-context links allowed, and no direct graph self-edges; cross-row graph guards are generated separately.",
     "creatureSpeed": "CreatureHOMM1 and CreatureHOMM2 store source combat movement as numeric Speed; stored SpeedName is derived and read-only. Movement remains separate.",
     "creatureTierTerminology": "CreatureHOMM1 through CreatureHOMM4 use Tier; spell Level fields retain their existing meaning.",
     "gameOwnership": "Composite foreign keys plus deferred inherited/global ownership checks",
@@ -1802,9 +1803,9 @@
     "diagram": "https://sql-designer.com/diagrams/932ebd44-bda4-45c2-a3e5-0358c579e076",
     "kind": "SQLDesigner",
     "overlay": {
-      "migration": "0005_creature_numeric_speed.sql",
+      "migration": "0006_catalog_guards.sql",
       "module": "src/db/tools/schema-overlay.mjs",
-      "version": 5
+      "version": 6
     },
     "sha256": "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673"
   },
@@ -4667,6 +4668,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "\"CompositeArtifact_id\" <> \"ComponentArtifact_id\"",
+          "name": "ck__ArtifactComponent__no_self_edge"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -5994,6 +6001,12 @@
       "unique": []
     },
     {
+      "checks": [
+        {
+          "expression": "\"Amount\" >= 0",
+          "name": "ck__ArtifactResourceCost__Amount_nonnegative"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -8018,6 +8031,12 @@
       "unique": []
     },
     {
+      "checks": [
+        {
+          "expression": "\"Building_id\" <> \"RequiredBuilding_id\"",
+          "name": "ck__BuildingRequirement__no_self_edge"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -8173,6 +8192,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "\"Amount\" >= 0",
+          "name": "ck__BuildingResourceCost__Amount_nonnegative"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -8328,6 +8353,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "\"BaseBuilding_id\" <> \"UpgradedBuilding_id\"",
+          "name": "ck__BuildingUpgrade__no_self_edge"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -12060,6 +12091,12 @@
       "unique": []
     },
     {
+      "checks": [
+        {
+          "expression": "\"Amount\" >= 0",
+          "name": "ck__CreatureResourceCost__Amount_nonnegative"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -12413,6 +12450,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "\"BaseCreature_id\" <> \"UpgradedCreature_id\"",
+          "name": "ck__CreatureUpgrade__no_self_edge"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -18774,6 +18817,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "num_nonnulls(\"Hero_id\", \"CampaignHero_cid\", \"Campaign_id\", \"Scenario_id\", \"Map_id\", \"Faction_id\") >= 1",
+          "name": "ck__LoreFull__has_subject"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -22102,6 +22151,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "\"FromScenario_id\" <> \"ToScenario_id\"",
+          "name": "ck__ScenarioConnection__no_self_edge"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -26574,6 +26629,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "\"Amount\" >= 0",
+          "name": "ck__SpellResourceCostHOMM5__Amount_nonnegative"
+        }
+      ],
       "columns": [
         {
           "comment": null,

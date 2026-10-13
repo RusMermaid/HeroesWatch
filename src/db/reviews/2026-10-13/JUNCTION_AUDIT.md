@@ -1,5 +1,5 @@
 # Junction and relationship audit
-Reviewed 2026-10-13 against generated overlay **v5** (`Tier`/numeric `Speed`).
+Reviewed 2026-10-13 against generated overlay **v6** (`Tier`/numeric `Speed`).
 Current generated contract: **176 tables, 1,306 columns, 452 foreign keys**;
 93 foreign keys are composite. This is a current-state review, not a claim that
 every possible game fact or defensive guard has been completed.
@@ -24,21 +24,28 @@ The 29 junctions are:
 Current data passes FK/uniqueness validation. It has no cross-game cost
 membership, invalid campaign starting scenario, graph self-edge/cycle, or
 TownScreen/building faction mismatch. All 22 current `LoreFull` rows have one
-subject endpoint. These data facts do not substitute for missing DB guards.
+subject endpoint. The following database guards now protect future writes too.
 
-## Remaining guard risks — explicitly not fixed
+## Guards added in migration 0006
 
-1. The four resource-cost tables still accept negative `Amount`; add `>= 0`
-   checks while preserving valid zero values.
-2. `FactionHOMM8.SignatureResource_id` and future `AstrologyHOMM8` resource
-   references are not constrained to H8 `GameResource` membership.
-3. `TownScreenBuilding` enforces same game, not same faction; current H3 rows
-   are correct, but future direct SQL can cross-link faction screens/buildings.
-4. `LoreFull` permits zero or multiple subject endpoints. Require at least one;
-   exact-one versus contextual multi-target links remains a product decision.
-5. Component/requirement/upgrade/scenario graphs lack self-edge CHECKs and
-   general cycle validation. Current rows are clean; H2 cross-campaign scenario
-   transitions are intentional and must not be rejected as same-campaign errors.
+1. All four resource-cost tables reject negative amounts; zero remains valid.
+2. H8 signature, Astrology and resource-detail references require H8 membership.
+   Reverse deletion, re-keying and game changes are checked. `GameResource`
+   truncation is blocked; use checked row deletion.
+3. Town-screen links reject a different known building faction, including later
+   detail creation and reverse edits. Unknown faction details remain allowed.
+4. Lore links require at least one subject. Multiple contextual subjects remain
+   allowed; no unrequested exactly-one restriction was introduced.
+5. Component, requirement, upgrade and scenario graphs reject self-edges and
+   cycles. H2 cross-campaign edges remain valid. Topology writes serialize only
+   within the same game and graph family, not across the whole catalog.
+
+The checks use final transaction state and validate existing rows on upgrade.
+Relevant cross-row/topology edits require READ COMMITTED or SERIALIZABLE;
+ordinary content edits still work at REPEATABLE READ. This matches PostgreSQL's
+[snapshot and serialization rules](https://www.postgresql.org/docs/18/transaction-iso.html).
+The ingestion validator and small-import dependency resolver enforce the same
+relationships. Deployment permissions and operations belong to the later PR.
 
 `src/db/tools/junction-coverage.mjs` reports all 29 junctions across HOMM1–8,
 separates empty counts from reviewed applicability, resolves symbolic/physical
