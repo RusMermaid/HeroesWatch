@@ -36,6 +36,11 @@ INSERT INTO "Game" ("Game_id", "SeriesCode", "DisplayOrder", "Name") VALUES
 INSERT INTO "MediaAsset" ("MediaAsset_id", "Game_id", "Code", "Kind", "Name", "Uri") VALUES
   (-1, NULL, 'FIXTURE_GLOBAL', 'File', 'Global fixture source', 'fixture/global.pdf'),
   (-2, -200, 'FIXTURE_II', 'File', 'Game II fixture source', 'fixture/ii.pdf');
+SELECT pg_temp.expect_rejected('global media code identity treats null game as one scope',
+  'INSERT INTO "MediaAsset" ("MediaAsset_id", "Game_id", "Code", "Kind", "Name", "Uri") VALUES (-3, NULL, ''FIXTURE_GLOBAL'', ''File'', ''Duplicate global source'', ''fixture/duplicate.pdf'')', ARRAY['23505']);
+INSERT INTO "Patch" ("Patch_id", "Game_id", "Version", "Platform") VALUES (-1, -300, 'fixture.1', NULL);
+SELECT pg_temp.expect_rejected('patch identity treats null platform as one scope',
+  'INSERT INTO "Patch" ("Patch_id", "Game_id", "Version", "Platform") VALUES (-2, -300, ''fixture.1'', NULL)', ARRAY['23505']);
 INSERT INTO "Creature" ("Creature_id", "Game_id", "Code", "Name", "MediaAsset_id") VALUES
   (-21, -200, 'FIXTURE_II', 'Game II creature', NULL),
   (-31, -300, 'FIXTURE_III', 'Game III creature', -1),
@@ -78,6 +83,15 @@ SELECT pg_temp.expect_rejected('later edit after immediate checks is still check
 INSERT INTO "Resource" ("Resource_id", "Code", "Name") VALUES (-1, 'FIXTURE_RESOURCE', 'Fixture resource');
 SELECT pg_temp.expect_rejected('resource exists but is unavailable in this game',
   'INSERT INTO "CreatureResourceCost" ("CreatureResourceCost_cid", "Game_id", "Creature_id", "Resource_id", "Amount") VALUES (''fixture.cost'', -300, -31, -1, 1)', ARRAY['23503']);
+INSERT INTO "Spell" ("Spell_id", "Game_id", "Code", "Name") VALUES (-51, -500, 'FIXTURE_RUNE', 'Fixture rune');
+SELECT pg_temp.expect_rejected('spell resource exists but is unavailable in Heroes V',
+  'INSERT INTO "SpellResourceCostHOMM5" ("SpellResourceCostHOMM5_cid", "Game_id", "Spell_id", "Resource_id", "Amount", "Ruleset") VALUES (''fixture.rune.cost.invalid'', -500, -51, -1, 1, ''TribesOfTheEast'')', ARRAY['23503']);
+INSERT INTO "GameResource" ("GameResource_cid", "Game_id", "Resource_id")
+VALUES ('fixture.homm5.resource', -500, -1);
+INSERT INTO "SpellResourceCostHOMM5" ("SpellResourceCostHOMM5_cid", "Game_id", "Spell_id", "Resource_id", "Amount", "Ruleset")
+VALUES ('fixture.rune.cost.valid', -500, -51, -1, 1, 'TribesOfTheEast');
+SET CONSTRAINTS ALL IMMEDIATE;
+SET CONSTRAINTS ALL DEFERRED;
 
 INSERT INTO "HeroClass" ("HeroClass_id", "Game_id", "Code", "Name") VALUES (-1, -500, 'FIXTURE_CLASS', 'Fixture class');
 INSERT INTO "Ability" ("Ability_id", "Game_id", "Code", "Name") VALUES
@@ -102,6 +116,31 @@ INSERT INTO "ArtifactSetBonusHOMM5" ("ArtifactSetBonusHOMM5_id", "ArtifactSetHOM
 VALUES (-1, -1, 2, NULL, '{}');
 SELECT pg_temp.expect_rejected('null class bonus identity is unique',
   'INSERT INTO "ArtifactSetBonusHOMM5" ("ArtifactSetBonusHOMM5_id", "ArtifactSetHOMM5_id", "RequiredPieceCount", "HeroClass_id", "Effect") VALUES (-2, -1, 2, NULL, ''{}'')', ARRAY['23505']);
+
+INSERT INTO "Map" ("Map_id", "Game_id", "Code", "Name") VALUES
+  (-501, -500, 'FIXTURE_MAP_A', 'Fixture map A'),
+  (-502, -500, 'FIXTURE_MAP_B', 'Fixture map B');
+INSERT INTO "Scenario" ("Scenario_id", "Game_id", "Map_id", "Code", "Name") VALUES
+  (-501, -500, -501, 'FIXTURE_SCENARIO_A', 'Fixture scenario A'),
+  (-502, -500, -502, 'FIXTURE_SCENARIO_B', 'Fixture scenario B');
+INSERT INTO "Campaign" ("Campaign_id", "Game_id", "Code", "Name") VALUES
+  (-501, -500, 'FIXTURE_CAMPAIGN_A', 'Fixture campaign A'),
+  (-502, -500, 'FIXTURE_CAMPAIGN_B', 'Fixture campaign B');
+INSERT INTO "CampaignScenario" ("CampaignScenario_cid", "Game_id", "Campaign_id", "Scenario_id") VALUES
+  ('fixture.campaign.a.scenario.a', -500, -501, -501),
+  ('fixture.campaign.b.scenario.b', -500, -502, -502);
+INSERT INTO "Hero" ("Hero_id", "Game_id", "Code", "Name") VALUES (-501, -500, 'FIXTURE_HERO', 'Fixture hero');
+INSERT INTO "CampaignHero" ("CampaignHero_cid", "Game_id", "Campaign_id", "Hero_id", "IsCampaignHero", "StartingScenario_id")
+VALUES ('fixture.campaign.hero.valid', -500, -501, -501, true, -501);
+SELECT pg_temp.expect_rejected('starting scenario must belong to the selected campaign',
+  'INSERT INTO "CampaignHero" ("CampaignHero_cid", "Game_id", "Campaign_id", "Hero_id", "IsCampaignHero", "StartingScenario_id") VALUES (''fixture.campaign.hero.wrong'', -500, -502, -501, true, -501)', ARRAY['23503']);
+
+INSERT INTO "Lore" ("Lore_id", "Game_id", "Code", "Title", "LoreKind", "Body")
+VALUES (-501, -500, 'FIXTURE_LORE', 'Fixture lore', 'Character', 'Fixture body');
+INSERT INTO "LoreFull" ("LoreFull_cid", "Game_id", "Lore_id", "Hero_id", "LinkRole")
+VALUES ('fixture.lore.hero', -500, -501, -501, 'Subject');
+SELECT pg_temp.expect_rejected('nullable lore-link identity is unique',
+  'INSERT INTO "LoreFull" ("LoreFull_cid", "Game_id", "Lore_id", "Hero_id", "LinkRole") VALUES (''fixture.lore.hero.duplicate'', -500, -501, -501, ''Subject'')', ARRAY['23505']);
 
 SET CONSTRAINTS ALL IMMEDIATE;
 ROLLBACK;

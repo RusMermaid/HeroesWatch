@@ -1,0 +1,88 @@
+name: Database contract
+
+on:
+  pull_request:
+    paths:
+      - "src/db/**"
+      - ".github/workflows/database.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/db/**"
+      - ".github/workflows/database.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: database-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generated-and-unit:
+    name: Generated artifacts and Node tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Verify deterministic schema artifacts
+        run: >-
+          node src/db/tools/generate.mjs
+          --input src/db/schema/sql-designer.snapshot.json
+          --out src/db
+          --check
+      - name: Verify deterministic catalog import
+        run: node src/db/tools/build-content-sql.mjs --check
+      - name: Verify deterministic manual import
+        run: node src/db/tools/build-manual-sql.mjs --check
+      - name: Verify deterministic small GUI imports
+        run: node src/db/tools/build-touchup-sql.mjs --check
+      - name: Verify deterministic reviewed research import
+        run: node src/db/tools/build-research-sql.mjs --check
+      - name: Verify creature tiers and speed representation
+        run: node src/db/tools/prepare-catalog-v5.mjs --check
+      - name: Run dependency-free database tests
+        run: node --test src/db/tools/*.test.mjs
+
+  postgres-integration:
+    name: PostgreSQL ${{ matrix.postgres }} integration
+    needs: generated-and-unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        postgres: ["16", "18"]
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres }}
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Run isolated full-schema and full-catalog regression suite
+        env:
+          HW_TEST_POSTGRES: "1"
+          HW_EXPECTED_ROWS: "43736"
+          PGHOST: 127.0.0.1
+          PGPORT: "5432"
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          PGDATABASE: postgres
+        run: node src/db/tools/postgres-integration.mjs

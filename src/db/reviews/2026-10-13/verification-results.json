@@ -1,0 +1,60 @@
+{
+  "reviewDate": "2026-10-13",
+  "pullRequest": "https://github.com/RusMermaid/HeroesWatch/pull/1",
+  "reviewedHead": "2848f0055c6a39ce3ef9b6cea61f717593bf4be5",
+  "priorCatalogCommit": "225a96b318886c01bd75e371e1c10d66b29f90df",
+  "correctionBranch": "codex/heroeswatch-final-review",
+  "deliveryState": "Local uncommitted corrections; not pushed, merged or deployed",
+  "nodeVersion": "24.19.0",
+  "postgresVersionTested": "18.6 (Homebrew)",
+  "unitTests": {"passed": 58, "failed": 0, "skipped": 0},
+  "correctedSchema": {
+    "tables": 176,
+    "columns": 1304,
+    "foreignKeys": 451,
+    "compositeForeignKeys": 92,
+    "primaryKeys": 176,
+    "alternateUniqueConstraints": 81,
+    "nullsNotDistinctIndexes": 5,
+    "ownershipConstraintTriggers": 176
+  },
+  "sourceCatalog": {"rows": 40023, "tableArrays": 176, "populatedTables": 129, "games": 23},
+  "exactReconciliationPerRoute": {
+    "result": "PASS",
+    "comparedRows": 40023,
+    "comparedFields": 237507,
+    "nonNullForeignKeyReferences": 159412,
+    "fullAndSmallRoutesHaveIdenticalDataAndIds": true
+  },
+  "priorCatalogUpgrade": {
+    "result": "PASS",
+    "preservedPriorPhysicalIds": 30481,
+    "addedRows": 9542,
+    "removedRows": 0,
+    "nullFieldsFilled": 1233,
+    "existingFactsCorrected": 6,
+    "correctionScope": "Six AdventureObject fort display names"
+  },
+  "runtimeChecks": {
+    "freshBootstrap": "PASS",
+    "populatedUpgrade": "PASS",
+    "fullImport": "PASS",
+    "manualCatchupAndSevenSmallImportParts": "PASS",
+    "repeatImportStableDataAndIds": "PASS",
+    "directIntegrityRejectionProbes": "PASS",
+    "verifiedConcurrentLockOrders": 4,
+    "repeatableReadGuardAndOrdinaryWriteControls": "PASS",
+    "invalidExistingDuplicateMigrationRollback": "PASS"
+  },
+  "deterministicChecks": {
+    "schemaArtifacts": "12 PASS",
+    "catalogSql": "PASS",
+    "manualSql": "PASS",
+    "touchupCorrectionsManifestAndSevenParts": "PASS"
+  },
+  "unchanged": ["src/db/data/heroeswatch.json", "src/db/schema/sql-designer.snapshot.json", "src/db/postgres/migrations/0001_initial.sql", "src/db/postgres/migrations/0002_relationship_integrity.sql"],
+  "knownSourceGaps": {"creatureDetails": 35, "classDetails": 15, "heroes7HallFlags": 110, "manualDisagreements": 6},
+  "ci": {"configuredPostgresMajors": [16, 18], "executedOnGitHub": false},
+  "liveDeploymentPerformed": false,
+  "friendsCurrentDatabaseIndependentlyVerified": false
+}

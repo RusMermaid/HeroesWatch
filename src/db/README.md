@@ -6,8 +6,8 @@ generated from the saved SQLDesigner diagram after the 2NF audit.
 Current contract:
 
 - 176 PostgreSQL tables
-- 1,304 fields
-- 450 foreign keys
+- 1,306 fields (including two generated speed labels)
+- 452 foreign keys
 - 147 ordinary/shared-PK tables in second normal form
 - 29 explicit `*_cid` junction tables covered by the project exemption
 
@@ -37,7 +37,8 @@ Current contract:
 
    For a Windows computer, follow [WINDOWS.md](WINDOWS.md). The same SQL file
    works on macOS and Windows. The historical schema-only `HeroesWatch.backup`
-   restores the initial contract and then requires migration 0002.
+   restores the initial contract and then requires migrations 0002 through 0005,
+   in that order.
 
    The equivalent command-line workflow is:
 
@@ -55,7 +56,7 @@ existing schema.
 ## What is authoritative?
 
 - `schema/sql-designer.snapshot.json` is the exact original diagram snapshot.
-  `tools/schema-overlay.mjs` records the reviewed version-2 changes. Together
+  `tools/schema-overlay.mjs` records the reviewed changes through version 5. Together
   they generate the current contract; the live diagram has not been replaced.
 - `schema/heroeswatch.schema.json` is the compact semantic contract used by
   people and tools.
@@ -63,12 +64,14 @@ existing schema.
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
 - The schema baselines contain no game rows. Reviewed content lives in the
-  cumulative JSON: 40,023 rows across Heroes I–VIII and related Might and Magic
+  cumulative JSON: 43,736 rows across Heroes I–VIII and related Might and Magic
   RPGs and spin-offs, including classes, heroes,
   town buildings, dwellings, creatures, skills, magic, artifacts, campaigns
   and map objects for each title's actual mechanics and official expansions.
   [Coverage and known gaps](data/CATALOG_STATUS.md) lists counts, provenance,
   unresolved details, and PostgreSQL application status.
+  [October 13 completion and verification](reviews/2026-10-13/COMPLETION.md)
+  records the source-backed additions, integrity corrections, and local delivery.
   [Screenshot review status](data/TOUCHUPS_STATUS.md) records the new relationships,
   integrity protections, tests and remaining source gaps.
   [The manual comparison](data/MANUAL_COMPARISON.md) records source disagreements,
@@ -77,6 +80,12 @@ existing schema.
   import, generated with `node src/db/tools/build-content-sql.mjs`. It preserves
   local identities and facts and rejects conflicts. Inspect results with
   [data/catalog.review.sql](data/catalog.review.sql).
+- [data/research-import.sql](data/research-import.sql) is the smaller, dependency-
+  closed October 13 research import for an already populated final-PR catalog.
+  It requires migrations through 0005 and the guarded
+  [creature tier corrections](data/creature-tier-corrections.sql) on older data.
+  Use [data/completion.review.sql](data/completion.review.sql) for readable
+  creature statistics, ability links, campaign heroes, and shared resources.
 - [data/homm3-factions.sql](data/homm3-factions.sql) applies that batch in one
   transaction after review. [data/homm4-factions.sql](data/homm4-factions.sql)
   applies the Heroes IV batch, and
@@ -116,7 +125,19 @@ canvas instead of merging it.
 - `schema/normal-form-report.json`: auditable 2NF result.
 - `postgres/migrations/0001_initial.sql`: immutable initial migration.
 - `postgres/migrations/0002_relationship_integrity.sql`: upgrade an existing
-  initial schema before applying current content; run once.
+  initial schema with the reviewed relationship integrity layer; run once.
+- `postgres/migrations/0003_nullable_identity_and_campaign_scope.sql`: after
+  0002, make nullable business identities effective and require a non-null
+  campaign-hero starting scenario to belong to that campaign; it also requires
+  Heroes V spell/rune costs to use resources registered for that game. Run it
+  once. A null starting scenario remains valid for incremental or
+  not-yet-researched data.
+- `postgres/migrations/0004_creature_tier_terminology.sql`: rename creature
+  `Level` to `Tier` in Heroes I–IV; spell levels stay unchanged.
+- `postgres/migrations/0005_creature_numeric_speed.sql`: numeric H1/H2 `Speed`
+  with generated `SpeedName`. Do not supply the generated name in import JSON.
+- [data/creature-tier-corrections.sql](data/creature-tier-corrections.sql): set
+  Faerie/Rust/Crystal/Azure Dragon tiers to 8/8/9/10 before current imports.
 - `postgres/verify.sql`: catalog-count verification after applying the DDL.
 - `tools/generate.mjs`: deterministic SQLDesigner-to-PostgreSQL generator.
 - `tools/validate.mjs`: dependency-free data-batch validator.

@@ -1,0 +1,11 @@
+{
+  "game": "HOMM3",
+  "field": "Tier",
+  "confirmedOn": "2026-10-13",
+  "tiers": [
+    {"code": "FAERIE_DRAGON", "previous": 7, "value": 8},
+    {"code": "RUST_DRAGON", "previous": 7, "value": 8},
+    {"code": "CRYSTAL_DRAGON", "previous": 7, "value": 9},
+    {"code": "AZURE_DRAGON", "previous": 7, "value": 10}
+  ]
+}

@@ -6570,16 +6570,6 @@
         "Health": {
           "type": "integer"
         },
-        "Level": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "Movement": {
           "enum": [
             "Ground",
@@ -6602,11 +6592,26 @@
         },
         "Speed": {
           "enum": [
-            "Slow",
-            "Medium",
-            "Fast"
+            1,
+            2,
+            3
           ],
-          "type": "string"
+          "type": "integer"
+        },
+        "SpeedName": {
+          "description": "Must be omitted from import JSON. Database-generated from: CASE \"Speed\" WHEN 1 THEN 'Slow' WHEN 2 THEN 'Medium' WHEN 3 THEN 'Fast' END",
+          "not": {},
+          "readOnly": true
+        },
+        "Tier": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "_key": {
           "description": "Import-only stable key. It is never stored as a database column.",
@@ -6700,16 +6705,6 @@
         "Health": {
           "type": "integer"
         },
-        "Level": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "Movement": {
           "enum": [
             "Ground",
@@ -6734,7 +6729,30 @@
           "type": "integer"
         },
         "Speed": {
+          "enum": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
           "type": "integer"
+        },
+        "SpeedName": {
+          "description": "Must be omitted from import JSON. Database-generated from: CASE \"Speed\" WHEN 2 THEN 'Very Slow' WHEN 3 THEN 'Slow' WHEN 4 THEN 'Average' WHEN 5 THEN 'Fast' WHEN 6 THEN 'Very Fast' WHEN 7 THEN 'Ultra Fast' END",
+          "not": {},
+          "readOnly": true
+        },
+        "Tier": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "_key": {
           "description": "Import-only stable key. It is never stored as a database column.",
@@ -6893,16 +6911,6 @@
             }
           ]
         },
-        "Level": {
-          "anyOf": [
-            {
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
         "Movement": {
           "anyOf": [
             {
@@ -6949,6 +6957,16 @@
           ]
         },
         "Speed": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "Tier": {
           "anyOf": [
             {
               "type": "integer"
@@ -7061,9 +7079,6 @@
         "Health": {
           "type": "integer"
         },
-        "Level": {
-          "type": "integer"
-        },
         "Movement": {
           "enum": [
             "Ground",
@@ -7108,6 +7123,9 @@
             }
           ]
         },
+        "Tier": {
+          "type": "integer"
+        },
         "_key": {
           "description": "Import-only stable key. It is never stored as a database column.",
           "minLength": 1,
@@ -7116,7 +7134,7 @@
       },
       "required": [
         "_key",
-        "Level",
+        "Tier",
         "Attack",
         "Defense",
         "DamageMin",
@@ -8961,8 +8979,25 @@
         "CombatBonus": {
           "anyOf": [
             {
-              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
-              "not": {}
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "attack": {
+                  "maximum": 100,
+                  "minimum": -100,
+                  "type": "integer"
+                },
+                "defense": {
+                  "maximum": 100,
+                  "minimum": -100,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "attack",
+                "defense"
+              ],
+              "type": "object"
             },
             {
               "type": "null"
@@ -14707,8 +14742,91 @@
         "CarryoverRules": {
           "anyOf": [
             {
-              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
-              "not": {}
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "heroKeeps": {
+                  "items": {
+                    "enum": [
+                      "Experience",
+                      "PrimarySkills",
+                      "SecondarySkills",
+                      "Spells",
+                      "Artifacts"
+                    ],
+                    "type": "string"
+                  },
+                  "maxItems": 5,
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "keptArtifactTypes": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "artifactKey": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                        "type": "string"
+                      },
+                      "nativeId": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "nativeId",
+                      "artifactKey"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 144,
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "keptCreatureTypes": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 1,
+                    "properties": {
+                      "creatureKey": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                        "type": "string"
+                      },
+                      "nativeId": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "nativeId",
+                      "creatureKey"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 152,
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "nativeKeepsMask": {
+                  "maximum": 31,
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "nativeKeepsMask",
+                "heroKeeps",
+                "keptCreatureTypes",
+                "keptArtifactTypes"
+              ],
+              "type": "object"
             },
             {
               "type": "null"
@@ -14718,8 +14836,98 @@
         "LossConditions": {
           "anyOf": [
             {
-              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
-              "not": {}
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "special": {
+                  "anyOf": [
+                    {
+                      "anyOf": [
+                        {
+                          "additionalProperties": false,
+                          "minProperties": 1,
+                          "properties": {
+                            "kind": {
+                              "enum": [
+                                "LoseTown",
+                                "LoseHero"
+                              ],
+                              "type": "string"
+                            },
+                            "position": {
+                              "additionalProperties": false,
+                              "minProperties": 1,
+                              "properties": {
+                                "level": {
+                                  "maximum": 255,
+                                  "minimum": 0,
+                                  "type": "integer"
+                                },
+                                "x": {
+                                  "maximum": 255,
+                                  "minimum": 0,
+                                  "type": "integer"
+                                },
+                                "y": {
+                                  "maximum": 255,
+                                  "minimum": 0,
+                                  "type": "integer"
+                                }
+                              },
+                              "required": [
+                                "x",
+                                "y",
+                                "level"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "position"
+                          ],
+                          "type": "object"
+                        },
+                        {
+                          "additionalProperties": false,
+                          "minProperties": 1,
+                          "properties": {
+                            "days": {
+                              "maximum": 2147483647,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "kind": {
+                              "enum": [
+                                "TimeExpires"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "days"
+                          ],
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "standardDaysWithoutTown": {
+                  "maximum": 2147483647,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "standardDaysWithoutTown",
+                "special"
+              ],
+              "type": "object"
             },
             {
               "type": "null"
@@ -14742,8 +14950,933 @@
         "StartingBonuses": {
           "anyOf": [
             {
-              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
-              "not": {}
+              "anyOf": [
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "choices": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "hero": {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "heroKey": {
+                                        "maxLength": 256,
+                                        "minLength": 1,
+                                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                                        "type": "string"
+                                      },
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": 0,
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "heroKey"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": -2147483648,
+                                        "type": "integer"
+                                      },
+                                      "selector": {
+                                        "enum": [
+                                          "Strongest",
+                                          "Generated",
+                                          "Random"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "selector"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "kind": {
+                                "enum": [
+                                  "Spell"
+                                ],
+                                "type": "string"
+                              },
+                              "spell": {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                  "nativeId": {
+                                    "maximum": 2147483647,
+                                    "minimum": 0,
+                                    "type": "integer"
+                                  },
+                                  "spellKey": {
+                                    "maxLength": 256,
+                                    "minLength": 1,
+                                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "nativeId",
+                                  "spellKey"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "hero",
+                              "spell"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "amount": {
+                                "maximum": 2147483647,
+                                "minimum": 1,
+                                "type": "integer"
+                              },
+                              "creature": {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                  "creatureKey": {
+                                    "maxLength": 256,
+                                    "minLength": 1,
+                                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                                    "type": "string"
+                                  },
+                                  "nativeId": {
+                                    "maximum": 2147483647,
+                                    "minimum": 0,
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "nativeId",
+                                  "creatureKey"
+                                ],
+                                "type": "object"
+                              },
+                              "hero": {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "heroKey": {
+                                        "maxLength": 256,
+                                        "minLength": 1,
+                                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                                        "type": "string"
+                                      },
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": 0,
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "heroKey"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": -2147483648,
+                                        "type": "integer"
+                                      },
+                                      "selector": {
+                                        "enum": [
+                                          "Strongest",
+                                          "Generated",
+                                          "Random"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "selector"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "kind": {
+                                "enum": [
+                                  "Creature"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "hero",
+                              "creature",
+                              "amount"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "buildingKind": {
+                                "enum": [
+                                  "MageGuild1",
+                                  "MageGuild2",
+                                  "MageGuild3",
+                                  "MageGuild4",
+                                  "MageGuild5",
+                                  "Tavern",
+                                  "Shipyard",
+                                  "Fort",
+                                  "Citadel",
+                                  "Castle",
+                                  "VillageHall",
+                                  "TownHall",
+                                  "CityHall",
+                                  "Capitol",
+                                  "Marketplace",
+                                  "ResourceSilo",
+                                  "Blacksmith",
+                                  "Special1",
+                                  "Horde1",
+                                  "Horde1Upgrade",
+                                  "Ship",
+                                  "Special2",
+                                  "Special3",
+                                  "Special4",
+                                  "Horde2",
+                                  "Horde2Upgrade",
+                                  "Grail",
+                                  "ExtraTownHall",
+                                  "ExtraCityHall",
+                                  "ExtraCapitol",
+                                  "Dwelling1",
+                                  "Dwelling2",
+                                  "Dwelling3",
+                                  "Dwelling4",
+                                  "Dwelling5",
+                                  "Dwelling6",
+                                  "Dwelling7",
+                                  "UpgradedDwelling1",
+                                  "UpgradedDwelling2",
+                                  "UpgradedDwelling3",
+                                  "UpgradedDwelling4",
+                                  "UpgradedDwelling5",
+                                  "UpgradedDwelling6",
+                                  "UpgradedDwelling7"
+                                ],
+                                "type": "string"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "Building"
+                                ],
+                                "type": "string"
+                              },
+                              "nativeId": {
+                                "maximum": 2147483647,
+                                "minimum": 0,
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "nativeId",
+                              "buildingKind"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "artifact": {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                  "artifactKey": {
+                                    "maxLength": 256,
+                                    "minLength": 1,
+                                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                                    "type": "string"
+                                  },
+                                  "nativeId": {
+                                    "maximum": 2147483647,
+                                    "minimum": 0,
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "nativeId",
+                                  "artifactKey"
+                                ],
+                                "type": "object"
+                              },
+                              "hero": {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "heroKey": {
+                                        "maxLength": 256,
+                                        "minLength": 1,
+                                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                                        "type": "string"
+                                      },
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": 0,
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "heroKey"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": -2147483648,
+                                        "type": "integer"
+                                      },
+                                      "selector": {
+                                        "enum": [
+                                          "Strongest",
+                                          "Generated",
+                                          "Random"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "selector"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "kind": {
+                                "enum": [
+                                  "Artifact"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "hero",
+                              "artifact"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "hero": {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "heroKey": {
+                                        "maxLength": 256,
+                                        "minLength": 1,
+                                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                                        "type": "string"
+                                      },
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": 0,
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "heroKey"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": -2147483648,
+                                        "type": "integer"
+                                      },
+                                      "selector": {
+                                        "enum": [
+                                          "Strongest",
+                                          "Generated",
+                                          "Random"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "selector"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "kind": {
+                                "enum": [
+                                  "SpellScroll"
+                                ],
+                                "type": "string"
+                              },
+                              "spell": {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                  "nativeId": {
+                                    "maximum": 2147483647,
+                                    "minimum": 0,
+                                    "type": "integer"
+                                  },
+                                  "spellKey": {
+                                    "maxLength": 256,
+                                    "minLength": 1,
+                                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "nativeId",
+                                  "spellKey"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "hero",
+                              "spell"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "attack": {
+                                "maximum": 2147483647,
+                                "minimum": 0,
+                                "type": "integer"
+                              },
+                              "defense": {
+                                "maximum": 2147483647,
+                                "minimum": 0,
+                                "type": "integer"
+                              },
+                              "hero": {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "heroKey": {
+                                        "maxLength": 256,
+                                        "minLength": 1,
+                                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                                        "type": "string"
+                                      },
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": 0,
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "heroKey"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": -2147483648,
+                                        "type": "integer"
+                                      },
+                                      "selector": {
+                                        "enum": [
+                                          "Strongest",
+                                          "Generated",
+                                          "Random"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "selector"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "kind": {
+                                "enum": [
+                                  "PrimarySkill"
+                                ],
+                                "type": "string"
+                              },
+                              "knowledge": {
+                                "maximum": 2147483647,
+                                "minimum": 0,
+                                "type": "integer"
+                              },
+                              "spellPower": {
+                                "maximum": 2147483647,
+                                "minimum": 0,
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "hero",
+                              "attack",
+                              "defense",
+                              "spellPower",
+                              "knowledge"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "hero": {
+                                "anyOf": [
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "heroKey": {
+                                        "maxLength": 256,
+                                        "minLength": 1,
+                                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                                        "type": "string"
+                                      },
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": 0,
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "heroKey"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  {
+                                    "additionalProperties": false,
+                                    "minProperties": 1,
+                                    "properties": {
+                                      "nativeId": {
+                                        "maximum": 2147483647,
+                                        "minimum": -2147483648,
+                                        "type": "integer"
+                                      },
+                                      "selector": {
+                                        "enum": [
+                                          "Strongest",
+                                          "Generated",
+                                          "Random"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "nativeId",
+                                      "selector"
+                                    ],
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "kind": {
+                                "enum": [
+                                  "SecondarySkill"
+                                ],
+                                "type": "string"
+                              },
+                              "mastery": {
+                                "enum": [
+                                  "Basic",
+                                  "Advanced",
+                                  "Expert"
+                                ],
+                                "type": "string"
+                              },
+                              "skill": {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                  "nativeId": {
+                                    "maximum": 2147483647,
+                                    "minimum": 0,
+                                    "type": "integer"
+                                  },
+                                  "skillKey": {
+                                    "maxLength": 256,
+                                    "minLength": 1,
+                                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "nativeId",
+                                  "skillKey"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "hero",
+                              "skill",
+                              "mastery"
+                            ],
+                            "type": "object"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "amount": {
+                                "maximum": 2147483647,
+                                "minimum": 1,
+                                "type": "integer"
+                              },
+                              "kind": {
+                                "enum": [
+                                  "Resource"
+                                ],
+                                "type": "string"
+                              },
+                              "nativeId": {
+                                "maximum": 2147483647,
+                                "minimum": -2147483648,
+                                "type": "integer"
+                              },
+                              "resourceKeys": {
+                                "items": {
+                                  "maxLength": 256,
+                                  "minLength": 1,
+                                  "pattern": "^[A-Za-z0-9_.:-]+$",
+                                  "type": "string"
+                                },
+                                "maxItems": 4,
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "nativeId",
+                              "resourceKeys",
+                              "amount"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "maxItems": 16,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "playerColor": {
+                      "additionalProperties": false,
+                      "minProperties": 1,
+                      "properties": {
+                        "name": {
+                          "enum": [
+                            "Red",
+                            "Blue",
+                            "Tan",
+                            "Green",
+                            "Orange",
+                            "Purple",
+                            "Teal",
+                            "Pink"
+                          ],
+                          "type": "string"
+                        },
+                        "nativeId": {
+                          "maximum": 7,
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "nativeId",
+                        "name"
+                      ],
+                      "type": "object"
+                    },
+                    "selectionMode": {
+                      "enum": [
+                        "BonusChoices"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "selectionMode",
+                    "playerColor",
+                    "choices"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "choices": {
+                      "items": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "PreviousScenarioHero"
+                            ],
+                            "type": "string"
+                          },
+                          "nativeRegionIndex": {
+                            "maximum": 2147483647,
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          "playerColor": {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "name": {
+                                "enum": [
+                                  "Red",
+                                  "Blue",
+                                  "Tan",
+                                  "Green",
+                                  "Orange",
+                                  "Purple",
+                                  "Teal",
+                                  "Pink"
+                                ],
+                                "type": "string"
+                              },
+                              "nativeId": {
+                                "maximum": 7,
+                                "minimum": 0,
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "nativeId",
+                              "name"
+                            ],
+                            "type": "object"
+                          },
+                          "scenarioKey": {
+                            "maxLength": 256,
+                            "minLength": 1,
+                            "pattern": "^[A-Za-z0-9_.:-]+$",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "playerColor",
+                          "nativeRegionIndex",
+                          "scenarioKey"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 16,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "selectionMode": {
+                      "enum": [
+                        "HeroCrossover"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "selectionMode",
+                    "choices"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "choices": {
+                      "items": {
+                        "additionalProperties": false,
+                        "minProperties": 1,
+                        "properties": {
+                          "hero": {
+                            "anyOf": [
+                              {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                  "heroKey": {
+                                    "maxLength": 256,
+                                    "minLength": 1,
+                                    "pattern": "^[A-Za-z0-9_.:-]+$",
+                                    "type": "string"
+                                  },
+                                  "nativeId": {
+                                    "maximum": 2147483647,
+                                    "minimum": 0,
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "nativeId",
+                                  "heroKey"
+                                ],
+                                "type": "object"
+                              },
+                              {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                  "nativeId": {
+                                    "maximum": 2147483647,
+                                    "minimum": -2147483648,
+                                    "type": "integer"
+                                  },
+                                  "selector": {
+                                    "enum": [
+                                      "Strongest",
+                                      "Generated",
+                                      "Random"
+                                    ],
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "nativeId",
+                                  "selector"
+                                ],
+                                "type": "object"
+                              }
+                            ]
+                          },
+                          "kind": {
+                            "enum": [
+                              "Hero"
+                            ],
+                            "type": "string"
+                          },
+                          "playerColor": {
+                            "additionalProperties": false,
+                            "minProperties": 1,
+                            "properties": {
+                              "name": {
+                                "enum": [
+                                  "Red",
+                                  "Blue",
+                                  "Tan",
+                                  "Green",
+                                  "Orange",
+                                  "Purple",
+                                  "Teal",
+                                  "Pink"
+                                ],
+                                "type": "string"
+                              },
+                              "nativeId": {
+                                "maximum": 7,
+                                "minimum": 0,
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "nativeId",
+                              "name"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "playerColor",
+                          "hero"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 16,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "selectionMode": {
+                      "enum": [
+                        "HeroChoices"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "selectionMode",
+                    "choices"
+                  ],
+                  "type": "object"
+                }
+              ]
             },
             {
               "type": "null"
@@ -14753,8 +15886,392 @@
         "VictoryConditions": {
           "anyOf": [
             {
-              "description": "Reserved: no reviewed source JSON profile. Keep SQL NULL until a documented profile is added.",
-              "not": {}
+              "anyOf": [
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "Standard"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "allowNormalVictory": {
+                      "type": "boolean"
+                    },
+                    "appliesToAI": {
+                      "type": "boolean"
+                    },
+                    "artifact": {
+                      "additionalProperties": false,
+                      "minProperties": 1,
+                      "properties": {
+                        "artifactKey": {
+                          "maxLength": 256,
+                          "minLength": 1,
+                          "pattern": "^[A-Za-z0-9_.:-]+$",
+                          "type": "string"
+                        },
+                        "nativeId": {
+                          "maximum": 2147483647,
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "nativeId",
+                        "artifactKey"
+                      ],
+                      "type": "object"
+                    },
+                    "kind": {
+                      "enum": [
+                        "AcquireArtifact"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "allowNormalVictory",
+                    "appliesToAI",
+                    "artifact"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "allowNormalVictory": {
+                      "type": "boolean"
+                    },
+                    "amount": {
+                      "maximum": 2147483647,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "appliesToAI": {
+                      "type": "boolean"
+                    },
+                    "creature": {
+                      "additionalProperties": false,
+                      "minProperties": 1,
+                      "properties": {
+                        "creatureKey": {
+                          "maxLength": 256,
+                          "minLength": 1,
+                          "pattern": "^[A-Za-z0-9_.:-]+$",
+                          "type": "string"
+                        },
+                        "nativeId": {
+                          "maximum": 2147483647,
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "nativeId",
+                        "creatureKey"
+                      ],
+                      "type": "object"
+                    },
+                    "kind": {
+                      "enum": [
+                        "AccumulateCreatures"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "allowNormalVictory",
+                    "appliesToAI",
+                    "creature",
+                    "amount"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "allowNormalVictory": {
+                      "type": "boolean"
+                    },
+                    "amount": {
+                      "maximum": 2147483647,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "appliesToAI": {
+                      "type": "boolean"
+                    },
+                    "kind": {
+                      "enum": [
+                        "AccumulateResources"
+                      ],
+                      "type": "string"
+                    },
+                    "nativeResourceId": {
+                      "maximum": 2147483647,
+                      "minimum": -2147483648,
+                      "type": "integer"
+                    },
+                    "resourceKeys": {
+                      "items": {
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[A-Za-z0-9_.:-]+$",
+                        "type": "string"
+                      },
+                      "maxItems": 4,
+                      "minItems": 1,
+                      "type": "array",
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "allowNormalVictory",
+                    "appliesToAI",
+                    "nativeResourceId",
+                    "resourceKeys",
+                    "amount"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "allowNormalVictory": {
+                      "type": "boolean"
+                    },
+                    "appliesToAI": {
+                      "type": "boolean"
+                    },
+                    "fortificationLevelNativeId": {
+                      "maximum": 2,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "hallLevelNativeId": {
+                      "maximum": 3,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "kind": {
+                      "enum": [
+                        "BuildTown"
+                      ],
+                      "type": "string"
+                    },
+                    "position": {
+                      "additionalProperties": false,
+                      "minProperties": 1,
+                      "properties": {
+                        "level": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "x": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "y": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y",
+                        "level"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "allowNormalVictory",
+                    "appliesToAI",
+                    "position",
+                    "hallLevelNativeId",
+                    "fortificationLevelNativeId"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "allowNormalVictory": {
+                      "type": "boolean"
+                    },
+                    "appliesToAI": {
+                      "type": "boolean"
+                    },
+                    "kind": {
+                      "enum": [
+                        "BuildGrail",
+                        "DefeatHero",
+                        "CaptureTown",
+                        "DefeatMonster"
+                      ],
+                      "type": "string"
+                    },
+                    "position": {
+                      "additionalProperties": false,
+                      "minProperties": 1,
+                      "properties": {
+                        "level": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "x": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "y": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y",
+                        "level"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "allowNormalVictory",
+                    "appliesToAI",
+                    "position"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "allowNormalVictory": {
+                      "type": "boolean"
+                    },
+                    "appliesToAI": {
+                      "type": "boolean"
+                    },
+                    "kind": {
+                      "enum": [
+                        "ControlAllDwellings",
+                        "ControlAllMines"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "allowNormalVictory",
+                    "appliesToAI"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "properties": {
+                    "allowNormalVictory": {
+                      "type": "boolean"
+                    },
+                    "appliesToAI": {
+                      "type": "boolean"
+                    },
+                    "artifact": {
+                      "additionalProperties": false,
+                      "minProperties": 1,
+                      "properties": {
+                        "artifactKey": {
+                          "maxLength": 256,
+                          "minLength": 1,
+                          "pattern": "^[A-Za-z0-9_.:-]+$",
+                          "type": "string"
+                        },
+                        "nativeId": {
+                          "maximum": 2147483647,
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "nativeId",
+                        "artifactKey"
+                      ],
+                      "type": "object"
+                    },
+                    "kind": {
+                      "enum": [
+                        "TransportArtifact"
+                      ],
+                      "type": "string"
+                    },
+                    "position": {
+                      "additionalProperties": false,
+                      "minProperties": 1,
+                      "properties": {
+                        "level": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "x": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "y": {
+                          "maximum": 255,
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y",
+                        "level"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "allowNormalVictory",
+                    "appliesToAI",
+                    "artifact",
+                    "position"
+                  ],
+                  "type": "object"
+                }
+              ]
             },
             {
               "type": "null"

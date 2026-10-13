@@ -1,17 +1,47 @@
 # Catalog coverage and PostgreSQL handoff
 
-Updated 2026-10-04. The cumulative [JSON](heroeswatch.json) contains **40,023
-rows across 176 table arrays**. The [relationship and integrity touch-ups](TOUCHUPS_STATUS.md)
-add 9,542 rows to the 30,481-row manual catalog, fill 1,233 null fields and
-correct six fort labels. Stable keys and the immutable initial migration are
-preserved. The current schema uses reviewed overlay version 2 and migration 0002.
+Updated 2026-10-13. The frozen cumulative [JSON](heroeswatch.json) contains
+**43,736 rows across 176 table arrays**. The October 4 deployment receipt is a
+historical 40,023-row snapshot using reviewed overlay version 2 and migration
+0002; it is not a live deployment claim for this frozen research package.
 
-**Live deployment is confirmed:** on **2026-10-04**, pgAdmin committed the
-migration, manual catch-up, corrections and all seven touch-up parts to
-**HeroesWatch.net**. The final review returned **40,023 rows, 176 tables,
-23 games and 36 PDF manual records**, with database owner **postgres**.
+**Historical friend delivery receipt (2026-10-04):** pgAdmin was reported to
+have committed the migration, manual catch-up, corrections and all seven
+touch-up parts to **HeroesWatch.net**. That earlier review returned **40,023
+rows, 176 tables, 23 games and 36 PDF manual records**, with database owner
+**postgres**. This receipt is not current deployment evidence for the frozen
+current package.
 See the [deployment record](live-deployment.json) and
 [review query](live-deployment.review.sql).
+
+**2026-10-13 Mac updates:** Both upgrades used restored-backup preflight. The
+first 43,613-row import preserved the original 659 rows. The later update adds
+123 Olden Era rows, fills 108 descriptions, renames creature `Level` to `Tier`,
+stores H1/H2 speed as numbers with generated names, and sets the four dragon
+tiers to 8/8/9/10. No identities were removed.
+See [the completion record](../reviews/2026-10-13/COMPLETION.md) and
+[machine-readable verification](../reviews/2026-10-13/publication-verification.json).
+This is separate from the friend's historical Windows receipt. The earlier Mac
+observation in [the data review](../reviews/2026-10-13/data-review.md) describes
+its pre-upgrade state; the friend's database was not modified.
+
+## Frozen 2026-10-13 source-backed research package
+
+The reviewed research merge covered **14 accepted patch files**, adding **3,713
+rows** and filling **667 explicitly null fields**, for the resulting **43,736
+rows**. Stable identities were preserved. Tier naming, numeric H1 speeds and
+the four dragon tiers are tracked separately from those research fills. The
+package includes H1/H2 manual-backed abilities and starting skills, H3 rules,
+town screens and campaign details, H5 costs/runes,
+terrain/schools and named-hero starts, H8 systems and creature abilities,
+normalized junction completion, H8 hero specializations and Neutral Magic.
+
+The deterministic audit trail is [research-2026-10-13-evidence.json](research-2026-10-13-evidence.json).
+The generated [research-import.sql](research-import.sql) contains 5,599 rows
+including dependencies. Existing databases need migrations through 0005 and
+`creature-tier-corrections.sql` before current imports.
+The human completion review is [COMPLETION.md](../reviews/2026-10-13/COMPLETION.md).
+The Oct 4 friend receipt remains historical evidence about that snapshot only.
 
 ## Earlier manual import and comparison
 
@@ -32,10 +62,11 @@ conflicts, and documented gaps, manual errors and naming variants. No existing
 non-null mechanic was replaced. The fan Heroes VIII proposal and mod manuals
 have metadata only; no authentic Heroes VII or Olden Era manual was found.
 
-On 2026-09-30, the [six-conflict query](manual-conflicts.review.sql) was run in
-the live **HeroesWatch.net** database through pgAdmin. It returned all six rows
-in 99 ms; every database value matched the retained catalog baseline. This
-confirms those six live values, not every field in the full comparison report.
+On 2026-09-30, the [six-conflict query](manual-conflicts.review.sql) was
+reported run in the then-current **HeroesWatch.net** database through pgAdmin.
+It returned all six rows in 99 ms; every database value matched the retained
+catalog baseline. This is historical evidence for those six values, not current
+deployment evidence or confirmation of every field in the comparison report.
 
 Sources and scope: [I–III](manual-homm1-3.sources.md),
 [IV–VI](manual-homm4-6.sources.md), [RPGs](manual-mm-rpg.sources.md),
@@ -44,9 +75,9 @@ and [per-row evidence](manual-content-evidence.json).
 
 ### Manual-batch PostgreSQL status
 
-The manual batch **committed successfully on 2026-10-04** through pgAdmin in
-**13.342 seconds**, during the deployment recorded above. It is included in the
-confirmed 40,023-row live catalog.
+The manual batch was **reported committed on 2026-10-04** through pgAdmin in
+**13.342 seconds**, during the historical delivery recorded above. It is part
+of that earlier 40,023-row snapshot; no current deployment is claimed here.
 
 [manual-import.sql](manual-import.sql) remains a **4.3 MB** catch-up subset
 containing 3,939 rows: the manual additions and enriched rows plus their foreign
@@ -58,7 +89,7 @@ pre-manual catalog forward; repeat application resolves existing rows.
 Both SQL files passed required JSON, relationship and ownership validation.
 The cumulative SQL's deterministic check passed. Current regression and isolated
 PostgreSQL results are recorded in the [touch-up review](TOUCHUPS_STATUS.md#schema-and-tests).
-The six live discrepancy checks above remain the evidence for the unresolved
+The six historical discrepancy checks above remain the evidence for the unresolved
 manual disagreements.
 
 ## Original requested catalog scope
@@ -92,7 +123,7 @@ mechanics and factions. HOMM8 is this repository's identifier for
 | V | 177 | 25 | 6 | 80 | 93 | 13 | 150 |
 | VI | 109 | Ability model | 7 | 89 | 224 | 11 | 101 |
 | VII | 156 | 24 | 7 | 70 | 224 | 11 | 141 |
-| Olden Era | 146 | 30 | 4 | 93 | 302 | 3 | 194 |
+| Olden Era | 146 | 30 | 5 | 93 | 302 | 3 | 194 |
 
 Heroes I and II do not have spell schools. Heroes VI progression uses its
 ability tree, represented by `AbilityHOMM6`, rather than invented conventional
@@ -133,6 +164,26 @@ unofficial content are excluded.
   the touch-up. Unsupported artifact classes
   in I/IV/VI/VII retain generic identities. The schema's ENUMs are not changed
   merely to force incomplete source values into detail tables.
+- Classic resource identity and H1-H5 membership/classification coverage now
+  includes seven `ResourceHOMM1To5` rows and the reviewed memberships. Optional
+  mine-yield, market-value, and map-pile fields remain NULL because they are
+  game/edition-dependent and were not normalized without a common primary
+  source.
+- Olden Era now has supported `GameHOMM8` and `CampaignHOMM8` rows plus the
+  reviewed creature-ability graph, but `ScenarioHOMM8`, `MapHOMM8`,
+  `MagicSchoolHOMM8`, `ResourceHOMM8`, `AstrologyHOMM8`, and `FactionLaw` detail
+  rows remain held. Exact law positions/source paths and the Astrology Insight
+  resource identity still need source/schema reconciliation. Neutral Magic is
+  now represented; unsupported negative flags are not asserted.
+- Heroes IV secondary-only ability tables remain held. No generic class-derived
+  abilities or HeroSkill rows are added without direct mechanic evidence.
+- Heroes VI/VII source/rank-dependent creature and class details remain held;
+  H7 warfare rank vectors, movement/footprint fields, and the 110 unverified
+  Hall flags are not replaced with defaults or false values.
+- `LoreFull` currently has 22 evidence-backed links (five Hero, twelve
+  Campaign, and five Faction); it has no current CampaignHero, Scenario, or Map
+  endpoint rows. The schema supports those paths, but current lore coverage does
+  not claim that all endpoint kinds are populated.
 - Spell and artifact identities are complete against the documented source
   rosters; many optional effect formulas, upgrade prices, perk prerequisites
   and historical balance variations remain unencoded. Source notes distinguish
@@ -221,10 +272,10 @@ Repeat-import and conflict tests used the 7,917-row catalog.
 
 ## Earlier PostgreSQL application
 
-On 2026-09-30, the cumulative **27,915-row import committed successfully** to
-the registered **HeroesWatch.net** database on PostgreSQL 18, through the
-user's authenticated pgAdmin session. The execution response was `COMMIT`
-and "Query returned successfully in 56 secs 581 msec."
+On 2026-09-30, the cumulative **27,915-row import was reported committed** to
+the registered **HeroesWatch.net** database on PostgreSQL 18 through the user's
+authenticated pgAdmin session. The recorded execution response was `COMMIT`
+and "Query returned successfully in 56 secs 581 msec." This remains historical.
 
 At that handoff, pgAdmin was open on `catalog.sql` and its successful result.
 No optional review queries, independent row comparison or test suite were run

@@ -81,6 +81,13 @@ Patch and does not establish unmodified game-file provenance. Archon/Embalmer
 focus labels also disagree between article text and category/skill information.
 The candidates are withheld; Hell Knight is absent from that table entirely.
 
+The following five creature identities were unresolved in the earlier extraction
+but are now resolved by this follow-up and are therefore excluded from the
+missing-field table below: **Radiant Glory, Seraph, Sun Crusader, and Shark Guard
+(Heroes VI), and Kraken (Heroes VII)**. Their evidence and chosen values remain
+documented above; this note does not claim that any other unresolved creature
+or class has been completed.
+
 ### Missing creature fields
 
 | Record | Required fields still unresolved |

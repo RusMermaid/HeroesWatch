@@ -1,0 +1,2092 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-13",
+  "scope": "Primary-manual-backed H1/H2 creature ability identities and CreatureAbility junctions. No ordinary attacks are modeled as abilities; all descriptive codes are project codes, not native game IDs.",
+  "policy": "No cumulative JSON, schema, generated SQL, or live database was edited. Ability effects remain NULL because the current JSON contract reserves AbilityHOMM1.Effect, AbilityHOMM2.Effect, and CreatureAbility.Parameters; source-proven mechanics are retained in canonical Ability.Description and junction evidence.",
+  "additions": [
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.double.attack",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_DOUBLE_ATTACK",
+        "Name": "Double Attack",
+        "Description": "Attacks twice per round.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Attacks twice per round."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.regeneration",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_REGENERATION",
+        "Name": "Regeneration",
+        "Description": "Regenerates lost damage between turns.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Regenerates lost damage between turns."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.paralyzing.attack",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_PARALYZING_ATTACK",
+        "Name": "Paralyzing Attack",
+        "Description": "Has a 20% chance to paralyze the target.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Has a 20% chance to paralyze the target."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.two.space.attack",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_TWO_SPACE_ATTACK",
+        "Name": "Two-Space Attack",
+        "Description": "The attack spans two spaces and can damage a unit behind the primary target.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: The attack spans two spaces and can damage a unit behind the primary target."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.no.retaliation",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_NO_RETALIATION",
+        "Name": "No Retaliation",
+        "Description": "Creatures attacked by this creature cannot retaliate.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Creatures attacked by this creature cannot retaliate."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.magic.resistance",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_MAGIC_RESISTANCE",
+        "Name": "Magic Resistance",
+        "Description": "Has 25% magic resistance.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Has 25% magic resistance."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.double.shot",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_DOUBLE_SHOT",
+        "Name": "Double Shot",
+        "Description": "Fires two shots per round.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Fires two shots per round."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.blinding.attack",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_BLINDING_ATTACK",
+        "Name": "Blinding Attack",
+        "Description": "Has a 20% chance to blind the enemy creature.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Has a 20% chance to blind the enemy creature."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.unlimited.retaliation",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_UNLIMITED_RETALIATION",
+        "Name": "Unlimited Retaliation",
+        "Description": "Can retaliate against any number of attackers per turn.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Can retaliate against any number of attackers per turn."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.spell.immunity",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_SPELL_IMMUNITY",
+        "Name": "Spell Immunity",
+        "Description": "Is immune to spells.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Is immune to spells."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.half.stack",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_HALF_STACK",
+        "Name": "Half-Stack Effect",
+        "Description": "Has a 10% chance to halve the size of an enemy group.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Has a 10% chance to halve the size of an enemy group."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm1.ability.ghost.creation",
+        "Game_id": "homm1.game",
+        "Code": "SPECIAL_GHOST_CREATION",
+        "Name": "Ghost Creation",
+        "Description": "Each creature killed by a Ghost creates a Ghost.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Canonical descriptive ability identity: Each creature killed by a Ghost creates a Ghost."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.wolf.double.attack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.wolf",
+        "Ability_id": "homm1.ability.double.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Wolf attacks twice per round."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.troll.regeneration",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.troll",
+        "Ability_id": "homm1.ability.regeneration",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Troll regenerates lost damage between turns."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.cyclops.paralyzing.attack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.cyclops",
+        "Ability_id": "homm1.ability.paralyzing.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Cyclops has a 20% paralyzation chance."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.cyclops.two.space.attack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.cyclops",
+        "Ability_id": "homm1.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Cyclops attack spans two spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.paladin.double.attack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.paladin",
+        "Ability_id": "homm1.ability.double.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Paladin attacks twice per round."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.sprite.no.retaliation",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.sprite",
+        "Ability_id": "homm1.ability.no.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Sprite prevents retaliation."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.dwarf.magic.resistance",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.dwarf",
+        "Ability_id": "homm1.ability.magic.resistance",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Dwarf has 25% magic resistance."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.elf.double.shot",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.elf",
+        "Ability_id": "homm1.ability.double.shot",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Elf fires two shots per round."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.unicorn.blinding.attack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.unicorn",
+        "Ability_id": "homm1.ability.blinding.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Unicorn has a 20% chance to blind."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.phoenix.two.space.attack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.phoenix",
+        "Ability_id": "homm1.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Phoenix attack spans two spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.griffin.unlimited.retaliation",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.griffin",
+        "Ability_id": "homm1.ability.unlimited.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Griffin can retaliate without a per-turn limit."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.hydra.two.space.attack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.hydra",
+        "Ability_id": "homm1.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Hydra attacks all adjacent spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.hydra.no.retaliation",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.hydra",
+        "Ability_id": "homm1.ability.no.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Hydra prevents retaliation."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.dragon.two.space.attack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.dragon",
+        "Ability_id": "homm1.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Dragon attack spans two spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.dragon.spell.immunity",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.dragon",
+        "Ability_id": "homm1.ability.spell.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Dragon is immune to spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.rogue.no.retaliation",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.rogue",
+        "Ability_id": "homm1.ability.no.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Rogue prevents retaliation."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.genie.half.stack",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.genie",
+        "Ability_id": "homm1.ability.half.stack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Genie has a 10% chance to halve an enemy group."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm1.creatureability.ghost.ghost.creation",
+        "Game_id": "homm1.game",
+        "Creature_id": "homm1.creature.ghost",
+        "Ability_id": "homm1.ability.ghost.creation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h1_official_manual",
+        "locator": "New World Computing/3DO official Heroes of Might and Magic user manual, PDF pages 82-88 (creature tables) and PDF p.50 (combat rules)",
+        "claim": "Each creature killed by a Ghost creates a Ghost."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.double.attack",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_DOUBLE_ATTACK",
+        "Name": "Double Attack",
+        "Description": "Attacks twice per round.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Attacks twice per round."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.regeneration",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_REGENERATION",
+        "Name": "Regeneration",
+        "Description": "Regenerates lost damage between turns.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Regenerates lost damage between turns."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.paralyzing.attack",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_PARALYZING_ATTACK",
+        "Name": "Paralyzing Attack",
+        "Description": "Has a 20% chance to paralyze the target.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Has a 20% chance to paralyze the target."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.two.space.attack",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_TWO_SPACE_ATTACK",
+        "Name": "Two-Space Attack",
+        "Description": "The attack affects two hexes/spaces.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: The attack affects two hexes/spaces."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.no.retaliation",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_NO_RETALIATION",
+        "Name": "No Retaliation",
+        "Description": "Creatures attacked by this creature cannot retaliate.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Creatures attacked by this creature cannot retaliate."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.curse.immunity",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_CURSE_IMMUNITY",
+        "Name": "Curse Immunity",
+        "Description": "Is immune to Curse.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is immune to Curse."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.double.damage.undead",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_DOUBLE_DAMAGE_UNDEAD",
+        "Name": "Double Damage vs Undead",
+        "Description": "Deals double damage against undead.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Deals double damage against undead."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.undead",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_UNDEAD",
+        "Name": "Undead",
+        "Description": "Is undead: immune to mind-affecting spells, Bless, and Curse, with neutral morale.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is undead: immune to mind-affecting spells, Bless, and Curse, with neutral morale."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.curse.chance.20",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_CURSE_CHANCE_20",
+        "Name": "Curse Chance 20%",
+        "Description": "Has a 20% chance to curse an enemy creature after attacking.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Has a 20% chance to curse an enemy creature after attacking."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.curse.chance.30",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_CURSE_CHANCE_30",
+        "Name": "Curse Chance 30%",
+        "Description": "Has a 30% chance to curse an enemy creature after attacking.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Has a 30% chance to curse an enemy creature after attacking."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.life.drain",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_LIFE_DRAIN",
+        "Name": "Life Drain",
+        "Description": "Restores hit points from inflicted damage; the upgraded unit can resurrect its own stack using recovered hit points.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Restores hit points from inflicted damage; the upgraded unit can resurrect its own stack using recovered hit points."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.death.cloud",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_DEATH_CLOUD",
+        "Name": "Death Cloud",
+        "Description": "The ranged attack also affects adjacent hexes.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: The ranged attack also affects adjacent hexes."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.morale.reduction",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_MORALE_REDUCTION",
+        "Name": "Morale Reduction",
+        "Description": "Lowers the morale of opposing creatures.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Lowers the morale of opposing creatures."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.magic.resistance",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_MAGIC_RESISTANCE",
+        "Name": "Magic Resistance",
+        "Description": "Has 25% magic resistance.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Has 25% magic resistance."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.double.shot",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_DOUBLE_SHOT",
+        "Name": "Double Shot",
+        "Description": "Fires two shots per round.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Fires two shots per round."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.blinding.attack",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_BLINDING_ATTACK",
+        "Name": "Blinding Attack",
+        "Description": "Has a 20% chance to blind the enemy creature.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Has a 20% chance to blind the enemy creature."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.elemental.spell.immunity",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_ELEMENTAL_SPELL_IMMUNITY",
+        "Name": "Elemental Spell Immunity",
+        "Description": "Is immune to elemental spells.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is immune to elemental spells."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.unlimited.retaliation",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_UNLIMITED_RETALIATION",
+        "Name": "Unlimited Retaliation",
+        "Description": "Can retaliate against any number of attackers per turn.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Can retaliate against any number of attackers per turn."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.spell.immunity",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_SPELL_IMMUNITY",
+        "Name": "Spell Immunity",
+        "Description": "Is immune to spells.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is immune to spells."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.no.adjacent.penalty",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_NO_ADJACENT_PENALTY",
+        "Name": "No Adjacent Penalty",
+        "Description": "Does not suffer the normal ranged-attack penalty against adjacent units.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Does not suffer the normal ranged-attack penalty against adjacent units."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.dispel.beneficial",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_DISPEL_BENEFICIAL_20",
+        "Name": "Dispel Beneficial Effects 20%",
+        "Description": "Has a 20% chance to dispel beneficial spells on the target.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Has a 20% chance to dispel beneficial spells on the target."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.mind.immunity",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_MIND_IMMUNITY",
+        "Name": "Mind-Magic Immunity",
+        "Description": "Is immune to mind-affecting spells.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is immune to mind-affecting spells."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.half.stack",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_HALF_STACK",
+        "Name": "Half-Stack Effect",
+        "Description": "Has a 10% chance to halve the size of an enemy group.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Has a 10% chance to halve the size of an enemy group."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.petrify.20",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_PETRIFY_20",
+        "Name": "Petrify Chance 20%",
+        "Description": "Has a 20% chance to turn the target to stone for the combat.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Has a 20% chance to turn the target to stone for the combat."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.neutral.morale",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_NEUTRAL_MORALE",
+        "Name": "Neutral Morale",
+        "Description": "Always has neutral morale.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Always has neutral morale."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.air.meteor.immunity",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_AIR_METEOR_IMMUNITY",
+        "Name": "Air Elemental Meteor Immunity",
+        "Description": "Is immune to Meteor Shower.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is immune to Meteor Shower."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.air.storm.lightning.vulnerability",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_AIR_STORM_LIGHTNING_VULNERABILITY",
+        "Name": "Air Elemental Storm/Lightning Vulnerability",
+        "Description": "Takes double damage from Storm and Lightning Bolt.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Takes double damage from Storm and Lightning Bolt."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.earth.lightning.storm.immunity",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_EARTH_LIGHTNING_STORM_IMMUNITY",
+        "Name": "Earth Elemental Lightning/Storm Immunity",
+        "Description": "Is immune to Lightning Bolt and Storm.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is immune to Lightning Bolt and Storm."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.earth.meteor.vulnerability",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_EARTH_METEOR_VULNERABILITY",
+        "Name": "Earth Elemental Meteor Vulnerability",
+        "Description": "Takes double damage from Meteor Shower.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Takes double damage from Meteor Shower."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.fire.spell.immunity",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_FIRE_SPELL_IMMUNITY",
+        "Name": "Fire Elemental Fire Immunity",
+        "Description": "Is immune to fire spells.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is immune to fire spells."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.fire.cold.vulnerability",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_FIRE_COLD_VULNERABILITY",
+        "Name": "Fire Elemental Cold Vulnerability",
+        "Description": "Takes double damage from cold spells.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Takes double damage from cold spells."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.water.spell.immunity",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_WATER_SPELL_IMMUNITY",
+        "Name": "Water Elemental Cold Immunity",
+        "Description": "Is immune to cold spells.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Is immune to cold spells."
+      }
+    },
+    {
+      "table": "Ability",
+      "row": {
+        "_key": "homm2.ability.water.fire.vulnerability",
+        "Game_id": "homm2.game",
+        "Code": "SPECIAL_WATER_FIRE_VULNERABILITY",
+        "Name": "Water Elemental Fire Vulnerability",
+        "Description": "Takes double damage from fire spells.",
+        "MediaAsset_id": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Canonical descriptive ability identity: Takes double damage from fire spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.wolf.double.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.wolf",
+        "Ability_id": "homm2.ability.double.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Wolf attacks twice per round."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.troll.regeneration",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.troll",
+        "Ability_id": "homm2.ability.regeneration",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Troll regenerates lost damage between turns."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.war.troll.regeneration",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.war.troll",
+        "Ability_id": "homm2.ability.regeneration",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "War Troll regenerates lost damage between turns."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.cyclops.paralyzing.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.cyclops",
+        "Ability_id": "homm2.ability.paralyzing.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Cyclops has a 20% paralyzation chance."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.cyclops.two.space.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.cyclops",
+        "Ability_id": "homm2.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Cyclops attack affects two spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.paladin.double.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.paladin",
+        "Ability_id": "homm2.ability.double.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Paladin attacks twice per round."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.crusader.double.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.crusader",
+        "Ability_id": "homm2.ability.double.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Crusader attacks twice per round."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.crusader.curse.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.crusader",
+        "Ability_id": "homm2.ability.curse.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Crusader is immune to Curse."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.crusader.double.damage.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.crusader",
+        "Ability_id": "homm2.ability.double.damage.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Crusader deals double damage to undead."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.skeleton.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.skeleton",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.zombie.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.zombie",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.mutant.zombie.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.mutant.zombie",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.mummy.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.mummy",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.royal.mummy.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.royal.mummy",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.vampire.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.vampire",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.vampire.lord.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.vampire.lord",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.lich.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.lich",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.power.lich.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.power.lich",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.bone.dragon.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.bone.dragon",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.ghost.undead",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.ghost",
+        "Ability_id": "homm2.ability.undead",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Necromancer units and Ghost are undead and have neutral morale plus the documented immunities."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.mummy.curse.chance.20",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.mummy",
+        "Ability_id": "homm2.ability.curse.chance.20",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Mummy has a 20% chance to curse."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.royal.mummy.curse.chance.30",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.royal.mummy",
+        "Ability_id": "homm2.ability.curse.chance.30",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Royal Mummy has a 30% chance to curse."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.vampire.no.retaliation",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.vampire",
+        "Ability_id": "homm2.ability.no.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Vampire prevents retaliation."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.vampire.lord.no.retaliation",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.vampire.lord",
+        "Ability_id": "homm2.ability.no.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Vampire Lord prevents retaliation."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.vampire.lord.life.drain",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.vampire.lord",
+        "Ability_id": "homm2.ability.life.drain",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Vampire Lord regains hit points from inflicted damage."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.lich.death.cloud",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.lich",
+        "Ability_id": "homm2.ability.death.cloud",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Lich ranged attack affects adjacent hexes."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.power.lich.death.cloud",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.power.lich",
+        "Ability_id": "homm2.ability.death.cloud",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Power Lich ranged attack affects adjacent hexes."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.bone.dragon.morale.reduction",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.bone.dragon",
+        "Ability_id": "homm2.ability.morale.reduction",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Bone Dragon lowers opposing morale."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.sprite.no.retaliation",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.sprite",
+        "Ability_id": "homm2.ability.no.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Sprite prevents retaliation."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.dwarf.magic.resistance",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.dwarf",
+        "Ability_id": "homm2.ability.magic.resistance",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Dwarf has 25% magic resistance."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.elf.double.shot",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.elf",
+        "Ability_id": "homm2.ability.double.shot",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elf fires two shots per round."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.grand.elf.double.shot",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.grand.elf",
+        "Ability_id": "homm2.ability.double.shot",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Grand Elf fires two shots per round."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.unicorn.blinding.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.unicorn",
+        "Ability_id": "homm2.ability.blinding.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Unicorn has a 20% chance to blind."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.phoenix.two.space.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.phoenix",
+        "Ability_id": "homm2.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Phoenix attack affects two spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.phoenix.elemental.spell.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.phoenix",
+        "Ability_id": "homm2.ability.elemental.spell.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Phoenix is immune to elemental spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.griffin.unlimited.retaliation",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.griffin",
+        "Ability_id": "homm2.ability.unlimited.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Griffin can retaliate without a per-turn limit."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.hydra.two.space.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.hydra",
+        "Ability_id": "homm2.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Hydra attacks all adjacent spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.hydra.no.retaliation",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.hydra",
+        "Ability_id": "homm2.ability.no.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Hydra prevents retaliation."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.green.dragon.two.space.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.green.dragon",
+        "Ability_id": "homm2.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Dragon attack affects two spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.green.dragon.spell.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.green.dragon",
+        "Ability_id": "homm2.ability.spell.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Dragon is immune to spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.red.dragon.two.space.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.red.dragon",
+        "Ability_id": "homm2.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Dragon attack affects two spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.red.dragon.spell.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.red.dragon",
+        "Ability_id": "homm2.ability.spell.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Dragon is immune to spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.black.dragon.two.space.attack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.black.dragon",
+        "Ability_id": "homm2.ability.two.space.attack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Dragon attack affects two spaces."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.black.dragon.spell.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.black.dragon",
+        "Ability_id": "homm2.ability.spell.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Dragon is immune to spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.mage.no.adjacent.penalty",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.mage",
+        "Ability_id": "homm2.ability.no.adjacent.penalty",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Mage has no adjacent ranged-attack penalty."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.archmage.no.adjacent.penalty",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.archmage",
+        "Ability_id": "homm2.ability.no.adjacent.penalty",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Archmage has no adjacent ranged-attack penalty."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.archmage.dispel.beneficial",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.archmage",
+        "Ability_id": "homm2.ability.dispel.beneficial",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Archmage has a 20% chance to dispel beneficial spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.giant.mind.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.giant",
+        "Ability_id": "homm2.ability.mind.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Giant is immune to mind-affecting spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.titan.mind.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.titan",
+        "Ability_id": "homm2.ability.mind.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Titan is immune to mind-affecting spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.titan.no.adjacent.penalty",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.titan",
+        "Ability_id": "homm2.ability.no.adjacent.penalty",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Titan has no adjacent ranged-attack penalty."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.rogue.no.retaliation",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.rogue",
+        "Ability_id": "homm2.ability.no.retaliation",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Rogue prevents retaliation."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.genie.half.stack",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.genie",
+        "Ability_id": "homm2.ability.half.stack",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Genie has a 10% chance to halve an enemy group."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.medusa.petrify.20",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.medusa",
+        "Ability_id": "homm2.ability.petrify.20",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Medusa has a 20% chance to turn the target to stone."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.air.elemental.mind.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.air.elemental",
+        "Ability_id": "homm2.ability.mind.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elementals are immune to mind-affecting spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.air.elemental.neutral.morale",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.air.elemental",
+        "Ability_id": "homm2.ability.neutral.morale",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elementals have neutral morale."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.earth.elemental.mind.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.earth.elemental",
+        "Ability_id": "homm2.ability.mind.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elementals are immune to mind-affecting spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.earth.elemental.neutral.morale",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.earth.elemental",
+        "Ability_id": "homm2.ability.neutral.morale",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elementals have neutral morale."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.fire.elemental.mind.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.fire.elemental",
+        "Ability_id": "homm2.ability.mind.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elementals are immune to mind-affecting spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.fire.elemental.neutral.morale",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.fire.elemental",
+        "Ability_id": "homm2.ability.neutral.morale",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elementals have neutral morale."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.water.elemental.mind.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.water.elemental",
+        "Ability_id": "homm2.ability.mind.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elementals are immune to mind-affecting spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.water.elemental.neutral.morale",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.water.elemental",
+        "Ability_id": "homm2.ability.neutral.morale",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Elementals have neutral morale."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.air.elemental.air.meteor.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.air.elemental",
+        "Ability_id": "homm2.ability.air.meteor.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Air Elemental is immune to Meteor Shower."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.air.elemental.air.storm.lightning.vulnerability",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.air.elemental",
+        "Ability_id": "homm2.ability.air.storm.lightning.vulnerability",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Air Elemental takes double damage from Storm and Lightning Bolt."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.earth.elemental.earth.lightning.storm.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.earth.elemental",
+        "Ability_id": "homm2.ability.earth.lightning.storm.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Earth Elemental is immune to Lightning Bolt and Storm."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.earth.elemental.earth.meteor.vulnerability",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.earth.elemental",
+        "Ability_id": "homm2.ability.earth.meteor.vulnerability",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Earth Elemental takes double damage from Meteor Shower."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.fire.elemental.fire.spell.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.fire.elemental",
+        "Ability_id": "homm2.ability.fire.spell.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Fire Elemental is immune to fire spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.fire.elemental.fire.cold.vulnerability",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.fire.elemental",
+        "Ability_id": "homm2.ability.fire.cold.vulnerability",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Fire Elemental takes double damage from cold spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.water.elemental.water.spell.immunity",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.water.elemental",
+        "Ability_id": "homm2.ability.water.spell.immunity",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Water Elemental is immune to cold spells."
+      }
+    },
+    {
+      "table": "CreatureAbility",
+      "row": {
+        "_key": "homm2.creatureability.water.elemental.water.fire.vulnerability",
+        "Game_id": "homm2.game",
+        "Creature_id": "homm2.creature.water.elemental",
+        "Ability_id": "homm2.ability.water.fire.vulnerability",
+        "Parameters": null
+      },
+      "evidence": {
+        "sourceId": "h2_official_manual",
+        "locator": "3DO official Heroes II Gold manual, printed pages 77-92 / PDF pages 78-93, creature tables",
+        "claim": "Water Elemental takes double damage from fire spells."
+      }
+    }
+  ],
+  "fills": [],
+  "sources": [
+    {
+      "id": "h1-official-manual",
+      "kind": "primary_official_manual",
+      "accessed": "2026-10-13",
+      "urls": [
+        "https://retrogamer.biz/wp-content/uploads/2015/10/Heroes_of_Might_and_Magic_-_Manual_-_PC.pdf",
+        "https://www.bestoldgames.net/download/games/heroes-of-might-and-magic/heroes-of-might-and-magic-manual.pdf"
+      ],
+      "locators": [
+        "PDF pp.82-88, creature tables",
+        "PDF p.50, combat exceptions"
+      ],
+      "supports": [
+        "Wolf attacks twice; Troll regenerates; Cyclops paralyzes and attacks two spaces; Paladin attacks twice; Sprite/Rogue/Hydra prevent retaliation; Dwarf has 25% magic resistance; Elf fires two shots; Unicorn blinds; Phoenix and Dragon attack two spaces; Griffin unlimited retaliation; Dragon spell immunity; Genie halves an enemy group 10%; Ghost creates a Ghost for each creature killed."
+      ]
+    },
+    {
+      "id": "h2-official-manual",
+      "kind": "primary_official_manual",
+      "accessed": "2026-10-13",
+      "urls": [
+        "https://www.scribd.com/document/176070062/Heroes-of-Might-Magic-2-Manual-UK",
+        "https://manualmachine.com/gamespc/heroesofmightandmagicii/1118154-user-manual/",
+        "https://oldgamesdownload.com/manual/heroes-of-might-and-magic-ii-dos-manual-english/"
+      ],
+      "locators": [
+        "printed pp.77-92 / PDF pp.78-93",
+        "Necromancer pp.78-80; Sorceress pp.81-83; Warlock pp.84-86; Wizard pp.87-89; Neutral pp.90-92"
+      ],
+      "supports": [
+        "Primary manual tables explicitly describe the H2 mechanics represented in this patch, including undead scope, curse chances, life drain, death cloud, elemental immunities/vulnerabilities, and special attacks."
+      ]
+    },
+    {
+      "id": "h1-h2-source-registry",
+      "kind": "repository_source_registry",
+      "accessed": "2026-10-13",
+      "locators": [
+        "src/db/data/manual-inventory.json",
+        "src/db/data/manual-homm1-3.sources.md"
+      ],
+      "supports": [
+        "The user-supplied H1/H2 official manuals are registered as manual.c1d7c0b2da69 and manual.a99f53fdd378; retained observations identify the editions and page scope."
+      ]
+    },
+    {
+      "id": "h1-h2-json-contract-boundary",
+      "kind": "repository_contract",
+      "accessed": "2026-10-13",
+      "locators": [
+        "src/db/tools/json-contracts.mjs:250-260"
+      ],
+      "supports": [
+        "AbilityHOMM1.Effect, AbilityHOMM2.Effect, and CreatureAbility.Parameters are reserved JSON contracts; NULL is the only safe value until a structured mechanic schema is approved."
+      ]
+    }
+  ]
+}

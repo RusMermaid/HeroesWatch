@@ -136,6 +136,11 @@ register("SpellHOMM4.Effect", object({
 register("SpellHOMM7.EffectByMastery", object(fields("Unskilled Novice Expert Master", object({ formula: text }, ["formula"])),
   ["Unskilled", "Novice", "Expert", "Master"]));
 register("TerrainHOMM3.Effect", object({ rulesText: text }, ["rulesText"]));
+const nativeTerrainCombatDelta = { type: "integer", minimum: -100, maximum: 100 };
+register("FactionNativeTerrainHOMM5.CombatBonus", object({
+  attack: nativeTerrainCombatDelta,
+  defense: nativeTerrainCombatDelta,
+}, ["attack", "defense"]));
 // Campaign branching keeps native story counters as scalar predicates. Catalog
 // endpoint identities remain in the surrounding relational fields.
 const campaignCondition = object({
@@ -154,6 +159,77 @@ register("CampaignScenario.AvailabilityCondition ScenarioConnection.Condition", 
 
 // Shared structural profiles: these describe catalog payloads, not game facts.
 const key = { type: "string", minLength: 1, maxLength: 256, pattern: "^[A-Za-z0-9_.:-]+$" };
+const homm3NativeRef = (keyName) => object({ nativeId: natural, [keyName]: key }, ["nativeId", keyName]);
+const homm3HeroTarget = { anyOf: [
+  object({ nativeId: natural, heroKey: key }, ["nativeId", "heroKey"]),
+  object({ nativeId: integer, selector: enumeration("Strongest", "Generated", "Random") }, ["nativeId", "selector"]),
+] };
+const homm3PlayerColor = object({ nativeId: { type: "integer", minimum: 0, maximum: 7 },
+  name: enumeration("Red", "Blue", "Tan", "Green", "Orange", "Purple", "Teal", "Pink") }, ["nativeId", "name"]);
+const homm3BonusChoice = { anyOf: [
+  object({ kind: enumeration("Spell"), hero: homm3HeroTarget, spell: homm3NativeRef("spellKey") }, ["kind", "hero", "spell"]),
+  object({ kind: enumeration("Creature"), hero: homm3HeroTarget, creature: homm3NativeRef("creatureKey"), amount: positive }, ["kind", "hero", "creature", "amount"]),
+  object({ kind: enumeration("Building"), nativeId: natural, buildingKind: enumeration(
+    "MageGuild1", "MageGuild2", "MageGuild3", "MageGuild4", "MageGuild5", "Tavern", "Shipyard", "Fort", "Citadel", "Castle",
+    "VillageHall", "TownHall", "CityHall", "Capitol", "Marketplace", "ResourceSilo", "Blacksmith", "Special1", "Horde1", "Horde1Upgrade",
+    "Ship", "Special2", "Special3", "Special4", "Horde2", "Horde2Upgrade", "Grail", "ExtraTownHall", "ExtraCityHall", "ExtraCapitol",
+    "Dwelling1", "Dwelling2", "Dwelling3", "Dwelling4", "Dwelling5", "Dwelling6", "Dwelling7",
+    "UpgradedDwelling1", "UpgradedDwelling2", "UpgradedDwelling3", "UpgradedDwelling4", "UpgradedDwelling5", "UpgradedDwelling6", "UpgradedDwelling7") },
+  ["kind", "nativeId", "buildingKind"]),
+  object({ kind: enumeration("Artifact"), hero: homm3HeroTarget, artifact: homm3NativeRef("artifactKey") }, ["kind", "hero", "artifact"]),
+  object({ kind: enumeration("SpellScroll"), hero: homm3HeroTarget, spell: homm3NativeRef("spellKey") }, ["kind", "hero", "spell"]),
+  object({ kind: enumeration("PrimarySkill"), hero: homm3HeroTarget,
+    attack: natural, defense: natural, spellPower: natural, knowledge: natural },
+  ["kind", "hero", "attack", "defense", "spellPower", "knowledge"]),
+  object({ kind: enumeration("SecondarySkill"), hero: homm3HeroTarget, skill: homm3NativeRef("skillKey"),
+    mastery: enumeration("Basic", "Advanced", "Expert") }, ["kind", "hero", "skill", "mastery"]),
+  object({ kind: enumeration("Resource"), nativeId: integer,
+    resourceKeys: { ...array(key, 4), uniqueItems: true }, amount: positive }, ["kind", "nativeId", "resourceKeys", "amount"]),
+] };
+const homm3PreviousHeroChoice = object({ kind: enumeration("PreviousScenarioHero"), playerColor: homm3PlayerColor,
+  nativeRegionIndex: natural, scenarioKey: key }, ["kind", "playerColor", "nativeRegionIndex", "scenarioKey"]);
+const homm3HeroChoice = object({ kind: enumeration("Hero"), playerColor: homm3PlayerColor, hero: homm3HeroTarget },
+  ["kind", "playerColor", "hero"]);
+register("ScenarioHOMM3.CarryoverRules", object({
+  nativeKeepsMask: { type: "integer", minimum: 0, maximum: 31 },
+  heroKeeps: { type: "array", items: enumeration("Experience", "PrimarySkills", "SecondarySkills", "Spells", "Artifacts"), maxItems: 5, uniqueItems: true },
+  keptCreatureTypes: { type: "array", items: homm3NativeRef("creatureKey"), maxItems: 152, uniqueItems: true },
+  keptArtifactTypes: { type: "array", items: homm3NativeRef("artifactKey"), maxItems: 144, uniqueItems: true },
+}, ["nativeKeepsMask", "heroKeeps", "keptCreatureTypes", "keptArtifactTypes"]));
+register("ScenarioHOMM3.StartingBonuses", { anyOf: [
+  object({ selectionMode: enumeration("BonusChoices"), playerColor: homm3PlayerColor, choices: array(homm3BonusChoice, 16) },
+    ["selectionMode", "playerColor", "choices"]),
+  object({ selectionMode: enumeration("HeroCrossover"), choices: array(homm3PreviousHeroChoice, 16) }, ["selectionMode", "choices"]),
+  object({ selectionMode: enumeration("HeroChoices"), choices: array(homm3HeroChoice, 16) }, ["selectionMode", "choices"]),
+] });
+const homm3MapPosition = object({ x: { type: "integer", minimum: 0, maximum: 255 },
+  y: { type: "integer", minimum: 0, maximum: 255 }, level: { type: "integer", minimum: 0, maximum: 255 } }, ["x", "y", "level"]);
+const homm3VictoryFlags = { allowNormalVictory: boolean, appliesToAI: boolean };
+register("ScenarioHOMM3.VictoryConditions", { anyOf: [
+  object({ kind: enumeration("Standard") }, ["kind"]),
+  object({ kind: enumeration("AcquireArtifact"), ...homm3VictoryFlags, artifact: homm3NativeRef("artifactKey") },
+    ["kind", "allowNormalVictory", "appliesToAI", "artifact"]),
+  object({ kind: enumeration("AccumulateCreatures"), ...homm3VictoryFlags, creature: homm3NativeRef("creatureKey"), amount: positive },
+    ["kind", "allowNormalVictory", "appliesToAI", "creature", "amount"]),
+  object({ kind: enumeration("AccumulateResources"), ...homm3VictoryFlags, nativeResourceId: integer,
+    resourceKeys: { ...array(key, 4), uniqueItems: true }, amount: positive },
+    ["kind", "allowNormalVictory", "appliesToAI", "nativeResourceId", "resourceKeys", "amount"]),
+  object({ kind: enumeration("BuildTown"), ...homm3VictoryFlags, position: homm3MapPosition,
+    hallLevelNativeId: { type: "integer", minimum: 0, maximum: 3 }, fortificationLevelNativeId: { type: "integer", minimum: 0, maximum: 2 } },
+    ["kind", "allowNormalVictory", "appliesToAI", "position", "hallLevelNativeId", "fortificationLevelNativeId"]),
+  object({ kind: enumeration("BuildGrail", "DefeatHero", "CaptureTown", "DefeatMonster"), ...homm3VictoryFlags,
+    position: homm3MapPosition }, ["kind", "allowNormalVictory", "appliesToAI", "position"]),
+  object({ kind: enumeration("ControlAllDwellings", "ControlAllMines"), ...homm3VictoryFlags },
+    ["kind", "allowNormalVictory", "appliesToAI"]),
+  object({ kind: enumeration("TransportArtifact"), ...homm3VictoryFlags, artifact: homm3NativeRef("artifactKey"),
+    position: homm3MapPosition }, ["kind", "allowNormalVictory", "appliesToAI", "artifact", "position"]),
+] });
+const homm3SpecialLoss = { anyOf: [
+  object({ kind: enumeration("LoseTown", "LoseHero"), position: homm3MapPosition }, ["kind", "position"]),
+  object({ kind: enumeration("TimeExpires"), days: positive }, ["kind", "days"]),
+] };
+register("ScenarioHOMM3.LossConditions", object({ standardDaysWithoutTown: positive,
+  special: nullable(homm3SpecialLoss) }, ["standardDaysWithoutTown", "special"]));
 const stack = object({ creatureKey: key, count: natural, minimum: natural, maximum: natural }, ["creatureKey"]);
 register("HeroClassHOMM1.StartingArmy HeroClassHOMM2.StartingArmy HeroHOMM3.StartingArmy HeroHOMM5.StartingArmy HeroHOMM6.StartingArmy HeroHOMM7.StartingArmy", array(stack, 16));
 register("AdventureObjectHOMM1.Guards AdventureObjectHOMM2.Guards AdventureObjectHOMM3.Guards AdventureObjectHOMM4.Guards AdventureObjectHOMM5.Guards", array(stack, 16));
@@ -179,11 +255,11 @@ register(`AbilityHOMM1.Effect AbilityHOMM2.Effect AbilityHOMM3.Effect AbilityHOM
   BuildingHOMM1.Effect BuildingHOMM2.Requirements BuildingHOMM3.Requirements BuildingHOMM5.Effect BuildingHOMM6.Effect BuildingHOMM7.Effect BuildingRequirement.Condition
   CampaignHOMM1.WarlordSelection CampaignHOMM1.CarryoverRules CampaignHOMM1.RatingRule CampaignHOMM2.SelectableBonuses CampaignHOMM2.CampaignAwards
   CampaignHOMM2.CarryoverRules CampaignHOMM4.CarryoverRules CampaignHOMM4.SelectableBonuses CreatureAbility.Parameters
-  FactionHOMM5.TownMechanic FactionNativeTerrainHOMM5.CombatBonus HeroClassHOMM1.PrimarySkillChances HeroClassHOMM2.StartingSkills
+  FactionHOMM5.TownMechanic HeroClassHOMM1.PrimarySkillChances HeroClassHOMM2.StartingSkills
   HeroClassHOMM4.StartingSkills HeroClassHOMM4.SkillWeights HeroClassHOMM4.StartingCombatStats HeroClassHOMM5.SkillWeights HeroClassHOMM7.SkillWeights
   HeroHOMM3.SpecialtyEffect HeroHOMM5.SpecialtyEffect HeroHOMM6.SpecialtyEffect MapHOMM8.TemplateDefinition Patch.Changes
   ScenarioHOMM1.VictoryConditions ScenarioHOMM1.LossConditions ScenarioHOMM1.StartingState ScenarioHOMM2.VictoryConditions ScenarioHOMM2.LossConditions ScenarioHOMM2.StartingBonuses
-  ScenarioHOMM3.VictoryConditions ScenarioHOMM3.LossConditions ScenarioHOMM3.StartingBonuses ScenarioHOMM3.CarryoverRules ScenarioHOMM4.VictoryConditions ScenarioHOMM4.LossConditions ScenarioHOMM4.CarryoverRules
+  ScenarioHOMM4.VictoryConditions ScenarioHOMM4.LossConditions ScenarioHOMM4.CarryoverRules
   ScenarioHOMM5.VictoryConditions ScenarioHOMM5.LossConditions ScenarioHOMM5.StartingState ScenarioHOMM5.CarryoverRules ScenarioHOMM6.VictoryConditions ScenarioHOMM6.LossConditions
   ScenarioHOMM6.StartingState ScenarioHOMM6.CarryoverRules ScenarioHOMM7.VictoryConditions ScenarioHOMM7.LossConditions ScenarioHOMM7.StartingState ScenarioHOMM7.CarryoverRules
   ScenarioHOMM8.Scripts Screenshot.Subjects SkillHOMM7.EffectByMastery SpellHOMM1.Formula SpellHOMM5.EffectByMastery
@@ -193,6 +269,25 @@ export function jsonColumnSchema(tableName, columnName) {
   const name = `${tableName}.${columnName}`;
   if (!Object.hasOwn(contracts, name)) throw new Error(`No JSON contract registered for ${name}`);
   return structuredClone(contracts[name]);
+}
+
+// PostgreSQL's UTF8 encoding accepts every Unicode scalar value, but PostgreSQL
+// text and JSONB cannot contain U+0000. JavaScript also permits lone UTF-16
+// surrogate code units; Node would silently encode those as U+FFFD while writing
+// generated SQL, changing reviewed content. Reject both cases before generation.
+export function validatePostgresText(value, at = "value") {
+  if (value.includes("\0")) return `${at} must not contain U+0000`;
+  for (let index = 0; index < value.length; index++) {
+    const codeUnit = value.charCodeAt(index);
+    if (codeUnit >= 0xd800 && codeUnit <= 0xdbff) {
+      const next = value.charCodeAt(index + 1);
+      if (!(next >= 0xdc00 && next <= 0xdfff)) return `${at} must contain valid Unicode scalar values`;
+      index++;
+    } else if (codeUnit >= 0xdc00 && codeUnit <= 0xdfff) {
+      return `${at} must contain valid Unicode scalar values`;
+    }
+  }
+  return null;
 }
 
 // Small evaluator for exactly the JSON Schema vocabulary used above. Unsupported
@@ -215,6 +310,8 @@ export function validateJsonSchema(schema, value, at = "value") {
     if (schema.maximum !== undefined && value > schema.maximum) return `${at} must be <= ${schema.maximum}`;
   }
   if (type === "string") {
+    const postgresError = validatePostgresText(value, at);
+    if (postgresError) return postgresError;
     if (schema.minLength !== undefined && value.length < schema.minLength) return `${at} is too short`;
     if (schema.maxLength !== undefined && value.length > schema.maxLength) return `${at} is too long`;
     if (schema.pattern && !new RegExp(schema.pattern).test(value)) return `${at} has an invalid format`;

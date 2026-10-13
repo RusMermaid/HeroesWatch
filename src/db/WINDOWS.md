@@ -6,10 +6,11 @@ directory to Windows. Transfer either of these checked-in files:
 - `HeroesWatch.sql` — plain PostgreSQL SQL; the most universal option.
 - `HeroesWatch.backup` — historical initial schema, PostgreSQL custom format.
 
-The current SQL creates 176 tables, 1,304 fields, 160 ENUM types and 450 foreign
+The current SQL creates 176 tables, 1,306 fields, 159 ENUM types and 452 foreign
 keys. The backup contains the original 173-table contract and requires
-`postgres/migrations/0002_relationship_integrity.sql` afterward. Neither
-contains game rows.
+`postgres/migrations/0002_relationship_integrity.sql` followed by
+the remaining migrations 0003, 0004 and 0005 in order.
+Neither contains game rows.
 
 ## Free software
 
@@ -43,8 +44,15 @@ Expected result: DBeaver displays 176 tables under the `heroes_watch` schema.
 4. Keep owner/privilege restoration disabled if the Windows username differs
    from the Mac username.
 5. Run the restore and refresh `Schemas → heroes_watch → Tables`.
-6. Execute `postgres/migrations/0002_relationship_integrity.sql` once to upgrade
-   the initial schema to the current contract.
+6. Execute `postgres/migrations/0002_relationship_integrity.sql` once.
+7. Execute `postgres/migrations/0003_nullable_identity_and_campaign_scope.sql`
+   once. A null
+   campaign-hero starting scenario remains allowed; when present, it must
+   belong to that campaign.
+8. Execute `postgres/migrations/0004_creature_tier_terminology.sql`, then
+   `postgres/migrations/0005_creature_numeric_speed.sql`, once each.
+9. Before importing into an existing catalog, execute
+   `data/creature-tier-corrections.sql`; then use the current full catalog.
 
 The backup was created with `--schema-only --no-owner --no-privileges`, so it
 is operating-system and username independent. It was restored into a third
@@ -57,8 +65,8 @@ After either method, open `postgres/verify.sql` and execute it. It must report:
 
 ```text
 tables       176
-columns      1304
-foreign_keys 450
+columns      1306
+foreign_keys 452
 ```
 
 The original diagram SHA-256 reported by the verifier remains:
@@ -67,7 +75,7 @@ The original diagram SHA-256 reported by the verifier remains:
 b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673
 ```
 
-The current contract additionally includes reviewed overlay version 2; the
+The current contract additionally includes reviewed overlay version 5; the
 unchanged diagram hash alone does not describe those added constraints.
 
 The initial SQL is intentionally clean-install only. Run it once in an empty

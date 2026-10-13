@@ -1,4 +1,4 @@
--- Reviewed label corrections. Run after migration 0002 and before touchup parts.
+-- Reviewed label corrections. Apply migrations through 0005 first, then these corrections and creature-tier-corrections.sql before current content imports.
 -- Changes are guarded by their recorded old values; unknown edits abort.
 BEGIN;
 SET LOCAL standard_conforming_strings = on;

@@ -34,6 +34,31 @@ an `And`/`Or` operator and typed numeric comparisons. The nested objects are
 closed; these counters are script state rather than catalog entity IDs. Scenario
 and campaign endpoints continue to use foreign keys.
 
+Heroes III campaign scenario rules use two closed profiles. `StartingBonuses`
+distinguishes ordinary bonus choices, prior-scenario hero crossover and explicit
+hero selection; `CarryoverRules` stores the native keep mask and the permitted
+creature/artifact sets. Native numeric IDs are retained beside verified catalog
+import-key annotations. Normal bundle validation requires those annotated hero,
+creature, artifact, spell, skill, resource and scenario keys to exist in Heroes
+III scope before SQL generation. They are **not PostgreSQL foreign keys**:
+universal catalog tables do not store `_key`, and the importer serializes JSONB
+verbatim rather than rewriting nested annotations to physical BIGINT IDs.
+Direct SQL JSON edits can bypass this application-layer validation. Generic
+building bonuses retain their native building kind because they resolve against
+the receiving town and have no single faction-specific building endpoint.
+`VictoryConditions` and `LossConditions` use separate discriminated profiles for
+the original H3M condition kinds, bounded positions and time/resource amounts;
+artifact, creature and resource targets use the same native-ID-plus-import-key
+annotation pattern.
+
+No repository API resolver currently provides a guaranteed conversion from a
+nested import-key annotation to the stored `(Game_id, Code)` business identity.
+Treat these strings as validated provenance annotations, not SQL-queryable
+relationships. Consumers needing joins should use the existing normalized
+junctions (for example `ScenarioConnection` and `CreatureAbility`) or introduce
+a reviewed relation/persistent import-key registry instead of parsing `_key`
+text.
+
 ## Shared structural profiles
 
 Army and guard arrays contain `creatureKey` plus either `count` or a

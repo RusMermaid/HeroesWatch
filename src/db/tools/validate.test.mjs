@@ -26,9 +26,84 @@ function validate(mutator) {
   }
 }
 
+const homm8Patch = {
+  _key: "homm8.patch.test.build", Game_id: "homm8.game", Expansion_id: "homm8.expansion.base",
+  Version: "Test build", Platform: "Test", ReleaseDate: null, Changes: null, Notes: null,
+};
+const homm8GameDetail = {
+  _key: "homm8.game", CurrentPatch_id: homm8Patch._key, ReleaseStatus: "EarlyAccess", CombatGrid: "Hex",
+  FocusPointsPerCharge: 6, DefaultFocusChargeCap: 3, MaximumHeroSkills: 8, LawSealCap: 100,
+  LawTier1Seals: 0, LawTier2Seals: 5, LawTier3Seals: 15, LawTier4Seals: 30, LawTier5Seals: 50,
+};
+function ensureHomm8Detail(tables) {
+  let patch = tables.Patch.find((row) => row.Game_id === "homm8.game");
+  if (!patch) {
+    patch = structuredClone(homm8Patch);
+    tables.Patch.push(patch);
+  }
+  let detail = tables.GameHOMM8.find((row) => row._key === "homm8.game");
+  if (!detail) {
+    detail = { ...homm8GameDetail, CurrentPatch_id: patch._key };
+    tables.GameHOMM8.push(detail);
+  }
+  delete detail.Game_id;
+  return { detail, patch };
+}
+
 test("the cumulative catalog is internally consistent", () => {
   const result = validate(() => {});
   assert.equal(result.status, 0, result.stderr);
+});
+
+test("portable import keys remain stable and PostgreSQL text remains lossless", () => {
+  const invalidKey = validate((tables) => {
+    tables.LoreFull[0]._key = "HOMM 1";
+  });
+  assert.equal(invalidKey.status, 1);
+  assert.match(invalidKey.stderr, /requires a stable lowercase _key/);
+
+  const invalidText = validate((tables) => {
+    tables.Game[0].Name = "Heroes\u0000I";
+  });
+  assert.equal(invalidText.status, 1);
+  assert.match(invalidText.stderr, /must not contain U\+0000/);
+
+  const invalidUnicode = validate((tables) => {
+    tables.Game[0].Name = "Heroes\ud800I";
+  });
+  assert.equal(invalidUnicode.status, 1);
+  assert.match(invalidUnicode.stderr, /valid Unicode scalar values/);
+});
+
+test("database-generated fields cannot be supplied by import JSON", () => {
+  const result = validate((tables) => {
+    tables.CreatureHOMM1[0].SpeedName = "Slow";
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /SpeedName is database-generated and must be omitted/);
+});
+
+test("H1 and H2 base creature speed values stay within their reviewed numeric domains", () => {
+  for (const [tableName, invalid] of [["CreatureHOMM1", 4], ["CreatureHOMM2", 8]]) {
+    const result = validate((tables) => {
+      tables[tableName][0].Speed = invalid;
+    });
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, new RegExp(`${tableName}.*Speed must be one of:`));
+  }
+});
+
+test("ISO calendar validation handles early years and leap-day boundaries", () => {
+  const validEarlyYear = validate((tables) => {
+    tables.Game[0].ReleaseDate = "0004-02-29";
+  });
+  assert.equal(validEarlyYear.status, 0, validEarlyYear.stderr);
+
+  const invalidCenturyLeapDay = validate((tables) => {
+    tables.Game[0].ReleaseDate = "1900-02-29";
+  });
+  assert.equal(invalidCenturyLeapDay.status, 1);
+  assert.match(invalidCenturyLeapDay.stderr, /must be a real ISO calendar date/);
 });
 
 test("an existing expansion from another game is rejected", () => {
@@ -46,6 +121,34 @@ test("shared-PK details must belong to the title named by their table", () => {
   });
   assert.equal(result.status, 1);
   assert.match(result.stderr, /FactionHOMM3 requires HOMM3/);
+});
+
+test("GameHOMM8 inherits its game from an omitted shared Game_id", () => {
+  const result = validate((tables) => {
+    ensureHomm8Detail(tables);
+  });
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test("GameHOMM8 rejects a CurrentPatch owned by another game", () => {
+  const result = validate((tables) => {
+    tables.Patch.push({ _key: "homm3.patch.test", Game_id: "homm3.game", Expansion_id: "homm3.expansion.roe",
+      Version: "Test", Platform: "Test", ReleaseDate: null, Changes: null, Notes: null });
+    const { detail } = ensureHomm8Detail(tables);
+    detail.CurrentPatch_id = "homm3.patch.test";
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /CurrentPatch_id crosses games \(HOMM8 to HOMM3\)/);
+});
+
+test("an omitted unresolved shared key never falls through to the first generated row", () => {
+  const result = validate((tables) => {
+    const { patch } = ensureHomm8Detail(tables);
+    tables.GameHOMM8.push({ ...homm8GameDetail, _key: "homm8.missing.game", CurrentPatch_id: patch._key });
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /references missing Game\.Game_id: homm8\.missing\.game/);
+  assert.doesNotMatch(result.stderr, /belongs to HOMM3/);
 });
 
 test("junction endpoints cannot cross game ownership", () => {
@@ -82,6 +185,40 @@ test("nested JSON is validated during normal bundle ingestion", () => {
   });
   assert.equal(result.status, 1);
   assert.match(result.stderr, /primarySkillBonuses.attack must be number/);
+});
+
+test("Heroes III scenario-rule catalog keys resolve within Heroes III", () => {
+  const addScenarioRules = (tables) => {
+    const detail = tables.ScenarioHOMM3[0];
+    const scenarioKey = detail._key;
+    Object.assign(detail, {
+      VictoryConditions: { kind: "AcquireArtifact", allowNormalVictory: true, appliesToAI: true,
+        artifact: { nativeId: 7, artifactKey: "homm3.artifact.centaur.s.axe" } },
+      LossConditions: { standardDaysWithoutTown: 7, special: null },
+      StartingBonuses: { selectionMode: "BonusChoices", playerColor: { nativeId: 0, name: "Red" }, choices: [
+        { kind: "Resource", nativeId: 6, resourceKeys: ["resource.gold"], amount: 1000 },
+      ] },
+      CarryoverRules: { nativeKeepsMask: 15, heroKeeps: ["Experience", "PrimarySkills", "SecondarySkills", "Spells"],
+        keptCreatureTypes: [{ nativeId: 0, creatureKey: "homm3.creature.pikeman" }], keptArtifactTypes: [] } });
+    return scenarioKey;
+  };
+  const valid = validate(addScenarioRules);
+  assert.equal(valid.status, 0, valid.stderr);
+
+  const missing = validate((tables) => {
+    const scenarioKey = addScenarioRules(tables);
+    tables.ScenarioHOMM3.find((row) => row._key === scenarioKey).CarryoverRules.keptCreatureTypes[0].creatureKey = "homm3.creature.missing";
+  });
+  assert.equal(missing.status, 1);
+  assert.match(missing.stderr, /references missing Creature/);
+
+  const crossGame = validate((tables) => {
+    const scenarioKey = addScenarioRules(tables);
+    tables.ScenarioHOMM3.find((row) => row._key === scenarioKey).CarryoverRules.keptCreatureTypes[0].creatureKey =
+      tables.Creature.find((row) => row.Game_id === "homm4.game")._key;
+  });
+  assert.equal(crossGame.status, 1);
+  assert.match(crossGame.stderr, /references HOMM4 Creature/);
 });
 
 test("unprofiled JSON payloads cannot bypass null-only source policy", () => {
@@ -156,6 +293,28 @@ test("a composite foreign key checks the full tuple, including group mode", () =
   });
   assert.equal(result.status, 1);
   assert.match(result.stderr, /references missing HeroClassAbilityRequirementGroup/);
+});
+
+test("a campaign hero's starting scenario must belong to the same campaign", () => {
+  const result = validate((tables) => {
+    const hero = tables.CampaignHero.find((row) => row.StartingScenario_id != null);
+    const otherMembership = tables.CampaignScenario.find((row) =>
+      row.Game_id === hero.Game_id && row.Campaign_id !== hero.Campaign_id);
+    assert.ok(otherMembership);
+    hero.StartingScenario_id = otherMembership.Scenario_id;
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /references missing CampaignScenario\.Game_id,Campaign_id,Scenario_id/);
+});
+
+test("nullable business identities treat nulls as equal", () => {
+  const result = validate((tables) => {
+    const asset = tables.MediaAsset.find((row) => row.Game_id === null);
+    assert.ok(asset);
+    tables.MediaAsset.push({ ...asset, _key: "test.duplicate.global.media" });
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /duplicates \(Game_id, Code\)/);
 });
 
 test("composite game ownership accepts a mix of symbolic keys and physical ids", () => {

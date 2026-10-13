@@ -42,6 +42,10 @@ ScaffoldingReadMe.txt
 src/db/data/research/
 src/db/manuals/files/
 
+# Generated caches from read-only game/manual extraction tools
+src/db/tools/__pycache__/
+src/db/research/**/__pycache__/
+
 # Others
 .DS_Store
 ~$*

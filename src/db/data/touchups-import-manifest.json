@@ -1,13 +1,20 @@
 {
   "formatVersion": 1,
-  "requiresMigration": "postgres/migrations/0002_relationship_integrity.sql",
+  "requiresMigration": "postgres/migrations/0005_creature_numeric_speed.sql",
+  "requiresMigrations": [
+    "postgres/migrations/0002_relationship_integrity.sql",
+    "postgres/migrations/0003_nullable_identity_and_campaign_scope.sql",
+    "postgres/migrations/0004_creature_tier_terminology.sql",
+    "postgres/migrations/0005_creature_numeric_speed.sql"
+  ],
   "corrections": "data/touchups-corrections.sql",
+  "creatureTierCorrections": "data/creature-tier-corrections.sql",
   "manualCatchup": "data/manual-import.sql",
   "parts": [
     {
       "file": "data/touchups-import-01.sql",
       "seedRows": 5380,
-      "rows": 6107
+      "rows": 6113
     },
     {
       "file": "data/touchups-import-02.sql",
@@ -40,5 +47,5 @@
       "rows": 532
     }
   ],
-  "note": "Each part is a self-contained, transactional subset with full FK dependencies. Apply corrections first, then all parts. Repeat imports preserve existing IDs and non-null values."
+  "note": "Apply only missing migrations in the listed order. Apply both guarded correction files, then manual catch-up and all parts; follow with research-import.sql for current research. Each import is transactional and rejects unknown conflicting facts."
 }

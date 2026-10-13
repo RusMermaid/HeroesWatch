@@ -26,14 +26,14 @@ BEGIN
     IF actual_tables <> 176 THEN
         RAISE EXCEPTION 'Expected 176 tables, found %', actual_tables;
     END IF;
-    IF actual_columns <> 1304 THEN
-        RAISE EXCEPTION 'Expected 1304 columns, found %', actual_columns;
+    IF actual_columns <> 1306 THEN
+        RAISE EXCEPTION 'Expected 1306 columns, found %', actual_columns;
     END IF;
     IF actual_primary_keys <> 176 THEN
         RAISE EXCEPTION 'Expected 176 primary keys, found %', actual_primary_keys;
     END IF;
-    IF actual_foreign_keys <> 450 THEN
-        RAISE EXCEPTION 'Expected 450 foreign keys, found %', actual_foreign_keys;
+    IF actual_foreign_keys <> 452 THEN
+        RAISE EXCEPTION 'Expected 452 foreign keys, found %', actual_foreign_keys;
     END IF;
 END
 $$;
@@ -41,5 +41,5 @@ $$;
 SELECT
     'b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673' AS source_sha256,
     176 AS tables,
-    1304 AS columns,
-    450 AS foreign_keys;
+    1306 AS columns,
+    452 AS foreign_keys;

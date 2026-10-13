@@ -8,7 +8,7 @@ function column(name, type, nullable = false, extra = {}) {
     comment: null, enumValues: null, ...extra };
 }
 
-export function applySchemaOverlay(schema, objectName) {
+export function applySchemaOverlayV2(schema, objectName) {
   if (schema.source.sha256 !== BASE_SNAPSHOT_SHA256) {
     throw new Error("Schema overlay requires the reviewed, unchanged SQLDesigner snapshot.");
   }
@@ -86,4 +86,120 @@ export function applySchemaOverlay(schema, objectName) {
   schema.counts = { tables: schema.tables.length, columns: schema.tables.reduce((n, t) => n + t.columns.length, 0),
     foreignKeys: schema.tables.reduce((n, t) => n + t.foreignKeys.length, 0), enums: schema.enums.length };
   return schema;
+}
+
+export function applySchemaOverlayV3(schema, objectName) {
+  const byName = new Map(schema.tables.map(table => [table.name, table]));
+  const nullableIdentity = (tableName, columns) => {
+    const table = byName.get(tableName);
+    const signature = columns.join("\u0000");
+    table.unique = table.unique.filter(key => key.join("\u0000") !== signature);
+    table.uniqueConstraints ??= [];
+    if (!table.uniqueConstraints.some(constraint => constraint.columns.join("\u0000") === signature)) {
+      table.uniqueConstraints.push({ columns, nullsNotDistinct: true });
+    }
+  };
+
+  // Ordinary UNIQUE constraints treat NULL values as distinct. These three
+  // nullable tuples are business identities, so PostgreSQL 15+
+  // NULLS NOT DISTINCT is required to make the declared identities real.
+  nullableIdentity("MediaAsset", ["Game_id", "Code"]);
+  nullableIdentity("Patch", ["Game_id", "Version", "Platform"]);
+  nullableIdentity("LoreFull", ["Game_id", "Lore_id", "Hero_id", "CampaignHero_cid",
+    "Campaign_id", "Scenario_id", "Map_id", "LinkRole", "Faction_id"]);
+
+  const campaignHero = byName.get("CampaignHero");
+  campaignHero.foreignKeys.push({
+    name: objectName("fk_campaign_scenario", "CampaignHero", "StartingScenario_id"),
+    columns: ["Game_id", "Campaign_id", "StartingScenario_id"],
+    referencedTable: "CampaignScenario",
+    referencedColumns: ["Game_id", "Campaign_id", "Scenario_id"],
+    relationship: "one-to-many",
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+    deferrable: true,
+  });
+
+  const spellResourceCost = byName.get("SpellResourceCostHOMM5");
+  spellResourceCost.foreignKeys.push({
+    name: objectName("fk_resource", "SpellResourceCostHOMM5"),
+    columns: ["Game_id", "Resource_id"],
+    referencedTable: "GameResource",
+    referencedColumns: ["Game_id", "Resource_id"],
+    relationship: "one-to-many",
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+    deferrable: true,
+  });
+
+  for (const table of schema.tables) {
+    table.foreignKeys.sort((a, b) => a.name.localeCompare(b.name));
+    table.unique.sort((a, b) => a.join().localeCompare(b.join()));
+    table.uniqueConstraints?.sort((a, b) => a.columns.join().localeCompare(b.columns.join()));
+    table.checks?.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  schema.source.overlay = { version: 3, module: "src/db/tools/schema-overlay.mjs", migration: "0003_nullable_identity_and_campaign_scope.sql" };
+  schema.integrity.nullableBusinessKeys = "Nullable business identities use PostgreSQL 15+ UNIQUE NULLS NOT DISTINCT.";
+  schema.integrity.campaignHeroStartingScenario = "A non-null starting scenario must be a member of the same campaign.";
+  schema.counts = { tables: schema.tables.length, columns: schema.tables.reduce((n, t) => n + t.columns.length, 0),
+    foreignKeys: schema.tables.reduce((n, t) => n + t.foreignKeys.length, 0), enums: schema.enums.length };
+  return schema;
+}
+
+export function applySchemaOverlayV4(schema) {
+  const byName = new Map(schema.tables.map(table => [table.name, table]));
+  for (const tableName of ["CreatureHOMM1", "CreatureHOMM2", "CreatureHOMM3", "CreatureHOMM4"]) {
+    const table = byName.get(tableName);
+    const level = table?.columns.find(column => column.name === "Level");
+    if (!level || table.columns.some(column => column.name === "Tier")) {
+      throw new Error(`${tableName} must contain Level and not Tier before overlay version 4.`);
+    }
+    level.name = "Tier";
+  }
+  schema.source.overlay = { version: 4, module: "src/db/tools/schema-overlay.mjs", migration: "0004_creature_tier_terminology.sql" };
+  schema.integrity.creatureTierTerminology = "CreatureHOMM1 through CreatureHOMM4 use Tier; spell Level fields retain their existing meaning.";
+  schema.counts = { tables: schema.tables.length, columns: schema.tables.reduce((n, t) => n + t.columns.length, 0),
+    foreignKeys: schema.tables.reduce((n, t) => n + t.foreignKeys.length, 0), enums: schema.enums.length };
+  return schema;
+}
+
+export function applySchemaOverlayV5(schema) {
+  const byName = new Map(schema.tables.map(table => [table.name, table]));
+  const configurations = [
+    ["CreatureHOMM1", [1, 2, 3], [[1, "Slow"], [2, "Medium"], [3, "Fast"]]],
+    ["CreatureHOMM2", [2, 3, 4, 5, 6, 7], [[2, "Very Slow"], [3, "Slow"], [4, "Average"], [5, "Fast"], [6, "Very Fast"], [7, "Ultra Fast"]]],
+  ];
+  for (const [tableName, domain, labels] of configurations) {
+    const table = byName.get(tableName);
+    const speedIndex = table?.columns.findIndex(candidate => candidate.name === "Speed") ?? -1;
+    if (speedIndex < 0 || table.columns.some(candidate => candidate.name === "SpeedName")) {
+      throw new Error(`${tableName} must contain Speed and not SpeedName before overlay version 5.`);
+    }
+    const speed = table.columns[speedIndex];
+    speed.sqlDesignerType = "SMALLINT";
+    speed.postgresType = "SMALLINT";
+    speed.enumValues = null;
+    speed.allowedValues = domain;
+    const expression = `CASE "Speed" ${labels.map(([value, label]) => `WHEN ${value} THEN '${label}'`).join(" ")} END`;
+    table.columns.splice(speedIndex + 1, 0, column("SpeedName", "TEXT", false, {
+      generatedExpression: expression,
+      importGenerated: true,
+    }));
+    table.checks ??= [];
+    table.checks.push({
+      name: `ck__${tableName}__Speed_base_domain`,
+      expression: `"Speed" IN (${domain.join(", ")})`,
+    });
+    table.checks.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  schema.enums = schema.enums.filter(type => type.name !== "Enum__CreatureHOMM1__Speed");
+  schema.source.overlay = { version: 5, module: "src/db/tools/schema-overlay.mjs", migration: "0005_creature_numeric_speed.sql" };
+  schema.integrity.creatureSpeed = "CreatureHOMM1 and CreatureHOMM2 store source combat movement as numeric Speed; stored SpeedName is derived and read-only. Movement remains separate.";
+  schema.counts = { tables: schema.tables.length, columns: schema.tables.reduce((n, t) => n + t.columns.length, 0),
+    foreignKeys: schema.tables.reduce((n, t) => n + t.foreignKeys.length, 0), enums: schema.enums.length };
+  return schema;
+}
+
+export function applySchemaOverlay(schema, objectName) {
+  return applySchemaOverlayV5(applySchemaOverlayV4(applySchemaOverlayV3(applySchemaOverlayV2(schema, objectName), objectName)));
 }

@@ -7,12 +7,12 @@ WITH roster AS (
            (SELECT COUNT(*) FROM heroes_watch."CreatureResourceCost" rc
             WHERE rc."Game_id" = g."Game_id" AND rc."Creature_id" = c."Creature_id") AS costs,
            (
-               num_nonnulls(d."Faction_id", d."Alignment", d."Level", d."Attack", d."Defense",
+               num_nonnulls(d."Faction_id", d."Alignment", d."Tier", d."Attack", d."Defense",
                    d."DamageMin", d."DamageMax", d."Health", d."Speed", d."Movement",
                    d."Size", d."Shots", d."Growth", d."AIValue", d."GoldCost",
                    d."Recruitable", d."DoubleUpgrade", d."AlternativeUpgrade") = 18
                AND d."Alignment"::TEXT = fd."Alignment"::TEXT
-               AND d."Level" BETWEEN 1 AND 7
+               AND d."Tier" BETWEEN 1 AND 7
                AND d."DamageMin" <= d."DamageMax"
                AND d."Size" IN (1, 2)
                AND d."Recruitable" AND NOT d."DoubleUpgrade" AND NOT d."AlternativeUpgrade"

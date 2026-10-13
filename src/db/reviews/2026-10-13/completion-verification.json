@@ -1,0 +1,95 @@
+{
+  "verifiedAtUtc": "2026-10-13T13:20:05Z",
+  "status": "historical-43613-row-local-deployment-checkpoint",
+  "supersededBy": "publication-verification.json",
+  "baselinePullRequest": "https://github.com/RusMermaid/HeroesWatch/pull/1",
+  "baselineCommit": "2848f0055c6a39ce3ef9b6cea61f717593bf4be5",
+  "localBranch": "codex/heroeswatch-final-review",
+  "pushed": false,
+  "friendDatabaseModified": false,
+  "sqlDesignerModified": false,
+  "postgresVersionTested": "18.6 (Homebrew)",
+  "remoteCiExecuted": false,
+  "nodeTests": {
+    "passed": 83,
+    "failed": 0,
+    "skipped": 0
+  },
+  "contract": {
+    "tables": 176,
+    "columns": 1304,
+    "foreignKeys": 452,
+    "compositeForeignKeys": 93
+  },
+  "catalog": {
+    "rows": 43613,
+    "populatedTables": 139,
+    "games": 23,
+    "creatures": 1215,
+    "heroes": 1118
+  },
+  "reconciliation": {
+    "comparedFields": 254163,
+    "checkedNonNullSemanticFkReferences": 174454
+  },
+  "freshImport": "PASS",
+  "repeatedImport": "identical rows and physical IDs",
+  "directIntegrityProbes": "PASS",
+  "concurrentLockOrderCases": 4,
+  "repeatableReadGuard": "PASS",
+  "deterministicArtifacts": [
+    "schema",
+    "catalog",
+    "manual",
+    "touchups",
+    "research"
+  ],
+  "researchDelta": {
+    "patches": 13,
+    "seedRows": 3796,
+    "dependencyClosedRows": 5354,
+    "addedRows": 3590,
+    "nullFills": 559
+  },
+  "finalPrUpgrade": {
+    "preservedRowsAndIds": 40023,
+    "addedRows": 3590,
+    "nullFills": 559,
+    "nonNullChanges": 0,
+    "removedRows": 0,
+    "fullAndDeltaRoutesIdentical": true,
+    "beforeDataSha256": "2a2f16ed68ac946ccf4a261255da2fad6bc83dad4081212ea612dada91812c84",
+    "afterDataSha256": "687edce0f23ef050ef03ee1ecd24cce9fb5b4a0498adf1a95ec5da21e1bf0afc"
+  },
+  "localDeployment": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "HeroesWatch",
+    "schema": "heroes_watch",
+    "encoding": "UTF8",
+    "backupPathRelativeToRepository": ".codex-tmp/backups/2026-10-13-pre-completion.3boka4/HeroesWatch.dump",
+    "backupSha256": "89b2bc1be7001f5bcb32f69dab8b8283ae43def95c35aeb9c9975d46cf0348f3",
+    "backupRestoreVerified": true,
+    "backupMatchedLiveBeforeUpgrade": true,
+    "applied": [
+      "0002_relationship_integrity.sql",
+      "0003_nullable_identity_and_campaign_scope.sql",
+      "catalog.sql"
+    ],
+    "preservedRowsAndIds": 659,
+    "addedRows": 42954,
+    "changedExistingValues": 0,
+    "removedRows": 0,
+    "unvalidatedConstraints": 0,
+    "postUpgradeExactReconciliation": "PASS",
+    "beforeDataSha256": "2aa7293417194ebfa9462b90effe0e740c80d68ee726b86cf29927ca6d8c3629",
+    "afterDataSha256": "0f0b456ee258902c876b279e375b86b62d106163877c23103efd3351920d5fd4"
+  },
+  "rawFileSha256": {
+    "data/heroeswatch.json": "54bc09a9e81b03ab45f72e7fe81e0560fbb3eed66bf00f46061ecc6fe841b4bf",
+    "data/catalog.sql": "958a903f8b4e9bb85f6b62fe496f839887bedf65c9f794b0b7b9e44d05a8f373",
+    "data/research-import.sql": "6fb98105e8b333d239896333a0d41299c421737a561a43af227472b142a85af2"
+  },
+  "completeGameplayCoverage": false,
+  "remainingBoundaryReport": "COMPLETION.md#remaining-risks-and-what-would-resolve-them"
+}

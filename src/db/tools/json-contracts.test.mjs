@@ -30,12 +30,25 @@ test("contracts reject wrong container types and misspelled or wrong scalar fiel
   assert.match(check("ArtifactHOMM1", "Effect", {}), /must not be empty/);
 });
 
+test("PostgreSQL text safety rejects NUL and malformed Unicode without narrowing multilingual text", () => {
+  assert.equal(check("SpellHOMM2", "Effect", { description: "Огненный шар — 火球 🔥" }), null);
+  assert.match(check("SpellHOMM2", "Effect", { description: "bad\u0000text" }), /must not contain U\+0000/);
+  assert.match(check("SpellHOMM2", "Effect", { description: "bad\ud800text" }), /valid Unicode scalar values/);
+});
+
 test("the existing source scalar exceptions remain narrow", () => {
   assert.equal(check("FactionMagicSchoolHOMM5", "GuaranteedSlotsPerCircle", 1), null);
   assert.match(check("FactionMagicSchoolHOMM5", "GuaranteedSlotsPerCircle", { 1: 1 }), /must be integer/);
   assert.match(check("FactionMagicSchoolHOMM5", "GuaranteedSlotsPerCircle", 0.5), /must be integer/);
   assert.equal(check("HeroClassHOMM1", "ClassEffect", "Improves morale."), null);
   assert.match(check("HeroClassHOMM1", "ClassEffect", ["Improves morale."]), /must be string/);
+});
+
+test("H5 native-terrain combat bonuses use a closed bounded stat-delta shape", () => {
+  assert.equal(check("FactionNativeTerrainHOMM5", "CombatBonus", { attack: 1, defense: 1 }), null);
+  assert.match(check("FactionNativeTerrainHOMM5", "CombatBonus", { attack: "1", defense: 1 }), /attack must be integer/);
+  assert.match(check("FactionNativeTerrainHOMM5", "CombatBonus", { attack: 1, defence: 1 }), /defense is required|defence is not an allowed field/);
+  assert.match(check("FactionNativeTerrainHOMM5", "CombatBonus", { attack: 101, defense: 1 }), /attack must be <= 100/);
 });
 
 test("source references require usable locators and positive page numbers", () => {
@@ -83,4 +96,46 @@ test("campaign conditions require provenance and closed, typed native counter pr
   assert.match(check("ScenarioConnection", "Condition", { ...condition, nativeCounters: { ...condition.nativeCounters,
     array: [{ counterSid: "mission_complete", operation: "==", value: 1, script: "run" }] } }), /script is not an allowed field/);
   assert.match(check("ScenarioConnection", "Condition", { ...condition, nativeCounters: { logicOperation: "Xor", array: [] } }), /logicOperation must be one of/);
+});
+
+test("Heroes III campaign rules retain typed native IDs and catalog references", () => {
+  const color = { nativeId: 1, name: "Blue" };
+  const hero = { nativeId: 102, heroKey: "homm3.hero.crag.hack" };
+  const starting = { selectionMode: "BonusChoices", playerColor: color, choices: [
+    { kind: "Creature", hero, creature: { nativeId: 84, creatureKey: "homm3.creature.goblin" }, amount: 40 },
+    { kind: "Resource", nativeId: -3, resourceKeys: ["resource.wood", "resource.ore"], amount: 10 },
+    { kind: "Building", nativeId: 29, buildingKind: "ExtraCapitol" },
+  ] };
+  assert.equal(check("ScenarioHOMM3", "StartingBonuses", starting), null);
+  assert.equal(check("ScenarioHOMM3", "StartingBonuses", { selectionMode: "HeroCrossover", choices: [
+    { kind: "PreviousScenarioHero", playerColor: color, nativeRegionIndex: 0, scenarioKey: "homm3.scenario.dungeons.and.devils.1" },
+  ] }), null);
+  assert.match(check("ScenarioHOMM3", "StartingBonuses", { ...starting, choices: [
+    { kind: "Creature", hero, creature: { creatureKey: "homm3.creature.goblin" }, amount: 40 },
+  ] }), /nativeId is required/);
+  assert.match(check("ScenarioHOMM3", "StartingBonuses", { ...starting, choices: [
+    { kind: "Creature", hero, creature: { nativeId: 84, creatureKey: "homm3.creature.goblin" }, amount: 40, probability: 50 },
+  ] }), /probability is not an allowed field/);
+  assert.match(check("ScenarioHOMM3", "StartingBonuses", { ...starting, choices: [
+    { kind: "Resource", nativeId: -3, resourceKeys: [], amount: 10 },
+  ] }), /needs at least 1 item/);
+
+  const carryover = { nativeKeepsMask: 15, heroKeeps: ["Experience", "PrimarySkills", "SecondarySkills", "Spells"],
+    keptCreatureTypes: [], keptArtifactTypes: [{ nativeId: 52, artifactKey: "homm3.artifact.sea.captain.s.hat" }] };
+  assert.equal(check("ScenarioHOMM3", "CarryoverRules", carryover), null);
+  assert.match(check("ScenarioHOMM3", "CarryoverRules", { ...carryover, heroKeeps: ["Experience", "Experience"] }), /unique/);
+  assert.match(check("ScenarioHOMM3", "CarryoverRules", { ...carryover, nativeKeepsMask: 32 }), /must be <= 31/);
+
+  const victory = { kind: "AccumulateCreatures", allowNormalVictory: true, appliesToAI: true,
+    creature: { nativeId: 4, creatureKey: "homm3.creature.griffin" }, amount: 100 };
+  assert.equal(check("ScenarioHOMM3", "VictoryConditions", victory), null);
+  assert.equal(check("ScenarioHOMM3", "VictoryConditions", { kind: "DefeatHero", allowNormalVictory: true,
+    appliesToAI: false, position: { x: 12, y: 34, level: 0 } }), null);
+  assert.match(check("ScenarioHOMM3", "VictoryConditions", { ...victory, creature: { nativeId: 4 } }), /creatureKey is required/);
+  assert.match(check("ScenarioHOMM3", "VictoryConditions", { ...victory, amount: 0 }), /must be >= 1/);
+  assert.equal(check("ScenarioHOMM3", "LossConditions", { standardDaysWithoutTown: 7,
+    special: { kind: "TimeExpires", days: 90 } }), null);
+  assert.equal(check("ScenarioHOMM3", "LossConditions", { standardDaysWithoutTown: 7, special: null }), null);
+  assert.match(check("ScenarioHOMM3", "LossConditions", { standardDaysWithoutTown: 7,
+    special: { kind: "TimeExpires", days: 0 } }), /must be >= 1/);
 });

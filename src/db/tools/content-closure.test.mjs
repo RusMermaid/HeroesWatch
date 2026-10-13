@@ -6,6 +6,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { selectContentClosure } from "./content-closure.mjs";
+import { scenarioHomm3Annotations } from "./scenario-homm3-annotations.mjs";
 
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const schema = JSON.parse(readFileSync(path.join(directory, "../schema/heroeswatch.schema.json")));
@@ -21,7 +22,8 @@ function build(bundle) {
     writeFileSync(input, JSON.stringify(bundle));
     const validation = spawnSync(process.execPath, [path.join(directory, "validate.mjs"), input], { encoding: "utf8" });
     const result = spawnSync(process.execPath, [path.join(directory, "build-content-sql.mjs"), "--input", input, "--output", output], { encoding: "utf8" });
-    return { validation, result };
+    const sql = result.status === 0 ? readFileSync(output, "utf8") : null;
+    return { validation, result, sql };
   } finally {
     const resolved = path.resolve(temporary);
     assert.equal(path.dirname(resolved), path.resolve(tmpdir()));
@@ -84,6 +86,66 @@ test("mode is part of the composite prerequisite target", () => {
   assert.throws(() => select(source, [seed("HeroClassAbility", "test.atom.1")]), /Missing dependency .*RequirementSet,RequirementMode/);
 });
 
+test("campaign hero closure includes the exact campaign-scenario membership", () => {
+  const hero = catalog.tables.CampaignHero.find((row) => row.StartingScenario_id != null);
+  assert.ok(hero);
+  const closure = select(catalog, [seed("CampaignHero", hero._key)]);
+  assert.ok(closure.tables.CampaignScenario.some((row) =>
+    row.Game_id === hero.Game_id && row.Campaign_id === hero.Campaign_id && row.Scenario_id === hero.StartingScenario_id));
+  const { result, sql } = build(closure);
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(sql, /Requires the HeroesWatch schema through postgres\/migrations\/0005_creature_numeric_speed\.sql/);
+});
+
+test("generated display fields are omitted from import INSERT and UPDATE statements", () => {
+  const detail = catalog.tables.CreatureHOMM1[0];
+  const closure = select(catalog, [seed("CreatureHOMM1", detail._key)]);
+  const { result, sql } = build(closure);
+  assert.equal(result.status, 0, result.stderr);
+  assert.doesNotMatch(sql, /"SpeedName"/);
+});
+
+test("the complete Heroes III scenario-rule subset includes every reviewed annotation dependency", () => {
+  const ruleRows = catalog.tables.ScenarioHOMM3.filter((row) => scenarioHomm3Annotations(row).length > 0);
+  assert.ok(ruleRows.length > 0);
+  const closure = select(catalog, ruleRows.map((row) => seed("ScenarioHOMM3", row._key)));
+  for (const row of ruleRows) for (const reference of scenarioHomm3Annotations(row)) {
+    assert.ok(closure.tables[reference.table].some((target) => target._key === reference.key),
+      `${row._key}/${reference.path}/${reference.key}`);
+  }
+  const { validation, result } = build(closure);
+  assert.equal(validation.status, 0, validation.stderr);
+  assert.equal(result.status, 0, result.stderr);
+});
+
+test("a missing Heroes III scenario annotation target stops closure", () => {
+  const source = structuredClone(catalog);
+  const row = source.tables.ScenarioHOMM3.find((candidate) => candidate.VictoryConditions?.artifact?.artifactKey);
+  assert.ok(row);
+  row.VictoryConditions.artifact.artifactKey = "homm3.artifact.missing";
+  assert.throws(() => select(source, [seed("ScenarioHOMM3", row._key)]),
+    /Missing ScenarioHOMM3 annotation dependency .*VictoryConditions\.artifact.*homm3\.artifact\.missing/);
+});
+
+test("Heroes III resource annotations pull the exact GameResource membership", () => {
+  const row = catalog.tables.ScenarioHOMM3.find((candidate) =>
+    scenarioHomm3Annotations(candidate).some((reference) => reference.requiresGameResource));
+  assert.ok(row);
+  const closure = select(catalog, [seed("ScenarioHOMM3", row._key)]);
+  for (const reference of scenarioHomm3Annotations(row).filter((item) => item.requiresGameResource)) {
+    assert.ok(closure.tables.GameResource.some((membership) =>
+      membership.Game_id === "homm3.game" && membership.Resource_id === reference.key));
+  }
+});
+
+test("closure does not traverse arbitrary unreviewed JSON key-shaped values", () => {
+  const source = structuredClone(catalog);
+  const row = source.tables.ScenarioHOMM3.find((candidate) => candidate.VictoryConditions != null);
+  row.VictoryConditions.unreviewed = { heroKey: "homm3.hero.missing" };
+  const closure = select(source, [seed("ScenarioHOMM3", row._key)]);
+  assert.equal(closure.tables.Hero.some((hero) => hero._key === "homm3.hero.missing"), false);
+});
+
 test("omitted shared primary keys resolve through the parent catalog identity", () => {
   const detail = catalog.tables.CreatureHOMM3[0];
   assert.equal(detail.Creature_id, undefined);
@@ -126,27 +188,27 @@ test("physical text junction references accepted by validation also import", () 
   assert.equal(result.status, 0, result.stderr);
 });
 
-test("nullable LoreFull natural keys cannot create ambiguous duplicate import identities", () => {
+test("nullable LoreFull natural keys are rejected before import", () => {
   const closure = withTextPrimaryReference(false);
   const row = closure.tables.LoreFull[0];
   closure.tables.LoreFull.push({ ...row, _key: "test.duplicate.lore.reference" });
   const { validation, result } = build(closure);
-  // PostgreSQL's legacy nullable UNIQUE allows this; the importer must refuse
-  // because two portable identities would resolve to the same business row.
-  assert.equal(validation.status, 0, validation.stderr);
+  assert.equal(validation.status, 1);
+  assert.match(validation.stderr, /duplicates \(Game_id, Lore_id, Hero_id, CampaignHero_cid, Campaign_id, Scenario_id, Map_id, LinkRole, Faction_id\)/);
   assert.equal(result.status, 1);
-  assert.match(result.stderr, /business key also supplied by .*nullable key members/);
+  assert.match(result.stderr, /duplicates \(Game_id, Lore_id, Hero_id, CampaignHero_cid, Campaign_id, Scenario_id, Map_id, LinkRole, Faction_id\)/);
 });
 
-test("nullable natural-key duplicates are detected after reference aliases are resolved", () => {
+test("nullable natural-key duplicates are rejected after reference aliases are resolved", () => {
   const closure = withTextPrimaryReference(false);
   const row = closure.tables.LoreFull[0];
   closure.tables.LoreFull.push({ ...row, _key: "test.alias.duplicate.lore.reference",
     CampaignHero_cid: "existing.physical.campaign.hero" });
   const { validation, result } = build(closure);
-  assert.equal(validation.status, 0, validation.stderr);
+  assert.equal(validation.status, 1);
+  assert.match(validation.stderr, /duplicates \(Game_id, Lore_id, Hero_id, CampaignHero_cid, Campaign_id, Scenario_id, Map_id, LinkRole, Faction_id\)/);
   assert.equal(result.status, 1);
-  assert.match(result.stderr, /business key also supplied by .*nullable key members/);
+  assert.match(result.stderr, /duplicates \(Game_id, Lore_id, Hero_id, CampaignHero_cid, Campaign_id, Scenario_id, Map_id, LinkRole, Faction_id\)/);
 });
 
 test("portable keys cannot shadow another row's explicit text primary key", () => {

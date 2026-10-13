@@ -1,7 +1,7 @@
 -- Read-only: all 126 town creatures under classic Shadow of Death rules with AB content.
 -- Damage is per attack; Growth excludes fortifications and horde-building bonuses.
 -- Recruitment cost is for one creature, not the price of upgrading an existing unit.
-SELECT f."Name" AS "Faction", d."Level",
+SELECT f."Name" AS "Faction", d."Tier",
        CASE WHEN incoming."CreatureUpgrade_cid" IS NULL THEN 'Base' ELSE 'Upgrade' END AS "Form",
        c."Name" AS "Creature", d."Attack", d."Defense",
        d."DamageMin"::TEXT || '-' || d."DamageMax"::TEXT AS "Damage",
@@ -26,4 +26,4 @@ LEFT JOIN LATERAL (
 WHERE g."SeriesCode" = 'HOMM3'
   AND f."Code" IN ('CASTLE','TOWER','RAMPART','INFERNO','NECROPOLIS','DUNGEON','STRONGHOLD','FORTRESS','CONFLUX')
 ORDER BY array_position(ARRAY['CASTLE','TOWER','RAMPART','INFERNO','NECROPOLIS','DUNGEON','STRONGHOLD','FORTRESS','CONFLUX'], f."Code"),
-         d."Level", incoming."CreatureUpgrade_cid" IS NOT NULL, c."Code";
+         d."Tier", incoming."CreatureUpgrade_cid" IS NOT NULL, c."Code";

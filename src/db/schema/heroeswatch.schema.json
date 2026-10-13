@@ -7,9 +7,9 @@
     "targetNormalForm": "2NF"
   },
   "counts": {
-    "columns": 1304,
-    "enums": 160,
-    "foreignKeys": 450,
+    "columns": 1306,
+    "enums": 159,
+    "foreignKeys": 452,
     "tables": 176
   },
   "database": "HeroesWatchNet",
@@ -568,16 +568,6 @@
       "values": [
         "Ground",
         "Flying"
-      ]
-    },
-    {
-      "column": "Speed",
-      "name": "Enum__CreatureHOMM1__Speed",
-      "table": "CreatureHOMM1",
-      "values": [
-        "Slow",
-        "Medium",
-        "Fast"
       ]
     },
     {
@@ -1791,6 +1781,9 @@
   ],
   "formatVersion": 1,
   "integrity": {
+    "campaignHeroStartingScenario": "A non-null starting scenario must be a member of the same campaign.",
+    "creatureSpeed": "CreatureHOMM1 and CreatureHOMM2 store source combat movement as numeric Speed; stored SpeedName is derived and read-only. Movement remains separate.",
+    "creatureTierTerminology": "CreatureHOMM1 through CreatureHOMM4 use Tier; spell Level fields retain their existing meaning.",
     "gameOwnership": "Composite foreign keys plus deferred inherited/global ownership checks",
     "globalTables": [
       "Resource",
@@ -1801,6 +1794,7 @@
       "ArtifactSetHOMM5": "IntroducedInExpansion_id",
       "FactionLaw": "Faction_id"
     },
+    "nullableBusinessKeys": "Nullable business identities use PostgreSQL 15+ UNIQUE NULLS NOT DISTINCT.",
     "prerequisiteGroups": "HeroClassAbilityRequirementGroup defines positive-numbered alternative paths. All/Any combines atoms inside one set. A native FK requires every grouped atom to use the group's mode. NULL group and mode means an association without a documented prerequisite group, not proof of no prerequisites."
   },
   "postgresSchema": "heroes_watch",
@@ -1808,9 +1802,9 @@
     "diagram": "https://sql-designer.com/diagrams/932ebd44-bda4-45c2-a3e5-0358c579e076",
     "kind": "SQLDesigner",
     "overlay": {
-      "migration": "0002_relationship_integrity.sql",
+      "migration": "0005_creature_numeric_speed.sql",
       "module": "src/db/tools/schema-overlay.mjs",
-      "version": 2
+      "version": 5
     },
     "sha256": "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673"
   },
@@ -8799,6 +8793,24 @@
         {
           "columns": [
             "Game_id",
+            "Campaign_id",
+            "StartingScenario_id"
+          ],
+          "deferrable": true,
+          "name": "fk_campaign_scenario__CampaignHero__StartingScenario_id",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Campaign_id",
+            "Scenario_id"
+          ],
+          "referencedTable": "CampaignScenario",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
             "Campaign_id"
           ],
           "deferrable": true,
@@ -9719,6 +9731,12 @@
       ]
     },
     {
+      "checks": [
+        {
+          "expression": "\"Speed\" IN (1, 2, 3)",
+          "name": "ck__CreatureHOMM1__Speed_base_domain"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -9750,7 +9768,7 @@
           "comment": null,
           "default": null,
           "enumValues": null,
-          "name": "Level",
+          "name": "Tier",
           "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
@@ -9819,18 +9837,33 @@
           "unsigned": false
         },
         {
+          "allowedValues": [
+            1,
+            2,
+            3
+          ],
           "comment": null,
           "default": null,
-          "enumValues": [
-            "Slow",
-            "Medium",
-            "Fast"
-          ],
+          "enumValues": null,
           "name": "Speed",
           "nullable": false,
-          "postgresType": "Enum__CreatureHOMM1__Speed",
+          "postgresType": "SMALLINT",
           "primaryKey": false,
-          "sqlDesignerType": "ENUM('Slow','Medium','Fast')",
+          "sqlDesignerType": "SMALLINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "generatedExpression": "CASE \"Speed\" WHEN 1 THEN 'Slow' WHEN 2 THEN 'Medium' WHEN 3 THEN 'Fast' END",
+          "importGenerated": true,
+          "name": "SpeedName",
+          "nullable": false,
+          "postgresType": "TEXT",
+          "primaryKey": false,
+          "sqlDesignerType": "TEXT",
           "unique": false,
           "unsigned": false
         },
@@ -9937,6 +9970,12 @@
       "unique": []
     },
     {
+      "checks": [
+        {
+          "expression": "\"Speed\" IN (2, 3, 4, 5, 6, 7)",
+          "name": "ck__CreatureHOMM2__Speed_base_domain"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -9968,7 +10007,7 @@
           "comment": null,
           "default": null,
           "enumValues": null,
-          "name": "Level",
+          "name": "Tier",
           "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
@@ -10037,6 +10076,14 @@
           "unsigned": false
         },
         {
+          "allowedValues": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
           "comment": null,
           "default": null,
           "enumValues": null,
@@ -10045,6 +10092,20 @@
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "generatedExpression": "CASE \"Speed\" WHEN 2 THEN 'Very Slow' WHEN 3 THEN 'Slow' WHEN 4 THEN 'Average' WHEN 5 THEN 'Fast' WHEN 6 THEN 'Very Fast' WHEN 7 THEN 'Ultra Fast' END",
+          "importGenerated": true,
+          "name": "SpeedName",
+          "nullable": false,
+          "postgresType": "TEXT",
+          "primaryKey": false,
+          "sqlDesignerType": "TEXT",
           "unique": false,
           "unsigned": false
         },
@@ -10222,7 +10283,7 @@
           "comment": null,
           "default": null,
           "enumValues": null,
-          "name": "Level",
+          "name": "Tier",
           "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
@@ -10485,7 +10546,7 @@
           "comment": null,
           "default": null,
           "enumValues": null,
-          "name": "Level",
+          "name": "Tier",
           "nullable": false,
           "postgresType": "SMALLINT",
           "primaryKey": false,
@@ -19100,18 +19161,22 @@
       "primaryKey": [
         "LoreFull_cid"
       ],
-      "unique": [
-        [
-          "Game_id",
-          "Lore_id",
-          "Hero_id",
-          "CampaignHero_cid",
-          "Campaign_id",
-          "Scenario_id",
-          "Map_id",
-          "LinkRole",
-          "Faction_id"
-        ]
+      "unique": [],
+      "uniqueConstraints": [
+        {
+          "columns": [
+            "Game_id",
+            "Lore_id",
+            "Hero_id",
+            "CampaignHero_cid",
+            "Campaign_id",
+            "Scenario_id",
+            "Map_id",
+            "LinkRole",
+            "Faction_id"
+          ],
+          "nullsNotDistinct": true
+        }
       ]
     },
     {
@@ -21367,11 +21432,15 @@
       "primaryKey": [
         "MediaAsset_id"
       ],
-      "unique": [
-        [
-          "Game_id",
-          "Code"
-        ]
+      "unique": [],
+      "uniqueConstraints": [
+        {
+          "columns": [
+            "Game_id",
+            "Code"
+          ],
+          "nullsNotDistinct": true
+        }
       ]
     },
     {
@@ -21531,12 +21600,17 @@
         [
           "Game_id",
           "Patch_id"
-        ],
-        [
-          "Game_id",
-          "Version",
-          "Platform"
         ]
+      ],
+      "uniqueConstraints": [
+        {
+          "columns": [
+            "Game_id",
+            "Version",
+            "Platform"
+          ],
+          "nullsNotDistinct": true
+        }
       ]
     },
     {
@@ -26638,6 +26712,22 @@
             "Spell_id"
           ],
           "referencedTable": "Spell",
+          "relationship": "one-to-many"
+        },
+        {
+          "columns": [
+            "Game_id",
+            "Resource_id"
+          ],
+          "deferrable": true,
+          "name": "fk_resource__SpellResourceCostHOMM5",
+          "onDelete": "NO ACTION",
+          "onUpdate": "NO ACTION",
+          "referencedColumns": [
+            "Game_id",
+            "Resource_id"
+          ],
+          "referencedTable": "GameResource",
           "relationship": "one-to-many"
         }
       ],

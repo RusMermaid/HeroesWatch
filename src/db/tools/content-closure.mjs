@@ -1,5 +1,7 @@
 // Resolve a self-contained subset using scalar and composite foreign keys.
 // _key values are import identities; generated database IDs are not assumed.
+import { scenarioHomm3Annotations } from './scenario-homm3-annotations.mjs';
+
 export function selectContentClosure(catalog, schema, seeds) {
   const tableByName = new Map(schema.tables.map(table => [table.name, table]));
   const lookups = new Map(schema.tables.map(table => {
@@ -25,6 +27,21 @@ export function selectContentClosure(catalog, schema, seeds) {
   const indexes = new Map();
   const selected = new Map(schema.tables.map(table => [table.name, new Set()]));
   const pending = seeds.map(({table, key}) => ({table, key}));
+  const homm3Game = (catalog.tables.Game ?? []).find(row => row?.SeriesCode === 'HOMM3');
+  const homm3GameKey = homm3Game?._key ?? homm3Game?.Game_id ?? null;
+  function addScenarioHomm3Annotations(row) {
+    for (const reference of scenarioHomm3Annotations(row)) {
+      const target = lookups.get(reference.table)?.get(reference.key);
+      if (!target) throw new Error(`Missing ScenarioHOMM3 annotation dependency ${row._key}/${reference.path}/${reference.table}/${reference.key}`);
+      pending.push({table: reference.table, key: target._key});
+      if (!reference.requiresGameResource) continue;
+      const membership = (catalog.tables.GameResource ?? []).find(candidate =>
+        canonical(tableByName.get('GameResource'), 'Game_id', candidate.Game_id) === homm3GameKey &&
+        canonical(tableByName.get('GameResource'), 'Resource_id', candidate.Resource_id) === target._key);
+      if (!membership) throw new Error(`Missing ScenarioHOMM3 resource membership ${row._key}/${reference.path}/${reference.key}`);
+      pending.push({table: 'GameResource', key: membership._key});
+    }
+  }
   while (pending.length) {
     const {table: name, key} = pending.pop();
     const table = tableByName.get(name);
@@ -32,6 +49,7 @@ export function selectContentClosure(catalog, schema, seeds) {
     if (!table || !row) throw new Error(`Missing selected row ${name}/${key}`);
     if (selected.get(name).has(row._key)) continue;
     selected.get(name).add(row._key);
+    if (name === 'ScenarioHOMM3') addScenarioHomm3Annotations(row);
     for (const fk of table.foreignKeys) {
       const values = fk.columns.map(column => row[column] ?? (table.primaryKey.includes(column) ? row._key : null));
       if (values.some(value => value == null)) continue;

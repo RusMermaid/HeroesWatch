@@ -3,7 +3,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
-import { validateJsonColumn } from "./json-contracts.mjs";
+import { validateJsonColumn, validatePostgresText } from "./json-contracts.mjs";
+import { scenarioHomm3Annotations } from "./scenario-homm3-annotations.mjs";
 
 function fail(message, errors) {
   errors.push(message);
@@ -24,19 +25,17 @@ function isCalendarDate(value) {
     return false;
   }
   const [year, month, day] = value.split("-").map(Number);
-  if (year < 1 || month < 1 || month > 12 || day < 1 || day > 31) {
-    return false;
-  }
-  const date = new Date(Date.UTC(year, month - 1, day));
-  return (
-    date.getUTCFullYear() === year &&
-    date.getUTCMonth() === month - 1 &&
-    date.getUTCDate() === day
-  );
+  if (year < 1 || month < 1 || month > 12 || day < 1) return false;
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const daysInMonth = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  return day <= daysInMonth[month - 1];
 }
 
 function validateScalar(column, value, isForeignKey, tableName) {
   if (value === null) return column.nullable ? null : "must not be null";
+  if (column.allowedValues && !column.allowedValues.includes(value)) {
+    return `must be one of: ${column.allowedValues.join(", ")}`;
+  }
   if (column.enumValues) {
     if (typeof value !== "string" || !column.enumValues.includes(value)) {
       return `must be one of: ${column.enumValues.join(", ")}`;
@@ -65,7 +64,8 @@ function validateScalar(column, value, isForeignKey, tableName) {
       : "must be a real ISO calendar date (YYYY-MM-DD)";
   }
   if (column.sqlDesignerType === "JSONB") return validateJsonColumn(tableName, column.name, value);
-  return typeof value === "string" ? null : "must be a string";
+  if (typeof value !== "string") return "must be a string";
+  return validatePostgresText(value)?.replace(/^value /, "") ?? null;
 }
 
 async function main() {
@@ -143,8 +143,8 @@ async function main() {
         fail(`${label} must be an object`, errors);
         return;
       }
-      if (typeof row._key !== "string" || row._key.length === 0) {
-        fail(`${label} requires a non-empty _key`, errors);
+      if (typeof row._key !== "string" || !/^[a-z0-9]+(?:[._:-][a-z0-9]+)*$/.test(row._key) || row._key.length > 256) {
+        fail(`${label} requires a stable lowercase _key of at most 256 characters (letters, digits, and single . _ : - separators)`, errors);
       } else if (seenKeys.has(row._key)) {
         fail(`${label} duplicates _key ${row._key}`, errors);
       } else {
@@ -154,6 +154,8 @@ async function main() {
       for (const suppliedColumn of Object.keys(row)) {
         if (suppliedColumn !== "_key" && !columnsByName.has(suppliedColumn)) {
           fail(`${label} has unknown field ${suppliedColumn}`, errors);
+        } else if (columnsByName.get(suppliedColumn)?.generatedExpression) {
+          fail(`${label}.${suppliedColumn} is database-generated and must be omitted`, errors);
         }
       }
 
@@ -167,6 +169,7 @@ async function main() {
           }
           continue;
         }
+        if (column.generatedExpression) continue;
         const message = validateScalar(
           column,
           row[column.name],
@@ -240,12 +243,13 @@ async function main() {
   // Foreign keys prove existence; retain ownership checks for globals and for
   // diagnostic messages that identify the two conflicting titles.
   // Shared-PK details inherit ownership from their generic catalog row.
-  const rowsByKey = new Map(schema.tables.map((table) => [
-    table.name,
-    new Map((Array.isArray(bundle.tables?.[table.name]) ? bundle.tables[table.name] : []).filter((row) => row && typeof row === "object").map((row) => [row._key, row])),
-  ]));
   function referencedRow(foreignKey, value) {
-    if (typeof value === "string") return rowsByKey.get(foreignKey.referencedTable)?.get(value);
+    if (value === null || value === undefined) return null;
+    const targetTable = tableByName.get(foreignKey.referencedTable);
+    const targetColumn = foreignKey.referencedColumns[0];
+    if (targetTable?.primaryKey.includes(targetColumn)) {
+      return primaryRows.get(foreignKey.referencedTable)?.get(value) ?? null;
+    }
     return (bundle.tables?.[foreignKey.referencedTable] ?? []).find((row) => row?.[foreignKey.referencedColumns[0]] === value);
   }
   function owner(table, row, visited = new Set()) {
@@ -255,7 +259,10 @@ async function main() {
     if (visited.has(identity)) return null;
     visited.add(identity);
     const gameKey = table.foreignKeys.find((fk) => fk.columns.length === 1 && fk.columns[0] === "Game_id");
-    if (gameKey) return referencedRow(gameKey, row.Game_id) ?? null;
+    if (gameKey) {
+      const gameValue = row.Game_id ?? (table.primaryKey.includes("Game_id") ? row._key : null);
+      return referencedRow(gameKey, gameValue) ?? null;
+    }
     const parentKey = table.foreignKeys.find((fk) => fk.columns.length === 1 && table.primaryKey.includes(fk.columns[0]));
     if (parentKey) {
       return owner(tableByName.get(parentKey.referencedTable), referencedRow(parentKey, row[parentKey.columns[0]] ?? row._key), visited);
@@ -292,6 +299,35 @@ async function main() {
           fail(`${rowLabel(table.name, row, index)}.${column} crosses games (${game.SeriesCode} to ${parentGame.SeriesCode})`, errors);
         }
       }
+    }
+  }
+
+  // ScenarioHOMM3 keeps source-native IDs for auditability. Its nested `_key`
+  // strings are import-key annotations, not PostgreSQL FKs: validate them at
+  // bundle ingestion because the importer writes JSONB verbatim and universal
+  // SQL tables do not persist `_key`. Campaign bonus choices currently have no
+  // dedicated relational table.
+  const homm3Game = (bundle.tables?.Game ?? []).find((row) => row?.SeriesCode === "HOMM3");
+  const homm3GameKey = homm3Game?._key ?? homm3Game?.Game_id ?? null;
+  const homm3ResourceKeys = new Set((bundle.tables?.GameResource ?? [])
+    .filter((row) => referenceIdentity("Game", "Game_id", row.Game_id) === homm3GameKey)
+    .map((row) => referenceIdentity("Resource", "Resource_id", row.Resource_id)));
+  function requireHomm3Embedded(tableName, key, label) {
+    const target = primaryRows.get(tableName)?.get(key);
+    if (!target) {
+      fail(`${label} references missing ${tableName}: ${key}`, errors);
+      return;
+    }
+    const game = owner(tableByName.get(tableName), target);
+    if (game && game.SeriesCode !== "HOMM3") fail(`${label} references ${game.SeriesCode} ${tableName}: ${key}`, errors);
+  }
+  for (const [index, row] of (bundle.tables?.ScenarioHOMM3 ?? []).entries()) {
+    const label = rowLabel("ScenarioHOMM3", row, index);
+    for (const reference of scenarioHomm3Annotations(row)) {
+      const referenceLabel = `${label}.${reference.path}`;
+      if (!reference.requiresGameResource) requireHomm3Embedded(reference.table, reference.key, referenceLabel);
+      else if (!primaryRows.get("Resource")?.has(reference.key)) fail(`${referenceLabel} references missing Resource: ${reference.key}`, errors);
+      else if (!homm3ResourceKeys.has(reference.key)) fail(`${referenceLabel} uses a resource unavailable to HOMM3: ${reference.key}`, errors);
     }
   }
 

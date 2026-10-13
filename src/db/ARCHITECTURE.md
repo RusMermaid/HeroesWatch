@@ -146,6 +146,12 @@ Alternative or double-upgrade flags may live in a title's creature detail,
 while the actual creature-to-creature relationship remains an FK-backed
 upgrade edge where the shared graph requires it.
 
+Creature rank is named `Tier` across all eight games; spell levels retain
+`Level`. H1/H2 `Speed` stores the base combat movement number, while stored
+generated `SpeedName` provides the original label. H1 maps 1/2/3 to
+Slow/Medium/Fast; H2 maps 2–7 to Very Slow through Ultra Fast. The name is
+read-only, so it cannot disagree with the number. Flying remains in `Movement`.
+
 ### 3.6 Artifact domain
 
 `Artifact` owns item identity. `ArtifactComponent` expresses composite items,
@@ -197,8 +203,10 @@ Rules for game-detail tables:
 7. A new title extends downward through the existing category columns rather
    than creating a parallel isolated schema.
 
-Not every category requires a detail table in every game. Missing detail means
-the generic data is sufficient, not that the category is absent.
+Not every category needs a detail table in every game. A missing detail row can
+mean either that the generic data is sufficient or that its mechanics are not
+yet verified. Coverage notes distinguish these cases; neither means the generic
+entity is absent.
 
 Unique title systems can have a dedicated in-band table when they possess real
 identity or relationships. The current independently identified examples are
@@ -244,6 +252,11 @@ exist. Group rows must be supported by research before they are added.
 count, and class. Null class means a bonus shared by classes and compares as
 equal for uniqueness. Its stable generated ID remains the primary key.
 
+The nullable business identities for global `MediaAsset` rows, patches without
+a platform qualifier, and `LoreFull` links also use `UNIQUE NULLS NOT DISTINCT`.
+This keeps a missing qualifier from allowing duplicate logical rows while
+preserving the nullable fields themselves.
+
 `AdventureObjectCreature` relates an object type to each creature it recruits,
 guards, or produces through transformation. Multiple creature rows are valid;
 `Notes` records source restrictions. `AdventureObjectFaction` independently
@@ -253,6 +266,11 @@ continues to use `BuildingCreature`.
 
 `FactionSpell.SelectionWeight` is a nonnegative relative selection weight.
 It must not be copied to `OccurrenceChance`: a weight is not a probability.
+
+When `CampaignHero.StartingScenario_id` is present, its composite foreign key
+requires that scenario to appear in `CampaignScenario` for the same game and
+campaign. Same-game ownership alone is not enough to establish campaign
+membership.
 
 All relationships shown in the design become real PostgreSQL foreign keys.
 No application-only “soft FK” replaces a relationship that the database can
@@ -320,7 +338,7 @@ cross-row semantic integrity:
 | FK endpoint existence and same-game ownership | Completeness of query paths and researched mechanics |
 | Declared alternate unique keys, including nullable business identities | Source provenance and edition reconciliation |
 | Detail-table HOMM suffix and inherited ownership | Source-specific JSONB shape and content rules |
-| Per-game resource availability for creature, building, and artifact costs | Release/preview status and research provenance policy |
+| Per-game resource availability for creature, building, artifact, and title-specific spell costs | Release/preview status and research provenance policy |
 | Required versus nullable fields | Source-specific JSONB shape and content rules |
 | ENUM membership and requirement-group mode consistency | Evidence for actual prerequisite atoms |
 
@@ -352,7 +370,8 @@ ENUM types, primary/unique/foreign-key constraints, and FK indexes. It inserts
 no game data.
 
 `HeroesWatch.backup` is the historical schema-only custom-format backup of the
-initial schema. After restoring it, apply `0002_relationship_integrity.sql`.
+initial schema. After restoring it, apply `0002_relationship_integrity.sql`
+followed by migrations 0003, 0004 and 0005 in order.
 For a new current schema, use `HeroesWatch.sql` directly.
 
 `postgres/migrations/0001_initial.sql` is the immutable initial migration.
@@ -361,6 +380,14 @@ forward-only migrations rather than rewriting `0001_initial.sql`.
 `0002_relationship_integrity.sql` adds the reviewed relationships and ownership
 constraints and checks existing rows before committing. It preserves catalog
 IDs and requires PostgreSQL 15 or newer for `UNIQUE NULLS NOT DISTINCT`.
+`0003_nullable_identity_and_campaign_scope.sql` makes the remaining nullable
+business identities effective and constrains campaign-hero starting scenarios
+to their campaign. It also applies the same per-game `GameResource` membership
+rule to Heroes V spell/rune resource costs that already protects creature,
+building, and artifact costs. Both earlier migrations remain immutable.
+`0004_creature_tier_terminology.sql` renames the four remaining creature
+`Level` columns. `0005_creature_numeric_speed.sql` converts H1 speed labels to
+numbers and derives H1/H2 `SpeedName` values. Existing migrations are immutable.
 
 ### 8.2 Namespace and identifiers
 
