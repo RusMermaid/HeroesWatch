@@ -976,7 +976,7 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 | `DamageMin` | `SMALLINT` | Yes |  |
 | `DamageMax` | `SMALLINT` | Yes |  |
 | `MightDefense` | `SMALLINT` | No |  |
-| `MagicDefense` | `SMALLINT` | No |  |
+| `MagicDefense` | `NUMERIC` | No |  |
 | `Health` | `INTEGER` | Yes |  |
 | `Speed` | `SMALLINT` | No |  |
 | `Initiative` | `SMALLINT` | No |  |
@@ -992,6 +992,8 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 | `AlternativeUpgrade` | `BOOLEAN` | Yes |  |
 | `MightResistancePercent` | `SMALLINT` | No |  |
 | `MagicResistancePercent` | `SMALLINT` | No |  |
+
+Check: `"MagicDefense" BETWEEN -32768 AND 32767`.
 
 Check: `"MagicResistancePercent" BETWEEN 0 AND 100`.
 

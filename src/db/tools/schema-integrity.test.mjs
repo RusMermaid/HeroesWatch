@@ -14,6 +14,7 @@ const migration3 = await readFile(new URL("postgres/migrations/0003_nullable_ide
 const migration4 = await readFile(new URL("postgres/migrations/0004_creature_tier_terminology.sql", root), "utf8");
 const migration5 = await readFile(new URL("postgres/migrations/0005_creature_numeric_speed.sql", root), "utf8");
 const migration6 = await readFile(new URL("postgres/migrations/0006_catalog_guards.sql", root), "utf8");
+const migration7 = await readFile(new URL('postgres/migrations/0007_source_detail_profiles.sql',root),'utf8');
 const dataSchema = JSON.parse(await readFile(new URL("schema/data.schema.json", root), "utf8"));
 const dictionary = await readFile(new URL("DATA_DICTIONARY.md", root), "utf8");
 
@@ -27,10 +28,11 @@ test("published and deployed migration history remains immutable", () => {
   assert.equal(digest(migration4), "37a0f61de380816653579bbe4774fe4d823b6510d8d0053a91e24f75acf12d4f");
   assert.equal(digest(migration5), "3f3512c3bbea253cc589c475e5eb4017b76a978fcb77e28d53992f41f27558d1");
   assert.equal(digest(migration6), "151c530ae7ea62ed605d5f42a80e421f84d99581e14226e819ccb372df78ac11");
+  assert.equal(digest(migration7), '7ecb610ae431a40bd7250ef32a002b39e7a006a437a637c50d9b2eff2047d735');
 });
 
 test("the reviewed overlay keeps the historical initial migration separate", () => {
-  assert.equal(schema.source.overlay.version, 7);
+  assert.equal(schema.source.overlay.version, 8);
   assert.equal(schema.counts.tables, 176);
   assert.ok(!initial.includes('"AdventureObjectCreature"'));
   assert.ok(!initial.includes('"_game_scope_constraint"'));

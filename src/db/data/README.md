@@ -25,7 +25,7 @@ See [`../DATA_ENTRY.md`](../DATA_ENTRY.md) for the complete workflow.
 
 ## Current cumulative catalog
 
-The bundle contains **45,560 rows** under schema overlay **7**: 176 tables,
+The bundle contains **45,616 rows** under schema overlay **8**: 176 tables,
 1,309 columns and 452 foreign keys. See [coverage and known gaps](CATALOG_STATUS.md)
 for Heroes I–VIII factions, classes, heroes, town buildings, dwellings,
 creatures, skills, magic, artifacts, campaigns and map objects.
@@ -45,16 +45,16 @@ See [the completion record](../reviews/2026-10-13/COMPLETION.md) and
 
 ## Current 2026-10-14 gap additions
 
-Four reviewed patches add **1,628 rows** and fill **191 null fields**, preserving
+Five reviewed patches add **1,684 rows** and fill **211 null fields**, preserving
 existing identities and non-null facts. Their exact actions are recorded in
 [research-2026-10-14-evidence.json](research-2026-10-14-evidence.json).
-[research-gaps-import.sql](research-gaps-import.sql) contains **2,377 rows
+[research-gaps-import.sql](research-gaps-import.sql) contains **2,562 rows
 including dependencies** for an existing complete 43,932-row catalog.
-Apply migration 0007 before this delta. The full `catalog.sql` also includes
+Apply migration 0008 before this delta. The full `catalog.sql` also includes
 the new content. `build-research-sql.mjs` now generates and checks this latest
 delta by default. Windows tests passed and the local HeroesWatch.net update
-committed on 2026-10-14 with 45,560 rows; see
-[the current completion record](../reviews/2026-10-14/COMPLETION.md).
+committed on 2026-10-14 with 45,616 rows; see
+[the current completion record](../reviews/2026-10-14/RESOLUTION.md).
 
 ## Historical 2026-10-13 research addition
 
@@ -98,9 +98,10 @@ then migrations [0003](../postgres/migrations/0003_nullable_identity_and_campaig
 [0004](../postgres/migrations/0004_creature_tier_terminology.sql) and
 [0005](../postgres/migrations/0005_creature_numeric_speed.sql) and
 [0006](../postgres/migrations/0006_catalog_guards.sql), then
-[0007](../postgres/migrations/0007_source_detail_profiles.sql), once each.
+[0007](../postgres/migrations/0007_source_detail_profiles.sql) and
+[0008](../postgres/migrations/0008_fractional_magic_defense.sql), once each.
 For a populated 40,023-row Windows database, use the
-[tested upgrade sequence](../reviews/2026-10-14/COMPLETION.md#deployment):
+[tested upgrade sequence](../reviews/2026-10-14/RESOLUTION.md#deployment):
 the October 13 research catch-up runs before migration 0006 validates the
 newer resource memberships. Apply only steps that have not already completed.
 Apply [creature-tier-corrections.sql](creature-tier-corrections.sql) before current
@@ -115,7 +116,7 @@ Those historical subsets alone do not supply the October 13 research additions.
 For the complete current result, use the full catalog or follow an already
 complete 40,023-row final-PR import with the historical `research-import.sql`
 and then `research-gaps-import.sql`. The first delta targets 43,932 rows;
-the second adds the October 14 content to reach 45,560.
+the second adds the October 14 content to reach 45,616.
 
 ## Downloaded manuals
 
@@ -248,3 +249,7 @@ Before the catalog expansion above, the cumulative JSON contained 659 records
 across Heroes I-IV and VI-VII. Those rows are preserved. Changes to JSON require
 regeneration and execution of the reviewed SQL; they do not update PostgreSQL
 automatically.
+
+For a database already holding the 45,560-row snapshot, apply migration 0008,
+then `h67-profile-enrichment.sql`, then the current research delta. The guarded
+JSON enrichment is specific to that populated baseline.

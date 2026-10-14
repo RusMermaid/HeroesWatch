@@ -384,7 +384,7 @@ no game data.
 
 `HeroesWatch.backup` is the historical schema-only custom-format backup of the
 initial schema. After restoring it, apply `0002_relationship_integrity.sql`
-followed by migrations 0003 through 0007 in order.
+followed by migrations 0003 through 0008 in order.
 For a new current schema, use `HeroesWatch.sql` directly.
 
 `postgres/migrations/0001_initial.sql` is the immutable initial migration.
@@ -418,6 +418,18 @@ Olden Era alternative attacks use `AbilityHOMM8.IsActive` for a player-selected
 action. `IsFocusAction` identifies the native Focus ability action category,
 including zero-cost actions; alternative basic attacks are separate. Each
 source document records its build because Early Access systems can change.
+
+`0008_fractional_magic_defense.sql` preserves published fractional Heroes VI
+magic-defense points using `NUMERIC`, with the previous SMALLINT bounds kept
+as a check constraint. Displayed resistance percentages remain separate fields.
+The validator and JSON Schema accept finite numbers in the same domain.
+
+Heroes VI promoted-class `Default*` attributes describe the neutral
+base-lineage starting template, not a hero's current attributes on promotion.
+Where derived through `BaseHeroClass_id`, the source audit states that derivation.
+Heroes VII `IsHallHero=true` requires positive roster/editor evidence; absence
+from an incomplete roster never establishes false. Actual enabling is map/player
+specific and can also depend on edition entitlements.
 
 ### 8.2 Namespace and identifiers
 

@@ -120,6 +120,13 @@ for(const[faction,building,creature]of recruitment){
  const p=pages.get('en:'+faction[0].toUpperCase()+faction.slice(1)+' (H7)');
  add('BuildingCreature',{_key:b._key+'.recruits.'+creature,Game_id:'homm7.game',Building_id:b._key,Creature_id:'homm7.creature.'+creature,Relation:'Recruits'},evidence(p,'Buildings / Basic / '+building,'The source explicitly says this building allows buying this unit. Fortress Ballistae maps to Dwarven ballista; Sister healers maps to Healing sister; Rune Stones maps to Runestone.'));
 }
+const resolution=JSON.parse(fs.readFileSync(`${root}/h67-resolution-enrichment.json`));
+for(const change of resolution.changes){
+ const action=patch.additions.find(action=>action.table===change.table&&action.row._key===change.key);
+ if(!action||JSON.stringify(action.row[change.field])!==JSON.stringify(change.expected))throw Error('Resolution precondition differs for '+change.key);
+ action.row[change.field]=change.value;action.evidence.resolution=change.evidence;
+}
+patch.resolution={date:'2026-10-14',priorCommit:resolution.baselineCommit,audit:'h67-resolution-enrichment.json'};
 patch.additions.sort((a,b)=>a.table.localeCompare(b.table)||a.row._key.localeCompare(b.row._key));
 fs.writeFileSync(`${root}/heroes6-7.patch.json`,JSON.stringify(patch,null,2)+'\n');
 const counts=Object.fromEntries([...new Set(patch.additions.map(x=>x.table))].map(t=>[t,patch.additions.filter(x=>x.table===t).length]));

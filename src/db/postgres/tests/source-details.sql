@@ -18,6 +18,14 @@ BEGIN
     UPDATE heroes_watch."CreatureHOMM6" SET "MightResistancePercent"=101 WHERE "Creature_id"=h6;
     RAISE EXCEPTION 'Invalid resistance accepted';
   EXCEPTION WHEN check_violation THEN NULL; END;
+  UPDATE heroes_watch."CreatureHOMM6" SET "MagicDefense"=10.5 WHERE "Creature_id"=h6;
+  IF (SELECT "MagicDefense" FROM heroes_watch."CreatureHOMM6" WHERE "Creature_id"=h6) <> 10.5 THEN
+    RAISE EXCEPTION 'Fractional magic defense was rounded';
+  END IF;
+  BEGIN
+    UPDATE heroes_watch."CreatureHOMM6" SET "MagicDefense"='NaN'::numeric WHERE "Creature_id"=h6;
+    RAISE EXCEPTION 'Nonfinite defense accepted';
+  EXCEPTION WHEN check_violation THEN NULL; END;
   BEGIN
     UPDATE heroes_watch."CreatureHOMM7" SET "WarfareStats"='{}'::jsonb WHERE "Creature_id"=h7;
     RAISE EXCEPTION 'Warfare profile accepted on ordinary creature';

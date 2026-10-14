@@ -22019,21 +22019,24 @@
               "attack": 15,
               "health": 450,
               "damageMin": 38,
-              "damageMax": 52
+              "damageMax": 52,
+              "defense": 25
             },
             {
               "index": 4,
               "attack": 20,
               "health": 550,
               "damageMin": 42,
-              "damageMax": 58
+              "damageMax": 58,
+              "defense": 30
             },
             {
               "index": 5,
               "attack": 25,
               "health": 700,
               "damageMin": 60,
-              "damageMax": 80
+              "damageMax": 80,
+              "defense": 40
             }
           ]
         }
@@ -22049,6 +22052,23 @@
           "source": "https://mightandmagic.fandom.com/ru/wiki/%D0%91%D0%B0%D0%BB%D0%BB%D0%B8%D1%81%D1%82%D0%B0_%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81%D0%B0_%D0%A1%D0%B2%D0%B5%D1%82%D0%B0",
           "revision": 121731,
           "sections": "Creature stat block and Abilities"
+        },
+        "resolution": {
+          "source": {
+            "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%91%D0%B0%D0%BB%D0%BB%D0%B8%D1%81%D1%82%D0%B0_%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81%D0%B0_%D0%A1%D0%B2%D0%B5%D1%82%D0%B0?oldid=121731",
+            "revision": 121731,
+            "sha256": "6fd7efbce0c1a2b6401e51c15c765877e23ece193fe210dae230c42c9ffb6449"
+          },
+          "reason": "Use the explicitly labelled level-one-to-five wiki table as the canonical published snapshot. Conflicting summaries remain documented.",
+          "alternativeValues": [
+            10,
+            15,
+            20,
+            25,
+            30
+          ],
+          "alternativeSource": "https://mightandmagic.fandom.com/wiki/Ballista_(H7)?oldid=181665",
+          "corroboration": "No native-package verification is claimed."
         }
       }
     },
@@ -22276,7 +22296,8 @@
               "defense": 25,
               "health": 1000,
               "damageMin": 70,
-              "damageMax": 95
+              "damageMax": 95,
+              "effectAmount": 600
             }
           ],
           "supportEffect": "Healing"
@@ -22297,6 +22318,23 @@
         "independentCrossCheck": {
           "source": "https://www.heroes7.acidcave.net/creatures_stronghold.html",
           "notes": "Initiative 21 agrees with the Russian wiki rather than English 100. Level-five healing is 300 here versus Russian 600, so its effectAmount remains absent."
+        },
+        "resolution": {
+          "source": {
+            "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%A1%D0%BD%D0%BE%D1%85%D0%BE%D0%B4%D0%B5%D1%86_(HoMM_VII)?oldid=121741",
+            "revision": 121741,
+            "sha256": "d513af7b93ee9e8356d980b9a4e2391f2b442573b7236dfe51ca4f65d1a93eb5"
+          },
+          "reason": "Use the explicitly labelled level-one-to-five wiki table as the canonical published snapshot. Conflicting summaries remain documented.",
+          "alternativeValues": [
+            20,
+            40,
+            60,
+            120,
+            300
+          ],
+          "alternativeSource": "https://www.heroes7.acidcave.net/creatures_stronghold.html",
+          "corroboration": "No native-package verification is claimed."
         }
       }
     },
@@ -22720,27 +22758,32 @@
             {
               "index": 1,
               "health": 300,
-              "effectAmount": 30
+              "effectAmount": 30,
+              "defense": 5
             },
             {
               "index": 2,
               "health": 400,
-              "effectAmount": 50
+              "effectAmount": 50,
+              "defense": 10
             },
             {
               "index": 3,
               "health": 500,
-              "effectAmount": 100
+              "effectAmount": 100,
+              "defense": 15
             },
             {
               "index": 4,
               "health": 600,
-              "effectAmount": 150
+              "effectAmount": 150,
+              "defense": 20
             },
             {
               "index": 5,
               "health": 700,
-              "effectAmount": 250
+              "effectAmount": 250,
+              "defense": 25
             }
           ],
           "supportEffect": "Healing"
@@ -22757,6 +22800,23 @@
           "source": "https://mightandmagic.fandom.com/ru/wiki/%D0%9F%D0%BE%D1%81%D0%BB%D1%83%D1%88%D0%BD%D0%B8%D1%86%D0%B0_%D0%AD%D0%BB%D1%8C%D1%80%D0%B0%D1%82%D0%B0",
           "revision": 121739,
           "sections": "Creature stat block and Abilities"
+        },
+        "resolution": {
+          "source": {
+            "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9F%D0%BE%D1%81%D0%BB%D1%83%D1%88%D0%BD%D0%B8%D1%86%D0%B0_%D0%AD%D0%BB%D1%8C%D1%80%D0%B0%D1%82%D0%B0?oldid=121739",
+            "revision": 121739,
+            "sha256": "8f11cef7a2b9f0bdd7bf8588122b820912f4d5fb47df52600c824ad1c6e74d49"
+          },
+          "reason": "Use the explicitly labelled level-one-to-five wiki table as the canonical published snapshot. Conflicting summaries remain documented.",
+          "alternativeValues": [
+            10,
+            15,
+            20,
+            25,
+            30
+          ],
+          "alternativeSource": "https://mightandmagic.fandom.com/wiki/Healing_sister_(H7)?oldid=164809",
+          "corroboration": "Acid Cave Haven table independently gives level-one defense 5."
         }
       }
     },
@@ -27304,5 +27364,10 @@
       "sha256": "85ef8f40beb85cf5f77947692794ca1f7800f393a896681a486bc73e3516a9eb",
       "warfareKey": "homm7.creature.catapult"
     }
-  ]
+  ],
+  "resolution": {
+    "date": "2026-10-14",
+    "priorCommit": "9450e7919cf4ff7164ec2efb4804006807ff71df",
+    "audit": "h67-resolution-enrichment.json"
+  }
 }

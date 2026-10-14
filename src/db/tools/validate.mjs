@@ -60,6 +60,9 @@ function validateScalar(column, value, isForeignKey, tableName) {
   if (column.sqlDesignerType === "BOOLEAN") {
     return typeof value === "boolean" ? null : "must be a boolean";
   }
+  if (column.sqlDesignerType === 'NUMERIC') {
+    return typeof value==='number'&&Number.isFinite(value)&&value>=-32768&&value<=32767 ? null : 'must be a finite number between -32768 and 32767';
+  }
   if (column.sqlDesignerType === "DATE") {
     return isCalendarDate(value)
       ? null

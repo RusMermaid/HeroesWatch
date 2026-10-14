@@ -1,7 +1,7 @@
 # Catalog coverage and PostgreSQL handoff
 
 Updated 2026-10-14. The cumulative [JSON](heroeswatch.json) contains
-**45,560 rows across 176 table arrays** under schema overlay **7**
+**45,616 rows across 176 table arrays** under schema overlay **8**
 (1,309 columns and 452 foreign keys). The October 4 deployment receipt is a
 historical 40,023-row snapshot using reviewed overlay version 2 and migration
 0002. The current local deployment is recorded below.
@@ -12,9 +12,9 @@ touch-up parts to **HeroesWatch.net**. That earlier review returned **40,023
 rows, 176 tables, 23 games and 36 PDF manual records**, with database owner
 **postgres**. This receipt is not current deployment evidence for the frozen
 current package. **The October 14 Windows update is now committed:** pgAdmin
-confirmed 45,560 rows and 1,309 columns in HeroesWatch.net, owned by postgres.
-See the [current completion record](../reviews/2026-10-14/COMPLETION.md) and
-[deployment receipt](../reviews/2026-10-14/deployment.json).
+confirmed 45,616 rows and 1,309 columns in HeroesWatch.net, owned by postgres.
+See the [current completion record](../reviews/2026-10-14/RESOLUTION.md) and
+[deployment receipt](../reviews/2026-10-14/resolution-deployment.json).
 See the [deployment record](live-deployment.json) and
 [review query](live-deployment.review.sql).
 
@@ -31,19 +31,19 @@ its pre-upgrade state; the friend's database was not modified.
 
 ## Current 2026-10-14 gap additions
 
-Four reviewed patches add **1,628 rows** and fill **191 explicitly null fields**
+Five reviewed patches add **1,684 rows** and fill **211 explicitly null fields**
 over the 43,932-row baseline. Existing identities and non-null values are
 preserved. The additions cover Heroes IV creature abilities, Heroes V starting
 armies and skills, VI/VII creature and class profiles, creature abilities and
 warfare recruitment, and Olden Era attacks, schools, resources, Astrology,
 maps and scenarios. Source-specific unknowns remain explicit.
 
-The [audit trail](research-2026-10-14-evidence.json) records all four patches.
+The [audit trail](research-2026-10-14-evidence.json) records all five patches.
 The current [research-gaps-import.sql](research-gaps-import.sql) contains
-**2,377 rows including dependencies** and applies this delta to the complete
-43,932-row baseline after migration **0007**. The full cumulative import also
+**2,562 rows including dependencies** and applies this delta to the complete
+43,932-row baseline after migration **0008**. The full cumulative import also
 contains these additions. Current testing and Windows deployment status are in
-[the October 14 completion record](../reviews/2026-10-14/COMPLETION.md).
+[the October 14 completion record](../reviews/2026-10-14/RESOLUTION.md).
 
 ## Historical 2026-10-13 research package
 
@@ -62,7 +62,7 @@ The deterministic audit trail is [research-2026-10-13-evidence.json](research-20
 The generated [research-import.sql](research-import.sql) contains 5,801 rows
 including dependencies. This file remains the historical **43,932-row target**
 snapshot; the October 14 delta is a separate file. Existing databases need
-migrations through 0007 and `creature-tier-corrections.sql` before current imports.
+migrations through 0008 and `creature-tier-corrections.sql` before current imports.
 The human completion review is [COMPLETION.md](../reviews/2026-10-13/COMPLETION.md).
 The Oct 4 friend receipt remains historical evidence about that snapshot only.
 
@@ -180,8 +180,8 @@ unofficial content are excluded.
   Heroes V entries with multiple playable classes are documented as such.
   Olden Era covers the 108 standard heroes plus four named Act I protagonists;
   unused and unlocalized definitions are not presented as released heroes.
-- Two VI ordinary-creature details remain absent because raw defenses are
-  unresolved. Thirteen VI boss profiles and all nineteen VII warfare profiles
+- All VI ordinary creatures now have detail rows, with fractional raw magic
+  defense retained where published. Thirteen VI boss profiles and all nineteen VII warfare profiles
   now have sourced details with explicitly unknown fields. Warfare rank
   vectors are retained in typed JSON instead of selecting an arbitrary rank.
   Unsupported artifact classes
@@ -202,8 +202,10 @@ unofficial content are excluded.
   executable verification is not claimed. Heroes V has 103 sourced starting
   armies; unsupported statistics and conflicting same-name forms remain open.
   See the [IV/V review](../research/2026-10-14/heroes45.sources.md).
-- The 110 unverified VII Hall flags remain null. Warfare footprint and several
-  cross-language stat disagreements are also retained as unknown, not defaults.
+- Sixty VII Hall flags remain unknown; 72 now have positive roster/editor
+  evidence. Four VI promoted-class defaults are derived from base lineages.
+  Conflicting VI/VII statistics use an explicit wiki-source preference, with
+  alternate claims retained in the [resolution review](../research/2026-10-14/h67-resolution.sources.md).
 - `LoreFull` currently has 22 evidence-backed links (five Hero, twelve
   Campaign, and five Faction); it has no current CampaignHero, Scenario, or Map
   endpoint rows. The schema supports those paths, but current lore coverage does

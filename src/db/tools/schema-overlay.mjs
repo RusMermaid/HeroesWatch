@@ -249,5 +249,16 @@ export function applySchemaOverlayV7(schema) {
 }
 
 export function applySchemaOverlay(schema, objectName) {
-  return applySchemaOverlayV7(applySchemaOverlayV6(applySchemaOverlayV5(applySchemaOverlayV4(applySchemaOverlayV3(applySchemaOverlayV2(schema, objectName), objectName)))));
+  return applySchemaOverlayV8(applySchemaOverlayV7(applySchemaOverlayV6(applySchemaOverlayV5(applySchemaOverlayV4(applySchemaOverlayV3(applySchemaOverlayV2(schema, objectName), objectName))))));
+}
+
+export function applySchemaOverlayV8(schema) {
+  const table=schema.tables.find(table=>table.name==='CreatureHOMM6');
+  const field=table.columns.find(column=>column.name==='MagicDefense');
+  field.sqlDesignerType='NUMERIC';field.postgresType='NUMERIC';
+  field.comment='Raw defense points may be fractional; distinct from displayed resistance percent.';
+  table.checks.push({name:'ck_h6_magic_defense_finite',expression:'"MagicDefense" BETWEEN -32768 AND 32767'});
+  table.checks.sort((a,b)=>a.name.localeCompare(b.name));
+  schema.source.overlay={version:8,module:'src/db/tools/schema-overlay.mjs',migration:'0008_fractional_magic_defense.sql'};
+  return schema;
 }

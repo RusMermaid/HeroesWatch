@@ -1,5 +1,11 @@
 # Heroes VI and VII: wiki-backed gap additions
 
+**Later October 14 resolution:** four promoted-class defaults and the two
+fractional-defense profiles are now supplied; the nine withheld warfare values
+use an explicit canonical wiki snapshot. Fifty additional Hall flags are
+supported, leaving sixty unknown. The discussion below records the initial
+comparison; [the follow-up](h67-resolution.sources.md) states the final choices.
+
 Research date: **2026-10-14**. This patch follows the user's clarification to
 use the project's wiki references. It adds published facts without claiming a
 retained game-package extraction or overwriting existing non-null values.

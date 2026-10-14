@@ -27,7 +27,7 @@ if (process.argv.includes('--help')) {
   console.log(`Usage: HW_TEST_POSTGRES=1 PGHOST=... PGPORT=... PGUSER=... node src/db/tools/postgres-upgrade-integration.mjs
 
 Creates one random v5 database and three random clones, proves upgrades through
-v7 preserve the baseline catalog, and imports the reviewed research delta.
+v8 preserve the baseline catalog, and imports the reviewed research delta.
 Invalid cost/cycle baselines must roll back v6; a missing warfare role must
 roll back every v7 schema change. The runner drops only those exact databases.`);
   process.exit(0);
@@ -229,6 +229,7 @@ try {
   console.log('Cloning the populated v6 baseline for the v7 atomic rollback probe ...');
   await create(databases.badProfile, databases.main);
   await psqlFile(databases.main, 'src/db/postgres/migrations/0007_source_detail_profiles.sql');
+  await psqlFile(databases.main, 'src/db/postgres/migrations/0008_fractional_magic_defense.sql');
   await psqlFile(databases.main, 'src/db/postgres/verify.sql');
   const after = await queryJson(psql, connection, databases.main, fingerprintSql(baselineSchema), { env: pgEnv, timeout: 300_000 });
   assert.deepEqual(after, before, 'v6/v7 migrations changed catalog rows or physical IDs');
@@ -281,7 +282,7 @@ try {
     `SELECT to_jsonb(current_setting('server_version'))`, { env: pgEnv });
   console.log(JSON.stringify({
     result: 'PASS', databaseVersion: version, sourceRows,
-    upgrade: '0001..0005 + exact research baseline -> 0006 -> 0007 + research gap delta',
+    upgrade: '0001..0005 + exact research baseline -> 0006 -> 0007 -> 0008 + research gap delta',
     preservedFingerprint: true, ...reconciliation,
     invalidBaselines: ['negative amount: v6 23514 + atomic rollback', 'creature cycle: v6 23514 + atomic rollback',
       'missing warfare role: v7 23514 + columns, enum, checks, nullability and baseline row preserved'],

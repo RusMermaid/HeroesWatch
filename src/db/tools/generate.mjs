@@ -406,6 +406,7 @@ function jsonSchemaType(column, foreignKeyColumns, tableName) {
     }
     return { type: "integer", ...(column.allowedValues ? { enum: column.allowedValues } : {}) };
   }
+  if (column.sqlDesignerType === "NUMERIC") return {type:'number',minimum:-32768,maximum:32767};
   if (column.sqlDesignerType === "BOOLEAN") return { type: "boolean" };
   if (column.sqlDesignerType === "DATE") {
     return { type: "string", format: "date" };
@@ -1005,6 +1006,7 @@ async function main() {
   const overlayV4Schema = applySchemaOverlayV4(structuredClone(overlayV3Schema), objectName);
   const overlayV5Schema = applySchemaOverlayV5(structuredClone(overlayV4Schema), objectName);
   const overlayV6Schema = applySchemaOverlayV6(structuredClone(overlayV5Schema));
+  const overlayV7Schema = applySchemaOverlayV7(structuredClone(overlayV6Schema));
   const schema = applySchemaOverlay(structuredClone(initialSchema), objectName);
   const ddl = generateDdl(schema);
   const dataSchema = generateDataJsonSchema(schema);
@@ -1031,7 +1033,15 @@ async function main() {
     ["postgres/migrations/0004_creature_tier_terminology.sql", generateOverlayV4Upgrade(overlayV3Schema, overlayV4Schema)],
     ["postgres/migrations/0005_creature_numeric_speed.sql", generateOverlayV5Upgrade(overlayV4Schema, overlayV5Schema)],
     ["postgres/migrations/0006_catalog_guards.sql", generateOverlayV6Upgrade(overlayV5Schema, overlayV6Schema)],
-    ["postgres/migrations/0007_source_detail_profiles.sql", generateOverlayV7Upgrade(overlayV6Schema, schema)],
+    ["postgres/migrations/0007_source_detail_profiles.sql", generateOverlayV7Upgrade(overlayV6Schema, overlayV7Schema)],
+    ['postgres/migrations/0008_fractional_magic_defense.sql', [
+      '-- Preserve published fractional Heroes VI magic-defense points.',
+      '-- Migration 0008 changes representation only; it does not replace game facts.',
+      'BEGIN;',
+      'ALTER TABLE "heroes_watch"."CreatureHOMM6" ALTER COLUMN "MagicDefense" TYPE NUMERIC USING "MagicDefense"::numeric;',
+      'ALTER TABLE "heroes_watch"."CreatureHOMM6" ADD CONSTRAINT "ck_h6_magic_defense_finite" CHECK ("MagicDefense" BETWEEN -32768 AND 32767);',
+      'COMMIT;','',
+    ].join('\n')],
     ["postgres/verify.sql", verifySql],
     ["data/template.json", json(template)],
     ["DATA_DICTIONARY.md", dictionary],

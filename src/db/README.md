@@ -37,7 +37,7 @@ Current contract:
 
    For a Windows computer, follow [WINDOWS.md](WINDOWS.md). The same SQL file
    works on macOS and Windows. The historical schema-only `HeroesWatch.backup`
-   restores the initial contract and then requires migrations 0002 through 0007,
+   restores the initial contract and then requires migrations 0002 through 0008,
    in that order.
 
    The equivalent command-line workflow is:
@@ -56,7 +56,7 @@ existing schema.
 ## What is authoritative?
 
 - `schema/sql-designer.snapshot.json` is the exact original diagram snapshot.
-  `tools/schema-overlay.mjs` records the reviewed changes through version 7. Together
+  `tools/schema-overlay.mjs` records the reviewed changes through version 8. Together
   they generate the current contract; the live diagram has not been replaced.
 - `schema/heroeswatch.schema.json` is the compact semantic contract used by
   people and tools.
@@ -64,16 +64,16 @@ existing schema.
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
 - The schema baselines contain no game rows. Reviewed content lives in the
-  cumulative JSON: 45,560 rows across Heroes I–VIII and related Might and Magic
+  cumulative JSON: 45,616 rows across Heroes I–VIII and related Might and Magic
   RPGs and spin-offs, including classes, heroes,
   town buildings, dwellings, creatures, skills, magic, artifacts, campaigns
   and map objects for each title's actual mechanics and official expansions.
   [Coverage and known gaps](data/CATALOG_STATUS.md) lists counts, provenance,
   unresolved details, and PostgreSQL application status.
-  [October 14 completion record](reviews/2026-10-14/COMPLETION.md)
-  tracks the current four-patch update: 1,628 additions and 191 null fills.
+  [October 14 completion record](reviews/2026-10-14/RESOLUTION.md)
+  tracks the current five-patch update: 1,684 additions and 211 null fills.
   Windows testing and local deployment completed on October 14; the live
-  database now has 45,560 rows. The
+  database now has 45,616 rows. The
   [October 13 completion and verification](reviews/2026-10-13/COMPLETION.md)
   records the earlier additions, integrity corrections, and Mac delivery.
   [Screenshot review status](data/TOUCHUPS_STATUS.md) records the new relationships,
@@ -85,8 +85,8 @@ existing schema.
   local identities and facts and rejects conflicts. Inspect results with
   [data/catalog.review.sql](data/catalog.review.sql).
 - [data/research-gaps-import.sql](data/research-gaps-import.sql) is the current
-  research delta with 2,377 rows including dependencies, for a complete
-  43,932-row baseline after migration 0007. Its four reviewed patches are
+  research delta with 2,562 rows including dependencies, for a complete
+  43,932-row baseline after migration 0008. Its five reviewed patches are
   recorded in [the October 14 audit](data/research-2026-10-14-evidence.json).
   `node src/db/tools/build-research-sql.mjs --check` checks this latest delta.
 - [data/research-import.sql](data/research-import.sql) remains the historical
@@ -95,7 +95,7 @@ existing schema.
   For the historical Windows baseline, apply migrations 0003–0005 and the
   [creature tier corrections](data/creature-tier-corrections.sql), then this
   catch-up before migration 0006 checks the added resource memberships.
-  [The current delivery review](reviews/2026-10-14/COMPLETION.md) gives the full order.
+  [The current delivery review](reviews/2026-10-14/RESOLUTION.md) gives the full order.
   Use [data/completion.review.sql](data/completion.review.sql) for readable
   creature statistics, ability links, campaign heroes, and shared resources.
 - [data/homm3-factions.sql](data/homm3-factions.sql) applies that batch in one

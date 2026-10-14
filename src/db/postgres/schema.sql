@@ -1902,7 +1902,7 @@ CREATE TABLE "heroes_watch"."CreatureHOMM6" (
     "DamageMin" SMALLINT NOT NULL,
     "DamageMax" SMALLINT NOT NULL,
     "MightDefense" SMALLINT,
-    "MagicDefense" SMALLINT,
+    "MagicDefense" NUMERIC,
     "Health" INTEGER NOT NULL,
     "Speed" SMALLINT,
     "Initiative" SMALLINT,
@@ -1919,6 +1919,7 @@ CREATE TABLE "heroes_watch"."CreatureHOMM6" (
     "MightResistancePercent" SMALLINT,
     "MagicResistancePercent" SMALLINT,
     CONSTRAINT "pk__CreatureHOMM6" PRIMARY KEY ("Creature_id"),
+    CONSTRAINT "ck_h6_magic_defense_finite" CHECK ("MagicDefense" BETWEEN -32768 AND 32767),
     CONSTRAINT "ck_h6_magic_resistance" CHECK ("MagicResistancePercent" BETWEEN 0 AND 100),
     CONSTRAINT "ck_h6_might_resistance" CHECK ("MightResistancePercent" BETWEEN 0 AND 100),
     CONSTRAINT "ck_h6_ordinary_stats" CHECK ("CreatureKind" NOT IN ('Town', 'Neutral') OR ("MightDefense" IS NOT NULL AND "MagicDefense" IS NOT NULL AND "CombatSize" IS NOT NULL AND "Movement" IS NOT NULL AND "Speed" IS NOT NULL AND "Initiative" IS NOT NULL AND "Luck" IS NOT NULL AND "Range" IS NOT NULL))

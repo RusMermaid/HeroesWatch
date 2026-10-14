@@ -1806,9 +1806,9 @@
     "diagram": "https://sql-designer.com/diagrams/932ebd44-bda4-45c2-a3e5-0358c579e076",
     "kind": "SQLDesigner",
     "overlay": {
-      "migration": "0007_source_detail_profiles.sql",
+      "migration": "0008_fractional_magic_defense.sql",
       "module": "src/db/tools/schema-overlay.mjs",
-      "version": 7
+      "version": 8
     },
     "sha256": "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673"
   },
@@ -11134,6 +11134,10 @@
     {
       "checks": [
         {
+          "expression": "\"MagicDefense\" BETWEEN -32768 AND 32767",
+          "name": "ck_h6_magic_defense_finite"
+        },
+        {
           "expression": "\"MagicResistancePercent\" BETWEEN 0 AND 100",
           "name": "ck_h6_magic_resistance"
         },
@@ -11259,14 +11263,14 @@
           "unsigned": false
         },
         {
-          "comment": null,
+          "comment": "Raw defense points may be fractional; distinct from displayed resistance percent.",
           "default": null,
           "enumValues": null,
           "name": "MagicDefense",
           "nullable": true,
-          "postgresType": "SMALLINT",
+          "postgresType": "NUMERIC",
           "primaryKey": false,
-          "sqlDesignerType": "SMALLINT",
+          "sqlDesignerType": "NUMERIC",
           "unique": false,
           "unsigned": false
         },

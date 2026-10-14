@@ -1,5 +1,8 @@
 # October 14 catalog update
 
+This records the initial 45,560-row delivery. The subsequent
+[VI/VII resolution](RESOLUTION.md) brings the catalog to 45,616 rows.
+
 The catalog contains **45,560 rows**. Four reviewed patches add **1,628 rows**
 and fill **191 null fields** over `7ad2a6b`, preserving existing identities and
 non-null facts. [Exact research audit](../../data/research-2026-10-14-evidence.json).

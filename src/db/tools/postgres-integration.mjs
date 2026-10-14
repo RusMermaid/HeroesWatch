@@ -305,7 +305,7 @@ try {
   const schema = JSON.parse(fs.readFileSync(path.join(dbRoot, 'schema/heroeswatch.schema.json'), 'utf8'));
   const bundle = JSON.parse(fs.readFileSync(path.join(dbRoot, 'data/heroeswatch.json'), 'utf8'));
   const sourceRows = Object.values(bundle.tables).reduce((sum, rows) => sum + rows.length, 0);
-  const expectedRows = Number(process.env.HW_EXPECTED_ROWS ?? '45560');
+  const expectedRows = Number(process.env.HW_EXPECTED_ROWS ?? '45616');
   assert.equal(sourceRows, expectedRows,
     `catalog row total changed from ${expectedRows}; review the data change and update HW_EXPECTED_ROWS/TESTING.md deliberately`);
 

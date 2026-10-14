@@ -2,17 +2,18 @@
   "formatVersion": 1,
   "purpose": "Deterministic audit trail for the explicitly selected reviewed research patches.",
   "inputSha256": "a03abd5d3b758d7bb0e72def34b44cf406697f138905c974952e2e65a7360b8d",
-  "outputSha256": "5ff345039a40a63ae3f29d5a04d244e0eb113930bbf8481adc37bac0b86387f8",
+  "outputSha256": "15d083a85c6d971946221ae86ba81a25f9e4a460f01d8cbd974e4ae084964e74",
   "patchFiles": [
     "heroes4.patch.json",
     "heroes45.patch.json",
     "heroes6-7.patch.json",
-    "olden.patch.json"
+    "olden.patch.json",
+    "zz-h67-resolution.patch.json"
   ],
   "summary": {
-    "additions": 1628,
-    "fills": 191,
-    "resultingRows": 45560
+    "additions": 1684,
+    "fills": 211,
+    "resultingRows": 45616
   },
   "patches": [
     {
@@ -19746,13 +19747,18 @@
     },
     {
       "file": "heroes6-7.patch.json",
-      "patchSha256": "4543907e741bee4ef0c8fc3d3acb216b719513c9fc3cc99d10b5ca94aa9f82b8",
+      "patchSha256": "e5188df1339153325b4b276b491376183f0b3301f4fe0848ba5ded448bd370c5",
       "metadata": {
         "formatVersion": 1,
         "researchDate": "2026-10-14",
         "game": "Heroes VI and VII",
         "scope": "Wiki-backed creature profiles, named abilities and relationships, class details and warfare recruitment.",
-        "policy": "Additions and null-only fills. Wiki revision provenance is retained. Partial boss profiles and warfare progression vectors remain distinct from complete scalar statistics. No full-game extraction is claimed."
+        "policy": "Additions and null-only fills. Wiki revision provenance is retained. Partial boss profiles and warfare progression vectors remain distinct from complete scalar statistics. No full-game extraction is claimed.",
+        "resolution": {
+          "date": "2026-10-14",
+          "priorCommit": "9450e7919cf4ff7164ec2efb4804006807ff71df",
+          "audit": "h67-resolution-enrichment.json"
+        }
       },
       "sources": [
         {
@@ -46357,21 +46363,24 @@
                   "attack": 15,
                   "health": 450,
                   "damageMin": 38,
-                  "damageMax": 52
+                  "damageMax": 52,
+                  "defense": 25
                 },
                 {
                   "index": 4,
                   "attack": 20,
                   "health": 550,
                   "damageMin": 42,
-                  "damageMax": 58
+                  "damageMax": 58,
+                  "defense": 30
                 },
                 {
                   "index": 5,
                   "attack": 25,
                   "health": 700,
                   "damageMin": 60,
-                  "damageMax": 80
+                  "damageMax": 80,
+                  "defense": 40
                 }
               ]
             }
@@ -46387,6 +46396,23 @@
               "source": "https://mightandmagic.fandom.com/ru/wiki/%D0%91%D0%B0%D0%BB%D0%BB%D0%B8%D1%81%D1%82%D0%B0_%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81%D0%B0_%D0%A1%D0%B2%D0%B5%D1%82%D0%B0",
               "revision": 121731,
               "sections": "Creature stat block and Abilities"
+            },
+            "resolution": {
+              "source": {
+                "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%91%D0%B0%D0%BB%D0%BB%D0%B8%D1%81%D1%82%D0%B0_%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81%D0%B0_%D0%A1%D0%B2%D0%B5%D1%82%D0%B0?oldid=121731",
+                "revision": 121731,
+                "sha256": "6fd7efbce0c1a2b6401e51c15c765877e23ece193fe210dae230c42c9ffb6449"
+              },
+              "reason": "Use the explicitly labelled level-one-to-five wiki table as the canonical published snapshot. Conflicting summaries remain documented.",
+              "alternativeValues": [
+                10,
+                15,
+                20,
+                25,
+                30
+              ],
+              "alternativeSource": "https://mightandmagic.fandom.com/wiki/Ballista_(H7)?oldid=181665",
+              "corroboration": "No native-package verification is claimed."
             }
           }
         },
@@ -46617,7 +46643,8 @@
                   "defense": 25,
                   "health": 1000,
                   "damageMin": 70,
-                  "damageMax": 95
+                  "damageMax": 95,
+                  "effectAmount": 600
                 }
               ],
               "supportEffect": "Healing"
@@ -46638,6 +46665,23 @@
             "independentCrossCheck": {
               "source": "https://www.heroes7.acidcave.net/creatures_stronghold.html",
               "notes": "Initiative 21 agrees with the Russian wiki rather than English 100. Level-five healing is 300 here versus Russian 600, so its effectAmount remains absent."
+            },
+            "resolution": {
+              "source": {
+                "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%A1%D0%BD%D0%BE%D1%85%D0%BE%D0%B4%D0%B5%D1%86_(HoMM_VII)?oldid=121741",
+                "revision": 121741,
+                "sha256": "d513af7b93ee9e8356d980b9a4e2391f2b442573b7236dfe51ca4f65d1a93eb5"
+              },
+              "reason": "Use the explicitly labelled level-one-to-five wiki table as the canonical published snapshot. Conflicting summaries remain documented.",
+              "alternativeValues": [
+                20,
+                40,
+                60,
+                120,
+                300
+              ],
+              "alternativeSource": "https://www.heroes7.acidcave.net/creatures_stronghold.html",
+              "corroboration": "No native-package verification is claimed."
             }
           }
         },
@@ -47067,27 +47111,32 @@
                 {
                   "index": 1,
                   "health": 300,
-                  "effectAmount": 30
+                  "effectAmount": 30,
+                  "defense": 5
                 },
                 {
                   "index": 2,
                   "health": 400,
-                  "effectAmount": 50
+                  "effectAmount": 50,
+                  "defense": 10
                 },
                 {
                   "index": 3,
                   "health": 500,
-                  "effectAmount": 100
+                  "effectAmount": 100,
+                  "defense": 15
                 },
                 {
                   "index": 4,
                   "health": 600,
-                  "effectAmount": 150
+                  "effectAmount": 150,
+                  "defense": 20
                 },
                 {
                   "index": 5,
                   "health": 700,
-                  "effectAmount": 250
+                  "effectAmount": 250,
+                  "defense": 25
                 }
               ],
               "supportEffect": "Healing"
@@ -47104,6 +47153,23 @@
               "source": "https://mightandmagic.fandom.com/ru/wiki/%D0%9F%D0%BE%D1%81%D0%BB%D1%83%D1%88%D0%BD%D0%B8%D1%86%D0%B0_%D0%AD%D0%BB%D1%8C%D1%80%D0%B0%D1%82%D0%B0",
               "revision": 121739,
               "sections": "Creature stat block and Abilities"
+            },
+            "resolution": {
+              "source": {
+                "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9F%D0%BE%D1%81%D0%BB%D1%83%D1%88%D0%BD%D0%B8%D1%86%D0%B0_%D0%AD%D0%BB%D1%8C%D1%80%D0%B0%D1%82%D0%B0?oldid=121739",
+                "revision": 121739,
+                "sha256": "8f11cef7a2b9f0bdd7bf8588122b820912f4d5fb47df52600c824ad1c6e74d49"
+              },
+              "reason": "Use the explicitly labelled level-one-to-five wiki table as the canonical published snapshot. Conflicting summaries remain documented.",
+              "alternativeValues": [
+                10,
+                15,
+                20,
+                25,
+                30
+              ],
+              "alternativeSource": "https://mightandmagic.fandom.com/wiki/Healing_sister_(H7)?oldid=164809",
+              "corroboration": "Acid Cave Haven table independently gives level-one defense 5."
             }
           }
         },
@@ -54825,6 +54891,2740 @@
             "missionId": "Tutorial_Challenge_Mission_8",
             "variant": 1,
             "mapFormatVersion": 13
+          }
+        }
+      ]
+    },
+    {
+      "file": "zz-h67-resolution.patch.json",
+      "patchSha256": "cbad681932180de2e8366e9b007c7522401e17e648b9495f3658b4fd1f379b3b",
+      "metadata": {
+        "formatVersion": 1,
+        "researchDate": "2026-10-14",
+        "scope": "Wiki-supported Hall eligibility, base-lineage defaults, and fractional Dungeon creature defense."
+      },
+      "sources": [
+        {
+          "language": "en",
+          "title": "Template:H7char",
+          "pageid": 26828,
+          "revision": 171605,
+          "timestamp": "2023-01-13T02:03:34Z",
+          "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126",
+          "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605"
+        },
+        {
+          "language": "en",
+          "title": "Hall of Heroes",
+          "pageid": 12066,
+          "revision": 178956,
+          "timestamp": "2025-07-21T21:07:58Z",
+          "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95",
+          "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956"
+        },
+        {
+          "language": "en",
+          "title": "Shadow Slayer (H6)",
+          "pageid": 22852,
+          "revision": 179440,
+          "timestamp": "2025-08-09T20:03:33Z",
+          "sha256": "99daab58fb4661200f9502dc052d18e2d2bdccbebb15b8131a2d8f38fedee0d6",
+          "url": "https://mightandmagic.fandom.com/wiki/Shadow_Slayer_(H6)?oldid=179440"
+        },
+        {
+          "language": "en",
+          "title": "Reputation",
+          "pageid": 12444,
+          "revision": 173314,
+          "timestamp": "2023-12-25T01:04:19Z",
+          "sha256": "58eff192d0bb5c562da3a7456c2f921ae2885f88870fc4592227da70e21674b6",
+          "url": "https://mightandmagic.fandom.com/wiki/Reputation?oldid=173314"
+        },
+        {
+          "language": "ru",
+          "title": "Клинок Тьмы (класс героя, HoMM VI)",
+          "pageid": 17820,
+          "revision": 100426,
+          "timestamp": "2022-06-17T13:18:40Z",
+          "sha256": "6447c9e9342108406d3486c3f74d8dd7baf15a2969ac9a0c4011685091d0232a",
+          "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9A%D0%BB%D0%B8%D0%BD%D0%BE%D0%BA_%D0%A2%D1%8C%D0%BC%D1%8B_(%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI)?oldid=100426"
+        },
+        {
+          "language": "en",
+          "title": "Eruina",
+          "pageid": 8442,
+          "revision": 174224,
+          "timestamp": "2024-08-11T12:10:05Z",
+          "sha256": "af4ac8ce6d08ccfba9b4dd9dce007856f1afb7d87070f0efb1e772f8a3204d93",
+          "url": "https://mightandmagic.fandom.com/wiki/Eruina?oldid=174224"
+        },
+        {
+          "language": "en",
+          "title": "Trickster (H6)",
+          "pageid": 22856,
+          "revision": 179441,
+          "timestamp": "2025-08-09T20:03:47Z",
+          "sha256": "3a0c83c8c62d8db605a0861914b945eca6489785097168aba0546180398859cc",
+          "url": "https://mightandmagic.fandom.com/wiki/Trickster_(H6)?oldid=179441"
+        },
+        {
+          "language": "en",
+          "title": "Dark Prophet (H6)",
+          "pageid": 22851,
+          "revision": 179443,
+          "timestamp": "2025-08-09T20:04:16Z",
+          "sha256": "9e61a17243cf0a0589ff722b6b52dac867470d63b56651dc2a92e7e232f7c6f7",
+          "url": "https://mightandmagic.fandom.com/wiki/Dark_Prophet_(H6)?oldid=179443"
+        },
+        {
+          "language": "ru",
+          "title": "Колдун (класс героя, HoMM VI)",
+          "pageid": 17830,
+          "revision": 96110,
+          "timestamp": "2021-04-13T06:37:52Z",
+          "sha256": "7c1ed1d2608e3f244ae03992088abb973c2ed683b841ba18736518807f7390aa",
+          "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9A%D0%BE%D0%BB%D0%B4%D1%83%D0%BD_(%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI)?oldid=96110"
+        },
+        {
+          "language": "en",
+          "title": "Shadow Weaver",
+          "pageid": 22858,
+          "revision": 179444,
+          "timestamp": "2025-08-09T20:04:29Z",
+          "sha256": "5a7f0cca9a17131dc2a1c8878ef6e312558206d12f95fc5ab79a9f6824511792",
+          "url": "https://mightandmagic.fandom.com/wiki/Shadow_Weaver?oldid=179444"
+        },
+        {
+          "language": "ru",
+          "title": "Вестовщик (HoMM VI)",
+          "pageid": 9373,
+          "revision": 121374,
+          "timestamp": "2026-07-07T23:13:36Z",
+          "sha256": "eba4b7ca7440bd448ef8f8ccb32b3f921946b89d3ebf1c1061296a65e7c76e1a",
+          "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%92%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%89%D0%B8%D0%BA_(HoMM_VI)?oldid=121374"
+        },
+        {
+          "language": "ru",
+          "title": "Соглядатай (HoMM VI)",
+          "pageid": 9377,
+          "revision": 121375,
+          "timestamp": "2026-07-07T23:14:16Z",
+          "sha256": "cdd6bf25d538f5d92d078777565c575b4e8f1b151b4b65c6f0c1f5461961455c",
+          "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%A1%D0%BE%D0%B3%D0%BB%D1%8F%D0%B4%D0%B0%D1%82%D0%B0%D0%B9_(HoMM_VI)?oldid=121375"
+        },
+        {
+          "language": "ru",
+          "title": "Баллиста Альянса Света",
+          "pageid": 35104,
+          "revision": 121731,
+          "timestamp": "2026-07-21T15:11:41Z",
+          "sha256": "6fd7efbce0c1a2b6401e51c15c765877e23ece193fe210dae230c42c9ffb6449",
+          "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%91%D0%B0%D0%BB%D0%BB%D0%B8%D1%81%D1%82%D0%B0_%D0%90%D0%BB%D1%8C%D1%8F%D0%BD%D1%81%D0%B0_%D0%A1%D0%B2%D0%B5%D1%82%D0%B0?oldid=121731"
+        },
+        {
+          "language": "en",
+          "title": "Ballista (H7)",
+          "pageid": 42445,
+          "revision": 181665,
+          "timestamp": "2025-10-18T15:01:06Z",
+          "sha256": "eaf0d6d81d45bd5cf868b3d3514d02f99f702b1b52fd757f1ca2a3d18c2ba67e",
+          "url": "https://mightandmagic.fandom.com/wiki/Ballista_(H7)?oldid=181665"
+        },
+        {
+          "language": "ru",
+          "title": "Послушница Эльрата",
+          "pageid": 9971,
+          "revision": 121739,
+          "timestamp": "2026-07-21T15:38:55Z",
+          "sha256": "8f11cef7a2b9f0bdd7bf8588122b820912f4d5fb47df52600c824ad1c6e74d49",
+          "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9F%D0%BE%D1%81%D0%BB%D1%83%D1%88%D0%BD%D0%B8%D1%86%D0%B0_%D0%AD%D0%BB%D1%8C%D1%80%D0%B0%D1%82%D0%B0?oldid=121739"
+        },
+        {
+          "language": "en",
+          "title": "Healing sister (H7)",
+          "pageid": 42450,
+          "revision": 164809,
+          "timestamp": "2021-04-26T11:12:48Z",
+          "sha256": "68f91ac954f5ab1f3ad155f6e9f6b8841dae4986bc8b9b7165de3550a82900b2",
+          "url": "https://mightandmagic.fandom.com/wiki/Healing_sister_(H7)?oldid=164809"
+        },
+        {
+          "language": "ru",
+          "title": "Сноходец (HoMM VII)",
+          "pageid": 10046,
+          "revision": 121741,
+          "timestamp": "2026-07-21T16:03:51Z",
+          "sha256": "d513af7b93ee9e8356d980b9a4e2391f2b442573b7236dfe51ca4f65d1a93eb5",
+          "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%A1%D0%BD%D0%BE%D1%85%D0%BE%D0%B4%D0%B5%D1%86_(HoMM_VII)?oldid=121741"
+        }
+      ],
+      "additions": [
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ajit",
+          "row": {
+            "_key": "homm7.hero.ajit",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.fahada",
+          "row": {
+            "_key": "homm7.hero.fahada",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.nur",
+          "row": {
+            "_key": "homm7.hero.nur",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.solmyr",
+          "row": {
+            "_key": "homm7.hero.solmyr",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.salvin",
+          "row": {
+            "_key": "homm7.hero.salvin",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.sephinroth",
+          "row": {
+            "_key": "homm7.hero.sephinroth",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.alesia",
+          "row": {
+            "_key": "homm7.hero.alesia",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.christian",
+          "row": {
+            "_key": "homm7.hero.christian",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ella",
+          "row": {
+            "_key": "homm7.hero.ella",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.krysztoff",
+          "row": {
+            "_key": "homm7.hero.krysztoff",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.melisande",
+          "row": {
+            "_key": "homm7.hero.melisande",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.orna",
+          "row": {
+            "_key": "homm7.hero.orna",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.serguei",
+          "row": {
+            "_key": "homm7.hero.serguei",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.tyris",
+          "row": {
+            "_key": "homm7.hero.tyris",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.wilhelm",
+          "row": {
+            "_key": "homm7.hero.wilhelm",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ymoril",
+          "row": {
+            "_key": "homm7.hero.ymoril",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.charna",
+          "row": {
+            "_key": "homm7.hero.charna",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.kaspar",
+          "row": {
+            "_key": "homm7.hero.kaspar",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ludmilla",
+          "row": {
+            "_key": "homm7.hero.ludmilla",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.lucretia",
+          "row": {
+            "_key": "homm7.hero.lucretia",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.luna",
+          "row": {
+            "_key": "homm7.hero.luna",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.lyla",
+          "row": {
+            "_key": "homm7.hero.lyla",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.merikh",
+          "row": {
+            "_key": "homm7.hero.merikh",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.naadir",
+          "row": {
+            "_key": "homm7.hero.naadir",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.zakera",
+          "row": {
+            "_key": "homm7.hero.zakera",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.zoltan",
+          "row": {
+            "_key": "homm7.hero.zoltan",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.amari",
+          "row": {
+            "_key": "homm7.hero.amari",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.anga",
+          "row": {
+            "_key": "homm7.hero.anga",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ann",
+          "row": {
+            "_key": "homm7.hero.ann",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.bilashi",
+          "row": {
+            "_key": "homm7.hero.bilashi",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.drakon",
+          "row": {
+            "_key": "homm7.hero.drakon",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.gird",
+          "row": {
+            "_key": "homm7.hero.gird",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ishi",
+          "row": {
+            "_key": "homm7.hero.ishi",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.kengi",
+          "row": {
+            "_key": "homm7.hero.kengi",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.kibwe",
+          "row": {
+            "_key": "homm7.hero.kibwe",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.reem",
+          "row": {
+            "_key": "homm7.hero.reem",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.shani",
+          "row": {
+            "_key": "homm7.hero.shani",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.yog",
+          "row": {
+            "_key": "homm7.hero.yog",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.agathin",
+          "row": {
+            "_key": "homm7.hero.agathin",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ciele",
+          "row": {
+            "_key": "homm7.hero.ciele",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.dirael",
+          "row": {
+            "_key": "homm7.hero.dirael",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.gem",
+          "row": {
+            "_key": "homm7.hero.gem",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ivor",
+          "row": {
+            "_key": "homm7.hero.ivor",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.jenova",
+          "row": {
+            "_key": "homm7.hero.jenova",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.lasir",
+          "row": {
+            "_key": "homm7.hero.lasir",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ossir",
+          "row": {
+            "_key": "homm7.hero.ossir",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.sailin",
+          "row": {
+            "_key": "homm7.hero.sailin",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.sinithala",
+          "row": {
+            "_key": "homm7.hero.sinithala",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.sylrael",
+          "row": {
+            "_key": "homm7.hero.sylrael",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.tieru",
+          "row": {
+            "_key": "homm7.hero.tieru",
+            "Availability": "Standard",
+            "SpecializationAbility_id": null,
+            "StartingSkill_id": null,
+            "StartingSpells": null,
+            "StartingArmy": null,
+            "StartingMight": null,
+            "StartingDefense": null,
+            "StartingMagic": null,
+            "StartingSpirit": null,
+            "StartingLeadership": null,
+            "StartingDestiny": null,
+            "StartingDamage": null,
+            "DamageType": null,
+            "IsHallHero": true
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroClassHOMM6",
+          "key": "homm6.heroclass.shadow.slayer",
+          "row": {
+            "_key": "homm6.heroclass.shadow.slayer",
+            "Faction_id": "homm6.faction.dungeon",
+            "BaseHeroClass_id": "homm6.heroclass.darkblade",
+            "ReputationPath": "Blood",
+            "DefaultMightPower": 3,
+            "DefaultMightDefense": 1,
+            "DefaultMagicPower": 2,
+            "DefaultMagicDefense": 1,
+            "DefaultLeadership": 1,
+            "DefaultDestiny": 1
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Shadow_Slayer_(H6)?oldid=179440",
+                "revision": 179440,
+                "sha256": "99daab58fb4661200f9502dc052d18e2d2bdccbebb15b8131a2d8f38fedee0d6"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Reputation?oldid=173314",
+                "revision": 173314,
+                "sha256": "58eff192d0bb5c562da3a7456c2f921ae2885f88870fc4592227da70e21674b6"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9A%D0%BB%D0%B8%D0%BD%D0%BE%D0%BA_%D0%A2%D1%8C%D0%BC%D1%8B_(%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI)?oldid=100426",
+                "revision": 100426,
+                "sha256": "6447c9e9342108406d3486c3f74d8dd7baf15a2969ac9a0c4011685091d0232a"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Eruina?oldid=174224",
+                "revision": 174224,
+                "sha256": "af4ac8ce6d08ccfba9b4dd9dce007856f1afb7d87070f0efb1e772f8a3204d93"
+              }
+            ],
+            "derivation": "Defaults are the neutral base-lineage starting template. Reputation promotions retain faction and Might/Magic affinity; this does not state that promotion resets current attributes or has separate level-one statistics.",
+            "corroboration": "https://www.gamespot.com/articles/might-and-magic-heroes-vi-updated-qanda-alignment-and-the-future-of-might-and-magic/1100-6336620/"
+          }
+        },
+        {
+          "table": "HeroClassHOMM6",
+          "key": "homm6.heroclass.trickster",
+          "row": {
+            "_key": "homm6.heroclass.trickster",
+            "Faction_id": "homm6.faction.dungeon",
+            "BaseHeroClass_id": "homm6.heroclass.darkblade",
+            "ReputationPath": "Tears",
+            "DefaultMightPower": 3,
+            "DefaultMightDefense": 1,
+            "DefaultMagicPower": 2,
+            "DefaultMagicDefense": 1,
+            "DefaultLeadership": 1,
+            "DefaultDestiny": 1
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Trickster_(H6)?oldid=179441",
+                "revision": 179441,
+                "sha256": "3a0c83c8c62d8db605a0861914b945eca6489785097168aba0546180398859cc"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Reputation?oldid=173314",
+                "revision": 173314,
+                "sha256": "58eff192d0bb5c562da3a7456c2f921ae2885f88870fc4592227da70e21674b6"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9A%D0%BB%D0%B8%D0%BD%D0%BE%D0%BA_%D0%A2%D1%8C%D0%BC%D1%8B_(%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI)?oldid=100426",
+                "revision": 100426,
+                "sha256": "6447c9e9342108406d3486c3f74d8dd7baf15a2969ac9a0c4011685091d0232a"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Eruina?oldid=174224",
+                "revision": 174224,
+                "sha256": "af4ac8ce6d08ccfba9b4dd9dce007856f1afb7d87070f0efb1e772f8a3204d93"
+              }
+            ],
+            "derivation": "Defaults are the neutral base-lineage starting template. Reputation promotions retain faction and Might/Magic affinity; this does not state that promotion resets current attributes or has separate level-one statistics.",
+            "corroboration": "https://www.gamespot.com/articles/might-and-magic-heroes-vi-updated-qanda-alignment-and-the-future-of-might-and-magic/1100-6336620/"
+          }
+        },
+        {
+          "table": "HeroClassHOMM6",
+          "key": "homm6.heroclass.dark.prophet",
+          "row": {
+            "_key": "homm6.heroclass.dark.prophet",
+            "Faction_id": "homm6.faction.dungeon",
+            "BaseHeroClass_id": "homm6.heroclass.sorcerer",
+            "ReputationPath": "Blood",
+            "DefaultMightPower": 2,
+            "DefaultMightDefense": 1,
+            "DefaultMagicPower": 2,
+            "DefaultMagicDefense": 2,
+            "DefaultLeadership": 1,
+            "DefaultDestiny": 1
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Dark_Prophet_(H6)?oldid=179443",
+                "revision": 179443,
+                "sha256": "9e61a17243cf0a0589ff722b6b52dac867470d63b56651dc2a92e7e232f7c6f7"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Reputation?oldid=173314",
+                "revision": 173314,
+                "sha256": "58eff192d0bb5c562da3a7456c2f921ae2885f88870fc4592227da70e21674b6"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9A%D0%BE%D0%BB%D0%B4%D1%83%D0%BD_(%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI)?oldid=96110",
+                "revision": 96110,
+                "sha256": "7c1ed1d2608e3f244ae03992088abb973c2ed683b841ba18736518807f7390aa"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Eruina?oldid=174224",
+                "revision": 174224,
+                "sha256": "af4ac8ce6d08ccfba9b4dd9dce007856f1afb7d87070f0efb1e772f8a3204d93"
+              }
+            ],
+            "derivation": "Defaults are the neutral base-lineage starting template. Reputation promotions retain faction and Might/Magic affinity; this does not state that promotion resets current attributes or has separate level-one statistics.",
+            "corroboration": "https://www.gamespot.com/articles/might-and-magic-heroes-vi-updated-qanda-alignment-and-the-future-of-might-and-magic/1100-6336620/"
+          }
+        },
+        {
+          "table": "HeroClassHOMM6",
+          "key": "homm6.heroclass.shadow.weaver",
+          "row": {
+            "_key": "homm6.heroclass.shadow.weaver",
+            "Faction_id": "homm6.faction.dungeon",
+            "BaseHeroClass_id": "homm6.heroclass.sorcerer",
+            "ReputationPath": "Tears",
+            "DefaultMightPower": 2,
+            "DefaultMightDefense": 1,
+            "DefaultMagicPower": 2,
+            "DefaultMagicDefense": 2,
+            "DefaultLeadership": 1,
+            "DefaultDestiny": 1
+          },
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Shadow_Weaver?oldid=179444",
+                "revision": 179444,
+                "sha256": "5a7f0cca9a17131dc2a1c8878ef6e312558206d12f95fc5ab79a9f6824511792"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Reputation?oldid=173314",
+                "revision": 173314,
+                "sha256": "58eff192d0bb5c562da3a7456c2f921ae2885f88870fc4592227da70e21674b6"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%9A%D0%BE%D0%BB%D0%B4%D1%83%D0%BD_(%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI)?oldid=96110",
+                "revision": 96110,
+                "sha256": "7c1ed1d2608e3f244ae03992088abb973c2ed683b841ba18736518807f7390aa"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Eruina?oldid=174224",
+                "revision": 174224,
+                "sha256": "af4ac8ce6d08ccfba9b4dd9dce007856f1afb7d87070f0efb1e772f8a3204d93"
+              }
+            ],
+            "derivation": "Defaults are the neutral base-lineage starting template. Reputation promotions retain faction and Might/Magic affinity; this does not state that promotion resets current attributes or has separate level-one statistics.",
+            "corroboration": "https://www.gamespot.com/articles/might-and-magic-heroes-vi-updated-qanda-alignment-and-the-future-of-might-and-magic/1100-6336620/"
+          }
+        },
+        {
+          "table": "CreatureHOMM6",
+          "key": "homm6.creature.shadow.lurker",
+          "row": {
+            "_key": "homm6.creature.shadow.lurker",
+            "Faction_id": "homm6.faction.dungeon",
+            "Tier": "Core",
+            "CreatureKind": "Town",
+            "AttackType": "Magic",
+            "DamageMin": 3,
+            "DamageMax": 6,
+            "MightDefense": 2,
+            "MagicDefense": 10.5,
+            "Health": 18,
+            "Speed": 4,
+            "Initiative": 30,
+            "CombatSize": 1,
+            "Range": "Full",
+            "Morale": 6,
+            "Luck": 6,
+            "BasicGrowth": 6,
+            "UpgradeGrowth": null,
+            "Movement": "Ground",
+            "Recruitable": true,
+            "DoubleUpgrade": false,
+            "AlternativeUpgrade": false,
+            "MightResistancePercent": 5,
+            "MagicResistancePercent": 22
+          },
+          "evidence": {
+            "source": {
+              "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%92%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%89%D0%B8%D0%BA_(HoMM_VI)?oldid=121374",
+              "revision": 121374,
+              "sha256": "eba4b7ca7440bd448ef8f8ccb32b3f921946b89d3ebf1c1061296a65e7c76e1a"
+            },
+            "section": "Creature statistics",
+            "policy": "Preserve the explicit fractional raw defense from the revision-pinned wiki; do not round to fit a prior integer column. Small uses the existing one-square catalog convention; the source explicitly says on foot and full range.",
+            "alternative": {
+              "source": "https://w.atwiki.jp/homm/pages/206.html",
+              "MagicDefense": 11
+            },
+            "status": "Canonical wiki snapshot selected; the alternative is retained, not proved erroneous."
+          }
+        },
+        {
+          "table": "CreatureHOMM6",
+          "key": "homm6.creature.shadow.watcher",
+          "row": {
+            "_key": "homm6.creature.shadow.watcher",
+            "Faction_id": "homm6.faction.dungeon",
+            "Tier": "Core",
+            "CreatureKind": "Town",
+            "AttackType": "Magic",
+            "DamageMin": 4,
+            "DamageMax": 7,
+            "MightDefense": 3,
+            "MagicDefense": 10.5,
+            "Health": 22,
+            "Speed": 4,
+            "Initiative": 35,
+            "CombatSize": 1,
+            "Range": "Full",
+            "Morale": 6,
+            "Luck": 7,
+            "BasicGrowth": null,
+            "UpgradeGrowth": 9,
+            "Movement": "Ground",
+            "Recruitable": true,
+            "DoubleUpgrade": false,
+            "AlternativeUpgrade": false,
+            "MightResistancePercent": 7,
+            "MagicResistancePercent": 22
+          },
+          "evidence": {
+            "source": {
+              "url": "https://mightandmagic.fandom.com/ru/wiki/%D0%A1%D0%BE%D0%B3%D0%BB%D1%8F%D0%B4%D0%B0%D1%82%D0%B0%D0%B9_(HoMM_VI)?oldid=121375",
+              "revision": 121375,
+              "sha256": "cdd6bf25d538f5d92d078777565c575b4e8f1b151b4b65c6f0c1f5461961455c"
+            },
+            "section": "Creature statistics",
+            "policy": "Preserve the explicit fractional raw defense from the revision-pinned wiki; do not round to fit a prior integer column. Small uses the existing one-square catalog convention; the source explicitly says on foot and full range.",
+            "alternative": {
+              "source": "https://w.atwiki.jp/homm/pages/206.html",
+              "MagicDefense": 11
+            },
+            "status": "Canonical wiki snapshot selected; the alternative is retained, not proved erroneous."
+          }
+        }
+      ],
+      "fills": [
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.aali",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.asad",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.gloria",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.johari",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.masfar",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.minasli",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.mirym",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.saabira",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.yasir",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.ashbeth",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.darkstorm",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.lethos",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.sinitar",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.sorshan",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.sylsai",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.yeshtar",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.yrbeth",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.yrris",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.amilcar",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
+          }
+        },
+        {
+          "table": "HeroHOMM7",
+          "key": "homm7.hero.edric",
+          "field": "Availability",
+          "expected": null,
+          "value": "Standard",
+          "evidence": {
+            "sources": [
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+                "revision": 171605,
+                "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+              },
+              {
+                "url": "https://mightandmagic.fandom.com/wiki/Hall_of_Heroes?oldid=178956",
+                "revision": 178956,
+                "sha256": "b298f5e546a955fc3469005bba14fcfec425729d0338d87f754b19136d716c95"
+              }
+            ],
+            "section": "Standard heroes",
+            "claim": "Explicitly listed as a standard Heroes VII hero. Hall eligibility remains subject to map/player and edition restrictions."
           }
         }
       ]

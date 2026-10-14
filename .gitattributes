@@ -9,6 +9,7 @@ src/db/data/catalog.sql linguist-generated=true
 src/db/data/manual-import.sql linguist-generated=true
 src/db/data/research-import.sql linguist-generated=true
 src/db/data/research-gaps-import.sql linguist-generated=true
+src/db/data/h67-profile-enrichment.sql linguist-generated=true
 src/db/research/**/*.patch.json text eol=lf
 src/db/data/touchups-import-*.sql linguist-generated=true
 src/db/data/creature-tier-corrections.sql linguist-generated=true
