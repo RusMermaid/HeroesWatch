@@ -6,7 +6,7 @@ generated from the saved SQLDesigner diagram after the 2NF audit.
 Current contract:
 
 - 176 PostgreSQL tables
-- 1,306 fields (including two generated speed labels)
+- 1,309 fields (including two generated speed labels)
 - 452 foreign keys
 - 147 ordinary/shared-PK tables in second normal form
 - 29 explicit `*_cid` junction tables covered by the project exemption
@@ -37,7 +37,7 @@ Current contract:
 
    For a Windows computer, follow [WINDOWS.md](WINDOWS.md). The same SQL file
    works on macOS and Windows. The historical schema-only `HeroesWatch.backup`
-   restores the initial contract and then requires migrations 0002 through 0006,
+   restores the initial contract and then requires migrations 0002 through 0007,
    in that order.
 
    The equivalent command-line workflow is:
@@ -56,7 +56,7 @@ existing schema.
 ## What is authoritative?
 
 - `schema/sql-designer.snapshot.json` is the exact original diagram snapshot.
-  `tools/schema-overlay.mjs` records the reviewed changes through version 6. Together
+  `tools/schema-overlay.mjs` records the reviewed changes through version 7. Together
   they generate the current contract; the live diagram has not been replaced.
 - `schema/heroeswatch.schema.json` is the compact semantic contract used by
   people and tools.
@@ -64,14 +64,18 @@ existing schema.
   form report, and data dictionary are deterministic generated outputs.
 - New content belongs in the cumulative data JSON, not in the schema files.
 - The schema baselines contain no game rows. Reviewed content lives in the
-  cumulative JSON: 43,932 rows across Heroes I–VIII and related Might and Magic
+  cumulative JSON: 45,560 rows across Heroes I–VIII and related Might and Magic
   RPGs and spin-offs, including classes, heroes,
   town buildings, dwellings, creatures, skills, magic, artifacts, campaigns
   and map objects for each title's actual mechanics and official expansions.
   [Coverage and known gaps](data/CATALOG_STATUS.md) lists counts, provenance,
   unresolved details, and PostgreSQL application status.
+  [October 14 completion record](reviews/2026-10-14/COMPLETION.md)
+  tracks the current four-patch update: 1,628 additions and 191 null fills.
+  Windows testing and local deployment completed on October 14; the live
+  database now has 45,560 rows. The
   [October 13 completion and verification](reviews/2026-10-13/COMPLETION.md)
-  records the source-backed additions, integrity corrections, and local delivery.
+  records the earlier additions, integrity corrections, and Mac delivery.
   [Screenshot review status](data/TOUCHUPS_STATUS.md) records the new relationships,
   integrity protections, tests and remaining source gaps.
   [The manual comparison](data/MANUAL_COMPARISON.md) records source disagreements,
@@ -80,10 +84,18 @@ existing schema.
   import, generated with `node src/db/tools/build-content-sql.mjs`. It preserves
   local identities and facts and rejects conflicts. Inspect results with
   [data/catalog.review.sql](data/catalog.review.sql).
-- [data/research-import.sql](data/research-import.sql) is the smaller, dependency-
-  closed October 13 research import for an already populated final-PR catalog.
-  It requires migrations through 0006 and the guarded
-  [creature tier corrections](data/creature-tier-corrections.sql) on older data.
+- [data/research-gaps-import.sql](data/research-gaps-import.sql) is the current
+  research delta with 2,377 rows including dependencies, for a complete
+  43,932-row baseline after migration 0007. Its four reviewed patches are
+  recorded in [the October 14 audit](data/research-2026-10-14-evidence.json).
+  `node src/db/tools/build-research-sql.mjs --check` checks this latest delta.
+- [data/research-import.sql](data/research-import.sql) remains the historical
+  October 13 research import for an already populated 40,023-row final-PR catalog.
+  It targets the 43,932-row snapshot and does not contain the October 14 additions.
+  For the historical Windows baseline, apply migrations 0003–0005 and the
+  [creature tier corrections](data/creature-tier-corrections.sql), then this
+  catch-up before migration 0006 checks the added resource memberships.
+  [The current delivery review](reviews/2026-10-14/COMPLETION.md) gives the full order.
   Use [data/completion.review.sql](data/completion.review.sql) for readable
   creature statistics, ability links, campaign heroes, and shared resources.
 - [data/homm3-factions.sql](data/homm3-factions.sql) applies that batch in one
@@ -138,6 +150,9 @@ canvas instead of merging it.
   with generated `SpeedName`. Do not supply the generated name in import JSON.
 - `postgres/migrations/0006_catalog_guards.sql`: cost, lore, graph, resource
   membership and town-faction safeguards, including reverse edits.
+- `postgres/migrations/0007_source_detail_profiles.sql`: explicit VI resistance
+  percentages, VII warfare rank profiles and stationary movement, plus nullable
+  source-unknown Olden Era fields. Ordinary creature requirements remain guarded.
 - [data/creature-tier-corrections.sql](data/creature-tier-corrections.sql): set
   Faerie/Rust/Crystal/Azure Dragon tiers to 8/8/9/10 before current imports.
 - `postgres/verify.sql`: catalog-count verification after applying the DDL.

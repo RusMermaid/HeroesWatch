@@ -305,13 +305,14 @@ try {
   const schema = JSON.parse(fs.readFileSync(path.join(dbRoot, 'schema/heroeswatch.schema.json'), 'utf8'));
   const bundle = JSON.parse(fs.readFileSync(path.join(dbRoot, 'data/heroeswatch.json'), 'utf8'));
   const sourceRows = Object.values(bundle.tables).reduce((sum, rows) => sum + rows.length, 0);
-  const expectedRows = Number(process.env.HW_EXPECTED_ROWS ?? '43932');
+  const expectedRows = Number(process.env.HW_EXPECTED_ROWS ?? '45560');
   assert.equal(sourceRows, expectedRows,
     `catalog row total changed from ${expectedRows}; review the data change and update HW_EXPECTED_ROWS/TESTING.md deliberately`);
 
   console.log(`Importing and reconciling ${sourceRows.toLocaleString('en-US')} catalog rows ...`);
   await psqlFile('src/db/data/catalog.sql', 900_000);
   await psqlFile('src/db/postgres/tests/creature-values.sql');
+  await psqlFile('src/db/postgres/tests/source-details.sql');
   const actual = await queryJson(psql, connection, database, inventorySql(schema), { env: pgEnv, timeout: 300_000 });
   const reconciliation = reconcileInventory(schema, bundle, actual);
   const before = await queryJson(psql, connection, database, fingerprintSql(schema), { env: pgEnv, timeout: 300_000 });

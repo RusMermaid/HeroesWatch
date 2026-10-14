@@ -783,7 +783,7 @@ Kind: **game-detail**. Primary key: `Campaign_id`.
 |---|---|---:|---|
 | `Campaign_id` | `BIGINT` | Yes | PK; FK → Campaign.Campaign_id |
 | `Availability` | `ENUM(Available | Planned | Unavailable)` | Yes |  |
-| `AvailableActCount` | `SMALLINT` | Yes |  |
+| `AvailableActCount` | `SMALLINT` | No |  |
 | `NarrativeStructure` | `TEXT` | No |  |
 | `Rules` | `TEXT` | No |  |
 
@@ -975,21 +975,29 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 | `AttackType` | `ENUM(Might | Magic)` | Yes |  |
 | `DamageMin` | `SMALLINT` | Yes |  |
 | `DamageMax` | `SMALLINT` | Yes |  |
-| `MightDefense` | `SMALLINT` | Yes |  |
-| `MagicDefense` | `SMALLINT` | Yes |  |
+| `MightDefense` | `SMALLINT` | No |  |
+| `MagicDefense` | `SMALLINT` | No |  |
 | `Health` | `INTEGER` | Yes |  |
-| `Speed` | `SMALLINT` | Yes |  |
-| `Initiative` | `SMALLINT` | Yes |  |
-| `CombatSize` | `SMALLINT` | Yes |  |
-| `Range` | `ENUM(None | Half | Full)` | Yes |  |
+| `Speed` | `SMALLINT` | No |  |
+| `Initiative` | `SMALLINT` | No |  |
+| `CombatSize` | `SMALLINT` | No |  |
+| `Range` | `ENUM(None | Half | Full)` | No |  |
 | `Morale` | `SMALLINT` | No |  |
-| `Luck` | `SMALLINT` | Yes |  |
+| `Luck` | `SMALLINT` | No |  |
 | `BasicGrowth` | `SMALLINT` | No |  |
 | `UpgradeGrowth` | `SMALLINT` | No |  |
-| `Movement` | `ENUM(Ground | Flying | Teleporting)` | Yes |  |
+| `Movement` | `ENUM(Ground | Flying | Teleporting)` | No |  |
 | `Recruitable` | `BOOLEAN` | Yes |  |
 | `DoubleUpgrade` | `BOOLEAN` | Yes |  |
 | `AlternativeUpgrade` | `BOOLEAN` | Yes |  |
+| `MightResistancePercent` | `SMALLINT` | No |  |
+| `MagicResistancePercent` | `SMALLINT` | No |  |
+
+Check: `"MagicResistancePercent" BETWEEN 0 AND 100`.
+
+Check: `"MightResistancePercent" BETWEEN 0 AND 100`.
+
+Check: `"CreatureKind" NOT IN ('Town', 'Neutral') OR ("MightDefense" IS NOT NULL AND "MagicDefense" IS NOT NULL AND "CombatSize" IS NOT NULL AND "Movement" IS NOT NULL AND "Speed" IS NOT NULL AND "Initiative" IS NOT NULL AND "Luck" IS NOT NULL AND "Range" IS NOT NULL)`.
 
 ## CreatureHOMM7
 
@@ -1001,22 +1009,27 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 | `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id |
 | `Tier` | `ENUM(Core | Elite | Champion)` | No |  |
 | `CreatureKind` | `ENUM(Town | Neutral | Summoned | Warfare | Other)` | Yes |  |
-| `WarfareRole` | `ENUM(Attack | Support | Siege)` | No |  |
-| `Attack` | `SMALLINT` | Yes |  |
-| `Defense` | `SMALLINT` | Yes |  |
-| `DamageMin` | `SMALLINT` | Yes |  |
-| `DamageMax` | `SMALLINT` | Yes |  |
-| `Health` | `INTEGER` | Yes |  |
-| `Speed` | `SMALLINT` | Yes |  |
+| `WarfareRole` | `ENUM(Attack | Support | Siege | AttackAndSupport)` | No |  |
+| `Attack` | `SMALLINT` | No |  |
+| `Defense` | `SMALLINT` | No |  |
+| `DamageMin` | `SMALLINT` | No |  |
+| `DamageMax` | `SMALLINT` | No |  |
+| `Health` | `INTEGER` | No |  |
+| `Speed` | `SMALLINT` | No |  |
 | `Initiative` | `SMALLINT` | Yes |  |
-| `CombatSize` | `SMALLINT` | Yes |  |
+| `CombatSize` | `SMALLINT` | No |  |
 | `Shots` | `SMALLINT` | No |  |
 | `Mana` | `SMALLINT` | No |  |
 | `WeeklyGrowth` | `SMALLINT` | No |  |
-| `Movement` | `ENUM(Ground | Flying | Teleporting)` | Yes |  |
+| `Movement` | `ENUM(Ground | Flying | Teleporting | Stationary)` | No |  |
 | `Recruitable` | `BOOLEAN` | Yes |  |
 | `DoubleUpgrade` | `BOOLEAN` | Yes |  |
 | `AlternativeUpgrade` | `BOOLEAN` | Yes |  |
+| `WarfareStats` | `JSONB` | No |  |
+
+Check: `"CreatureKind" = 'Warfare' OR ("Attack" IS NOT NULL AND "Defense" IS NOT NULL AND "DamageMin" IS NOT NULL AND "DamageMax" IS NOT NULL AND "Health" IS NOT NULL AND "Speed" IS NOT NULL AND "CombatSize" IS NOT NULL AND "Movement" IS NOT NULL)`.
+
+Check: `("WarfareStats" IS NULL OR "CreatureKind" = 'Warfare') AND ("CreatureKind" <> 'Warfare' OR "WarfareRole" IS NOT NULL)`.
 
 ## CreatureHOMM8
 
@@ -1902,16 +1915,16 @@ Kind: **game-detail**. Primary key: `Map_id`.
 |---|---|---:|---|
 | `Map_id` | `BIGINT` | Yes | PK; FK → Map.Map_id |
 | `MapKind` | `ENUM(Campaign | Scenario | Skirmish | RandomTemplate | Other)` | Yes |  |
-| `LevelCount` | `SMALLINT` | Yes |  |
-| `HasUnderground` | `BOOLEAN` | Yes |  |
-| `SupportsClassic` | `BOOLEAN` | Yes |  |
-| `SupportsSingleHero` | `BOOLEAN` | Yes |  |
-| `SupportsArena` | `BOOLEAN` | Yes |  |
+| `LevelCount` | `SMALLINT` | No |  |
+| `HasUnderground` | `BOOLEAN` | No |  |
+| `SupportsClassic` | `BOOLEAN` | No |  |
+| `SupportsSingleHero` | `BOOLEAN` | No |  |
+| `SupportsArena` | `BOOLEAN` | No |  |
 | `SupportsSinglePlayer` | `BOOLEAN` | Yes |  |
-| `SupportsMultiplayer` | `BOOLEAN` | Yes |  |
-| `SupportsHotseat` | `BOOLEAN` | Yes |  |
-| `SupportsMatchmaking` | `BOOLEAN` | Yes |  |
-| `SupportsRanked` | `BOOLEAN` | Yes |  |
+| `SupportsMultiplayer` | `BOOLEAN` | No |  |
+| `SupportsHotseat` | `BOOLEAN` | No |  |
+| `SupportsMatchmaking` | `BOOLEAN` | No |  |
+| `SupportsRanked` | `BOOLEAN` | No |  |
 | `DefinitionVersion` | `TEXT` | No |  |
 | `TemplateDefinition` | `JSONB` | No |  |
 | `Rules` | `TEXT` | No |  |
@@ -2021,9 +2034,9 @@ Kind: **game-detail**. Primary key: `Resource_id`.
 | `Resource_id` | `BIGINT` | Yes | PK; FK → Resource.Resource_id |
 | `ResourceRole` | `ENUM(Stockpile | Upgrade | Quest | Meter)` | Yes |  |
 | `Scope` | `ENUM(Kingdom | Hero | Combat | Map)` | Yes |  |
-| `IsTradeable` | `BOOLEAN` | Yes |  |
-| `IsMineProduced` | `BOOLEAN` | Yes |  |
-| `IsPersistent` | `BOOLEAN` | Yes |  |
+| `IsTradeable` | `BOOLEAN` | No |  |
+| `IsMineProduced` | `BOOLEAN` | No |  |
+| `IsPersistent` | `BOOLEAN` | No |  |
 | `DefaultDailyIncome` | `INTEGER` | No |  |
 | `Mechanics` | `TEXT` | No |  |
 
@@ -2165,10 +2178,10 @@ Kind: **game-detail**. Primary key: `Scenario_id`.
 | `ScenarioKind` | `ENUM(Campaign | Standalone | Tutorial | Challenge | Other)` | Yes |  |
 | `GameMode` | `ENUM(Classic | SingleHero | Arena | Scenario | Other)` | Yes |  |
 | `AllowsSinglePlayer` | `BOOLEAN` | Yes |  |
-| `AllowsMultiplayer` | `BOOLEAN` | Yes |  |
-| `AllowsHotseat` | `BOOLEAN` | Yes |  |
-| `SupportsMatchmaking` | `BOOLEAN` | Yes |  |
-| `SupportsRanked` | `BOOLEAN` | Yes |  |
+| `AllowsMultiplayer` | `BOOLEAN` | No |  |
+| `AllowsHotseat` | `BOOLEAN` | No |  |
+| `SupportsMatchmaking` | `BOOLEAN` | No |  |
+| `SupportsRanked` | `BOOLEAN` | No |  |
 | `Objectives` | `TEXT` | No |  |
 | `Scripts` | `JSONB` | No |  |
 | `StartingState` | `TEXT` | No |  |

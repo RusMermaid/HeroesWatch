@@ -1,6 +1,7 @@
 // Reviewed changes after the immutable SQLDesigner export. The original export
 // remains historical evidence; these changes define the current contract.
 import { staticCatalogGuardChecks } from "./catalog-guard-rules.mjs";
+import {sourceNullableColumns, sourceAddedColumns, sourceDetailChecks} from './source-detail-rules.mjs';
 
 export const BASE_SNAPSHOT_SHA256 = "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673";
 
@@ -219,6 +220,34 @@ export function applySchemaOverlayV6(schema) {
   return schema;
 }
 
+export function applySchemaOverlayV7(schema) {
+  const tables = new Map(schema.tables.map(table => [table.name, table]));
+  for (const [name, fields] of Object.entries(sourceNullableColumns)) for (const field of fields) {
+    tables.get(name).columns.find(column => column.name === field).nullable = true;
+  }
+  for (const [name, fields] of Object.entries(sourceAddedColumns)) for (const [field, type] of fields) {
+    tables.get(name).columns.push(column(field, type, true));
+  }
+  const role = tables.get('CreatureHOMM7').columns.find(column => column.name === 'WarfareRole');
+  role.enumValues = [...role.enumValues, 'AttackAndSupport'];
+  role.sqlDesignerType = `ENUM(${role.enumValues.map(value => `'${value}'`).join(',')})`;
+  schema.enums.find(item => item.name === role.postgresType).values = [...role.enumValues];
+  const movement=tables.get('CreatureHOMM7').columns.find(column=>column.name==='Movement');
+  movement.enumValues=[...movement.enumValues,'Stationary'];
+  movement.sqlDesignerType=`ENUM(${movement.enumValues.map(value=>`'${value}'`).join(',')})`;
+  schema.enums.find(item=>item.name===movement.postgresType).values=[...movement.enumValues];
+  for (const rule of sourceDetailChecks) {
+    const table = tables.get(rule.table);
+    table.checks ??= [];
+    table.checks.push({name: rule.name, expression: rule.expression});
+    table.checks.sort((a,b) => a.name.localeCompare(b.name));
+  }
+  schema.source.overlay = {version:7, module:'src/db/tools/schema-overlay.mjs', migration:'0007_source_detail_profiles.sql'};
+  schema.integrity.sourceDetails = 'Ordinary creature requirements remain enforced. Exceptional H6 creatures and H7 warfare units may retain source-unknown fields; H7 vectors use source-ordered profiles, not inferred skill ranks. Unknown H8 mode/resource flags are NULL.';
+  schema.counts = {tables:schema.tables.length, columns:schema.tables.reduce((n,t)=>n+t.columns.length,0), foreignKeys:schema.tables.reduce((n,t)=>n+t.foreignKeys.length,0), enums:schema.enums.length};
+  return schema;
+}
+
 export function applySchemaOverlay(schema, objectName) {
-  return applySchemaOverlayV6(applySchemaOverlayV5(applySchemaOverlayV4(applySchemaOverlayV3(applySchemaOverlayV2(schema, objectName), objectName))));
+  return applySchemaOverlayV7(applySchemaOverlayV6(applySchemaOverlayV5(applySchemaOverlayV4(applySchemaOverlayV3(applySchemaOverlayV2(schema, objectName), objectName)))));
 }

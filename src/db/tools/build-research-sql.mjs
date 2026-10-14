@@ -15,19 +15,20 @@ const dbRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const options = {
   input: path.join(dbRoot, 'data/heroeswatch.json'),
   schema: path.join(dbRoot, 'schema/heroeswatch.schema.json'),
-  evidence: path.join(dbRoot, 'data/research-2026-10-13-evidence.json'),
-  output: path.join(dbRoot, 'data/research-import.sql'),
+  evidence: path.join(dbRoot, 'data/research-2026-10-14-evidence.json'),
+  output: path.join(dbRoot, 'data/research-gaps-import.sql'),
+  researchRoot: path.join(dbRoot, 'research/2026-10-14'),
   check: false,
 };
 for (let index = 2; index < process.argv.length; index++) {
   const argument = process.argv[index];
   if (argument === '--check') options.check = true;
-  else if (['--input', '--schema', '--evidence', '--output'].includes(argument)) {
+  else if (['--input', '--schema', '--evidence', '--output', '--research-root'].includes(argument)) {
     const value = process.argv[++index];
     if (!value || value.startsWith('--')) throw new Error(`Missing value for ${argument}`);
-    options[argument.slice(2)] = path.resolve(value);
+    options[argument.slice(2).replace(/-([a-z])/g, (_,letter)=>letter.toUpperCase())] = path.resolve(value);
   } else if (argument === '--help') {
-    console.log('node src/db/tools/build-research-sql.mjs [--input catalog.json] [--schema schema.json] [--evidence evidence.json] [--output research-import.sql] [--check]');
+    console.log('node src/db/tools/build-research-sql.mjs [--input catalog.json] [--schema schema.json] [--evidence evidence.json] [--output research.sql] [--research-root reviewed-directory] [--check]');
     process.exit(0);
   } else throw new Error(`Unknown argument: ${argument}`);
 }
@@ -37,8 +38,11 @@ const read = (filename, label) => {
   catch (error) { throw new Error(`Cannot read ${label}: ${error.message}`); }
 };
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
-const researchRoot = path.resolve(dbRoot, 'research/2026-10-13');
+const researchRoot = options.researchRoot;
+const allowedRoot = fs.realpathSync(path.join(dbRoot,'research'));
 const realResearchRoot = fs.realpathSync(researchRoot);
+const rootRelative = path.relative(allowedRoot,realResearchRoot);
+if(!rootRelative || rootRelative.startsWith('..') || path.isAbsolute(rootRelative)) throw new Error('Research root must be a reviewed directory inside src/db/research');
 function readAuditedPatch(storedPath, label) {
   if (typeof storedPath !== 'string' || !storedPath || path.isAbsolute(storedPath) || storedPath.includes('\\') || storedPath.includes('\0')) {
     throw new Error(`${label}.file must be a safe repository-relative patch path`);
@@ -48,7 +52,7 @@ function readAuditedPatch(storedPath, label) {
     : path.resolve(dbRoot, storedPath);
   const relative = path.relative(researchRoot, candidate);
   if (!relative || relative.startsWith(`..${path.sep}`) || relative === '..' || path.isAbsolute(relative) || !candidate.endsWith('.patch.json')) {
-    throw new Error(`${label}.file must resolve inside research/2026-10-13 to a *.patch.json file`);
+    throw new Error(`${label}.file must resolve inside the reviewed research directory to a *.patch.json file`);
   }
   let stat;
   try { stat = fs.lstatSync(candidate); }
@@ -126,7 +130,7 @@ if (evidence.summary?.resultingRows !== catalogRows) throw new Error('Research e
 
 const batch = {
   ...catalog,
-  notes: 'Reviewed 2026-10-13 research delta plus its complete relational and reviewed ScenarioHOMM3 annotation dependencies. Generated from research-2026-10-13-evidence.json.',
+  notes: `Reviewed research delta plus its complete relational and reviewed ScenarioHOMM3 annotation dependencies. Generated from ${path.basename(options.evidence)}.`,
   tables: selectContentClosure(catalog, schema, [...seeds.values()]),
 };
 const temporaryDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'heroeswatch-research-sql-'));

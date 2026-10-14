@@ -65,17 +65,13 @@ test("a missing membership fails closure even when the global resource exists", 
 
 function withHomm8ResourceDetails() {
   const source = structuredClone(catalog);
-  source.tables.ResourceHOMM8.push({
-    _key: "resource.gold", ResourceRole: "Stockpile", Scope: "Kingdom",
-    IsTradeable: true, IsMineProduced: true, IsPersistent: true,
-    DefaultDailyIncome: null, Mechanics: null,
-  });
-  source.tables.AstrologyHOMM8.push({
-    _key: "homm8.game", NeutralMagicSchool_id: "homm8.magicschool.neutral",
-    AstrologyPointResource_id: "resource.astrology.points", InsightResource_id: "resource.law.points",
-    MaximumSpellLevel: 5, FirstInsightThreshold: null, InsightThresholdIncrease: null,
-    IncomeRule: null, UnlockRule: "Fixture unlock rule.", UpgradeRule: "Fixture upgrade rule.",
-  });
+  // These source-backed details are now in the catalog. Reuse their identities
+  // rather than append synthetic duplicates or substitute Law Points for Insight.
+  assert.ok(source.tables.ResourceHOMM8.some(row => row._key === "resource.gold"));
+  const astrology = source.tables.AstrologyHOMM8.find(row => row._key === "homm8.game");
+  assert.ok(astrology);
+  assert.equal(astrology.AstrologyPointResource_id, "resource.astrology.points");
+  assert.equal(astrology.InsightResource_id, "resource.insight");
   return source;
 }
 
@@ -92,7 +88,7 @@ test("HOMM8 global details pull every declared per-game resource membership", ()
 
   const astrologyClosure = select(source, [seed("AstrologyHOMM8", "homm8.game")]);
   assert.deepEqual(new Set(astrologyClosure.tables.GameResource.map(row => row.Resource_id)),
-    new Set(["resource.astrology.points", "resource.law.points"]));
+    new Set(["resource.astrology.points", "resource.insight"]));
   const { result } = build(astrologyClosure);
   assert.equal(result.status, 0, result.stderr);
 });
@@ -180,7 +176,7 @@ test("campaign hero closure includes the exact campaign-scenario membership", ()
     row.Game_id === hero.Game_id && row.Campaign_id === hero.Campaign_id && row.Scenario_id === hero.StartingScenario_id));
   const { result, sql } = build(closure);
   assert.equal(result.status, 0, result.stderr);
-  assert.match(sql, /Requires the HeroesWatch schema through postgres\/migrations\/0006_catalog_guards\.sql/);
+  assert.ok(sql.includes(`Requires the HeroesWatch schema through postgres/migrations/${schema.source.overlay.migration}`));
 });
 
 test("generated display fields are omitted from import INSERT and UPDATE statements", () => {

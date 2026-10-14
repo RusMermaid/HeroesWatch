@@ -66,8 +66,10 @@ export function postgresEnvironment(base = process.env) {
 }
 
 export async function queryJson(psql, connection, database, sql, options = {}) {
-  const result = await requireSuccess(psql, psqlArgs(connection, database, ['--tuples-only', '--no-align', '--command', sql]), {
+  // Full inventory queries exceed Windows command-line limits; use stdin.
+  const result = await requireSuccess(psql, psqlArgs(connection, database, ['--tuples-only', '--no-align', '--file', '-']), {
     ...options,
+    input: sql.trimEnd().endsWith(';') ? sql+'\n' : sql+';\n',
     quiet: true,
     env: postgresEnvironment(options.env),
   });
@@ -86,7 +88,8 @@ export function inventorySql(schema) {
 export function fingerprintSql(schema) {
   const parts = schema.tables.map(table => {
     const qualified = `heroes_watch.${quoteIdentifier(table.name)}`;
-    return `SELECT ${quoteLiteral(table.name)} AS name, count(*) AS row_count, md5(COALESCE(string_agg(to_jsonb(t)::text, E'\\n' ORDER BY to_jsonb(t)::text), '')) AS digest FROM ${qualified} AS t`;
+    const projection=table.columns.map(column=>quoteIdentifier(column.name)).join(', ');
+    return `SELECT ${quoteLiteral(table.name)} AS name, count(*) AS row_count, md5(COALESCE(string_agg(to_jsonb(t)::text, E'\\n' ORDER BY to_jsonb(t)::text), '')) AS digest FROM (SELECT ${projection} FROM ${qualified}) AS t`;
   });
   return `SELECT jsonb_object_agg(name, jsonb_build_object('rows', row_count, 'digest', digest)) FROM (${parts.join(' UNION ALL ')}) AS fingerprints`;
 }

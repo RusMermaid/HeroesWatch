@@ -6,6 +6,9 @@ import { randomBytes } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import os from 'node:os';
+import {rewindResearch} from './rewind-research.mjs';
+import {sourceNullableColumns,sourceAddedColumns,sourceDetailChecks} from './source-detail-rules.mjs';
 import { fileURLToPath } from 'node:url';
 import {
   fingerprintSql,
@@ -23,9 +26,10 @@ const repositoryRoot = path.resolve(dbRoot, '..', '..');
 if (process.argv.includes('--help')) {
   console.log(`Usage: HW_TEST_POSTGRES=1 PGHOST=... PGPORT=... PGUSER=... node src/db/tools/postgres-upgrade-integration.mjs
 
-Creates one random v5 database and two random clones, proves the v5-to-v6
-upgrade preserves the complete catalog, proves invalid baselines roll back the
-whole migration, and drops only those exact databases.`);
+Creates one random v5 database and three random clones, proves upgrades through
+v7 preserve the baseline catalog, and imports the reviewed research delta.
+Invalid cost/cycle baselines must roll back v6; a missing warfare role must
+roll back every v7 schema change. The runner drops only those exact databases.`);
   process.exit(0);
 }
 if (process.argv.length !== 2) throw new Error(`Unknown arguments: ${process.argv.slice(2).join(' ')}`);
@@ -62,9 +66,10 @@ const databases = {
   main: `${prefix}_main`,
   badAmount: `${prefix}_bad_amount`,
   badCycle: `${prefix}_bad_cycle`,
+  badProfile: `${prefix}_bad_profile`,
 };
 for (const database of Object.values(databases)) {
-  assert.match(database, /^heroeswatch_upgrade_[0-9]+_[0-9a-f]{16}_(?:main|bad_amount|bad_cycle)$/);
+  assert.match(database, /^heroeswatch_upgrade_[0-9]+_[0-9a-f]{16}_(?:main|bad_amount|bad_cycle|bad_profile)$/);
 }
 
 const pgEnv = postgresEnvironment(process.env);
@@ -116,6 +121,33 @@ const guardStateSql = `SELECT jsonb_build_object(
       OR t.tgname LIKE 'ct_graph_cycle__%' OR t.tgname LIKE 'tr_graph_write__%'))
 )`;
 
+const sqlLiteral = value => `'${value.replaceAll("'", "''")}'`;
+const sourceColumnPairs = entries => entries.map(([table, field]) =>
+  `(${sqlLiteral(table)}, ${sqlLiteral(field)})`).join(',');
+const sourceRequiredPairs = Object.entries(sourceNullableColumns)
+  .flatMap(([table, fields]) => fields.map(field => [table, field]));
+const sourceAddedPairs = Object.entries(sourceAddedColumns)
+  .flatMap(([table, fields]) => fields.map(([field]) => [table, field]));
+const sourceStateSql = `SELECT jsonb_build_object(
+  'addedColumns', (SELECT count(*) FROM information_schema.columns
+    WHERE table_schema='heroes_watch' AND (table_name,column_name) IN
+      (VALUES ${sourceColumnPairs(sourceAddedPairs)})),
+  'newEnumValues', (SELECT count(*) FROM pg_enum e JOIN pg_type t ON t.oid=e.enumtypid
+    JOIN pg_namespace n ON n.oid=t.typnamespace WHERE n.nspname='heroes_watch'
+    AND ((t.typname='Enum__CreatureHOMM7__WarfareRole' AND e.enumlabel='AttackAndSupport')
+      OR (t.typname='Enum__CreatureHOMM7__Movement' AND e.enumlabel='Stationary'))),
+  'newChecks', (SELECT count(*) FROM pg_constraint c JOIN pg_namespace n ON n.oid=c.connamespace
+    WHERE n.nspname='heroes_watch' AND c.conname = ANY
+      (ARRAY[${sourceDetailChecks.map(rule => sqlLiteral(rule.name)).join(',')}])),
+  'originalRequiredColumns', (SELECT count(*) FROM information_schema.columns
+    WHERE table_schema='heroes_watch' AND is_nullable='NO' AND (table_name,column_name) IN
+      (VALUES ${sourceColumnPairs(sourceRequiredPairs)}))
+)`;
+const expectedPreSourceState = {
+  addedColumns: 0, newEnumValues: 0, newChecks: 0,
+  originalRequiredColumns: sourceRequiredPairs.length,
+};
+
 async function create(database, template) {
   const args = [...utilityArgs, `--template=${template}`, database];
   await requireShortSuccess(createdb, args, { env: pgEnv, timeout: 60_000 });
@@ -131,14 +163,51 @@ async function requireMigrationRejected(database, label) {
   assert.deepEqual(state, { constraints: 0, triggers: 0 }, `${label}: v6 objects survived a failed transaction`);
 }
 
+async function requireSourceMigrationRejected(database) {
+  const before = await queryJson(psql, connection, database, sourceStateSql, { env: pgEnv });
+  assert.deepEqual(before, expectedPreSourceState, 'v6 profile fixture unexpectedly contains v7 schema changes');
+  const guardsBefore = await queryJson(psql, connection, database, guardStateSql, { env: pgEnv });
+  const result = await runProcess(psql, psqlArgs(connection, database, [
+    '--set', 'VERBOSITY=verbose', '--file', path.join(repositoryRoot, 'src/db/postgres/migrations/0007_source_detail_profiles.sql'),
+  ]), { env: pgEnv, timeout: 300_000, quiet: true });
+  assert.notEqual(result.code, 0, 'missing warfare role: v7 unexpectedly committed');
+  assert.equal(sqlstate(result), '23514', `missing warfare role: expected SQLSTATE 23514, got ${sqlstate(result) ?? 'none'}\n${short(result.stderr)}`);
+  assert.match(result.stderr, /ck_h7_warfare_profile_scope/, 'v7 failed for an unrelated reason');
+  const after = await queryJson(psql, connection, database, sourceStateSql, { env: pgEnv });
+  assert.deepEqual(after, before, 'failed v7 migration retained a new column, enum, check, or nullability change');
+  const guardsAfter = await queryJson(psql, connection, database, guardStateSql, { env: pgEnv });
+  assert.deepEqual(guardsAfter, guardsBefore, 'failed v7 migration changed existing v6 guards');
+}
+
 const schema = JSON.parse(fs.readFileSync(path.join(dbRoot, 'schema/heroeswatch.schema.json'), 'utf8'));
 const bundle = JSON.parse(fs.readFileSync(path.join(dbRoot, 'data/heroeswatch.json'), 'utf8'));
 const sourceRows = Object.values(bundle.tables).reduce((sum, rows) => sum + rows.length, 0);
+const researchAudit=JSON.parse(fs.readFileSync(path.join(dbRoot,'data/research-2026-10-14-evidence.json'),'utf8'));
+const baseline=rewindResearch(bundle,researchAudit);
+const baselineSchema=structuredClone(schema);
+for(const table of baselineSchema.tables) {
+  for(const field of sourceNullableColumns[table.name]??[]) table.columns.find(column=>column.name===field).nullable=false;
+  table.columns=table.columns.filter(column=>!(sourceAddedColumns[table.name]??[]).some(([name])=>name===column.name));
+  if(table.checks) table.checks=table.checks.filter(check=>!sourceDetailChecks.some(rule=>rule.table===table.name&&rule.name===check.name));
+}
+const previousRole=baselineSchema.tables.find(table=>table.name==='CreatureHOMM7').columns.find(column=>column.name==='WarfareRole');
+previousRole.enumValues=previousRole.enumValues.filter(value=>value!=='AttackAndSupport');
+previousRole.sqlDesignerType=`ENUM(${previousRole.enumValues.map(value=>`'${value}'`).join(',')})`;
+baselineSchema.enums.find(item=>item.name===previousRole.postgresType).values=[...previousRole.enumValues];
+const previousMovement=baselineSchema.tables.find(table=>table.name==='CreatureHOMM7').columns.find(column=>column.name==='Movement');
+previousMovement.enumValues=previousMovement.enumValues.filter(value=>value!=='Stationary');
+previousMovement.sqlDesignerType=`ENUM(${previousMovement.enumValues.map(value=>`'${value}'`).join(',')})`;
+baselineSchema.enums.find(item=>item.name===previousMovement.postgresType).values=[...previousMovement.enumValues];
+baselineSchema.source.overlay.version=6;
+const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'heroeswatch-upgrade-baseline-'));
+fs.writeFileSync(path.join(temporary,'catalog.json'),JSON.stringify(baseline));
+fs.writeFileSync(path.join(temporary,'schema.json'),JSON.stringify(baselineSchema));
 if (process.env.HW_EXPECTED_ROWS !== undefined) {
   assert.equal(sourceRows, Number(process.env.HW_EXPECTED_ROWS), 'catalog row total differs from HW_EXPECTED_ROWS');
 }
 
 try {
+  await requireShortSuccess(process.execPath,[path.join(dbRoot,'tools/build-content-sql.mjs'),'--input',path.join(temporary,'catalog.json'),'--schema',path.join(temporary,'schema.json'),'--output',path.join(temporary,'catalog.sql')],{timeout:300000});
   console.log(`Creating disposable v5 database ${databases.main} ...`);
   await create(databases.main, 'template0');
   for (const migration of ['0001_initial.sql', '0002_relationship_integrity.sql',
@@ -146,10 +215,10 @@ try {
     '0005_creature_numeric_speed.sql']) {
     await psqlFile(databases.main, `src/db/postgres/migrations/${migration}`);
   }
-  await psqlFile(databases.main, 'src/db/data/catalog.sql', 900_000);
+  await requireShortSuccess(psql,psqlArgs(connection,databases.main,['--file',path.join(temporary,'catalog.sql')]),{env:pgEnv,timeout:900000});
   const preGuardState = await queryJson(psql, connection, databases.main, guardStateSql, { env: pgEnv });
   assert.deepEqual(preGuardState, { constraints: 0, triggers: 0 }, 'v5 unexpectedly contains v6 guards');
-  const before = await queryJson(psql, connection, databases.main, fingerprintSql(schema), { env: pgEnv, timeout: 300_000 });
+  const before = await queryJson(psql, connection, databases.main, fingerprintSql(baselineSchema), { env: pgEnv, timeout: 300_000 });
 
   console.log('Cloning the populated v5 baseline for atomic rollback probes ...');
   await create(databases.badAmount, databases.main);
@@ -157,9 +226,14 @@ try {
 
   console.log('Applying v6 to the valid populated baseline ...');
   await psqlFile(databases.main, 'src/db/postgres/migrations/0006_catalog_guards.sql');
+  console.log('Cloning the populated v6 baseline for the v7 atomic rollback probe ...');
+  await create(databases.badProfile, databases.main);
+  await psqlFile(databases.main, 'src/db/postgres/migrations/0007_source_detail_profiles.sql');
   await psqlFile(databases.main, 'src/db/postgres/verify.sql');
-  const after = await queryJson(psql, connection, databases.main, fingerprintSql(schema), { env: pgEnv, timeout: 300_000 });
-  assert.deepEqual(after, before, 'v6 migration changed catalog rows or physical IDs');
+  const after = await queryJson(psql, connection, databases.main, fingerprintSql(baselineSchema), { env: pgEnv, timeout: 300_000 });
+  assert.deepEqual(after, before, 'v6/v7 migrations changed catalog rows or physical IDs');
+  await psqlFile(databases.main, 'src/db/data/research-gaps-import.sql',900_000);
+  await psqlFile(databases.main, 'src/db/postgres/tests/source-details.sql');
   const actual = await queryJson(psql, connection, databases.main, inventorySql(schema), { env: pgEnv, timeout: 300_000 });
   const reconciliation = reconcileInventory(schema, bundle, actual);
   const installed = await queryJson(psql, connection, databases.main, guardStateSql, { env: pgEnv });
@@ -189,15 +263,31 @@ try {
     `SELECT to_jsonb(count(*)) FROM heroes_watch."CreatureUpgrade" WHERE "CreatureUpgrade_cid"='hw_upgrade_cycle_fixture'`, { env: pgEnv });
   assert.equal(cycleFixture, 1, 'failed migration unexpectedly rewrote cyclic baseline data');
 
+  console.log('Proving a missing warfare-role baseline rejects and rolls back v7 atomically ...');
+  const profileFixture = await queryJson(psql, connection, databases.badProfile, `WITH fixture AS (
+    UPDATE heroes_watch."CreatureHOMM7" SET "CreatureKind"='Warfare', "WarfareRole"=NULL
+    WHERE "Creature_id"=(SELECT min("Creature_id") FROM heroes_watch."CreatureHOMM7" WHERE "CreatureKind"='Town')
+    RETURNING *
+  ) SELECT to_jsonb(fixture) FROM fixture`, { env: pgEnv });
+  assert(profileFixture && Number.isSafeInteger(profileFixture.Creature_id), 'missing warfare-role fixture was not created');
+  assert.equal(profileFixture.CreatureKind, 'Warfare');
+  assert.equal(profileFixture.WarfareRole, null);
+  await requireSourceMigrationRejected(databases.badProfile);
+  const retainedProfile = await queryJson(psql, connection, databases.badProfile,
+    `SELECT to_jsonb(creature) FROM heroes_watch."CreatureHOMM7" creature WHERE "Creature_id"=${profileFixture.Creature_id}`, { env: pgEnv });
+  assert.deepEqual(retainedProfile, profileFixture, 'failed v7 migration rewrote the invalid baseline creature');
+
   const version = await queryJson(psql, connection, databases.main,
     `SELECT to_jsonb(current_setting('server_version'))`, { env: pgEnv });
   console.log(JSON.stringify({
     result: 'PASS', databaseVersion: version, sourceRows,
-    upgrade: '0001..0005 + catalog -> 0006',
+    upgrade: '0001..0005 + exact research baseline -> 0006 -> 0007 + research gap delta',
     preservedFingerprint: true, ...reconciliation,
-    invalidBaselines: ['negative amount: 23514 + atomic rollback', 'creature cycle: 23514 + atomic rollback'],
+    invalidBaselines: ['negative amount: v6 23514 + atomic rollback', 'creature cycle: v6 23514 + atomic rollback',
+      'missing warfare role: v7 23514 + columns, enum, checks, nullability and baseline row preserved'],
   }, null, 2));
 } finally {
+  fs.rmSync(temporary,{recursive:true,force:true});
   for (const database of created.reverse()) {
     const dropped = await runProcess(dropdb, [...utilityArgs, '--if-exists', '--force', database], {
       env: pgEnv, timeout: 60_000, quiet: true,

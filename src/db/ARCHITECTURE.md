@@ -384,7 +384,7 @@ no game data.
 
 `HeroesWatch.backup` is the historical schema-only custom-format backup of the
 initial schema. After restoring it, apply `0002_relationship_integrity.sql`
-followed by migrations 0003 through 0006 in order.
+followed by migrations 0003 through 0007 in order.
 For a new current schema, use `HeroesWatch.sql` directly.
 
 `postgres/migrations/0001_initial.sql` is the immutable initial migration.
@@ -404,6 +404,20 @@ numbers and derives H1/H2 `SpeedName` values. Existing migrations are immutable.
 `0006_catalog_guards.sql` installs the guards above and validates existing rows
 in one transaction. It rejects invalid baselines without deleting or repairing
 their data automatically.
+
+`0007_source_detail_profiles.sql` adds Heroes VI resistance percentages and
+Heroes VII warfare profiles. The latter retain source-listed stat vectors;
+their array positions do not claim a skill-rank mapping. Healing and renewal
+amounts remain distinct from damage. Unknown combat fields are nullable for
+exceptional VI creatures and VII warfare units; CHECK constraints retain all
+previous requirements for ordinary creatures. Source-unknown Olden Era map,
+scenario and resource flags are nullable. A null tutorial act count means the
+campaign has no documented act structure. Null never means false or zero.
+
+Olden Era alternative attacks use `AbilityHOMM8.IsActive` for a player-selected
+action. `IsFocusAction` identifies the native Focus ability action category,
+including zero-cost actions; alternative basic attacks are separate. Each
+source document records its build because Early Access systems can change.
 
 ### 8.2 Namespace and identifiers
 

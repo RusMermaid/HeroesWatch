@@ -157,6 +157,13 @@ const campaignCondition = object({
 }, ["description", "source"]);
 register("CampaignScenario.AvailabilityCondition ScenarioConnection.Condition", campaignCondition);
 
+register('CreatureHOMM7.WarfareStats', object({
+  profileOrder: enumeration('source-listed'),
+  profiles: array({...object({index:{type:'integer',minimum:1,maximum:16}, warfareLevel:{type:'integer',minimum:1,maximum:5},
+    ...fields('attack defense damageMin damageMax health effectAmount', natural)}, ['index']), minProperties:2},16),
+  supportEffect: enumeration('Healing','Renewal','DeathCloak','DarkTouch'),
+}, ['profileOrder','profiles']));
+
 // Shared structural profiles: these describe catalog payloads, not game facts.
 const key = { type: "string", minLength: 1, maxLength: 256, pattern: "^[A-Za-z0-9_.:-]+$" };
 const homm3NativeRef = (keyName) => object({ nativeId: natural, [keyName]: key }, ["nativeId", keyName]);
@@ -326,7 +333,7 @@ export function validateJsonSchema(schema, value, at = "value") {
     }
   }
   if (type === "object") {
-    if (schema.minProperties !== undefined && Object.keys(value).length < schema.minProperties) return `${at} must not be empty`;
+    if (schema.minProperties !== undefined && Object.keys(value).length < schema.minProperties) return schema.minProperties===1 ? `${at} must not be empty` : `${at} needs at least ${schema.minProperties} properties`;
     for (const required of schema.required ?? []) if (!Object.hasOwn(value, required)) return `${at}.${required} is required`;
     for (const [name, item] of Object.entries(value)) {
       if (!Object.hasOwn(schema.properties ?? {}, name)) return `${at}.${name} is not an allowed field`;
@@ -340,6 +347,8 @@ export function validateJsonSchema(schema, value, at = "value") {
 export function validateJsonColumn(tableName, columnName, value) {
   const error = validateJsonSchema(jsonColumnSchema(tableName, columnName), value);
   if (error) return error;
+  if(tableName==='CreatureHOMM7'&&columnName==='WarfareStats'&&value.profiles.some(profile=>profile.effectAmount!==undefined)&&value.supportEffect===undefined) return 'supportEffect is required with effectAmount';
+  if(tableName==='CreatureHOMM7'&&columnName==='WarfareStats'&&value.profiles.some(profile=>!['attack','defense','damageMin','damageMax','health','effectAmount'].some(field=>profile[field]!==undefined))) return 'each warfare profile requires a numerical stat';
   if (/^HeroClassHOMM[23]$/.test(tableName) && columnName === "PrimarySkillChances") {
     for (const [range, chances] of Object.entries(value)) if (Object.values(chances).reduce((sum, chance) => sum + chance, 0) !== 100) return `${range} probabilities must total 100`;
   }

@@ -7,7 +7,7 @@
     "targetNormalForm": "2NF"
   },
   "counts": {
-    "columns": 1306,
+    "columns": 1309,
     "enums": 159,
     "foreignKeys": 452,
     "tables": 176
@@ -710,7 +710,8 @@
       "values": [
         "Ground",
         "Flying",
-        "Teleporting"
+        "Teleporting",
+        "Stationary"
       ]
     },
     {
@@ -730,7 +731,8 @@
       "values": [
         "Attack",
         "Support",
-        "Siege"
+        "Siege",
+        "AttackAndSupport"
       ]
     },
     {
@@ -1796,16 +1798,17 @@
       "FactionLaw": "Faction_id"
     },
     "nullableBusinessKeys": "Nullable business identities use PostgreSQL 15+ UNIQUE NULLS NOT DISTINCT.",
-    "prerequisiteGroups": "HeroClassAbilityRequirementGroup defines positive-numbered alternative paths. All/Any combines atoms inside one set. A native FK requires every grouped atom to use the group's mode. NULL group and mode means an association without a documented prerequisite group, not proof of no prerequisites."
+    "prerequisiteGroups": "HeroClassAbilityRequirementGroup defines positive-numbered alternative paths. All/Any combines atoms inside one set. A native FK requires every grouped atom to use the group's mode. NULL group and mode means an association without a documented prerequisite group, not proof of no prerequisites.",
+    "sourceDetails": "Ordinary creature requirements remain enforced. Exceptional H6 creatures and H7 warfare units may retain source-unknown fields; H7 vectors use source-ordered profiles, not inferred skill ranks. Unknown H8 mode/resource flags are NULL."
   },
   "postgresSchema": "heroes_watch",
   "source": {
     "diagram": "https://sql-designer.com/diagrams/932ebd44-bda4-45c2-a3e5-0358c579e076",
     "kind": "SQLDesigner",
     "overlay": {
-      "migration": "0006_catalog_guards.sql",
+      "migration": "0007_source_detail_profiles.sql",
       "module": "src/db/tools/schema-overlay.mjs",
-      "version": 6
+      "version": 7
     },
     "sha256": "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673"
   },
@@ -9217,7 +9220,7 @@
           "default": null,
           "enumValues": null,
           "name": "AvailableActCount",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11129,6 +11132,20 @@
       "unique": []
     },
     {
+      "checks": [
+        {
+          "expression": "\"MagicResistancePercent\" BETWEEN 0 AND 100",
+          "name": "ck_h6_magic_resistance"
+        },
+        {
+          "expression": "\"MightResistancePercent\" BETWEEN 0 AND 100",
+          "name": "ck_h6_might_resistance"
+        },
+        {
+          "expression": "\"CreatureKind\" NOT IN ('Town', 'Neutral') OR (\"MightDefense\" IS NOT NULL AND \"MagicDefense\" IS NOT NULL AND \"CombatSize\" IS NOT NULL AND \"Movement\" IS NOT NULL AND \"Speed\" IS NOT NULL AND \"Initiative\" IS NOT NULL AND \"Luck\" IS NOT NULL AND \"Range\" IS NOT NULL)",
+          "name": "ck_h6_ordinary_stats"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -11234,7 +11251,7 @@
           "default": null,
           "enumValues": null,
           "name": "MightDefense",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11246,7 +11263,7 @@
           "default": null,
           "enumValues": null,
           "name": "MagicDefense",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11270,7 +11287,7 @@
           "default": null,
           "enumValues": null,
           "name": "Speed",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11282,7 +11299,7 @@
           "default": null,
           "enumValues": null,
           "name": "Initiative",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11294,7 +11311,7 @@
           "default": null,
           "enumValues": null,
           "name": "CombatSize",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11310,7 +11327,7 @@
             "Full"
           ],
           "name": "Range",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "Enum__CreatureHOMM6__Range",
           "primaryKey": false,
           "sqlDesignerType": "ENUM('None','Half','Full')",
@@ -11334,7 +11351,7 @@
           "default": null,
           "enumValues": null,
           "name": "Luck",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11374,7 +11391,7 @@
             "Teleporting"
           ],
           "name": "Movement",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "Enum__CreatureHOMM6__Movement",
           "primaryKey": false,
           "sqlDesignerType": "ENUM('Ground','Flying','Teleporting')",
@@ -11414,6 +11431,30 @@
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "MightResistancePercent",
+          "nullable": true,
+          "postgresType": "SMALLINT",
+          "primaryKey": false,
+          "sqlDesignerType": "SMALLINT",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "MagicResistancePercent",
+          "nullable": true,
+          "postgresType": "SMALLINT",
+          "primaryKey": false,
+          "sqlDesignerType": "SMALLINT",
           "unique": false,
           "unsigned": false
         }
@@ -11457,6 +11498,16 @@
       "unique": []
     },
     {
+      "checks": [
+        {
+          "expression": "\"CreatureKind\" = 'Warfare' OR (\"Attack\" IS NOT NULL AND \"Defense\" IS NOT NULL AND \"DamageMin\" IS NOT NULL AND \"DamageMax\" IS NOT NULL AND \"Health\" IS NOT NULL AND \"Speed\" IS NOT NULL AND \"CombatSize\" IS NOT NULL AND \"Movement\" IS NOT NULL)",
+          "name": "ck_h7_ordinary_stats"
+        },
+        {
+          "expression": "(\"WarfareStats\" IS NULL OR \"CreatureKind\" = 'Warfare') AND (\"CreatureKind\" <> 'Warfare' OR \"WarfareRole\" IS NOT NULL)",
+          "name": "ck_h7_warfare_profile_scope"
+        }
+      ],
       "columns": [
         {
           "comment": null,
@@ -11524,13 +11575,14 @@
           "enumValues": [
             "Attack",
             "Support",
-            "Siege"
+            "Siege",
+            "AttackAndSupport"
           ],
           "name": "WarfareRole",
           "nullable": true,
           "postgresType": "Enum__CreatureHOMM7__WarfareRole",
           "primaryKey": false,
-          "sqlDesignerType": "ENUM('Attack','Support','Siege')",
+          "sqlDesignerType": "ENUM('Attack','Support','Siege','AttackAndSupport')",
           "unique": false,
           "unsigned": false
         },
@@ -11539,7 +11591,7 @@
           "default": null,
           "enumValues": null,
           "name": "Attack",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11551,7 +11603,7 @@
           "default": null,
           "enumValues": null,
           "name": "Defense",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11563,7 +11615,7 @@
           "default": null,
           "enumValues": null,
           "name": "DamageMin",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11575,7 +11627,7 @@
           "default": null,
           "enumValues": null,
           "name": "DamageMax",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11587,7 +11639,7 @@
           "default": null,
           "enumValues": null,
           "name": "Health",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "INTEGER",
           "primaryKey": false,
           "sqlDesignerType": "INTEGER",
@@ -11599,7 +11651,7 @@
           "default": null,
           "enumValues": null,
           "name": "Speed",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11623,7 +11675,7 @@
           "default": null,
           "enumValues": null,
           "name": "CombatSize",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -11672,13 +11724,14 @@
           "enumValues": [
             "Ground",
             "Flying",
-            "Teleporting"
+            "Teleporting",
+            "Stationary"
           ],
           "name": "Movement",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "Enum__CreatureHOMM7__Movement",
           "primaryKey": false,
-          "sqlDesignerType": "ENUM('Ground','Flying','Teleporting')",
+          "sqlDesignerType": "ENUM('Ground','Flying','Teleporting','Stationary')",
           "unique": false,
           "unsigned": false
         },
@@ -11715,6 +11768,18 @@
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
+          "unique": false,
+          "unsigned": false
+        },
+        {
+          "comment": null,
+          "default": null,
+          "enumValues": null,
+          "name": "WarfareStats",
+          "nullable": true,
+          "postgresType": "JSONB",
+          "primaryKey": false,
+          "sqlDesignerType": "JSONB",
           "unique": false,
           "unsigned": false
         }
@@ -20777,7 +20842,7 @@
           "default": null,
           "enumValues": null,
           "name": "LevelCount",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "SMALLINT",
           "primaryKey": false,
           "sqlDesignerType": "SMALLINT",
@@ -20789,7 +20854,7 @@
           "default": null,
           "enumValues": null,
           "name": "HasUnderground",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -20801,7 +20866,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsClassic",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -20813,7 +20878,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsSingleHero",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -20825,7 +20890,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsArena",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -20849,7 +20914,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsMultiplayer",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -20861,7 +20926,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsHotseat",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -20873,7 +20938,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsMatchmaking",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -20885,7 +20950,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsRanked",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -21888,7 +21953,7 @@
           "default": null,
           "enumValues": null,
           "name": "IsTradeable",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -21900,7 +21965,7 @@
           "default": null,
           "enumValues": null,
           "name": "IsMineProduced",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -21912,7 +21977,7 @@
           "default": null,
           "enumValues": null,
           "name": "IsPersistent",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -23170,7 +23235,7 @@
           "default": null,
           "enumValues": null,
           "name": "AllowsMultiplayer",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -23182,7 +23247,7 @@
           "default": null,
           "enumValues": null,
           "name": "AllowsHotseat",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -23194,7 +23259,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsMatchmaking",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",
@@ -23206,7 +23271,7 @@
           "default": null,
           "enumValues": null,
           "name": "SupportsRanked",
-          "nullable": false,
+          "nullable": true,
           "postgresType": "BOOLEAN",
           "primaryKey": false,
           "sqlDesignerType": "BOOLEAN",

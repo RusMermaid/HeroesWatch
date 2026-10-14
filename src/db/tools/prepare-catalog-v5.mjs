@@ -89,7 +89,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const sqlPath = path.join(dbRoot, 'data/creature-tier-corrections.sql');
   if (options.check) {
     if (!isDeepStrictEqual(original, current)) throw new Error('Catalog is not using the reviewed Tier and numeric Speed values');
-    if (!fs.existsSync(sqlPath) || fs.readFileSync(sqlPath, 'utf8') !== tierCorrectionSql()) throw new Error('Regenerate creature-tier-corrections.sql');
+    if (!fs.existsSync(sqlPath) || fs.readFileSync(sqlPath, 'utf8').replaceAll('\r\n','\n') !== tierCorrectionSql()) throw new Error('Regenerate creature-tier-corrections.sql');
     console.log('Creature Tier, numeric Speed and correction SQL verified.');
   } else {
     if (!options.output) throw new Error('Supply --output explicitly; input is never overwritten by default');

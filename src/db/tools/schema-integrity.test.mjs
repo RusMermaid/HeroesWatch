@@ -30,7 +30,7 @@ test("published and deployed migration history remains immutable", () => {
 });
 
 test("the reviewed overlay keeps the historical initial migration separate", () => {
-  assert.equal(schema.source.overlay.version, 6);
+  assert.equal(schema.source.overlay.version, 7);
   assert.equal(schema.counts.tables, 176);
   assert.ok(!initial.includes('"AdventureObjectCreature"'));
   assert.ok(!initial.includes('"_game_scope_constraint"'));

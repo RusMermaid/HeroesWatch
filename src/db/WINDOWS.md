@@ -6,10 +6,10 @@ directory to Windows. Transfer either of these checked-in files:
 - `HeroesWatch.sql` — plain PostgreSQL SQL; the most universal option.
 - `HeroesWatch.backup` — historical initial schema, PostgreSQL custom format.
 
-The current SQL creates 176 tables, 1,306 fields, 159 ENUM types and 452 foreign
+The current SQL creates 176 tables, 1,309 fields, 159 ENUM types and 452 foreign
 keys. The backup contains the original 173-table contract and requires
 `postgres/migrations/0002_relationship_integrity.sql` followed by
-the remaining migrations 0003 through 0006 in order.
+the remaining migrations 0003 through 0007 in order.
 Neither contains game rows.
 
 ## Free software
@@ -53,7 +53,9 @@ Expected result: DBeaver displays 176 tables under the `heroes_watch` schema.
    `postgres/migrations/0005_creature_numeric_speed.sql`, once each.
 9. Execute `postgres/migrations/0006_catalog_guards.sql` once. It validates
    existing rows and rolls back on invalid costs, links or cycles.
-10. Before importing into an existing catalog, execute
+10. Execute `postgres/migrations/0007_source_detail_profiles.sql` once for
+    exceptional creature profiles and nullable source-unknown flags.
+11. Before importing into an existing catalog, execute
    `data/creature-tier-corrections.sql`; then use the current full catalog.
 
 The backup was created with `--schema-only --no-owner --no-privileges`, so it
@@ -67,7 +69,7 @@ After either method, open `postgres/verify.sql` and execute it. It must report:
 
 ```text
 tables       176
-columns      1306
+columns      1309
 foreign_keys 452
 ```
 
@@ -77,7 +79,7 @@ The original diagram SHA-256 reported by the verifier remains:
 b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673
 ```
 
-The current contract additionally includes reviewed overlay version 6; the
+The current contract additionally includes reviewed overlay version 7; the
 unchanged diagram hash alone does not describe those added constraints.
 
 The initial SQL is intentionally clean-install only. Run it once in an empty

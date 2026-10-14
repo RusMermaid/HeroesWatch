@@ -41,7 +41,7 @@ jobs:
         run: node src/db/tools/build-manual-sql.mjs --check
       - name: Verify deterministic small GUI imports
         run: node src/db/tools/build-touchup-sql.mjs --check
-      - name: Verify deterministic reviewed research import
+      - name: Verify deterministic current research gap import
         run: node src/db/tools/build-research-sql.mjs --check
       - name: Verify creature tiers and speed representation
         run: node src/db/tools/prepare-catalog-v5.mjs --check
@@ -79,7 +79,7 @@ jobs:
       - name: Run isolated full-schema and full-catalog regression suite
         env:
           HW_TEST_POSTGRES: "1"
-          HW_EXPECTED_ROWS: "43932"
+          HW_EXPECTED_ROWS: "45560"
           PGHOST: 127.0.0.1
           PGPORT: "5432"
           PGUSER: postgres

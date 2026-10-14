@@ -309,7 +309,7 @@ function main() {
   const rowCount = Object.values(candidate.tables).reduce((sum, rows) => sum + rows.length, 0);
   const evidence = {
     formatVersion: 1,
-    purpose: "Deterministic audit trail for reviewed 2026-10-13 research patches.",
+    purpose: "Deterministic audit trail for the explicitly selected reviewed research patches.",
     inputSha256: digest(original),
     outputSha256: digest(candidate),
     patchFiles,

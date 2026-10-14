@@ -61,6 +61,16 @@ text.
 
 ## Shared structural profiles
 
+`CreatureHOMM7.WarfareStats` contains `profileOrder: "source-listed"` and up to
+16 profiles with contiguous one-based `index` values. Each profile may contain
+nonnegative integer attack, defense, damage bounds, health and `effectAmount`.
+Optional `supportEffect` is `Healing`, `Renewal`, `DeathCloak` or `DarkTouch`;
+it is required whenever a profile has an effect amount. `warfareLevel`, when
+explicitly published, ranges from one to five. Every profile needs a numerical
+stat in addition to its position. Profile order is preserved
+without assigning unverified skill ranks. The validator rejects reversed damage
+bounds and profiles on ordinary creatures; source-unknown values are omitted.
+
 Army and guard arrays contain `creatureKey` plus either `count` or a
 `minimum`/`maximum` range. Terrain/faction/spell lists contain unique catalog
 keys. Footprints use dimensions, optional blocked cells and an entrance;

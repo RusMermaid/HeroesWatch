@@ -6048,7 +6048,14 @@
           "type": "string"
         },
         "AvailableActCount": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Campaign_id": {
           "description": "Database primary key; normally omitted from human-edited data.",
@@ -6091,8 +6098,7 @@
       },
       "required": [
         "_key",
-        "Availability",
-        "AvailableActCount"
+        "Availability"
       ],
       "type": "object"
     },
@@ -7342,7 +7348,14 @@
           ]
         },
         "CombatSize": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "CreatureKind": {
           "enum": [
@@ -7399,16 +7412,64 @@
           "type": "integer"
         },
         "Initiative": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Luck": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "MagicDefense": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "MagicResistancePercent": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "MightDefense": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "MightResistancePercent": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Morale": {
           "anyOf": [
@@ -7421,26 +7482,47 @@
           ]
         },
         "Movement": {
-          "enum": [
-            "Ground",
-            "Flying",
-            "Teleporting"
-          ],
-          "type": "string"
+          "anyOf": [
+            {
+              "enum": [
+                "Ground",
+                "Flying",
+                "Teleporting"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Range": {
-          "enum": [
-            "None",
-            "Half",
-            "Full"
-          ],
-          "type": "string"
+          "anyOf": [
+            {
+              "enum": [
+                "None",
+                "Half",
+                "Full"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Recruitable": {
           "type": "boolean"
         },
         "Speed": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Tier": {
           "anyOf": [
@@ -7479,15 +7561,7 @@
         "AttackType",
         "DamageMin",
         "DamageMax",
-        "MightDefense",
-        "MagicDefense",
         "Health",
-        "Speed",
-        "Initiative",
-        "CombatSize",
-        "Range",
-        "Luck",
-        "Movement",
         "Recruitable",
         "DoubleUpgrade",
         "AlternativeUpgrade"
@@ -7501,10 +7575,24 @@
           "type": "boolean"
         },
         "Attack": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "CombatSize": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "CreatureKind": {
           "enum": [
@@ -7530,13 +7618,34 @@
           ]
         },
         "DamageMax": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "DamageMin": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Defense": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "DoubleUpgrade": {
           "type": "boolean"
@@ -7561,7 +7670,14 @@
           ]
         },
         "Health": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Initiative": {
           "type": "integer"
@@ -7577,12 +7693,20 @@
           ]
         },
         "Movement": {
-          "enum": [
-            "Ground",
-            "Flying",
-            "Teleporting"
-          ],
-          "type": "string"
+          "anyOf": [
+            {
+              "enum": [
+                "Ground",
+                "Flying",
+                "Teleporting",
+                "Stationary"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Recruitable": {
           "type": "boolean"
@@ -7598,7 +7722,14 @@
           ]
         },
         "Speed": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Tier": {
           "anyOf": [
@@ -7621,9 +7752,98 @@
               "enum": [
                 "Attack",
                 "Support",
-                "Siege"
+                "Siege",
+                "AttackAndSupport"
               ],
               "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "WarfareStats": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "profileOrder": {
+                  "enum": [
+                    "source-listed"
+                  ],
+                  "type": "string"
+                },
+                "profiles": {
+                  "items": {
+                    "additionalProperties": false,
+                    "minProperties": 2,
+                    "properties": {
+                      "attack": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "damageMax": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "damageMin": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "defense": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "effectAmount": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "health": {
+                        "maximum": 2147483647,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "index": {
+                        "maximum": 16,
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "warfareLevel": {
+                        "maximum": 5,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "index"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 16,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "supportEffect": {
+                  "enum": [
+                    "Healing",
+                    "Renewal",
+                    "DeathCloak",
+                    "DarkTouch"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "profileOrder",
+                "profiles"
+              ],
+              "type": "object"
             },
             {
               "type": "null"
@@ -7649,15 +7869,7 @@
       "required": [
         "_key",
         "CreatureKind",
-        "Attack",
-        "Defense",
-        "DamageMin",
-        "DamageMax",
-        "Health",
-        "Speed",
         "Initiative",
-        "CombatSize",
-        "Movement",
         "Recruitable",
         "DoubleUpgrade",
         "AlternativeUpgrade"
@@ -13678,10 +13890,24 @@
           ]
         },
         "HasUnderground": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "LevelCount": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "MapKind": {
           "enum": [
@@ -13717,25 +13943,74 @@
           ]
         },
         "SupportsArena": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "SupportsClassic": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "SupportsHotseat": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "SupportsMatchmaking": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "SupportsMultiplayer": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "SupportsRanked": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "SupportsSingleHero": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "SupportsSinglePlayer": {
           "type": "boolean"
@@ -13760,16 +14035,7 @@
       "required": [
         "_key",
         "MapKind",
-        "LevelCount",
-        "HasUnderground",
-        "SupportsClassic",
-        "SupportsSingleHero",
-        "SupportsArena",
-        "SupportsSinglePlayer",
-        "SupportsMultiplayer",
-        "SupportsHotseat",
-        "SupportsMatchmaking",
-        "SupportsRanked"
+        "SupportsSinglePlayer"
       ],
       "type": "object"
     },
@@ -14281,13 +14547,34 @@
           ]
         },
         "IsMineProduced": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "IsPersistent": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "IsTradeable": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "Mechanics": {
           "anyOf": [
@@ -14339,10 +14626,7 @@
       "required": [
         "_key",
         "ResourceRole",
-        "Scope",
-        "IsTradeable",
-        "IsMineProduced",
-        "IsPersistent"
+        "Scope"
       ],
       "type": "object"
     },
@@ -16659,10 +16943,24 @@
           ]
         },
         "AllowsHotseat": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "AllowsMultiplayer": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "AllowsSinglePlayer": {
           "type": "boolean"
@@ -16760,10 +17058,24 @@
           ]
         },
         "SupportsMatchmaking": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "SupportsRanked": {
-          "type": "boolean"
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "_key": {
           "description": "Import-only stable key. It is never stored as a database column.",
@@ -16776,11 +17088,7 @@
         "Availability",
         "ScenarioKind",
         "GameMode",
-        "AllowsSinglePlayer",
-        "AllowsMultiplayer",
-        "AllowsHotseat",
-        "SupportsMatchmaking",
-        "SupportsRanked"
+        "AllowsSinglePlayer"
       ],
       "type": "object"
     },

@@ -16,7 +16,7 @@ test("every JSONB column has an explicit contract and current non-null values sa
       assert.equal(check(table.name, column.name, row[column.name]), null, `${row._key}.${column.name}`);
     }
   }
-  assert.equal(count, 141);
+  assert.equal(count, 142);
   assert.throws(() => jsonColumnSchema("NewUnreviewedTable", "Effect"), /No JSON contract/);
 });
 

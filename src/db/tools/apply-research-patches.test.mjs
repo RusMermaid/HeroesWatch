@@ -20,7 +20,12 @@ const nestedSource = { id: "test-source", kind: "primary", title: "Test manual",
   observed: { date: "2026-10-13", pageCount: 2 } };
 
 function fixture(catalog = emptyCatalog()) {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), "heroeswatch-research-tool-test-"));
+  // Windows sandbox temp redirection can prohibit the atomic rename exercised
+  // here. Keep the real write/rename assertions inside the writable workspace.
+  const parent = process.platform === "win32"
+    ? path.resolve(directory, "../../../.codex-tmp/research-tool-tests") : os.tmpdir();
+  fs.mkdirSync(parent, { recursive: true });
+  const root = fs.mkdtempSync(path.join(parent, "heroeswatch-research-tool-test-"));
   const patchDir = path.join(root, "patches");
   const input = path.join(root, "catalog.json");
   const output = path.join(root, "output.json");
@@ -31,7 +36,11 @@ function fixture(catalog = emptyCatalog()) {
     patch(name, value) { fs.writeFileSync(path.join(patchDir, name), JSON.stringify(value, null, 2) + "\n"); },
     run(...extra) { return spawnSync(process.execPath, [tool, "--patch-dir", patchDir, "--input", input,
       "--schema", schemaPath, "--output", output, "--evidence-output", audit, ...extra], { encoding: "utf8" }); },
-    close() { fs.rmSync(root, { recursive: true, force: true }); } };
+    close() {
+      assert.equal(path.dirname(path.resolve(root)), path.resolve(parent));
+      assert.ok(path.basename(root).startsWith("heroeswatch-research-tool-test-"));
+      fs.rmSync(root, { recursive: true, force: true });
+    } };
 }
 const patch = ({ additions = [], fills = [] } = {}) => ({ additions, fills, sources: [evidence] });
 
@@ -183,13 +192,21 @@ test("the same reviewed inputs produce byte-identical catalog and evidence outpu
   assert.deepEqual(results[0], results[1]);
 });
 
-test("apply refuses a symbolic-link output instead of overwriting its target", () => {
+test("apply refuses a symbolic-link output instead of overwriting its target", (context) => {
   const item = fixture();
   try {
     item.patch("stable.patch.json", patch({ additions: [{ table: "Game", row: firstGame, evidence }] }));
     const target = path.join(item.root, "symlink-target.json");
     fs.writeFileSync(target, "sentinel\n");
-    fs.symlinkSync(target, item.output);
+    try {
+      fs.symlinkSync(target, item.output);
+    } catch (error) {
+      if (process.platform === "win32" && ["EPERM", "EACCES", "ENOTSUP"].includes(error.code)) {
+        context.skip(`Windows does not permit creating this file symlink (${error.code}); the security assertion runs where symlink creation is available.`);
+        return;
+      }
+      throw error;
+    }
     const result = item.run("--apply");
     assert.equal(result.status, 1);
     assert.match(result.stderr, /Refusing to overwrite symbolic-link target/);

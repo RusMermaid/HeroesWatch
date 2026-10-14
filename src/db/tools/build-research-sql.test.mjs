@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 const directory = path.dirname(fileURLToPath(import.meta.url));
 const schemaPath = path.join(directory, '../schema/heroeswatch.schema.json');
 const catalogPath = path.join(directory, '../data/heroeswatch.json');
-const finalEvidencePath = path.join(directory, '../data/research-2026-10-13-evidence.json');
+const finalEvidencePath = path.join(directory, '../data/research-2026-10-14-evidence.json');
 const tool = path.join(directory, 'build-research-sql.mjs');
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
@@ -59,7 +59,7 @@ test('research SQL builder rejects traversal and arbitrary audit file reads', ()
     fs.writeFileSync(item.evidencePath, JSON.stringify(item.evidence));
     const result = item.run();
     assert.equal(result.status, 1);
-    assert.match(result.stderr, /must resolve inside research\/2026-10-13/);
+    assert.match(result.stderr, /must resolve inside the reviewed research directory/);
     assert.equal(fs.existsSync(item.output), false);
   } finally { item.close(); }
 });

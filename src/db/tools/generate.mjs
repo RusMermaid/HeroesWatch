@@ -4,7 +4,8 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
-import { applySchemaOverlay, applySchemaOverlayV2, applySchemaOverlayV3, applySchemaOverlayV4, applySchemaOverlayV5 } from "./schema-overlay.mjs";
+import { applySchemaOverlay, applySchemaOverlayV2, applySchemaOverlayV3, applySchemaOverlayV4, applySchemaOverlayV5, applySchemaOverlayV6, applySchemaOverlayV7 } from "./schema-overlay.mjs";
+import {sourceNullableColumns, sourceAddedColumns, sourceDetailChecks} from './source-detail-rules.mjs';
 import { staticCatalogGuardChecks } from "./catalog-guard-rules.mjs";
 import { gameIntegritySql, validateExistingScopeSql } from "./game-integrity-sql.mjs";
 import { jsonColumnSchema } from "./json-contracts.mjs";
@@ -738,6 +739,23 @@ function generateOverlayV6Upgrade(before, after) {
   return lines.join("\n");
 }
 
+function generateOverlayV7Upgrade(before, after) {
+  const expected=applySchemaOverlayV7(structuredClone(before));
+  if(JSON.stringify(expected.tables)!==JSON.stringify(after.tables)||JSON.stringify(expected.enums)!==JSON.stringify(after.enums)) throw new Error('Unreviewed changes in source detail migration');
+  const ns=quoteIdent(POSTGRES_SCHEMA), qualified=name=>`${ns}.${quoteIdent(name)}`;
+  return [
+    '-- Generated forward migration from overlay version 6 to version 7.',
+    '-- Preserves ordinary creature requirements; represents exceptional source profiles and unknown flags.',
+    'BEGIN;',
+    ...Object.entries(sourceNullableColumns).flatMap(([table,fields])=>fields.map(field=>`ALTER TABLE ${qualified(table)} ALTER COLUMN ${quoteIdent(field)} DROP NOT NULL;`)),
+    ...Object.entries(sourceAddedColumns).flatMap(([table,fields])=>fields.map(([field,type])=>`ALTER TABLE ${qualified(table)} ADD COLUMN ${quoteIdent(field)} ${type};`)),
+    `ALTER TYPE ${ns}.${quoteIdent('Enum__CreatureHOMM7__WarfareRole')} ADD VALUE 'AttackAndSupport';`,
+    `ALTER TYPE ${ns}.${quoteIdent('Enum__CreatureHOMM7__Movement')} ADD VALUE 'Stationary';`,
+    ...sourceDetailChecks.map(rule=>`ALTER TABLE ${qualified(rule.table)} ADD CONSTRAINT ${quoteIdent(rule.name)} CHECK (${rule.expression});`),
+    'COMMIT;', '',
+  ].join('\n');
+}
+
 function generateNormalFormReport(schema) {
   const auditedCompositeKeys = new Map([
     [
@@ -986,6 +1004,7 @@ async function main() {
   const overlayV3Schema = applySchemaOverlayV3(structuredClone(overlayV2Schema), objectName);
   const overlayV4Schema = applySchemaOverlayV4(structuredClone(overlayV3Schema), objectName);
   const overlayV5Schema = applySchemaOverlayV5(structuredClone(overlayV4Schema), objectName);
+  const overlayV6Schema = applySchemaOverlayV6(structuredClone(overlayV5Schema));
   const schema = applySchemaOverlay(structuredClone(initialSchema), objectName);
   const ddl = generateDdl(schema);
   const dataSchema = generateDataJsonSchema(schema);
@@ -1011,7 +1030,8 @@ async function main() {
     ["postgres/migrations/0003_nullable_identity_and_campaign_scope.sql", generateOverlayUpgrade(overlayV2Schema, overlayV3Schema)],
     ["postgres/migrations/0004_creature_tier_terminology.sql", generateOverlayV4Upgrade(overlayV3Schema, overlayV4Schema)],
     ["postgres/migrations/0005_creature_numeric_speed.sql", generateOverlayV5Upgrade(overlayV4Schema, overlayV5Schema)],
-    ["postgres/migrations/0006_catalog_guards.sql", generateOverlayV6Upgrade(overlayV5Schema, schema)],
+    ["postgres/migrations/0006_catalog_guards.sql", generateOverlayV6Upgrade(overlayV5Schema, overlayV6Schema)],
+    ["postgres/migrations/0007_source_detail_profiles.sql", generateOverlayV7Upgrade(overlayV6Schema, schema)],
     ["postgres/verify.sql", verifySql],
     ["data/template.json", json(template)],
     ["DATA_DICTIONARY.md", dictionary],
