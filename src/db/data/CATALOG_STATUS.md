@@ -1,10 +1,12 @@
 # Catalog coverage and PostgreSQL handoff
 
-Updated 2026-10-14. The cumulative [JSON](heroeswatch.json) contains
+Reviewed 2026-10-16. The cumulative [JSON](heroeswatch.json) contains
 **45,616 rows across 176 table arrays** under schema overlay **8**
 (1,309 columns and 452 foreign keys). The October 4 deployment receipt is a
 historical 40,023-row snapshot using reviewed overlay version 2 and migration
-0002. The current local deployment is recorded below.
+0002. Deployment receipts below describe their recorded dates, not a new live
+database check. The [October 16 independent review](../reviews/2026-10-16/README.md)
+checks the latest PR data, source limitations and isolated PostgreSQL imports.
 
 **Historical friend delivery receipt (2026-10-04):** pgAdmin was reported to
 have committed the migration, manual catch-up, corrections and all seven
@@ -126,7 +128,7 @@ mechanics and factions. HOMM8 is this repository's identifier for
 
 | Game | Factions | Classes | Named heroes | Town buildings | Map dwellings |
 |---|---:|---:|---:|---:|---:|
-| I | 4 | 4 | 36 | 60 | 7 |
+| I | 4 | 4 | 40 | 60 | 7 |
 | II, The Succession Wars, The Price of Loyalty | 6 | 6 | 77 | 171 | 22 |
 | III, Restoration of Erathia, Armageddon's Blade, Shadow of Death | 9 | 18 | 156 | 318 | 83 |
 | IV, Gathering Storm, Winds of War | 6 | 48 | 310 | 172 | 71 |
@@ -156,6 +158,8 @@ counts include sourced quest items and scroll variants, as documented below.
 
 Heroes VI also adds six adventure-map forts. Faction-neutral sites are included
 in the dwelling counts. IV's advanced classes are not exclusive to one town.
+Heroes I's 40 named identities include 36 recruitable heroes and four campaign
+commanders; those commanders use the same `Hero` catalog and `CampaignHero`.
 Olden Era's 206 rows distinguish the building levels defined by its game files.
 Heroes I groups equivalent dwelling artwork and labels the snow hut variant.
 Heroes II includes 54 standard recruitable heroes and 23 named scenario/campaign
@@ -169,9 +173,12 @@ unofficial content are excluded.
 
 ## Known gaps
 
-- Four VI promoted-class defaults remain unresolved. Two VI class details
-  and all nine missing VII class details were added in the October 14 pass;
-  see the [VI/VII source review](../research/2026-10-14/heroes6-7.sources.md).
+- VI and VII class detail coverage is now 36/36 and 44/44. The four VI
+  promoted-class defaults are derived starting templates, not measured
+  promotion-time statistics. They are no longer missing rows.
+- VII has 72/132 hero detail rows, but none yet supplies starting armies,
+  starting attributes or specialization links. Positive Hall evidence does
+  not complete a hero's mechanics. The other 60 Hall decisions remain unknown.
 - VII's 21 external dwellings use explicitly marked editorial faction/tier
   labels; exact English localization is not verified.
 - I's snow hut name has an editorial terrain qualifier. II's Roland Ironfist
@@ -193,10 +200,13 @@ unofficial content are excluded.
   game/edition-dependent and were not normalized without a common primary
   source.
 - Olden Era details now cover all nine alternative attacks, five schools,
-  resources, Astrology, and the 21 maps/scenarios. The installed build proves
-  the Astrology Points-to-Insight relationship. The active threshold-array
+  resources, Astrology, and the 21 maps/scenarios. The recorded installed-build
+  evidence supports the Astrology Points-to-Insight relationship. The active threshold-array
   selection, several mode/resource flags and Advanced Tutorial starting state
   remain unknown; see the [source review](../research/2026-10-14/olden.sources.md).
+  Map objective summaries are manually encoded in the research script, not
+  automatically extracted or asserted against quest conditions. Their native
+  files were unavailable for the October 16 independent review.
 - Heroes IV now has 76 abilities and 167 links across all 74 creatures, using
   revision-pinned wiki evidence and licensed guide corroboration. Native game
   executable verification is not claimed. Heroes V has 103 sourced starting
@@ -220,6 +230,10 @@ unofficial content are excluded.
 - This is a researched reference catalog, not a complete transcription of
   biographies, all mechanics, campaign mission graphs, decorative scenery,
   or every custom named hero instance in shipped scripts.
+
+The [current work list](../reviews/2026-10-16/README.md#remaining-data-work)
+separates missing mechanics from intentional nulls, omitted subtype rows and
+source disagreements. Raw null counts are not a completion percentage.
 
 ## Sources
 

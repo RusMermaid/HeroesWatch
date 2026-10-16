@@ -59,6 +59,24 @@ The patch follows the wiki's Fire Resistance relationship and does not claim
 guide agreement for that link. This older guide also contains combat-stat
 differences and typesetting anomalies; no creature statistics are overwritten.
 
+### October 16 evidence clarifications
+
+- The recorded wiki label for Unicorn's Blind link says `Blinding attack`.
+  Pinned revision 180200 labels it `Blind`; the canonical ability link already
+  points to Blind. This is a label erratum, not a different creature ability.
+- Terror's two-turn duration follows the reviewed wiki/rules tables. Prima's
+  definition gives one turn, so that book must not be credited as corroborating
+  the selected duration. The historical patch evidence remains preserved.
+- `Summon ice demon` is a descriptive catalog label for the source ability
+  `Summon Demons`; it retains the original `ICEDEAMON` code for identity
+  stability. A source alias is not a second mechanic.
+- The short Long Weapon description states its extended melee reach but omits
+  the guide's non-adjacent targeting and no-retaliation rule (printed page 20).
+  Those details remain a mechanics-enrichment task, not a new ability identity.
+- The four Gathering Storm creatures and their later Winds of War adventure
+  dwellings have different introduction dates. The existing descriptions make
+  that distinction correctly; creature and dwelling releases must not be merged.
+
 ## Heroes V starting data
 
 `heroes45.patch.json` supplies:
@@ -69,8 +87,11 @@ differences and typesetting anomalies; no creature statistics are overwritten.
 | Missing hero specialty-name fills | 11 |
 | Explicit starting `HeroSkill` links | 22 |
 
-The [developer-supported 3.1 manual](https://h5.heroes.net.pl/uploaded/download/other/Heroes5-Manual-en-3-1.pdf)
+The [community-compiled 3.1 manual](https://h5.heroes.net.pl/uploaded/download/other/Heroes5-Manual-en-3-1.pdf)
 has 113 hero panels on pages 11–69, representing 106 shared catalog identities.
+Its [hosting page](https://h5.heroes.net.pl/download/latki-programy-i-inne)
+identifies it as a fan-made manual. It is not a publisher's original manual;
+developer endorsement is not established by this source record.
 Every panel's named creature stacks and quantities were extracted. Fixed
 numbers use `count`; intervals use `minimum` and `maximum`. Zero lower bounds
 and repeated stack slots are preserved. Tieru has two stacks; the other panels

@@ -70,10 +70,13 @@ existing schema.
   and map objects for each title's actual mechanics and official expansions.
   [Coverage and known gaps](data/CATALOG_STATUS.md) lists counts, provenance,
   unresolved details, and PostgreSQL application status.
+  [October 16 independent review](reviews/2026-10-16/README.md) distinguishes
+  completed additions from the remaining data work and records repeatable
+  checks of the final PR catalog. No live deployment was performed in that review.
   [October 14 completion record](reviews/2026-10-14/RESOLUTION.md)
   tracks the current five-patch update: 1,684 additions and 211 null fills.
-  Windows testing and local deployment completed on October 14; the live
-  database now has 45,616 rows. The
+  The October 14 Windows receipt reports a 45,616-row local deployment; it is
+  not an independent check of that database's present state. The
   [October 13 completion and verification](reviews/2026-10-13/COMPLETION.md)
   records the earlier additions, integrity corrections, and Mac delivery.
   [Screenshot review status](data/TOUCHUPS_STATUS.md) records the new relationships,

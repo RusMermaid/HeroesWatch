@@ -211,14 +211,19 @@ siege-unit profiles explicitly say they cannot be recruited and describe use
 during town sieges. Their missing town-purchase edges are therefore not
 automatically an error.
 
-## Remaining boundaries
+## Initial-patch boundaries (historical)
+
+These describe the initial 1,217-row patch, not the final cumulative catalog.
+The [follow-up](h67-resolution.sources.md) supplies all four class defaults and
+both fractional-defense profiles, fills the nine withheld warfare values, and
+reduces unknown Hall decisions from 110 to 60.
 
 - Four VI promoted-class defaults and two VI ordinary-creature raw defenses
-  remain unresolved.
+  were unresolved at this stage.
 - Thirteen VI boss profiles and all nineteen VII warfare profiles still have
   explicitly unknown fields; a populated detail row does not mean every field
   is complete.
-- This patch does not set the 110 unresolved VII Hall flags. A campaign role
+- This initial patch did not set the 110 then-unresolved VII Hall flags. A campaign role
   or hero article is not sufficient evidence of global Hall eligibility.
 - Wiki revision dates identify the transcription version, not a verified
   original-game patch. Balance disagreements are reported rather than hidden.

@@ -15,7 +15,9 @@ test('upgrade runner is opt-in and documents its disposable-database scope', () 
 
   const help = spawnSync(process.execPath, [runner, '--help'], { encoding: 'utf8' });
   assert.equal(help.status, 0, help.stderr);
-  assert.match(help.stdout, /cryptographically named|random v5 database/);
+  assert.match(help.stdout, /random disposable v5 and v7 databases/);
+  assert.match(help.stdout, /45,560-row v7 handoff/);
+  assert.match(help.stdout, /complete enrichment transaction/);
   assert.match(help.stdout, /drops only those exact databases/);
 });
 

@@ -6,6 +6,12 @@ The patch reads `Core.zip` and the installed `maps/Story_maps` files directly.
 Every action records the source paths and SHA-256 checksums. Raw game files,
 localization prose, artwork, and map scripts stay outside Git.
 
+**October 16 independent review:** the catalog, evidence records and generator
+were checked, but the original Windows game files were not available here.
+Hashes identify the recorded inputs; they do not let another reviewer repeat
+the extraction without those inputs. The generator mixes decoded fields with
+hand-authored summaries and catalog classifications, as distinguished below.
+
 ## Result
 
 `olden.patch.json` has **70 additions and 63 null fills**. Existing keys and
@@ -74,9 +80,9 @@ the installed Neutral spells reach tier 4. Effective spell levels reach 4.
 
 The official [Spellcasting article](https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Spellcasting)
 corroborates the Observatory, regular schools, and effective level cap.
-The newer [Neutral Spells article](https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Neutral_Spells)
+The public [Neutral Spells article](https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Neutral_Spells)
 describes a different progression model. It does not override this explicitly
-identified installed build. The catalog does not combine the newer model's
+identified installed build. The catalog does not combine that model's
 numbers with the retained build's statistics.
 
 ## Resources
@@ -102,13 +108,18 @@ fill map dimensions and player-slot counts; the editor version becomes
 
 `campaigns/**/missions/*.json` supplies available difficulties, side types,
 hero-selection counts, explicit spell/faction-law/guild restrictions, and
-starting treasuries. Main objective summaries come from each map's quest
-definitions and English localization. For the resource-trading challenge,
-three explicit `ResCounter >= 10` checks establish the required Crystal,
-Gems, and Mercury quantities. Deadline wording is retained in the challenge
-summaries.
+starting treasuries. The objective summaries are hand-authored entries in
+`build-olden.py`, attributed to quest definitions and English localization.
+The script parses and hashes the map quest JSON but does not inspect its quest
+conditions when producing those summaries. In particular, it does not assert
+the three reported `ResCounter >= 10` conditions for Crystal, Gems and Mercury,
+or the challenge deadlines. These need source-path assertions or a separate
+manual-review record before they can be described as independently reproduced.
 
-`GameMode=Scenario` describes the authored mission category. The raw numeric
+`GameMode=Scenario` describes the authored mission category. `MapKind=Campaign`
+is a catalog classification applied to all 21 mission assets, including the
+ten tutorial/challenge maps; it is not decoded from their headers. Mission
+numbers are parsed from mission identifiers. The raw numeric
 mode in a saved map header is not treated as proof of all playable modes.
 Single-player support is established by the campaign pipeline and explicit
 human side. Other mode capabilities, terrain-level count, and underground
@@ -144,6 +155,12 @@ The generator checks the installed build, exact existing identities, null
 preconditions, every alternate-attack membership, tutorial node counts,
 Astrology localization markers, and map metadata framing. It uses only Python's
 standard library and does not connect to PostgreSQL.
+
+Remaining reproducibility work: retain a small, account-free build manifest
+record; assert alternate-attack logic/view correspondence instead of relying
+only on array position; and verify the hand-authored objectives, campaign
+narrative and resource descriptions separately from the decoded values. No
+full game installation or redistribution of game assets is needed in Git.
 
 Repository merge dry-run passed for this patch: **70 additions, 63 fills,
 44,002 resulting rows** against the 43,932-row baseline. Integration,
