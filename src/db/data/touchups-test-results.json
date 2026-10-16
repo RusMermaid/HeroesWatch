@@ -1,0 +1,27 @@
+{
+  "reviewDate": "2026-10-04",
+  "postgresql": "18.4",
+  "environment": "Disposable isolated local databases; not the live HeroesWatch.net server",
+  "nodeTests": {
+    "passed": 48,
+    "failed": 0
+  },
+  "concurrency": {
+    "passed": 12,
+    "cases": 12
+  },
+  "isolationControls": {
+    "passed": 5,
+    "cases": 5
+  },
+  "freshBootstrapPassed": true,
+  "populatedInitialSchemaUpgradePassed": true,
+  "fullAndSmallImportsAgree": true,
+  "finalRows": 40023,
+  "baselineIdsPreserved": 30481,
+  "addedRows": 9542,
+  "nullFills": 1233,
+  "guardedCorrections": 6,
+  "unexpectedChanges": 0,
+  "repeatImportsPreserveDataAndIds": true
+}

@@ -1,0 +1,276 @@
+{
+  "formatVersion": 1,
+  "reviewDate": "2026-10-13",
+  "status": "staged-research-only",
+  "target": {
+    "game": "homm8.game",
+    "build": "25061458",
+    "snapshotDate": "2026-09-29"
+  },
+  "additions": [
+    {
+      "table": "Patch",
+      "row": {
+        "_key": "homm8.patch.steam.build.25061458",
+        "Game_id": "homm8.game",
+        "Expansion_id": "homm8.expansion.base",
+        "Version": "Steam build 25061458",
+        "Platform": "Steam",
+        "ReleaseDate": null,
+        "Changes": null,
+        "Notes": "Installed Early Access build identifier observed in the retained 2026-09-29 research snapshot; this text is a build label, not a claimed semantic patch version."
+      },
+      "evidence": {
+        "kind": "retained-installed-build",
+        "source": "src/db/data/remaining-homm8.sources.md",
+        "build": "25061458",
+        "observedDate": "2026-09-29",
+        "sourceConfidence": "high for installed build identity; no official semantic version mapping is claimed."
+      }
+    },
+    {
+      "table": "GameHOMM8",
+      "row": {
+        "_key": "homm8.game",
+        "CurrentPatch_id": "homm8.patch.steam.build.25061458",
+        "ReleaseStatus": "EarlyAccess",
+        "CombatGrid": "Hex",
+        "FocusPointsPerCharge": 6,
+        "DefaultFocusChargeCap": 3,
+        "MaximumHeroSkills": 8,
+        "LawSealCap": 100,
+        "LawTier1Seals": 0,
+        "LawTier2Seals": 5,
+        "LawTier3Seals": 15,
+        "LawTier4Seals": 30,
+        "LawTier5Seals": 50
+      },
+      "evidence": {
+        "kind": "coherent-official-and-installed-system-profile",
+        "installedBuild": {
+          "source": "src/db/data/remaining-homm8.sources.md",
+          "build": "25061458",
+          "observedDate": "2026-09-29"
+        },
+        "releaseStatus": {
+          "source": "https://store.steampowered.com/app/3105440/Heroes_of_Might__Magic_Olden_Era/",
+          "release": "Early Access",
+          "releaseDate": "2026-04-30"
+        },
+        "combatGrid": {
+          "source": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=40878&title=Combat_System",
+          "revision": 40878,
+          "revisionTimestamp": "2026-09-04T04:00"
+        },
+        "focus": {
+          "source": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=17487&title=Focus",
+          "revision": 17487,
+          "revisionTimestamp": "2026-05-15T04:27"
+        },
+        "heroSkillSlots": {
+          "source": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=18180&title=Template:SkillRollTableDef",
+          "revision": 18180,
+          "revisionTimestamp": "2026-05-19T01:14"
+        },
+        "laws": {
+          "source": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=19237&title=Laws",
+          "revision": 19237,
+          "revisionTimestamp": "2026-05-23T11:12"
+        },
+        "versionCaveat": "These dated mechanics form a coherent pre-target profile; matching retained build evidence supports use without claiming an undocumented semantic-version mapping."
+      }
+    },
+    {
+      "table": "Resource",
+      "row": {
+        "_key": "resource.law.points",
+        "Code": "LAW_POINTS",
+        "Name": "Law Points",
+        "Description": "A kingdom progression meter earned from city income, battles, captures, and guarded map objects."
+      },
+      "evidence": {
+        "kind": "official-dated-mechanic-and-game-data",
+        "mechanic": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=19237&title=Laws",
+        "mechanicRevision": 19237,
+        "mechanicRevisionTimestamp": "2026-05-23T11:12",
+        "nativeId": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=14424&title=Data:Resource/faction_laws_points",
+        "nativeIdRevision": 14424,
+        "nativeIdRevisionTimestamp": "2026-05-13T02:48",
+        "sourceConfidence": "high for identity/display concept; does not establish every ResourceHOMM8 boolean."
+      }
+    },
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm8.resource.law.points",
+        "Game_id": "homm8.game",
+        "Resource_id": "resource.law.points",
+        "DisplayName": "Law Points",
+        "ResourceClass": "Other",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": "homm8.expansion.base"
+      },
+      "evidence": {
+        "kind": "official-dated-mechanic-and-game-data",
+        "mechanic": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=19237&title=Laws",
+        "nativeId": "resource/faction_laws_points",
+        "sourceConfidence": "high"
+      }
+    },
+    {
+      "table": "Resource",
+      "row": {
+        "_key": "resource.astrology.points",
+        "Code": "ASTROLOGY_POINTS",
+        "Name": "Astrology Points",
+        "Description": "A kingdom progression meter generated daily by economy buildings and certain hero skills."
+      },
+      "evidence": {
+        "kind": "official-dated-mechanic-and-game-data",
+        "mechanic": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=21761&title=Skills_Overview",
+        "mechanicRevision": 21761,
+        "mechanicRevisionTimestamp": "2026-06-03T09:17",
+        "nativeId": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=14421&title=Data:Resource/astrology_exp",
+        "nativeIdRevision": 14421,
+        "nativeIdRevisionTimestamp": "2026-05-13T02:48",
+        "sourceConfidence": "high for identity/display concept; does not establish every ResourceHOMM8 boolean."
+      }
+    },
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm8.resource.astrology.points",
+        "Game_id": "homm8.game",
+        "Resource_id": "resource.astrology.points",
+        "DisplayName": "Astrology Points",
+        "ResourceClass": "Other",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": "homm8.expansion.base"
+      },
+      "evidence": {
+        "kind": "official-dated-mechanic-and-game-data",
+        "mechanic": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=21761&title=Skills_Overview",
+        "nativeId": "resource/astrology_exp",
+        "sourceConfidence": "high"
+      }
+    }
+  ],
+  "fills": [],
+  "sources": [
+    {
+      "id": "focus-rev17487",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=17487&title=Focus",
+      "revision": 17487,
+      "revisionTimestamp": "2026-05-15T04:27",
+      "facts": {
+        "focusPointsPerCharge": 6,
+        "defaultFocusChargeCap": 3
+      }
+    },
+    {
+      "id": "laws-rev19237",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=19237&title=Laws",
+      "revision": 19237,
+      "revisionTimestamp": "2026-05-23T11:12",
+      "facts": {
+        "lawSealCap": 100,
+        "tierUnlockThresholds": [
+          0,
+          5,
+          15,
+          30,
+          50
+        ]
+      }
+    },
+    {
+      "id": "faction-law-tier-corpus",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Template:FactionLawTierDef",
+      "revision": 13213,
+      "corpusDate": "2026-05-05",
+      "facts": {
+        "factions": 6,
+        "tiers": 5,
+        "thresholds": [
+          0,
+          5,
+          15,
+          30,
+          50
+        ]
+      }
+    },
+    {
+      "id": "law-tree-position-rev13223",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Template:LawTreePositionDef",
+      "revision": 13223,
+      "facts": {
+        "sideValues": [
+          "faction",
+          "army"
+        ],
+        "slotBase": 0,
+        "lawHasOnePosition": true
+      },
+      "scope": "Defines the exact side and slot semantics required by FactionLaw, but does not expose all 198 row values."
+    },
+    {
+      "id": "skills-overview-rev21761",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=21761&title=Skills_Overview",
+      "revision": 21761,
+      "revisionTimestamp": "2026-06-03T09:17",
+      "facts": {
+        "astrologyPointsName": true
+      }
+    },
+    {
+      "id": "skill-roll-table-rev18180",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Template:SkillRollTableDef",
+      "revision": 18180,
+      "facts": {
+        "effectiveSkillSlots": 8,
+        "skillRanks": 3
+      },
+      "scope": "Current template note derived from shipping source tables. Revision date was not exposed by the bounded reader, so this remains candidate-only."
+    },
+    {
+      "id": "patch-v0.80.18",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Patches/v0.80.18",
+      "releaseDate": "2026-06-01",
+      "scope": "Documents substantial balance changes and Sprint-specific Astrology/Law point progression changes; it does not map Steam build 25061458 to a version string."
+    },
+    {
+      "id": "combat-grid-rev40878",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=40878&title=Combat_System",
+      "revision": 40878,
+      "revisionTimestamp": "2026-09-04T04:00",
+      "facts": {
+        "combatGrid": "Hex"
+      }
+    }
+  ],
+  "held": {
+    "resourceHOMM8": {
+      "keys": [
+        "resource.law.points",
+        "resource.astrology.points"
+      ],
+      "reason": "Meter role and kingdom scope are well supported, but required IsTradeable, IsMineProduced and IsPersistent are not all explicitly stated by a dated target-aligned source. Generic parents and GameResource memberships are staged; detail rows are held."
+    },
+    "factionLaws": {
+      "productionLawCount": 198,
+      "reason": "Official Law/LawLevel/LawTreePosition data supports names, factions, tiers, level counts, descriptions and the side/slot model. FactionLaw requires exact per-law SlotIndex and SourcePath; those 198 values were not exposed. Also, Cargo LawLevel calls cost law points while the player-facing overview shows Law Seal costs; this must be reconciled before staging rows."
+    },
+    "starDust": {
+      "nativeId": "resource/starDust",
+      "nativeIdRevision": 14434,
+      "nativeIdRevisionTimestamp": "2026-05-13T02:49",
+      "reason": "Official native identity exists, but no verified display name/role contract was found. It is not staged."
+    },
+    "astrologyHOMM8": {
+      "reason": "NeutralMagicSchool_id remains incompatible with the source model that keeps neutral spells outside the four regular schools. No fake fifth school is created."
+    }
+  }
+}

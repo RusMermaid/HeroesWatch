@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-04",
+  "status": "committed",
+  "database": "HeroesWatch.net",
+  "databaseOwner": "postgres",
+  "connectionUser": "postgres",
+  "server": "local PostgreSQL 18",
+  "appliedSourceCommit": "d6116b55040e0924cc16e039931b07618c923643",
+  "method": "Authenticated pgAdmin session; direct SQL through part 02, then SHA-256-checked server-file loaders preserving each transaction for parts 03 through 07.",
+  "directCommitReceipts": [
+    {"file": "../postgres/migrations/0002_relationship_integrity.sql", "seconds": 33.631},
+    {"file": "manual-import.sql", "seconds": 13.342},
+    {"file": "touchups-corrections.sql", "seconds": 0.286},
+    {"file": "touchups-import-01.sql", "seconds": 18.146},
+    {"file": "touchups-import-02.sql", "seconds": 6.326}
+  ],
+  "remainingBatchReceipt": {
+    "files": ["touchups-import-03.sql", "touchups-import-04.sql", "touchups-import-05.sql", "touchups-import-06.sql", "touchups-import-07.sql"],
+    "result": "Successfully run. Total query runtime: 22 secs 142 msec. 16 rows affected.",
+    "pgAdminElapsedSeconds": 22.146,
+    "evidence": "All five completion notices and successful final SELECT after all five COMMIT statements; final results read directly in pgAdmin."
+  },
+  "reviewQuery": "live-deployment.review.sql",
+  "observedCounts": {
+    "schemaTables": 176,
+    "catalogRows": 40023,
+    "games": 23,
+    "pdfManuals": 36,
+    "adventureObjectCreature": 525,
+    "adventureObjectFaction": 275,
+    "heroClassAbilityRequirementGroup": 404,
+    "factionSpell": 715,
+    "creatureAbility": 868,
+    "campaignScenario": 373,
+    "scenarioConnection": 316,
+    "mapTerrain": 417,
+    "mapObjectPresence": 5401,
+    "campaignHeroStartingScenario": 68
+  },
+  "scope": "Confirms deployment and these aggregate counts on the local database. Remaining source and coverage gaps are documented in TOUCHUPS_STATUS.md; no separate remote server deployment is claimed."
+}

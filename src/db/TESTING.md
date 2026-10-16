@@ -1,0 +1,93 @@
+# Database testing
+
+October 14 results: 116 Node tests passed, zero failed, and one Windows
+file-symlink test was skipped because the host denied symlink creation.
+PostgreSQL 18.4 fresh/repeated imports, upgrades through migration 0008,
+atomic rollback probes and the restored live-backup route passed.
+[Detailed results](reviews/2026-10-14/resolution-verification.json).
+
+The dependency-free Node tests and deterministic generation checks are safe to
+run in any checkout:
+
+```sh
+node src/db/tools/generate.mjs \
+  --input src/db/schema/sql-designer.snapshot.json \
+  --out src/db \
+  --check
+node src/db/tools/build-content-sql.mjs --check
+node src/db/tools/build-manual-sql.mjs --check
+node src/db/tools/build-touchup-sql.mjs --check
+node src/db/tools/build-research-sql.mjs --check
+node src/db/tools/prepare-catalog-v5.mjs --check
+node --test src/db/tools/*.test.mjs
+```
+
+The current target is **45,616 rows**, schema overlay **8**, 176 tables,
+1,309 columns and 452 foreign keys. The Node suite currently defines 117 tests;
+the commands above do not imply a passing run. Current results and Windows
+deployment status are recorded in
+[the October 14 completion record](reviews/2026-10-14/RESOLUTION.md).
+
+`build-research-sql.mjs --check` checks the latest `research-gaps-import.sql`
+against the five patches in `research-2026-10-14-evidence.json`. This delta has
+1,684 additions, 211 null fills and 2,562 rows with dependencies. The earlier
+`research-import.sql` remains the historical 43,932-row-target snapshot.
+
+## PostgreSQL integration suite
+
+The PostgreSQL suite is deliberately opt-in. It requires PostgreSQL 16 or newer
+and explicit connection settings for a test instance:
+
+```sh
+HW_TEST_POSTGRES=1 \
+HW_EXPECTED_ROWS=45616 \
+PGHOST=127.0.0.1 \
+PGPORT=5432 \
+PGUSER=postgres \
+PGDATABASE=postgres \
+node src/db/tools/postgres-integration.mjs
+```
+
+Supply `PGPASSWORD` when the test server requires password authentication. Use
+`HW_PG_BINDIR` if `psql`, `createdb`, and `dropdb` are not on `PATH`; individual
+`HW_PSQL`, `HW_CREATEDB`, and `HW_DROPDB` settings can override them instead.
+
+The runner never loads the schema, fixtures, or catalog into `PGDATABASE`.
+It generates a random name matching
+`heroeswatch_ci_<process-id>_<16-hex-digits>`, creates that database from
+`template0`, and cleans up only that exact name in a `finally` block. Use a
+dedicated local or CI PostgreSQL cluster because the configured role needs
+`CREATEDB` and permission to force-drop its disposable database.
+
+The integration suite verifies:
+
+- the complete current DDL and structural verification script;
+- direct rejection cases for same-game ownership, inherited detail bands,
+  global-media reverse ownership, resource membership, prerequisite groups,
+  nullable business identities, and campaign/scenario membership;
+- both two-session parent/child lock orders under `READ COMMITTED` and
+  `SERIALIZABLE`; each case verifies through `pg_stat_activity` that the second
+  transaction is actively waiting on a lock before the first may commit;
+- the deliberate `REPEATABLE READ` ownership guard, while ordinary content
+  updates and valid detail inserts remain allowed;
+- creature Tier names, dragon tiers, numeric base speeds and generated labels;
+- twelve additional graph/resource/town-link races with verified lock overlap;
+- three repeatable-read rejection controls and allowed unrelated edits;
+- one complete 45,616-row catalog import and exact comparison of every supplied
+  JSON field and every non-null FK described by the semantic schema;
+- a second import with a whole-database fingerprint proving that rows and
+  physical IDs are stable.
+
+`HW_EXPECTED_ROWS` is an intentional change gate. When reviewed data is added
+or removed, update the workflow and this document in the same change after the
+new total has been independently verified.
+
+GitHub Actions runs the deterministic checks and Node tests once, then runs the
+opt-in integration suite against clean PostgreSQL 16 and 18 service containers.
+It does not deploy, migrate, or connect to a live HeroesWatch database.
+
+With the same explicit test connection, run `node
+src/db/tools/postgres-upgrade-integration.mjs` to check the populated v5-to-v8
+upgrade, the latest research delta, preservation of baseline rows and IDs, and
+atomic rejection of pre-existing negative costs, graph cycles or a warfare
+profile with no required role.

@@ -1,0 +1,102 @@
+// Resolve a self-contained subset using scalar and composite foreign keys.
+// _key values are import identities; generated database IDs are not assumed.
+import { scenarioHomm3Annotations } from './scenario-homm3-annotations.mjs';
+
+export function selectContentClosure(catalog, schema, seeds) {
+  const tableByName = new Map(schema.tables.map(table => [table.name, table]));
+  const lookups = new Map(schema.tables.map(table => {
+    const lookup = new Map();
+    function addAlias(alias, row) {
+      if (alias == null) return;
+      const previous = lookup.get(alias);
+      if (previous && previous !== row) throw new Error(`${table.name} has ambiguous identity alias ${JSON.stringify(alias)} shared by ${previous._key} and ${row._key}`);
+      lookup.set(alias, row);
+    }
+    for (const row of catalog.tables[table.name] ?? []) {
+      addAlias(row._key, row);
+      for (const column of table.primaryKey) addAlias(row[column], row);
+    }
+    return [table.name, lookup];
+  }));
+  function canonical(table, column, value) {
+    if (value == null) return null;
+    if (table.primaryKey.includes(column)) return lookups.get(table.name).get(value)?._key ?? value;
+    const fk = table.foreignKeys.find(fk => fk.columns.length === 1 && fk.columns[0] === column);
+    return fk ? canonical(tableByName.get(fk.referencedTable), fk.referencedColumns[0], value) : value;
+  }
+  const indexes = new Map();
+  const selected = new Map(schema.tables.map(table => [table.name, new Set()]));
+  const pending = seeds.map(({table, key}) => ({table, key}));
+  const homm3Game = (catalog.tables.Game ?? []).find(row => row?.SeriesCode === 'HOMM3');
+  const homm3GameKey = homm3Game?._key ?? homm3Game?.Game_id ?? null;
+  const homm8Games = (catalog.tables.Game ?? []).filter(row => row?.SeriesCode === 'HOMM8');
+  const homm8ResourceDependencies = new Map([
+    ['FactionHOMM8', ['SignatureResource_id']],
+    ['AstrologyHOMM8', ['AstrologyPointResource_id', 'InsightResource_id']],
+    ['ResourceHOMM8', ['Resource_id']],
+  ]);
+  function addHomm8ResourceMembership(table, row, column) {
+    if (homm8Games.length !== 1) throw new Error(`Expected exactly one HOMM8 Game identity, found ${homm8Games.length}`);
+    const homm8GameKey = homm8Games[0]._key;
+    const value = row[column] ?? (table.primaryKey.includes(column) ? row._key : null);
+    if (value == null) return;
+    const resource = lookups.get('Resource')?.get(value);
+    if (!resource) throw new Error(`Missing HOMM8 resource dependency ${table.name}/${row._key}/${column}`);
+    const gameResource = tableByName.get('GameResource');
+    const memberships = (catalog.tables.GameResource ?? []).filter(candidate =>
+      canonical(gameResource, 'Game_id', candidate.Game_id) === homm8GameKey &&
+      canonical(gameResource, 'Resource_id', candidate.Resource_id) === resource._key);
+    if (memberships.length !== 1) {
+      throw new Error(`${memberships.length ? 'Ambiguous' : 'Missing'} HOMM8 resource membership ${table.name}/${row._key}/${column}/${resource._key}`);
+    }
+    pending.push({table: 'Resource', key: resource._key});
+    pending.push({table: 'GameResource', key: memberships[0]._key});
+  }
+  function addScenarioHomm3Annotations(row) {
+    for (const reference of scenarioHomm3Annotations(row)) {
+      const target = lookups.get(reference.table)?.get(reference.key);
+      if (!target) throw new Error(`Missing ScenarioHOMM3 annotation dependency ${row._key}/${reference.path}/${reference.table}/${reference.key}`);
+      pending.push({table: reference.table, key: target._key});
+      if (!reference.requiresGameResource) continue;
+      const membership = (catalog.tables.GameResource ?? []).find(candidate =>
+        canonical(tableByName.get('GameResource'), 'Game_id', candidate.Game_id) === homm3GameKey &&
+        canonical(tableByName.get('GameResource'), 'Resource_id', candidate.Resource_id) === target._key);
+      if (!membership) throw new Error(`Missing ScenarioHOMM3 resource membership ${row._key}/${reference.path}/${reference.key}`);
+      pending.push({table: 'GameResource', key: membership._key});
+    }
+  }
+  while (pending.length) {
+    const {table: name, key} = pending.pop();
+    const table = tableByName.get(name);
+    const row = lookups.get(name)?.get(key);
+    if (!table || !row) throw new Error(`Missing selected row ${name}/${key}`);
+    if (selected.get(name).has(row._key)) continue;
+    selected.get(name).add(row._key);
+    if (name === 'ScenarioHOMM3') addScenarioHomm3Annotations(row);
+    for (const column of homm8ResourceDependencies.get(name) ?? []) addHomm8ResourceMembership(table, row, column);
+    for (const fk of table.foreignKeys) {
+      const values = fk.columns.map(column => row[column] ?? (table.primaryKey.includes(column) ? row._key : null));
+      if (values.some(value => value == null)) continue;
+      const parent = tableByName.get(fk.referencedTable);
+      const indexKey = `${parent.name}:${fk.referencedColumns.join(',')}`;
+      if (!indexes.has(indexKey)) {
+        const index = new Map();
+        for (const candidate of catalog.tables[parent.name] ?? []) {
+          const tuple = fk.referencedColumns.map(column => canonical(parent, column,
+            candidate[column] ?? (parent.primaryKey.includes(column) ? candidate._key : null)));
+          if (tuple.some(value => value == null)) continue;
+          const signature = JSON.stringify(tuple);
+          if (index.has(signature)) throw new Error(`Ambiguous dependency ${indexKey}/${signature}`);
+          index.set(signature, candidate);
+        }
+        indexes.set(indexKey, index);
+      }
+      const tuple = JSON.stringify(values.map((value, i) => canonical(parent, fk.referencedColumns[i], value)));
+      const target = indexes.get(indexKey).get(tuple);
+      if (!target) throw new Error(`Missing dependency ${name}/${row._key}/${fk.columns.join(',')}`);
+      pending.push({table: parent.name, key: target._key});
+    }
+  }
+  return Object.fromEntries(schema.tables.map(table => [table.name,
+    (catalog.tables[table.name] ?? []).filter(row => selected.get(table.name).has(row._key))]));
+}

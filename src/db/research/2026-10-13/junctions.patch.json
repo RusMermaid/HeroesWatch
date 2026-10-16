@@ -1,0 +1,275 @@
+{
+  "formatVersion": 1,
+  "scope": "HOMM1, HOMM2, HOMM4 and HOMM5 junction completion; resource-cost families excluded",
+  "base": {
+    "catalogRows": 40023,
+    "schemaTables": 176
+  },
+  "additions": [
+    {
+      "table": "Hero",
+      "row": { "_key": "homm1.hero.lord.ironfist", "Game_id": "homm1.game", "HeroClass_id": null, "Code": "LORD_IRONFIST", "Name": "Lord Ironfist", "Biography": null, "Description": "Selectable campaign warlord in A Strategic Quest; selecting him starts the player with a Knight castle. This is a campaign-ruler identity, not a regular recruitable hero entry.", "IntroducedInExpansion_id": "homm1.expansion.base", "PortraitMediaAsset_id": null },
+      "evidence": [{ "sourceId": "homm1_manual", "locator": "Campaign Game, PDF/printed p. 23", "claim": "Selectable character who starts with a Knight castle" }]
+    },
+    {
+      "table": "Hero",
+      "row": { "_key": "homm1.hero.lord.slayer", "Game_id": "homm1.game", "HeroClass_id": null, "Code": "LORD_SLAYER", "Name": "Lord Slayer", "Biography": null, "Description": "Selectable campaign warlord in A Strategic Quest; selecting him starts the player with a Barbarian castle. This is a campaign-ruler identity, not a regular recruitable hero entry.", "IntroducedInExpansion_id": "homm1.expansion.base", "PortraitMediaAsset_id": null },
+      "evidence": [{ "sourceId": "homm1_manual", "locator": "Campaign Game, PDF/printed p. 23", "claim": "Selectable character who starts with a Barbarian castle" }]
+    },
+    {
+      "table": "Hero",
+      "row": { "_key": "homm1.hero.queen.lamanda", "Game_id": "homm1.game", "HeroClass_id": null, "Code": "QUEEN_LAMANDA", "Name": "Queen Lamanda", "Biography": null, "Description": "Selectable campaign warlord in A Strategic Quest; selecting her starts the player with a Sorceress castle. This is a campaign-ruler identity, not a regular recruitable hero entry.", "IntroducedInExpansion_id": "homm1.expansion.base", "PortraitMediaAsset_id": null },
+      "evidence": [{ "sourceId": "homm1_manual", "locator": "Campaign Game, PDF/printed p. 23", "claim": "Selectable character who starts with a Sorceress castle" }]
+    },
+    {
+      "table": "Hero",
+      "row": { "_key": "homm1.hero.lord.alamar", "Game_id": "homm1.game", "HeroClass_id": null, "Code": "LORD_ALAMAR", "Name": "Lord Alamar", "Biography": null, "Description": "Selectable campaign warlord in A Strategic Quest; selecting him starts the player with a Warlock castle. This is a campaign-ruler identity, not a regular recruitable hero entry.", "IntroducedInExpansion_id": "homm1.expansion.base", "PortraitMediaAsset_id": null },
+      "evidence": [{ "sourceId": "homm1_manual", "locator": "Campaign Game, PDF/printed p. 23", "claim": "Selectable character who starts with a Warlock castle" }]
+    },
+    {
+      "table": "CampaignHero",
+      "row": { "_key": "homm1.campaign.a.strategic.quest.hero.lord.ironfist", "Game_id": "homm1.game", "Campaign_id": "homm1.campaign.a.strategic.quest", "Hero_id": "homm1.hero.lord.ironfist", "IsCampaignHero": true, "CampaignRole": "Commander", "StartingScenario_id": null },
+      "evidence": [{ "sourceId": "homm1_manual", "locator": "Campaign Game, PDF/printed p. 23", "claim": "One of four selectable campaign characters" }]
+    },
+    {
+      "table": "CampaignHero",
+      "row": { "_key": "homm1.campaign.a.strategic.quest.hero.lord.slayer", "Game_id": "homm1.game", "Campaign_id": "homm1.campaign.a.strategic.quest", "Hero_id": "homm1.hero.lord.slayer", "IsCampaignHero": true, "CampaignRole": "Commander", "StartingScenario_id": null },
+      "evidence": [{ "sourceId": "homm1_manual", "locator": "Campaign Game, PDF/printed p. 23", "claim": "One of four selectable campaign characters" }]
+    },
+    {
+      "table": "CampaignHero",
+      "row": { "_key": "homm1.campaign.a.strategic.quest.hero.queen.lamanda", "Game_id": "homm1.game", "Campaign_id": "homm1.campaign.a.strategic.quest", "Hero_id": "homm1.hero.queen.lamanda", "IsCampaignHero": true, "CampaignRole": "Commander", "StartingScenario_id": null },
+      "evidence": [{ "sourceId": "homm1_manual", "locator": "Campaign Game, PDF/printed p. 23", "claim": "One of four selectable campaign characters" }]
+    },
+    {
+      "table": "CampaignHero",
+      "row": { "_key": "homm1.campaign.a.strategic.quest.hero.lord.alamar", "Game_id": "homm1.game", "Campaign_id": "homm1.campaign.a.strategic.quest", "Hero_id": "homm1.hero.lord.alamar", "IsCampaignHero": true, "CampaignRole": "Commander", "StartingScenario_id": null },
+      "evidence": [{ "sourceId": "homm1_manual", "locator": "Campaign Game, PDF/printed p. 23", "claim": "One of four selectable campaign characters" }]
+    },
+    {
+      "table": "Terrain",
+      "row": { "_key": "homm5.terrain.grass", "Game_id": "homm5.game", "Code": "GRASS", "Name": "Grass", "Kind": "Basic", "Description": "Standard-movement Heroes V terrain; native to Haven and Sylvan." },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "Terrain",
+      "row": { "_key": "homm5.terrain.dirt", "Game_id": "homm5.game", "Code": "DIRT", "Name": "Dirt", "Kind": "Basic", "Description": "Heroes V terrain with a 25% movement-cost penalty; native to Necropolis." },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "Terrain",
+      "row": { "_key": "homm5.terrain.sand", "Game_id": "homm5.game", "Code": "SAND", "Name": "Sand", "Kind": "Basic", "Description": "Heroes V terrain with a 50% movement-cost penalty; native to Academy." },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "Terrain",
+      "row": { "_key": "homm5.terrain.lava", "Game_id": "homm5.game", "Code": "LAVA", "Name": "Lava", "Kind": "Basic", "Description": "Heroes V terrain with a 25% movement-cost penalty; native to Inferno." },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "Terrain",
+      "row": { "_key": "homm5.terrain.snow", "Game_id": "homm5.game", "Code": "SNOW", "Name": "Snow", "Kind": "Basic", "Description": "Heroes V terrain with a 50% movement-cost penalty; native to Fortress." },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "Terrain",
+      "row": { "_key": "homm5.terrain.dwarven.subterranean", "Game_id": "homm5.game", "Code": "DWARVEN_SUBTERRANEAN", "Name": "Dwarven Subterranean", "Kind": "Basic", "Description": "Standard-movement Heroes V subterranean terrain native to Fortress." },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "Terrain",
+      "row": { "_key": "homm5.terrain.taga", "Game_id": "homm5.game", "Code": "TAGA", "Name": "Taga", "Kind": "Basic", "Description": "Heroes V 3.1 manual terrain label with a 25% movement-cost penalty; native to Stronghold." },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259; source spelling retained" }]
+    },
+    {
+      "table": "Terrain",
+      "row": { "_key": "homm5.terrain.subterranean", "Game_id": "homm5.game", "Code": "SUBTERRANEAN", "Name": "Subterranean", "Kind": "Basic", "Description": "Heroes V terrain with a 25% movement-cost penalty; native to Dungeon." },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "TerrainHOMM5",
+      "row": { "_key": "homm5.terrain.grass", "MovementCostPercent": 100, "Effect": null },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "TerrainHOMM5",
+      "row": { "_key": "homm5.terrain.dirt", "MovementCostPercent": 125, "Effect": null },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "TerrainHOMM5",
+      "row": { "_key": "homm5.terrain.sand", "MovementCostPercent": 150, "Effect": null },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "TerrainHOMM5",
+      "row": { "_key": "homm5.terrain.lava", "MovementCostPercent": 125, "Effect": null },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "TerrainHOMM5",
+      "row": { "_key": "homm5.terrain.snow", "MovementCostPercent": 150, "Effect": null },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "TerrainHOMM5",
+      "row": { "_key": "homm5.terrain.dwarven.subterranean", "MovementCostPercent": 100, "Effect": null },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "TerrainHOMM5",
+      "row": { "_key": "homm5.terrain.taga", "MovementCostPercent": 125, "Effect": null },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "TerrainHOMM5",
+      "row": { "_key": "homm5.terrain.subterranean", "MovementCostPercent": 125, "Effect": null },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.haven.grass", "Game_id": "homm5.game", "Faction_id": "homm5.faction.haven", "Terrain_id": "homm5.terrain.grass", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.sylvan.grass", "Game_id": "homm5.game", "Faction_id": "homm5.faction.sylvan", "Terrain_id": "homm5.terrain.grass", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.necropolis.dirt", "Game_id": "homm5.game", "Faction_id": "homm5.faction.necropolis", "Terrain_id": "homm5.terrain.dirt", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.academy.sand", "Game_id": "homm5.game", "Faction_id": "homm5.faction.academy", "Terrain_id": "homm5.terrain.sand", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.inferno.lava", "Game_id": "homm5.game", "Faction_id": "homm5.faction.inferno", "Terrain_id": "homm5.terrain.lava", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.fortress.snow", "Game_id": "homm5.game", "Faction_id": "homm5.faction.fortress", "Terrain_id": "homm5.terrain.snow", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.fortress.dwarven.subterranean", "Game_id": "homm5.game", "Faction_id": "homm5.faction.fortress", "Terrain_id": "homm5.terrain.dwarven.subterranean", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.stronghold.taga", "Game_id": "homm5.game", "Faction_id": "homm5.faction.stronghold", "Terrain_id": "homm5.terrain.taga", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionNativeTerrainHOMM5",
+      "row": { "_key": "homm5.factionnativeterrain.dungeon.subterranean", "Game_id": "homm5.game", "Faction_id": "homm5.faction.dungeon", "Terrain_id": "homm5.terrain.subterranean", "IgnoreMovementPenalty": true, "CombatBonus": { "attack": 1, "defense": 1 } },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Terrain Types and Effects, printed p. 259" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.academy.summoning", "Game_id": "homm5.game", "Faction_id": "homm5.faction.academy", "MagicSchool_id": "homm5.magicschool.summoning.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.academy.light", "Game_id": "homm5.game", "Faction_id": "homm5.faction.academy", "MagicSchool_id": "homm5.magicschool.light.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.haven.light", "Game_id": "homm5.game", "Faction_id": "homm5.faction.haven", "MagicSchool_id": "homm5.magicschool.light.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.haven.dark", "Game_id": "homm5.game", "Faction_id": "homm5.faction.haven", "MagicSchool_id": "homm5.magicschool.dark.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.sylvan.light", "Game_id": "homm5.game", "Faction_id": "homm5.faction.sylvan", "MagicSchool_id": "homm5.magicschool.light.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.sylvan.destructive", "Game_id": "homm5.game", "Faction_id": "homm5.faction.sylvan", "MagicSchool_id": "homm5.magicschool.destructive.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.fortress.light", "Game_id": "homm5.game", "Faction_id": "homm5.faction.fortress", "MagicSchool_id": "homm5.magicschool.light.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.fortress.destructive", "Game_id": "homm5.game", "Faction_id": "homm5.faction.fortress", "MagicSchool_id": "homm5.magicschool.destructive.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.inferno.destructive", "Game_id": "homm5.game", "Faction_id": "homm5.faction.inferno", "MagicSchool_id": "homm5.magicschool.destructive.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.inferno.dark", "Game_id": "homm5.game", "Faction_id": "homm5.faction.inferno", "MagicSchool_id": "homm5.magicschool.dark.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.dungeon.destructive", "Game_id": "homm5.game", "Faction_id": "homm5.faction.dungeon", "MagicSchool_id": "homm5.magicschool.destructive.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.dungeon.summoning", "Game_id": "homm5.game", "Faction_id": "homm5.faction.dungeon", "MagicSchool_id": "homm5.magicschool.summoning.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.necropolis.dark", "Game_id": "homm5.game", "Faction_id": "homm5.faction.necropolis", "MagicSchool_id": "homm5.magicschool.dark.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    },
+    {
+      "table": "FactionMagicSchoolHOMM5",
+      "row": { "_key": "homm5.factionmagicschool.toe.necropolis.summoning", "Game_id": "homm5.game", "Faction_id": "homm5.faction.necropolis", "MagicSchool_id": "homm5.magicschool.summoning.magic", "Ruleset": "TribesOfTheEast", "AccessType": "Guild", "GuaranteedSlotsPerCircle": 1 },
+      "evidence": [{ "sourceId": "h5_manual_3_1", "locator": "Introduction: Faction - Magic School alignments, printed p. 182" }]
+    }
+  ],
+  "fills": [],
+  "sources": [
+    {
+      "id": "homm1_manual",
+      "title": "Heroes of Might and Magic: A Strategic Quest user manual",
+      "manualKey": "manual.c1d7c0b2da69",
+      "uri": "manuals/files/c1d7c0b2da69/manual.pdf",
+      "locator": "Campaign Game, PDF/printed p. 23",
+      "provenance": "Official English second-edition manual supplied by the user",
+      "usedFor": ["four canonical campaign-warlord identities", "starting-castle and faction association", "campaign membership and Commander role"]
+    },
+    {
+      "id": "h5_manual_3_1",
+      "title": "Heroes of Might and Magic V community manual, Tribes of the East 3.1",
+      "url": "https://h5.heroes.net.pl/uploaded/download/other/Heroes5-Manual-en-3-1.pdf",
+      "provenance": "Community reference supported by Ubisoft and Nival; already used by the repository's H5 source chain",
+      "usedFor": ["H5 terrain catalog and movement costs", "H5 faction native-terrain membership", "Tribes of the East 3.1 faction magic-school alignment snapshot"]
+    },
+    {
+      "id": "current_catalog",
+      "title": "Current cumulative HeroesWatch catalog and reviewed source notes",
+      "paths": [
+        "src/db/data/heroeswatch.json",
+        "src/db/data/homm5-catalog.sources.md",
+        "src/db/data/manual-homm4-6.sources.md",
+        "src/db/data/remaining-homm5.sources.md"
+      ],
+      "usedFor": ["endpoint identity reuse", "duplicate prevention", "junction coverage boundaries"]
+    }
+  ]
+}

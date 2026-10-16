@@ -1,0 +1,1994 @@
+{
+  "baselineRef": "7ad2a6b7ed45bb63411986a3ec6863fcfc8f1a6b",
+  "reviewedRef": "6e0753a3e4bf9f88ec14afb66a0ed157193607e9",
+  "catalogFileSha256": "a542494bd30d3040fadbf266cfaf35013cba2dc39afac1441e00a46f5b720d5e",
+  "baselineRows": 43932,
+  "currentRows": 45616,
+  "schema": {
+    "tables": 176,
+    "columns": 1309,
+    "foreignKeys": 452
+  },
+  "delta": {
+    "added": 1684,
+    "removed": 0,
+    "nullFills": 211,
+    "existingValueChanges": [],
+    "byTable": [
+      {
+        "table": "Ability",
+        "added": 411,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "AbilityHOMM4",
+        "added": 76,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "AbilityHOMM8",
+        "added": 9,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "AstrologyHOMM8",
+        "added": 1,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "BuildingCreature",
+        "added": 12,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "CampaignHOMM8",
+        "added": 2,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "CreatureAbility",
+        "added": 993,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "CreatureHOMM6",
+        "added": 16,
+        "nullFills": 14,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "CreatureHOMM7",
+        "added": 19,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "HeroClassHOMM6",
+        "added": 6,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "HeroClassHOMM7",
+        "added": 9,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "HeroHOMM5",
+        "added": 0,
+        "nullFills": 114,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "HeroHOMM7",
+        "added": 50,
+        "nullFills": 20,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "HeroSkill",
+        "added": 22,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "MagicSchoolHOMM8",
+        "added": 5,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "Map",
+        "added": 0,
+        "nullFills": 63,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "MapHOMM8",
+        "added": 21,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "ResourceHOMM8",
+        "added": 11,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      },
+      {
+        "table": "ScenarioHOMM8",
+        "added": 21,
+        "nullFills": 0,
+        "existingValueChanges": 0
+      }
+    ]
+  },
+  "games": {
+    "HOMM1": {
+      "Faction": {
+        "identities": 4,
+        "detailRows": 4,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Creature": {
+        "identities": 28,
+        "detailRows": 28,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "HeroClass": {
+        "identities": 4,
+        "detailRows": 4,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Ability": {
+        "identities": 12,
+        "detailRows": 0,
+        "missingCount": 12,
+        "missingExamples": [
+          {
+            "key": "homm1.ability.double.attack",
+            "name": "Double Attack"
+          },
+          {
+            "key": "homm1.ability.regeneration",
+            "name": "Regeneration"
+          },
+          {
+            "key": "homm1.ability.paralyzing.attack",
+            "name": "Paralyzing Attack"
+          },
+          {
+            "key": "homm1.ability.two.space.attack",
+            "name": "Two-Space Attack"
+          },
+          {
+            "key": "homm1.ability.no.retaliation",
+            "name": "No Retaliation"
+          }
+        ]
+      },
+      "Spell": {
+        "identities": 29,
+        "detailRows": 29,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Artifact": {
+        "identities": 39,
+        "detailRows": 38,
+        "missingCount": 1,
+        "missingExamples": [
+          {
+            "key": "homm1.artifact.eye.of.goros",
+            "name": "Eye of Goros"
+          }
+        ]
+      },
+      "Building": {
+        "identities": 60,
+        "detailRows": 60,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Terrain": {
+        "identities": 0,
+        "detailRows": 0,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "AdventureObject": {
+        "identities": 41,
+        "detailRows": 41,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Map": {
+        "identities": 9,
+        "detailRows": 0,
+        "missingCount": 9,
+        "missingExamples": [
+          {
+            "key": "homm1.map.a.strategic.quest.1",
+            "name": "Gateway"
+          },
+          {
+            "key": "homm1.map.a.strategic.quest.2",
+            "name": "The Archipelago"
+          },
+          {
+            "key": "homm1.map.a.strategic.quest.3",
+            "name": "The Wounded Land"
+          },
+          {
+            "key": "homm1.map.a.strategic.quest.4",
+            "name": "Free-for-All"
+          },
+          {
+            "key": "homm1.map.a.strategic.quest.5",
+            "name": "Castle Ironfist"
+          }
+        ]
+      },
+      "Scenario": {
+        "identities": 9,
+        "detailRows": 0,
+        "missingCount": 9,
+        "missingExamples": [
+          {
+            "key": "homm1.scenario.a.strategic.quest.1",
+            "name": "Gateway"
+          },
+          {
+            "key": "homm1.scenario.a.strategic.quest.2",
+            "name": "The Archipelago"
+          },
+          {
+            "key": "homm1.scenario.a.strategic.quest.3",
+            "name": "The Wounded Land"
+          },
+          {
+            "key": "homm1.scenario.a.strategic.quest.4",
+            "name": "Free-for-All"
+          },
+          {
+            "key": "homm1.scenario.a.strategic.quest.5",
+            "name": "Castle Ironfist"
+          }
+        ]
+      },
+      "Campaign": {
+        "identities": 1,
+        "detailRows": 1,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "junctions": {
+        "AdventureObjectCreature": 7,
+        "AdventureObjectFaction": 4,
+        "ArtifactComponent": 0,
+        "ArtifactResourceCost": 1,
+        "BuildingCreature": 48,
+        "BuildingRequirement": 63,
+        "BuildingResourceCost": 185,
+        "BuildingUpgrade": 12,
+        "CampaignHero": 4,
+        "CampaignScenario": 9,
+        "CreatureAbility": 18,
+        "CreatureResourceCost": 30,
+        "CreatureSpell": 0,
+        "CreatureUpgrade": 0,
+        "FactionMagicSchoolHOMM5": 0,
+        "FactionNativeTerrainHOMM5": 0,
+        "FactionSpell": 0,
+        "GameResource": 7,
+        "HeroClassAbility": 0,
+        "HeroClassAbilityRequirementGroup": 0,
+        "HeroClassPrimarySkillHOMM4": 0,
+        "HeroSkill": 0,
+        "LoreFull": 0,
+        "MapObjectPresence": 0,
+        "MapTerrain": 0,
+        "ScenarioConnection": 12,
+        "SpellMagicSchool": 0,
+        "SpellResourceCostHOMM5": 0,
+        "TownScreenBuilding": 0
+      }
+    },
+    "HOMM2": {
+      "Faction": {
+        "identities": 6,
+        "detailRows": 6,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Creature": {
+        "identities": 66,
+        "detailRows": 66,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "HeroClass": {
+        "identities": 6,
+        "detailRows": 6,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Hero": {
+        "identities": 77,
+        "detailRows": 77,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Ability": {
+        "identities": 33,
+        "detailRows": 0,
+        "missingCount": 33,
+        "missingExamples": [
+          {
+            "key": "homm2.ability.double.attack",
+            "name": "Double Attack"
+          },
+          {
+            "key": "homm2.ability.regeneration",
+            "name": "Regeneration"
+          },
+          {
+            "key": "homm2.ability.paralyzing.attack",
+            "name": "Paralyzing Attack"
+          },
+          {
+            "key": "homm2.ability.two.space.attack",
+            "name": "Two-Space Attack"
+          },
+          {
+            "key": "homm2.ability.no.retaliation",
+            "name": "No Retaliation"
+          }
+        ]
+      },
+      "Skill": {
+        "identities": 14,
+        "detailRows": 14,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Spell": {
+        "identities": 65,
+        "detailRows": 65,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Artifact": {
+        "identities": 99,
+        "detailRows": 99,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Building": {
+        "identities": 171,
+        "detailRows": 171,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Terrain": {
+        "identities": 0,
+        "detailRows": 0,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "AdventureObject": {
+        "identities": 89,
+        "detailRows": 89,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Map": {
+        "identities": 47,
+        "detailRows": 0,
+        "missingCount": 47,
+        "missingExamples": [
+          {
+            "key": "homm2.map.roland.s.campaign.1",
+            "name": "Force of Arms"
+          },
+          {
+            "key": "homm2.map.roland.s.campaign.2",
+            "name": "Annexation"
+          },
+          {
+            "key": "homm2.map.roland.s.campaign.3",
+            "name": "Save the Dwarves"
+          },
+          {
+            "key": "homm2.map.roland.s.campaign.4",
+            "name": "Carator Mines"
+          },
+          {
+            "key": "homm2.map.roland.s.campaign.5",
+            "name": "Turning Point"
+          }
+        ]
+      },
+      "Scenario": {
+        "identities": 47,
+        "detailRows": 0,
+        "missingCount": 47,
+        "missingExamples": [
+          {
+            "key": "homm2.scenario.roland.s.campaign.1",
+            "name": "Force of Arms"
+          },
+          {
+            "key": "homm2.scenario.roland.s.campaign.2",
+            "name": "Annexation"
+          },
+          {
+            "key": "homm2.scenario.roland.s.campaign.3",
+            "name": "Save the Dwarves"
+          },
+          {
+            "key": "homm2.scenario.roland.s.campaign.4",
+            "name": "Carator Mines"
+          },
+          {
+            "key": "homm2.scenario.roland.s.campaign.5",
+            "name": "Turning Point"
+          }
+        ]
+      },
+      "Campaign": {
+        "identities": 6,
+        "detailRows": 6,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "junctions": {
+        "AdventureObjectCreature": 22,
+        "AdventureObjectFaction": 13,
+        "ArtifactComponent": 3,
+        "ArtifactResourceCost": 0,
+        "BuildingCreature": 114,
+        "BuildingRequirement": 194,
+        "BuildingResourceCost": 468,
+        "BuildingUpgrade": 45,
+        "CampaignHero": 0,
+        "CampaignScenario": 47,
+        "CreatureAbility": 69,
+        "CreatureResourceCost": 74,
+        "CreatureSpell": 0,
+        "CreatureUpgrade": 21,
+        "FactionMagicSchoolHOMM5": 0,
+        "FactionNativeTerrainHOMM5": 0,
+        "FactionSpell": 0,
+        "GameResource": 7,
+        "HeroClassAbility": 0,
+        "HeroClassAbilityRequirementGroup": 0,
+        "HeroClassPrimarySkillHOMM4": 0,
+        "HeroSkill": 90,
+        "LoreFull": 0,
+        "MapObjectPresence": 0,
+        "MapTerrain": 0,
+        "ScenarioConnection": 54,
+        "SpellMagicSchool": 0,
+        "SpellResourceCostHOMM5": 0,
+        "TownScreenBuilding": 0
+      }
+    },
+    "HOMM3": {
+      "Faction": {
+        "identities": 9,
+        "detailRows": 9,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Creature": {
+        "identities": 141,
+        "detailRows": 141,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "HeroClass": {
+        "identities": 18,
+        "detailRows": 18,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Hero": {
+        "identities": 156,
+        "detailRows": 156,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Ability": {
+        "identities": 103,
+        "detailRows": 103,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Skill": {
+        "identities": 32,
+        "detailRows": 28,
+        "missingCount": 4,
+        "missingExamples": [
+          {
+            "key": "homm3.skill.attack",
+            "name": "Attack"
+          },
+          {
+            "key": "homm3.skill.defense",
+            "name": "Defense"
+          },
+          {
+            "key": "homm3.skill.knowledge",
+            "name": "Knowledge"
+          },
+          {
+            "key": "homm3.skill.spell.power",
+            "name": "Spell Power"
+          }
+        ]
+      },
+      "Spell": {
+        "identities": 70,
+        "detailRows": 70,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Artifact": {
+        "identities": 141,
+        "detailRows": 141,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Building": {
+        "identities": 318,
+        "detailRows": 318,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Terrain": {
+        "identities": 20,
+        "detailRows": 13,
+        "missingCount": 7,
+        "missingExamples": [
+          {
+            "key": "homm3.terrain.grass",
+            "name": "Grass"
+          },
+          {
+            "key": "homm3.terrain.snow",
+            "name": "Snow"
+          },
+          {
+            "key": "homm3.terrain.lava",
+            "name": "Lava"
+          },
+          {
+            "key": "homm3.terrain.dirt",
+            "name": "Dirt"
+          },
+          {
+            "key": "homm3.terrain.subterranean",
+            "name": "Subterranean"
+          }
+        ]
+      },
+      "AdventureObject": {
+        "identities": 187,
+        "detailRows": 187,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Map": {
+        "identities": 87,
+        "detailRows": 87,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Scenario": {
+        "identities": 87,
+        "detailRows": 87,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "junctions": {
+        "AdventureObjectCreature": 87,
+        "AdventureObjectFaction": 68,
+        "ArtifactComponent": 49,
+        "ArtifactResourceCost": 138,
+        "BuildingCreature": 315,
+        "BuildingRequirement": 326,
+        "BuildingResourceCost": 894,
+        "BuildingUpgrade": 152,
+        "CampaignHero": 50,
+        "CampaignScenario": 87,
+        "CreatureAbility": 287,
+        "CreatureResourceCost": 159,
+        "CreatureSpell": 0,
+        "CreatureUpgrade": 63,
+        "FactionMagicSchoolHOMM5": 0,
+        "FactionNativeTerrainHOMM5": 0,
+        "FactionSpell": 478,
+        "GameResource": 7,
+        "HeroClassAbility": 0,
+        "HeroClassAbilityRequirementGroup": 0,
+        "HeroClassPrimarySkillHOMM4": 0,
+        "HeroSkill": 291,
+        "LoreFull": 0,
+        "MapObjectPresence": 5401,
+        "MapTerrain": 417,
+        "ScenarioConnection": 75,
+        "SpellMagicSchool": 76,
+        "SpellResourceCostHOMM5": 0,
+        "TownScreenBuilding": 318
+      }
+    },
+    "HOMM4": {
+      "Faction": {
+        "identities": 6,
+        "detailRows": 6,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Creature": {
+        "identities": 74,
+        "detailRows": 74,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "HeroClass": {
+        "identities": 48,
+        "detailRows": 48,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Ability": {
+        "identities": 76,
+        "detailRows": 76,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Skill": {
+        "identities": 36,
+        "detailRows": 36,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "MagicSchool": {
+        "identities": 5,
+        "detailRows": 5,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Spell": {
+        "identities": 151,
+        "detailRows": 147,
+        "missingCount": 4,
+        "missingExamples": [
+          {
+            "key": "homm4.spell.resurrection",
+            "name": "Resurrection"
+          },
+          {
+            "key": "homm4.spell.rebirth",
+            "name": "Rebirth"
+          },
+          {
+            "key": "homm4.spell.terror",
+            "name": "Terror"
+          },
+          {
+            "key": "homm4.spell.summon.ice.demon.devil",
+            "name": "Summon Ice Demon (Devil)"
+          }
+        ]
+      },
+      "Artifact": {
+        "identities": 205,
+        "detailRows": 164,
+        "missingCount": 41,
+        "missingExamples": [
+          {
+            "key": "homm4.artifact.axe",
+            "name": "Axe"
+          },
+          {
+            "key": "homm4.artifact.chain.mail",
+            "name": "Chain Mail"
+          },
+          {
+            "key": "homm4.artifact.crossbow",
+            "name": "Crossbow"
+          },
+          {
+            "key": "homm4.artifact.greatsword",
+            "name": "Greatsword"
+          },
+          {
+            "key": "homm4.artifact.leather",
+            "name": "Leather"
+          }
+        ]
+      },
+      "Building": {
+        "identities": 172,
+        "detailRows": 172,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Terrain": {
+        "identities": 5,
+        "detailRows": 0,
+        "missingCount": 5,
+        "missingExamples": [
+          {
+            "key": "homm4.terrain.grass",
+            "name": "Grass"
+          },
+          {
+            "key": "homm4.terrain.snow",
+            "name": "Snow"
+          },
+          {
+            "key": "homm4.terrain.volcanic",
+            "name": "Volcanic"
+          },
+          {
+            "key": "homm4.terrain.swamp",
+            "name": "Swamp"
+          },
+          {
+            "key": "homm4.terrain.rough",
+            "name": "Rough"
+          }
+        ]
+      },
+      "AdventureObject": {
+        "identities": 215,
+        "detailRows": 215,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Map": {
+        "identities": 70,
+        "detailRows": 0,
+        "missingCount": 70,
+        "missingExamples": [
+          {
+            "key": "homm4.map.the.true.blade.1",
+            "name": "The Drawing of the Blade"
+          },
+          {
+            "key": "homm4.map.the.true.blade.2",
+            "name": "The Trials"
+          },
+          {
+            "key": "homm4.map.the.true.blade.3",
+            "name": "The First Step of Many"
+          },
+          {
+            "key": "homm4.map.the.true.blade.4",
+            "name": "Seeking the Steel"
+          },
+          {
+            "key": "homm4.map.the.true.blade.5",
+            "name": "The Rightful Heir"
+          }
+        ]
+      },
+      "Scenario": {
+        "identities": 70,
+        "detailRows": 0,
+        "missingCount": 70,
+        "missingExamples": [
+          {
+            "key": "homm4.scenario.the.true.blade.1",
+            "name": "The Drawing of the Blade"
+          },
+          {
+            "key": "homm4.scenario.the.true.blade.2",
+            "name": "The Trials"
+          },
+          {
+            "key": "homm4.scenario.the.true.blade.3",
+            "name": "The First Step of Many"
+          },
+          {
+            "key": "homm4.scenario.the.true.blade.4",
+            "name": "Seeking the Steel"
+          },
+          {
+            "key": "homm4.scenario.the.true.blade.5",
+            "name": "The Rightful Heir"
+          }
+        ]
+      },
+      "Campaign": {
+        "identities": 18,
+        "detailRows": 18,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "junctions": {
+        "AdventureObjectCreature": 71,
+        "AdventureObjectFaction": 71,
+        "ArtifactComponent": 0,
+        "ArtifactResourceCost": 0,
+        "BuildingCreature": 96,
+        "BuildingRequirement": 0,
+        "BuildingResourceCost": 0,
+        "BuildingUpgrade": 0,
+        "CampaignHero": 26,
+        "CampaignScenario": 70,
+        "CreatureAbility": 167,
+        "CreatureResourceCost": 59,
+        "CreatureSpell": 28,
+        "CreatureUpgrade": 0,
+        "FactionMagicSchoolHOMM5": 0,
+        "FactionNativeTerrainHOMM5": 0,
+        "FactionSpell": 0,
+        "GameResource": 7,
+        "HeroClassAbility": 0,
+        "HeroClassAbilityRequirementGroup": 0,
+        "HeroClassPrimarySkillHOMM4": 88,
+        "HeroSkill": 0,
+        "LoreFull": 12,
+        "MapObjectPresence": 0,
+        "MapTerrain": 0,
+        "ScenarioConnection": 52,
+        "SpellMagicSchool": 151,
+        "SpellResourceCostHOMM5": 0,
+        "TownScreenBuilding": 0
+      }
+    },
+    "HOMM5": {
+      "Faction": {
+        "identities": 8,
+        "detailRows": 8,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Creature": {
+        "identities": 177,
+        "detailRows": 177,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "HeroClass": {
+        "identities": 8,
+        "detailRows": 8,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Hero": {
+        "identities": 124,
+        "detailRows": 124,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Ability": {
+        "identities": 347,
+        "detailRows": 347,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Skill": {
+        "identities": 25,
+        "detailRows": 25,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "MagicSchool": {
+        "identities": 6,
+        "detailRows": 0,
+        "missingCount": 6,
+        "missingExamples": [
+          {
+            "key": "homm5.magicschool.adventure.magic",
+            "name": "Adventure Magic"
+          },
+          {
+            "key": "homm5.magicschool.dark.magic",
+            "name": "Dark Magic"
+          },
+          {
+            "key": "homm5.magicschool.destructive.magic",
+            "name": "Destructive Magic"
+          },
+          {
+            "key": "homm5.magicschool.light.magic",
+            "name": "Light Magic"
+          },
+          {
+            "key": "homm5.magicschool.runic.magic",
+            "name": "Runic Magic"
+          }
+        ]
+      },
+      "Spell": {
+        "identities": 80,
+        "detailRows": 80,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Artifact": {
+        "identities": 93,
+        "detailRows": 92,
+        "missingCount": 1,
+        "missingExamples": [
+          {
+            "key": "homm5.artifact.tear.of.asha",
+            "name": "Tear of Asha"
+          }
+        ]
+      },
+      "Building": {
+        "identities": 292,
+        "detailRows": 292,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Terrain": {
+        "identities": 8,
+        "detailRows": 8,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "AdventureObject": {
+        "identities": 150,
+        "detailRows": 150,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Map": {
+        "identities": 60,
+        "detailRows": 0,
+        "missingCount": 60,
+        "missingExamples": [
+          {
+            "key": "homm5.map.the.queen.1",
+            "name": "The Queen"
+          },
+          {
+            "key": "homm5.map.the.queen.2",
+            "name": "Rebellion"
+          },
+          {
+            "key": "homm5.map.the.queen.3",
+            "name": "The Siege"
+          },
+          {
+            "key": "homm5.map.the.queen.4",
+            "name": "The Trap"
+          },
+          {
+            "key": "homm5.map.the.queen.5",
+            "name": "The Fall of the King"
+          }
+        ]
+      },
+      "Scenario": {
+        "identities": 60,
+        "detailRows": 0,
+        "missingCount": 60,
+        "missingExamples": [
+          {
+            "key": "homm5.scenario.the.queen.1",
+            "name": "The Queen"
+          },
+          {
+            "key": "homm5.scenario.the.queen.2",
+            "name": "Rebellion"
+          },
+          {
+            "key": "homm5.scenario.the.queen.3",
+            "name": "The Siege"
+          },
+          {
+            "key": "homm5.scenario.the.queen.4",
+            "name": "The Trap"
+          },
+          {
+            "key": "homm5.scenario.the.queen.5",
+            "name": "The Fall of the King"
+          }
+        ]
+      },
+      "junctions": {
+        "AdventureObjectCreature": 60,
+        "AdventureObjectFaction": 32,
+        "ArtifactComponent": 0,
+        "ArtifactResourceCost": 0,
+        "BuildingCreature": 168,
+        "BuildingRequirement": 192,
+        "BuildingResourceCost": 924,
+        "BuildingUpgrade": 133,
+        "CampaignHero": 15,
+        "CampaignScenario": 60,
+        "CreatureAbility": 581,
+        "CreatureResourceCost": 201,
+        "CreatureSpell": 60,
+        "CreatureUpgrade": 112,
+        "FactionMagicSchoolHOMM5": 26,
+        "FactionNativeTerrainHOMM5": 9,
+        "FactionSpell": 0,
+        "GameResource": 7,
+        "HeroClassAbility": 901,
+        "HeroClassAbilityRequirementGroup": 404,
+        "HeroClassPrimarySkillHOMM4": 0,
+        "HeroSkill": 229,
+        "LoreFull": 0,
+        "MapObjectPresence": 0,
+        "MapTerrain": 0,
+        "ScenarioConnection": 47,
+        "SpellMagicSchool": 74,
+        "SpellResourceCostHOMM5": 14,
+        "TownScreenBuilding": 0
+      }
+    },
+    "HOMM6": {
+      "Faction": {
+        "identities": 6,
+        "detailRows": 6,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Creature": {
+        "identities": 109,
+        "detailRows": 109,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "HeroClass": {
+        "identities": 36,
+        "detailRows": 36,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Hero": {
+        "identities": 139,
+        "detailRows": 139,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Ability": {
+        "identities": 459,
+        "detailRows": 244,
+        "missingCount": 215,
+        "missingExamples": [
+          {
+            "key": "homm6.ability.creature.absolute.purity",
+            "name": "Absolute Purity"
+          },
+          {
+            "key": "homm6.ability.creature.air.affinity",
+            "name": "Air Affinity"
+          },
+          {
+            "key": "homm6.ability.creature.all.around.slash",
+            "name": "All-around Slash"
+          },
+          {
+            "key": "homm6.ability.creature.amphibian",
+            "name": "Amphibian"
+          },
+          {
+            "key": "homm6.ability.creature.armor.piercing",
+            "name": "Armor Piercing"
+          }
+        ]
+      },
+      "MagicSchool": {
+        "identities": 7,
+        "detailRows": 7,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Spell": {
+        "identities": 89,
+        "detailRows": 89,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Artifact": {
+        "identities": 224,
+        "detailRows": 203,
+        "missingCount": 21,
+        "missingExamples": [
+          {
+            "key": "homm6.artifact.air.elemental.essences",
+            "name": "Air Elemental Essences"
+          },
+          {
+            "key": "homm6.artifact.akasha.s.heart",
+            "name": "Akasha's Heart"
+          },
+          {
+            "key": "homm6.artifact.akasha.s.scroll",
+            "name": "Akasha's Scroll"
+          },
+          {
+            "key": "homm6.artifact.box.of.griffin.eggs",
+            "name": "Box of Griffin Eggs"
+          },
+          {
+            "key": "homm6.artifact.cup.of.thunder",
+            "name": "Cup of Thunder"
+          }
+        ]
+      },
+      "Building": {
+        "identities": 185,
+        "detailRows": 185,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Terrain": {
+        "identities": 0,
+        "detailRows": 0,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "AdventureObject": {
+        "identities": 101,
+        "detailRows": 101,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Map": {
+        "identities": 36,
+        "detailRows": 0,
+        "missingCount": 36,
+        "missingExamples": [
+          {
+            "key": "homm6.map.tutorial.campaign.1",
+            "name": "Griffin Bane"
+          },
+          {
+            "key": "homm6.map.tutorial.campaign.2",
+            "name": "The Emperor's Will"
+          },
+          {
+            "key": "homm6.map.necropolis.campaign.1",
+            "name": "In the Wake of Adversity"
+          },
+          {
+            "key": "homm6.map.necropolis.campaign.2",
+            "name": "Towards the Within"
+          },
+          {
+            "key": "homm6.map.necropolis.campaign.3",
+            "name": "Circumradiant Dawn"
+          }
+        ]
+      },
+      "Scenario": {
+        "identities": 36,
+        "detailRows": 0,
+        "missingCount": 36,
+        "missingExamples": [
+          {
+            "key": "homm6.scenario.tutorial.campaign.1",
+            "name": "Griffin Bane"
+          },
+          {
+            "key": "homm6.scenario.tutorial.campaign.2",
+            "name": "The Emperor's Will"
+          },
+          {
+            "key": "homm6.scenario.necropolis.campaign.1",
+            "name": "In the Wake of Adversity"
+          },
+          {
+            "key": "homm6.scenario.necropolis.campaign.2",
+            "name": "Towards the Within"
+          },
+          {
+            "key": "homm6.scenario.necropolis.campaign.3",
+            "name": "Circumradiant Dawn"
+          }
+        ]
+      },
+      "junctions": {
+        "AdventureObjectCreature": 42,
+        "AdventureObjectFaction": 24,
+        "ArtifactComponent": 0,
+        "ArtifactResourceCost": 0,
+        "BuildingCreature": 84,
+        "BuildingRequirement": 146,
+        "BuildingResourceCost": 0,
+        "BuildingUpgrade": 40,
+        "CampaignHero": 15,
+        "CampaignScenario": 36,
+        "CreatureAbility": 577,
+        "CreatureResourceCost": 68,
+        "CreatureSpell": 0,
+        "CreatureUpgrade": 42,
+        "FactionMagicSchoolHOMM5": 0,
+        "FactionNativeTerrainHOMM5": 0,
+        "FactionSpell": 237,
+        "GameResource": 4,
+        "HeroClassAbility": 72,
+        "HeroClassAbilityRequirementGroup": 0,
+        "HeroClassPrimarySkillHOMM4": 0,
+        "HeroSkill": 0,
+        "LoreFull": 10,
+        "MapObjectPresence": 0,
+        "MapTerrain": 0,
+        "ScenarioConnection": 24,
+        "SpellMagicSchool": 67,
+        "SpellResourceCostHOMM5": 0,
+        "TownScreenBuilding": 0
+      }
+    },
+    "HOMM7": {
+      "Faction": {
+        "identities": 7,
+        "detailRows": 7,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Creature": {
+        "identities": 156,
+        "detailRows": 156,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "HeroClass": {
+        "identities": 44,
+        "detailRows": 44,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Hero": {
+        "identities": 132,
+        "detailRows": 72,
+        "missingCount": 60,
+        "missingExamples": [
+          {
+            "key": "homm7.hero.adar.malik",
+            "name": "Adar-Malik"
+          },
+          {
+            "key": "homm7.hero.aeris",
+            "name": "Aeris"
+          },
+          {
+            "key": "homm7.hero.agbeth",
+            "name": "Agbeth"
+          },
+          {
+            "key": "homm7.hero.anastasya",
+            "name": "Anastasya"
+          },
+          {
+            "key": "homm7.hero.andras",
+            "name": "Andras"
+          }
+        ]
+      },
+      "Ability": {
+        "identities": 288,
+        "detailRows": 168,
+        "missingCount": 120,
+        "missingExamples": [
+          {
+            "key": "homm7.ability.creature.acid.breath",
+            "name": "Acid Breath"
+          },
+          {
+            "key": "homm7.ability.creature.arcane.wings",
+            "name": "Arcane Wings"
+          },
+          {
+            "key": "homm7.ability.creature.armour.piercing",
+            "name": "Armour Piercing"
+          },
+          {
+            "key": "homm7.ability.creature.aura.of.cleansing",
+            "name": "Aura of Cleansing"
+          },
+          {
+            "key": "homm7.ability.creature.aura.of.fire",
+            "name": "Aura of Fire"
+          }
+        ]
+      },
+      "Skill": {
+        "identities": 24,
+        "detailRows": 24,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "MagicSchool": {
+        "identities": 7,
+        "detailRows": 7,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Spell": {
+        "identities": 70,
+        "detailRows": 69,
+        "missingCount": 1,
+        "missingExamples": [
+          {
+            "key": "homm7.spell.reveal.treasure",
+            "name": "Reveal Treasure"
+          }
+        ]
+      },
+      "Artifact": {
+        "identities": 224,
+        "detailRows": 164,
+        "missingCount": 60,
+        "missingExamples": [
+          {
+            "key": "homm7.artifact.mana.potion",
+            "name": "Mana Potion"
+          },
+          {
+            "key": "homm7.artifact.scroll.air.chain.lightning",
+            "name": "Scroll Air Chain Lightning"
+          },
+          {
+            "key": "homm7.artifact.scroll.air.cyclone",
+            "name": "Scroll Air Cyclone"
+          },
+          {
+            "key": "homm7.artifact.scroll.air.erratic.storm",
+            "name": "Scroll Air Erratic Storm"
+          },
+          {
+            "key": "homm7.artifact.scroll.air.gust.of.wind",
+            "name": "Scroll Air Gust Of Wind"
+          }
+        ]
+      },
+      "Building": {
+        "identities": 343,
+        "detailRows": 343,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Terrain": {
+        "identities": 0,
+        "detailRows": 0,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "AdventureObject": {
+        "identities": 141,
+        "detailRows": 141,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Map": {
+        "identities": 43,
+        "detailRows": 0,
+        "missingCount": 43,
+        "missingExamples": [
+          {
+            "key": "homm7.map.a.firebrand.in.the.dark.1",
+            "name": "Strange Bedfellows"
+          },
+          {
+            "key": "homm7.map.a.firebrand.in.the.dark.2",
+            "name": "To the Fire in the Blood"
+          },
+          {
+            "key": "homm7.map.a.free.woman.among.brothers.1",
+            "name": "A Very Ambitious Hatred"
+          },
+          {
+            "key": "homm7.map.a.free.woman.among.brothers.2",
+            "name": "The Only Freedom a Slave knows"
+          },
+          {
+            "key": "homm7.map.a.free.woman.among.brothers.3",
+            "name": "No Peace in this World"
+          }
+        ]
+      },
+      "Scenario": {
+        "identities": 43,
+        "detailRows": 0,
+        "missingCount": 43,
+        "missingExamples": [
+          {
+            "key": "homm7.scenario.a.firebrand.in.the.dark.1",
+            "name": "Strange Bedfellows"
+          },
+          {
+            "key": "homm7.scenario.a.firebrand.in.the.dark.2",
+            "name": "To the Fire in the Blood"
+          },
+          {
+            "key": "homm7.scenario.a.free.woman.among.brothers.1",
+            "name": "A Very Ambitious Hatred"
+          },
+          {
+            "key": "homm7.scenario.a.free.woman.among.brothers.2",
+            "name": "The Only Freedom a Slave knows"
+          },
+          {
+            "key": "homm7.scenario.a.free.woman.among.brothers.3",
+            "name": "No Peace in this World"
+          }
+        ]
+      },
+      "junctions": {
+        "AdventureObjectCreature": 56,
+        "AdventureObjectFaction": 21,
+        "ArtifactComponent": 0,
+        "ArtifactResourceCost": 0,
+        "BuildingCreature": 124,
+        "BuildingRequirement": 207,
+        "BuildingResourceCost": 0,
+        "BuildingUpgrade": 54,
+        "CampaignHero": 10,
+        "CampaignScenario": 43,
+        "CreatureAbility": 249,
+        "CreatureResourceCost": 184,
+        "CreatureSpell": 0,
+        "CreatureUpgrade": 56,
+        "FactionMagicSchoolHOMM5": 0,
+        "FactionNativeTerrainHOMM5": 0,
+        "FactionSpell": 0,
+        "GameResource": 7,
+        "HeroClassAbility": 2489,
+        "HeroClassAbilityRequirementGroup": 0,
+        "HeroClassPrimarySkillHOMM4": 0,
+        "HeroSkill": 0,
+        "LoreFull": 0,
+        "MapObjectPresence": 0,
+        "MapTerrain": 0,
+        "ScenarioConnection": 32,
+        "SpellMagicSchool": 64,
+        "SpellResourceCostHOMM5": 0,
+        "TownScreenBuilding": 0
+      }
+    },
+    "HOMM8": {
+      "Faction": {
+        "identities": 6,
+        "detailRows": 6,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Creature": {
+        "identities": 146,
+        "detailRows": 146,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "HeroClass": {
+        "identities": 12,
+        "detailRows": 12,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Hero": {
+        "identities": 112,
+        "detailRows": 112,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Ability": {
+        "identities": 576,
+        "detailRows": 576,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Skill": {
+        "identities": 30,
+        "detailRows": 30,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "MagicSchool": {
+        "identities": 5,
+        "detailRows": 5,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Spell": {
+        "identities": 93,
+        "detailRows": 93,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Artifact": {
+        "identities": 302,
+        "detailRows": 302,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Building": {
+        "identities": 206,
+        "detailRows": 206,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "AdventureObject": {
+        "identities": 194,
+        "detailRows": 194,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Map": {
+        "identities": 21,
+        "detailRows": 21,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Scenario": {
+        "identities": 21,
+        "detailRows": 21,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "Campaign": {
+        "identities": 3,
+        "detailRows": 3,
+        "missingCount": 0,
+        "missingExamples": []
+      },
+      "junctions": {
+        "AdventureObjectCreature": 180,
+        "AdventureObjectFaction": 42,
+        "ArtifactComponent": 0,
+        "ArtifactResourceCost": 0,
+        "BuildingCreature": 168,
+        "BuildingRequirement": 180,
+        "BuildingResourceCost": 623,
+        "BuildingUpgrade": 88,
+        "CampaignHero": 4,
+        "CampaignScenario": 21,
+        "CreatureAbility": 826,
+        "CreatureResourceCost": 159,
+        "CreatureSpell": 0,
+        "CreatureUpgrade": 84,
+        "FactionMagicSchoolHOMM5": 0,
+        "FactionNativeTerrainHOMM5": 0,
+        "FactionSpell": 0,
+        "GameResource": 11,
+        "HeroClassAbility": 0,
+        "HeroClassAbilityRequirementGroup": 0,
+        "HeroClassPrimarySkillHOMM4": 0,
+        "HeroSkill": 210,
+        "LoreFull": 0,
+        "MapObjectPresence": 0,
+        "MapTerrain": 0,
+        "ScenarioConnection": 20,
+        "SpellMagicSchool": 86,
+        "SpellResourceCostHOMM5": 0,
+        "TownScreenBuilding": 0
+      }
+    }
+  },
+  "partialDetails": {
+    "CreatureHOMM6": {
+      "rows": 109,
+      "unknownByField": {
+        "Faction_id": 24,
+        "Tier": 13,
+        "MightDefense": 13,
+        "MagicDefense": 13,
+        "Speed": 1,
+        "Initiative": 1,
+        "CombatSize": 13,
+        "Range": 1,
+        "Morale": 1,
+        "Luck": 1,
+        "BasicGrowth": 55,
+        "UpgradeGrowth": 67,
+        "Movement": 13,
+        "MightResistancePercent": 93,
+        "MagicResistancePercent": 93
+      }
+    },
+    "CreatureHOMM7": {
+      "rows": 156,
+      "unknownByField": {
+        "Faction_id": 24,
+        "Tier": 19,
+        "WarfareRole": 137,
+        "Attack": 7,
+        "Defense": 19,
+        "DamageMin": 19,
+        "DamageMax": 19,
+        "Health": 19,
+        "CombatSize": 19,
+        "Shots": 156,
+        "Mana": 156,
+        "WeeklyGrowth": 38,
+        "WarfareStats": 137
+      }
+    },
+    "HeroHOMM5": {
+      "rows": 124,
+      "unknownByField": {
+        "Availability": 60,
+        "SpecialtyName": 10,
+        "SpecialtyEffect": 124,
+        "StartingAttack": 21,
+        "StartingDefense": 21,
+        "StartingSpellPower": 21,
+        "StartingKnowledge": 21,
+        "StartingSpell_id": 80,
+        "StartingArmy": 21
+      }
+    },
+    "HeroHOMM7": {
+      "rows": 72,
+      "unknownByField": {
+        "Availability": 2,
+        "SpecializationAbility_id": 72,
+        "StartingSkill_id": 72,
+        "StartingSpells": 72,
+        "StartingArmy": 72,
+        "StartingMight": 72,
+        "StartingDefense": 72,
+        "StartingMagic": 72,
+        "StartingSpirit": 72,
+        "StartingLeadership": 72,
+        "StartingDestiny": 72,
+        "StartingDamage": 72,
+        "DamageType": 72
+      }
+    },
+    "ResourceHOMM8": {
+      "rows": 11,
+      "unknownByField": {
+        "IsTradeable": 4,
+        "IsMineProduced": 5,
+        "IsPersistent": 11,
+        "DefaultDailyIncome": 11
+      }
+    },
+    "MapHOMM8": {
+      "rows": 21,
+      "unknownByField": {
+        "LevelCount": 21,
+        "HasUnderground": 21,
+        "SupportsClassic": 21,
+        "SupportsSingleHero": 21,
+        "SupportsArena": 21,
+        "SupportsMultiplayer": 21,
+        "SupportsHotseat": 21,
+        "SupportsMatchmaking": 21,
+        "SupportsRanked": 21,
+        "TemplateDefinition": 21
+      }
+    },
+    "ScenarioHOMM8": {
+      "rows": 21,
+      "unknownByField": {
+        "ActNumber": 10,
+        "AllowsMultiplayer": 21,
+        "AllowsHotseat": 21,
+        "SupportsMatchmaking": 21,
+        "SupportsRanked": 21,
+        "Scripts": 21,
+        "StartingState": 1
+      }
+    },
+    "CampaignHOMM8": {
+      "rows": 3,
+      "unknownByField": {
+        "AvailableActCount": 2
+      }
+    },
+    "AstrologyHOMM8": {
+      "rows": 1,
+      "unknownByField": {
+        "FirstInsightThreshold": 1,
+        "InsightThresholdIncrease": 1
+      }
+    }
+  },
+  "warfare": [
+    {
+      "key": "homm7.creature.ballista",
+      "role": "Attack",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Attack",
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.catapult",
+      "role": "Siege",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.cave.wyvern",
+      "role": "Siege",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.dreamwalker",
+      "role": "AttackAndSupport",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Attack",
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.dwarven.ballista",
+      "role": "Attack",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Attack",
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.faceless",
+      "role": "Support",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.fire.cannon",
+      "role": "Siege",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.great.pyramid",
+      "role": "Siege",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.greater.earth.elemental",
+      "role": "Siege",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.healing.sister",
+      "role": "Support",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.healing.tent",
+      "role": "Support",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.mother.treant",
+      "role": "Support",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.namtaru",
+      "role": "AttackAndSupport",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Attack",
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.runestone",
+      "role": "Support",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.shadow.lurker",
+      "role": "Attack",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Attack",
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.small.pyramid",
+      "role": "Attack",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Attack",
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.spitting.spider",
+      "role": "Siege",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.sylvan.ballista",
+      "role": "Attack",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Attack",
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    },
+    {
+      "key": "homm7.creature.tamed.cyclops",
+      "role": "Siege",
+      "combatSize": null,
+      "scalarUnknowns": [
+        "Defense",
+        "DamageMin",
+        "DamageMax",
+        "Health"
+      ],
+      "profileOrder": "source-listed",
+      "profileCount": 5
+    }
+  ],
+  "emptyTables": [
+    "AbilityHOMM1",
+    "AbilityHOMM2",
+    "MagicSchoolHOMM5",
+    "MapHOMM1",
+    "MapHOMM2",
+    "MapHOMM4",
+    "MapHOMM5",
+    "MapHOMM6",
+    "MapHOMM7",
+    "ScenarioHOMM1",
+    "ScenarioHOMM2",
+    "ScenarioHOMM4",
+    "ScenarioHOMM5",
+    "ScenarioHOMM6",
+    "ScenarioHOMM7",
+    "Screenshot",
+    "Soundtrack",
+    "SoundtrackHOMM1",
+    "SoundtrackHOMM2",
+    "SoundtrackHOMM3",
+    "SoundtrackHOMM4",
+    "SoundtrackHOMM5",
+    "SoundtrackHOMM6",
+    "SoundtrackHOMM7",
+    "TerrainHOMM1",
+    "TerrainHOMM2",
+    "TerrainHOMM4",
+    "TerrainHOMM6",
+    "TerrainHOMM7",
+    "Video"
+  ],
+  "caveats": [
+    "Missing detail counts are relative to existing catalog identities, not proof of a complete game roster.",
+    "Nulls include legitimate inapplicable fields; source notes determine whether each is missing or intentional.",
+    "Published source choices and native-source hashes are not an independent reread of game files unavailable on this computer."
+  ]
+}

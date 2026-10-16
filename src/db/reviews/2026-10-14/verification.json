@@ -1,0 +1,372 @@
+{
+  "date": "2026-10-14",
+  "baselineCommit": "7ad2a6b7ed45bb63411986a3ec6863fcfc8f1a6b",
+  "schemaVersion": 7,
+  "catalog": {
+    "rows": 45560,
+    "tables": 176,
+    "columns": 1309,
+    "foreignKeys": 452
+  },
+  "research": {
+    "additions": 1628,
+    "fills": 191,
+    "resultingRows": 45560
+  },
+  "nodeTests": {
+    "tests": 117,
+    "passed": 116,
+    "failed": 0,
+    "skipped": 1,
+    "skipReason": "Windows denied creation of a file symlink; security assertions run where supported."
+  },
+  "freshPostgres": {
+    "result": "PASS",
+    "databaseVersion": "18.4",
+    "importedRows": 45560,
+    "tableArrays": 176,
+    "expectedRows": 45560,
+    "comparedFields": 266781,
+    "checkedRelationships": 180606,
+    "repeatedImport": "stable rows and physical IDs",
+    "directIntegrityProbes": "passed",
+    "concurrentOrders": 4,
+    "catalogConcurrency": [
+      {
+        "family": "graph-cycle",
+        "order": "forward-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "graph-cycle",
+        "order": "forward-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "graph-cycle",
+        "order": "reverse-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "graph-cycle",
+        "order": "reverse-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "homm8-resource",
+        "order": "forward-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "homm8-resource",
+        "order": "forward-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "homm8-resource",
+        "order": "reverse-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "homm8-resource",
+        "order": "reverse-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "town-building-faction",
+        "order": "forward-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "town-building-faction",
+        "order": "forward-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "town-building-faction",
+        "order": "reverse-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "town-building-faction",
+        "order": "reverse-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "40001"
+      }
+    ],
+    "catalogRepeatableRead": [
+      {
+        "family": "graph-cycle",
+        "rejectedSqlState": "0A000",
+        "allowedControl": "PASS"
+      },
+      {
+        "family": "homm8-resource",
+        "rejectedSqlState": "0A000",
+        "allowedControl": "PASS"
+      },
+      {
+        "family": "town-building-faction",
+        "rejectedSqlState": "0A000",
+        "allowedControl": "PASS"
+      }
+    ],
+    "repeatableReadGuard": "passed"
+  },
+  "upgradePostgres": {
+    "result": "PASS",
+    "databaseVersion": "18.4",
+    "sourceRows": 45560,
+    "upgrade": "0001..0005 + exact research baseline -> 0006 -> 0007 + research gap delta",
+    "preservedFingerprint": true,
+    "tableArrays": 176,
+    "expectedRows": 45560,
+    "comparedFields": 266781,
+    "checkedRelationships": 180606,
+    "invalidBaselines": [
+      "negative amount: v6 23514 + atomic rollback",
+      "creature cycle: v6 23514 + atomic rollback",
+      "missing warfare role: v7 23514 + columns, enum, checks, nullability and baseline row preserved"
+    ]
+  },
+  "windowsRoutes": [
+    {
+      "mode": "reconstructed",
+      "pass": true,
+      "serverVersion": "18.4",
+      "steps": [
+        {
+          "file": "schema@2848f00",
+          "mode": "file",
+          "seconds": 2.581,
+          "result": "COMMIT"
+        },
+        {
+          "file": "catalog@2848f00",
+          "mode": "file",
+          "seconds": 35.303,
+          "result": "COMMIT"
+        },
+        {
+          "file": "src/db/postgres/migrations/0003_nullable_identity_and_campaign_scope.sql",
+          "mode": "file",
+          "seconds": 0.265,
+          "result": "COMMIT",
+          "sha256": "45d2c3c79d4317a1d44e3089ac6f23ac83f0b1863ad59dcae4f665967a295821"
+        },
+        {
+          "file": "src/db/postgres/migrations/0004_creature_tier_terminology.sql",
+          "mode": "file",
+          "seconds": 0.117,
+          "result": "COMMIT",
+          "sha256": "37a0f61de380816653579bbe4774fe4d823b6510d8d0053a91e24f75acf12d4f"
+        },
+        {
+          "file": "src/db/postgres/migrations/0005_creature_numeric_speed.sql",
+          "mode": "file",
+          "seconds": 0.113,
+          "result": "COMMIT",
+          "sha256": "3f3512c3bbea253cc589c475e5eb4017b76a978fcb77e28d53992f41f27558d1"
+        },
+        {
+          "file": "src/db/data/creature-tier-corrections.sql",
+          "mode": "file",
+          "seconds": 0.178,
+          "result": "COMMIT",
+          "sha256": "04808bcc17818b2501529c355da190193f35486891fd85ba5e8f41069629fd01"
+        },
+        {
+          "file": "src/db/data/research-import.sql",
+          "mode": "file",
+          "seconds": 4.115,
+          "result": "COMMIT",
+          "sha256": "4e485961f2045250c4aaeb605bf6e1d4ef7061de77753e363308fc02190a17c5"
+        },
+        {
+          "file": "src/db/postgres/migrations/0006_catalog_guards.sql",
+          "mode": "file",
+          "seconds": 0.689,
+          "result": "COMMIT",
+          "sha256": "151c530ae7ea62ed605d5f42a80e421f84d99581e14226e819ccb372df78ac11"
+        },
+        {
+          "file": "src/db/postgres/migrations/0007_source_detail_profiles.sql",
+          "mode": "file",
+          "seconds": 0.077,
+          "result": "COMMIT",
+          "sha256": "7ecb610ae431a40bd7250ef32a002b39e7a006a437a637c50d9b2eff2047d735"
+        },
+        {
+          "file": "src/db/data/research-gaps-import.sql",
+          "mode": "file",
+          "seconds": 1.673,
+          "result": "COMMIT",
+          "sha256": "10695939977a2a17d809f7209f947391bfb555cd2c1aae5b32cc62461500f956"
+        },
+        {
+          "file": "research-gaps-import.sql REPEAT",
+          "mode": "file",
+          "seconds": 1.909,
+          "result": "COMMIT"
+        }
+      ],
+      "reconciliation": {
+        "tableArrays": 176,
+        "expectedRows": 45560,
+        "comparedFields": 266781,
+        "checkedRelationships": 180606
+      },
+      "preservation": {
+        "baselineRows": 40023,
+        "removedBaselineRows": [],
+        "changedPhysicalIds": [],
+        "unexpectedNonNullChanges": [],
+        "reviewedTierSpeedChanges": 32,
+        "pass": true
+      },
+      "repeat": {
+        "all176TableRowsAndPhysicalIdsUnchanged": true
+      }
+    },
+    {
+      "mode": "live-backup",
+      "pass": true,
+      "serverVersion": "18.4",
+      "steps": [
+        {
+          "file": "live-before.backup",
+          "seconds": 6.391,
+          "result": "RESTORED"
+        },
+        {
+          "file": "src/db/postgres/migrations/0003_nullable_identity_and_campaign_scope.sql",
+          "mode": "outer-transaction/SPI",
+          "seconds": 0.225,
+          "result": "COMMIT",
+          "sha256": "45d2c3c79d4317a1d44e3089ac6f23ac83f0b1863ad59dcae4f665967a295821"
+        },
+        {
+          "file": "src/db/postgres/migrations/0004_creature_tier_terminology.sql",
+          "mode": "outer-transaction/SPI",
+          "seconds": 0.219,
+          "result": "COMMIT",
+          "sha256": "37a0f61de380816653579bbe4774fe4d823b6510d8d0053a91e24f75acf12d4f"
+        },
+        {
+          "file": "src/db/postgres/migrations/0005_creature_numeric_speed.sql",
+          "mode": "outer-transaction/SPI",
+          "seconds": 0.214,
+          "result": "COMMIT",
+          "sha256": "3f3512c3bbea253cc589c475e5eb4017b76a978fcb77e28d53992f41f27558d1"
+        },
+        {
+          "file": "src/db/data/creature-tier-corrections.sql",
+          "mode": "outer-transaction/SPI",
+          "seconds": 0.359,
+          "result": "COMMIT",
+          "sha256": "04808bcc17818b2501529c355da190193f35486891fd85ba5e8f41069629fd01"
+        },
+        {
+          "file": "src/db/data/research-import.sql",
+          "mode": "outer-transaction/SPI",
+          "seconds": 5.668,
+          "result": "COMMIT",
+          "sha256": "4e485961f2045250c4aaeb605bf6e1d4ef7061de77753e363308fc02190a17c5"
+        },
+        {
+          "file": "src/db/postgres/migrations/0006_catalog_guards.sql",
+          "mode": "outer-transaction/SPI",
+          "seconds": 0.9,
+          "result": "COMMIT",
+          "sha256": "151c530ae7ea62ed605d5f42a80e421f84d99581e14226e819ccb372df78ac11"
+        },
+        {
+          "file": "src/db/postgres/migrations/0007_source_detail_profiles.sql",
+          "mode": "outer-transaction/SPI",
+          "seconds": 0.091,
+          "result": "COMMIT",
+          "sha256": "7ecb610ae431a40bd7250ef32a002b39e7a006a437a637c50d9b2eff2047d735"
+        },
+        {
+          "file": "src/db/data/research-gaps-import.sql",
+          "mode": "outer-transaction/SPI",
+          "seconds": 2.514,
+          "result": "COMMIT",
+          "sha256": "10695939977a2a17d809f7209f947391bfb555cd2c1aae5b32cc62461500f956"
+        },
+        {
+          "file": "research-gaps-import.sql REPEAT",
+          "mode": "outer-transaction/SPI",
+          "seconds": 1.409,
+          "result": "COMMIT"
+        }
+      ],
+      "reconciliation": {
+        "tableArrays": 176,
+        "expectedRows": 45560,
+        "comparedFields": 266781,
+        "checkedRelationships": 180606
+      },
+      "preservation": {
+        "baselineRows": 40023,
+        "removedBaselineRows": [],
+        "changedPhysicalIds": [],
+        "unexpectedNonNullChanges": [],
+        "reviewedTierSpeedChanges": 32,
+        "pass": true
+      },
+      "repeat": {
+        "all176TableRowsAndPhysicalIdsUnchanged": true
+      }
+    }
+  ],
+  "initialMigrationsUnchanged": "0001 through 0006",
+  "catalogSha256": "5ea9aeed0b8d37e26e0929f40993c68f4dbd7a7fd0d5c883508261d0bd96e141"
+}

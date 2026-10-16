@@ -1,0 +1,133 @@
+{
+  "formatVersion": 1,
+  "reviewDate": "2026-10-13",
+  "target": {
+    "game": "homm8.game",
+    "title": "Heroes of Might and Magic: Olden Era",
+    "build": "25061458",
+    "snapshotDate": "2026-09-29"
+  },
+  "scope": "Source-reviewed Olden Era resource overlay: native starDust semantic parent and H8 membership. AstrologyHOMM8 remains held because the official sources do not map astrology_exp to the neutral-spell progression points or expose the required threshold/rule contract.",
+  "policy": "No cumulative catalog, schema, generated SQL, GitHub, or live database was edited. The shared Astrology Points parent and Neutral Magic parent are reused. The public Cargo resource page has no localized starDust display name, so Insight is recorded as the official English gameplay label with that localization boundary stated explicitly.",
+  "additions": [
+    {
+      "table": "Resource",
+      "row": {
+        "_key": "resource.insight",
+        "Code": "STARDUST",
+        "Name": "Insight",
+        "Description": "Olden Era native resource key starDust. The official English map-object text calls the awarded unit Insight and says it is used to learn or upgrade Global Map spells; the public Cargo resource page does not expose a localized display token."
+      },
+      "evidence": {
+        "sourceId": "official-insight-resource-correlation",
+        "locator": "Official Map Objects page; Data:Resource/starDust oldid 14434; Data:CargoCoverage Resource section",
+        "claim": "Native starDust is the resource identity associated with the official English gameplay label Insight for Global Map spell learning/upgrading. Exact localization-table text is not exposed by the public Cargo page."
+      }
+    },
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm8.resource.insight",
+        "Game_id": "homm8.game",
+        "Resource_id": "resource.insight",
+        "DisplayName": "Insight",
+        "ResourceClass": "Other",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": "homm8.expansion.base"
+      },
+      "evidence": {
+        "sourceId": "official-insight-resource-correlation",
+        "locator": "Official Map Objects page; Data:Resource/starDust oldid 14434; target H8 base release row",
+        "claim": "Insight is an H8-specific non-standard resource used for global-map spell learning/upgrading; the native source key is starDust."
+      }
+    }
+  ],
+  "fills": [],
+  "sources": [
+    {
+      "id": "official-resource-index",
+      "kind": "official_mediawiki_cargo",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=14420&title=Data:Resource",
+      "revision": 14420,
+      "revisionTimestamp": "2026-05-13T02:48",
+      "scope": "Resource index lists Data:Resource/starDust among the 15 native resource pages and explains that each resource page carries localization/description/icon data."
+    },
+    {
+      "id": "official-astrology-resource",
+      "kind": "official_mediawiki_cargo",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=14421&title=Data:Resource/astrology_exp",
+      "revision": 14421,
+      "revisionTimestamp": "2026-05-13T02:48",
+      "scope": "Native resource entry astrology_exp corroborates the existing Astrology Points shared parent; the overlay does not duplicate it."
+    },
+    {
+      "id": "official-resource-stardust",
+      "kind": "official_mediawiki_cargo",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=14434&title=Data:Resource/starDust",
+      "revision": 14434,
+      "revisionTimestamp": "2026-05-13T02:49",
+      "scope": "Native resource entry resource/starDust exists. The public page exposes the entry identity but no localized English display string; this is why the overlay records an explicit localization boundary."
+    },
+    {
+      "id": "official-cargo-coverage",
+      "kind": "official_mediawiki_cargo",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Data:CargoCoverage",
+      "scope": "Current public coverage lists Data:Resource/starDust with no article candidate, while Resource total is 15 and only 9 have article candidates."
+    },
+    {
+      "id": "official-map-objects-insight",
+      "kind": "official_gameplay_page",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Map_Objects",
+      "scope": "Altar of Insight grants 1 Insight to the first visiting hero and says it can be used to learn or upgrade Global Map spells."
+    },
+    {
+      "id": "official-neutral-spells",
+      "kind": "official_gameplay_page",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Neutral_Spells",
+      "scope": "Neutral spells GAIN progression points from actions: unlocking a normal spell grants 1 point, leveling a normal spell grants 1 point, constructing a building grants 2 points, and constructing a Mage Guild grants 6 points. Neutral spell tiers require hero levels 1, 3, 6, 9 and 12; individual spell levels are 1–4. This page does not identify the point meter as astrology_exp or starDust."
+    },
+    {
+      "id": "official-wisdom-astrology",
+      "kind": "official_gameplay_page",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Wisdom",
+      "scope": "Stargazer grants +500 Astrology Points per day and Scouting doubles that bonus."
+    },
+    {
+      "id": "official-insight-separation",
+      "kind": "official_gameplay_page",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Insight",
+      "scope": "Insight is also the name of a separate hero skill (internal ID skill_enlightenment) that affects XP and skill subeffects. It must not be confused with the starDust resource label."
+    },
+    {
+      "id": "retained-build-stardust-costs",
+      "kind": "repository_build-extractor",
+      "url": "https://github.com/RusMermaid/HeroesWatch/blob/main/src/db/tools/research-remaining-homm8.mjs",
+      "scope": "The retained build-25061458 extraction reads native spell learnCost/upgradeCost entries whose resource name is starDust; this corroborates resource use without inventing a localized name."
+    }
+  ],
+  "held": {
+    "resourceHOMM8": {
+      "keys": [
+        "resource.insight",
+        "resource.astrology.points"
+      ],
+      "reason": "The official pages prove identity, use, and role, but do not explicitly establish every required ResourceHOMM8 boolean (tradeability, mine production, persistence) for the target build. No false flag is inserted."
+    },
+    "thresholds": {
+      "fields": [
+        "FirstInsightThreshold",
+        "InsightThresholdIncrease"
+      ],
+      "reason": "Neutral Spells exposes per-action point costs and level range, but not the schema's first-threshold/increment pair."
+    },
+    "exactLocalization": {
+      "nativeId": "starDust",
+      "status": "unresolved",
+      "reason": "Public Cargo exposes the native entry but no localized English token; Insight is staged only as the official gameplay label from Altar of Insight."
+    },
+    "astrologyHOMM8": {
+      "reason": "The official Wisdom page establishes Astrology Points from Stargazer, while Neutral Spells separately describes an unnamed progression-point system. Neither source maps astrology_exp to those points, and the retained extractor uses starDust for spell costs. Do not join these systems through AstrologyHOMM8 until a build-matched configuration names the mapping."
+    }
+  }
+}
