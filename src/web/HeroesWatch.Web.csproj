@@ -7,4 +7,11 @@
     <UseAppHost>false</UseAppHost>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- Repository language-display metadata is never compiled or published. -->
+    <Compile Remove="RepositoryMetadata/**" />
+    <Content Remove="RepositoryMetadata/**" />
+    <None Remove="RepositoryMetadata/**" />
+  </ItemGroup>
+
 </Project>
