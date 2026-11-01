@@ -3,7 +3,7 @@
 ## 1. System purpose
 
 HeroesWatch is a cross-game reference platform for the Heroes of Might and
-Magic series. Its database is an encyclopedia/catalog model: it describes
+Magic series and related Might and Magic RPGs and spin-offs. Its database is an encyclopedia/catalog model: it describes
 games, releases, factions, heroes, creatures, magic, towns, maps, campaigns,
 media, and the relationships between them.
 
@@ -20,6 +20,23 @@ It is not a save-game database. Runtime player state—current armies, captured
 towns, combat turns, inventories, multiplayer sessions, and map-instance
 ownership—is outside this model.
 
+### Related Might and Magic titles
+
+RPGs and spin-offs receive independent `Game.SeriesCode` values (`MM1`–`MM10`,
+`MMSX`, `MMCRUS`, `MMWARRIORS`, `MMSHIFTERS`, and `MMLEGENDS`). Their identities,
+actual magic schools, equipment and source documents use the universal catalog
+and applicable junctions. They never use a Heroes-specific detail table.
+The current contract has no RPG detail tables; sourced numeric facts can be
+summarized in descriptions, with their manual page evidence retained alongside
+the content. Adding queryable RPG statistics requires a future schema change.
+
+Local reference manuals are `MediaAsset` records of kind `File`, with SHA-256
+checksums and edition metadata. Their relative URIs resolve from `src/db`.
+The PDF bytes remain in the ignored local manual library. A manual assigned as
+an entity's source media is not a portrait or playable map file. Source-page
+observations and unresolved differences live in the manual comparison files;
+they do not silently replace established values from a different ruleset.
+
 ## 2. Architectural shape
 
 The model has three cooperating layers:
@@ -28,7 +45,7 @@ The model has three cooperating layers:
 |---|---:|---|
 | Universal catalog spine | 25 | Shared identity, naming, provenance, and cross-game concepts |
 | Game-specific layer | 122 | 119 shared-PK details plus three independently identified title mechanics |
-| Relationship/junction layer | 26 | Reusable many-to-many and graph relationships |
+| Relationship/junction layer | 29 | Reusable many-to-many and graph relationships |
 
 ```mermaid
 flowchart TB
@@ -129,6 +146,12 @@ Alternative or double-upgrade flags may live in a title's creature detail,
 while the actual creature-to-creature relationship remains an FK-backed
 upgrade edge where the shared graph requires it.
 
+Creature rank is named `Tier` across all eight games; spell levels retain
+`Level`. H1/H2 `Speed` stores the base combat movement number, while stored
+generated `SpeedName` provides the original label. H1 maps 1/2/3 to
+Slow/Medium/Fast; H2 maps 2–7 to Very Slow through Ultra Fast. The name is
+read-only, so it cannot disagree with the number. Flying remains in `Movement`.
+
 ### 3.6 Artifact domain
 
 `Artifact` owns item identity. `ArtifactComponent` expresses composite items,
@@ -147,7 +170,7 @@ slots, rarities, restrictions, upgrade behavior, and bounded set bonuses.
 branching, optional, merge, and prerequisite paths. `CampaignHero` assigns
 heroes and roles to campaigns.
 
-`Lore` is the shared lore catalog. `LoreFull` connects lore to heroes,
+`Lore` is the shared lore catalog. `LoreFull` connects lore to factions, heroes,
 campaign heroes, campaigns, scenarios, maps, and other subjects. Lore does
 not need per-game duplicates because game scope and links already provide the
 context.
@@ -180,8 +203,10 @@ Rules for game-detail tables:
 7. A new title extends downward through the existing category columns rather
    than creating a parallel isolated schema.
 
-Not every category requires a detail table in every game. Missing detail means
-the generic data is sufficient, not that the category is absent.
+Not every category needs a detail table in every game. A missing detail row can
+mean either that the generic data is sufficient or that its mechanics are not
+yet verified. Coverage notes distinguish these cases; neither means the generic
+entity is absent.
 
 Unique title systems can have a dedicated in-band table when they possess real
 identity or relationships. The current independently identified examples are
@@ -198,20 +223,54 @@ from inventing its own copy of the same cardinality.
 | Relationship family | Junctions |
 |---|---|
 | Magic | `SpellMagicSchool`, `FactionSpell`, `SpellResourceCostHOMM5` |
-| Hero progression | `HeroSkill`, `HeroClassAbility`, `HeroClassPrimarySkillHOMM4` |
+| Hero progression | `HeroSkill`, `HeroClassAbility`, `HeroClassAbilityRequirementGroup`, `HeroClassPrimarySkillHOMM4` |
 | Creatures | `CreatureAbility`, `CreatureUpgrade`, `CreatureSpell`, `CreatureResourceCost` |
 | Buildings | `BuildingCreature`, `BuildingUpgrade`, `BuildingRequirement`, `BuildingResourceCost` |
 | Artifacts/resources | `ArtifactComponent`, `ArtifactResourceCost`, `GameResource` |
 | Campaign graph | `CampaignHero`, `CampaignScenario`, `ScenarioConnection` |
 | Map graph | `MapTerrain`, `MapObjectPresence`, `TownScreenBuilding` |
+| External dwellings and object affiliations | `AdventureObjectCreature`, `AdventureObjectFaction` |
 | Lore graph | `LoreFull` |
 | Title-specific cardinalities | `FactionNativeTerrainHOMM5`, `FactionMagicSchoolHOMM5` |
 
 Each junction has a TEXT `*_cid` primary key. Junctions normally also have a
 composite unique business key that prevents duplicate relationships.
-`HeroClassAbility` is the current exception: it relies on
-`HeroClassAbility_cid` until its prerequisite/choice fields have an approved
-business-key definition.
+`HeroClassAbility` identifies a prerequisite atom by game, class, granted
+ability, requirement set, required ability, skill, and minimum mastery. Its
+`UNIQUE NULLS NOT DISTINCT` key treats repeated null-valued atoms as duplicates
+while allowing several prerequisites or alternative paths for the same ability.
+
+`HeroClassAbilityRequirementGroup` assigns one `All` or `Any` mode to each
+positive-numbered requirement set for a game/class/ability. Different sets are
+alternative paths; the mode combines the atoms within one set. A composite FK
+requires every grouped atom to use the group's mode. A null requirement set
+must have a null mode. Existing ungrouped associations mean that prerequisite
+details have not been recorded; they do not establish that no prerequisites
+exist. Group rows must be supported by research before they are added.
+
+`ArtifactSetBonusHOMM5` has a matching database identity for set, required piece
+count, and class. Null class means a bonus shared by classes and compares as
+equal for uniqueness. Its stable generated ID remains the primary key.
+
+The nullable business identities for global `MediaAsset` rows, patches without
+a platform qualifier, and `LoreFull` links also use `UNIQUE NULLS NOT DISTINCT`.
+This keeps a missing qualifier from allowing duplicate logical rows while
+preserving the nullable fields themselves.
+
+`AdventureObjectCreature` relates an object type to each creature it recruits,
+guards, or produces through transformation. Multiple creature rows are valid;
+`Notes` records source restrictions. `AdventureObjectFaction` independently
+records one or more faction affiliations. These are object-type catalogs;
+individual placed objects still belong in `MapObjectPresence`. Town recruitment
+continues to use `BuildingCreature`.
+
+`FactionSpell.SelectionWeight` is a nonnegative relative selection weight.
+It must not be copied to `OccurrenceChance`: a weight is not a probability.
+
+When `CampaignHero.StartingScenario_id` is present, its composite foreign key
+requires that scenario to appear in `CampaignScenario` for the same game and
+campaign. Same-game ownership alone is not enough to establish campaign
+membership.
 
 All relationships shown in the design become real PostgreSQL foreign keys.
 No application-only “soft FK” replaces a relationship that the database can
@@ -275,15 +334,43 @@ cross-row semantic integrity:
 
 | Enforced by PostgreSQL | Enforced by validator/import/application |
 |---|---|
-| PK identity and uniqueness | A detail table's HOMM suffix matches its parent's `Game_id` |
-| FK endpoint existence | Junction endpoints belong to the junction's game where required |
-| Declared alternate unique keys | Expansion, patch, faction, map, and media references are game-consistent |
+| PK identity and uniqueness | Reviewed source identity and alias decisions |
+| FK endpoint existence and same-game ownership | Completeness of query paths and researched mechanics |
+| Declared alternate unique keys, including nullable business identities | Source provenance and edition reconciliation |
+| Detail-table HOMM suffix and inherited ownership | Source-specific JSONB shape and content rules |
+| Per-game resource availability for creature, building, artifact, and title-specific spell costs | Release/preview status and research provenance policy |
 | Required versus nullable fields | Source-specific JSONB shape and content rules |
-| ENUM membership | Release/preview status and research provenance policy |
+| ENUM membership and requirement-group mode consistency | Evidence for actual prerequisite atoms |
 
-Cross-game consistency is not a reason to duplicate identities. It is checked
-at the data-ingestion boundary, while PostgreSQL remains responsible for
-referential existence and key integrity.
+The validator checks these relationships before import. PostgreSQL also protects
+direct edits: composite foreign keys enforce matching game IDs where both rows
+carry them. Deferred constraint triggers check inherited ownership, title
+suffixes, and nullable global media. They read final row state, lock referenced
+ownership parents, and recheck dependent rows when an owner's game changes.
+The checks work after `SET CONSTRAINTS ... IMMEDIATE` as well as at commit.
+Global resources and media with a null `Game_id` remain reusable across games.
+
+Ownership-changing updates require READ COMMITTED (PostgreSQL's default) or
+SERIALIZABLE. Specifically, changing a primary key, `Game_id`, an inherited
+ownership FK, or `Game.SeriesCode` is rejected under REPEATABLE READ with SQLSTATE
+`0A000`. An old repeatable-read snapshot can miss a child that committed while
+the updating transaction waited for its parent lock. Ordinary inserts and
+updates to content fields remain allowed at REPEATABLE READ. Retry an ownership
+change using one of the supported isolation levels; there is no global write
+lock or serialization of unrelated edits.
+
+Overlay v6 adds nonnegative resource costs, at least one lore subject, acyclic
+component/requirement/upgrade/scenario graphs, H8 resource membership and known
+town-screen/building faction agreement. Reverse edits are checked too. Unknown
+building factions and multi-subject lore remain supported. Graph topology
+writes lock only their game and graph family; relevant edits require READ
+COMMITTED or SERIALIZABLE. `GameResource` cannot be truncated; checked DELETE
+preserves the cross-row protections.
+
+For `FactionLaw`, `Cumulative=true` means each `EffectLevelN` is the complete
+total at that level. Consumers must not add it to earlier level descriptions.
+The new law data uses the dated official Cargo snapshot, not an asserted match
+to every field of the retained Steam build.
 
 ## 8. PostgreSQL physical architecture
 
@@ -295,14 +382,54 @@ PostgreSQL database. It creates the `heroes_watch` schema, all tables, named
 ENUM types, primary/unique/foreign-key constraints, and FK indexes. It inserts
 no game data.
 
-`HeroesWatch.backup` is the cross-platform PostgreSQL custom-format equivalent
-for Restore tooling. It is schema-only and excludes owner and privilege data,
-so the same structure can be restored on macOS, Windows, or Linux under a
-different local database user.
+`HeroesWatch.backup` is the historical schema-only custom-format backup of the
+initial schema. After restoring it, apply `0002_relationship_integrity.sql`
+followed by migrations 0003 through 0008 in order.
+For a new current schema, use `HeroesWatch.sql` directly.
 
 `postgres/migrations/0001_initial.sql` is the immutable initial migration.
 After a production database exists, structural changes must use new
 forward-only migrations rather than rewriting `0001_initial.sql`.
+`0002_relationship_integrity.sql` adds the reviewed relationships and ownership
+constraints and checks existing rows before committing. It preserves catalog
+IDs and requires PostgreSQL 15 or newer for `UNIQUE NULLS NOT DISTINCT`.
+`0003_nullable_identity_and_campaign_scope.sql` makes the remaining nullable
+business identities effective and constrains campaign-hero starting scenarios
+to their campaign. It also applies the same per-game `GameResource` membership
+rule to Heroes V spell/rune resource costs that already protects creature,
+building, and artifact costs. Both earlier migrations remain immutable.
+`0004_creature_tier_terminology.sql` renames the four remaining creature
+`Level` columns. `0005_creature_numeric_speed.sql` converts H1 speed labels to
+numbers and derives H1/H2 `SpeedName` values. Existing migrations are immutable.
+`0006_catalog_guards.sql` installs the guards above and validates existing rows
+in one transaction. It rejects invalid baselines without deleting or repairing
+their data automatically.
+
+`0007_source_detail_profiles.sql` adds Heroes VI resistance percentages and
+Heroes VII warfare profiles. The latter retain source-listed stat vectors;
+their array positions do not claim a skill-rank mapping. Healing and renewal
+amounts remain distinct from damage. Unknown combat fields are nullable for
+exceptional VI creatures and VII warfare units; CHECK constraints retain all
+previous requirements for ordinary creatures. Source-unknown Olden Era map,
+scenario and resource flags are nullable. A null tutorial act count means the
+campaign has no documented act structure. Null never means false or zero.
+
+Olden Era alternative attacks use `AbilityHOMM8.IsActive` for a player-selected
+action. `IsFocusAction` identifies the native Focus ability action category,
+including zero-cost actions; alternative basic attacks are separate. Each
+source document records its build because Early Access systems can change.
+
+`0008_fractional_magic_defense.sql` preserves published fractional Heroes VI
+magic-defense points using `NUMERIC`, with the previous SMALLINT bounds kept
+as a check constraint. Displayed resistance percentages remain separate fields.
+The validator and JSON Schema accept finite numbers in the same domain.
+
+Heroes VI promoted-class `Default*` attributes describe the neutral
+base-lineage starting template, not a hero's current attributes on promotion.
+Where derived through `BaseHeroClass_id`, the source audit states that derivation.
+Heroes VII `IsHallHero=true` requires positive roster/editor evidence; absence
+from an incomplete roster never establishes false. Actual enabling is map/player
+specific and can also depend on edition entitlements.
 
 ### 8.2 Namespace and identifiers
 
@@ -343,9 +470,10 @@ Schema design and content entry are separate pipelines:
 flowchart LR
     Live[Saved SQLDesigner diagram] --> Snapshot[sql-designer.snapshot.json]
     Snapshot --> Generator[generate.mjs]
+    Overlay[Reviewed schema-overlay.mjs] --> Generator
     Generator --> Semantic[heroeswatch.schema.json]
     Generator --> SQL[HeroesWatch.sql]
-    Generator --> Migration[0001_initial.sql]
+    Generator --> Migration[Immutable 0001 plus forward migrations]
     Generator --> Contract[data.schema.json]
 
     Research[Human research] --> Data[heroeswatch.json]
@@ -360,8 +488,15 @@ Structural source chain:
 
 1. saved live diagram;
 2. exact checked-in snapshot;
-3. deterministic semantic JSON;
-4. deterministic PostgreSQL DDL and migration.
+3. reviewed overlay in `tools/schema-overlay.mjs`, pinned to that snapshot's hash;
+4. deterministic semantic JSON;
+5. deterministic current PostgreSQL DDL and forward migration.
+
+The original diagram, snapshot, and initial migration are preserved as history.
+The overlay records local approved changes without claiming that the saved
+diagram already contains them. `tools/game-integrity-sql.mjs` generates the
+deferred ownership checks, and `tools/json-contracts.mjs` supplies the reviewed
+JSON column contracts used by both schema generation and validation.
 
 Content source chain:
 
@@ -419,7 +554,7 @@ These rules must remain true as the project grows:
 - no second hero or lore catalog;
 - all real relationships enforced by FKs;
 - generic junctions reused wherever cardinality permits;
-- PostgreSQL and JSON artifacts generated from the same snapshot;
+- PostgreSQL and JSON artifacts generated from the same snapshot and reviewed overlay;
 - schema migrations contain no game content;
 - content entry does not disable constraints;
 - live-diagram updates are incremental—never SQL Import replacement.

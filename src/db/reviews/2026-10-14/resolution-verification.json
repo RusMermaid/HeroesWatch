@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-14",
+  "baselineCommit": "9450e7919cf4ff7164ec2efb4804006807ff71df",
+  "schemaVersion": 8,
+  "rows": 45616,
+  "delta": {
+    "addedRows": 56,
+    "nullFills": 20,
+    "enrichedJsonFields": 3,
+    "addedJsonLeaves": 9
+  },
+  "node": {
+    "passed": 116,
+    "failed": 0,
+    "skipped": 1,
+    "skip": "Windows file-symlink creation permission"
+  },
+  "freshPostgres": {
+    "result": "PASS",
+    "databaseVersion": "18.4",
+    "importedRows": 45616,
+    "tableArrays": 176,
+    "expectedRows": 45616,
+    "comparedFields": 267563,
+    "checkedRelationships": 180672,
+    "repeatedImport": "stable rows and physical IDs",
+    "directIntegrityProbes": "passed",
+    "concurrentOrders": 4,
+    "catalogConcurrency": [
+      {
+        "family": "graph-cycle",
+        "order": "forward-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "graph-cycle",
+        "order": "forward-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "graph-cycle",
+        "order": "reverse-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "graph-cycle",
+        "order": "reverse-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "homm8-resource",
+        "order": "forward-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "homm8-resource",
+        "order": "forward-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "homm8-resource",
+        "order": "reverse-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "homm8-resource",
+        "order": "reverse-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "town-building-faction",
+        "order": "forward-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "town-building-faction",
+        "order": "forward-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "forward",
+        "abortedWriter": "reverse",
+        "failureSqlState": "40001"
+      },
+      {
+        "family": "town-building-faction",
+        "order": "reverse-first",
+        "isolation": "READ COMMITTED",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "23514"
+      },
+      {
+        "family": "town-building-faction",
+        "order": "reverse-first",
+        "isolation": "SERIALIZABLE",
+        "overlapVerified": true,
+        "committedWriter": "reverse",
+        "abortedWriter": "forward",
+        "failureSqlState": "40001"
+      }
+    ],
+    "catalogRepeatableRead": [
+      {
+        "family": "graph-cycle",
+        "rejectedSqlState": "0A000",
+        "allowedControl": "PASS"
+      },
+      {
+        "family": "homm8-resource",
+        "rejectedSqlState": "0A000",
+        "allowedControl": "PASS"
+      },
+      {
+        "family": "town-building-faction",
+        "rejectedSqlState": "0A000",
+        "allowedControl": "PASS"
+      }
+    ],
+    "repeatableReadGuard": "passed"
+  },
+  "upgradePostgres": {
+    "result": "PASS",
+    "databaseVersion": "18.4",
+    "sourceRows": 45616,
+    "upgrade": "0001..0005 + exact research baseline -> 0006 -> 0007 -> 0008 + research gap delta",
+    "preservedFingerprint": true,
+    "tableArrays": 176,
+    "expectedRows": 45616,
+    "comparedFields": 267563,
+    "checkedRelationships": 180672,
+    "invalidBaselines": [
+      "negative amount: v6 23514 + atomic rollback",
+      "creature cycle: v6 23514 + atomic rollback",
+      "missing warfare role: v7 23514 + columns, enum, checks, nullability and baseline row preserved"
+    ]
+  },
+  "restoredLiveBackup": {
+    "pass": true,
+    "endpoint": "isolated port 55439",
+    "restoredActualBackup": true,
+    "migrationPreservedEveryValue": true,
+    "guardedConflictRollback": true,
+    "tableArrays": 176,
+    "expectedRows": 45616,
+    "comparedFields": 267563,
+    "checkedRelationships": 180672,
+    "preservedOriginalIds": 45560,
+    "nullFills": 20,
+    "enrichedJsonFields": 3,
+    "addedJsonLeaves": 9,
+    "repeatUnchanged": true
+  },
+  "catalogSha256": "a542494bd30d3040fadbf266cfaf35013cba2dc39afac1441e00a46f5b720d5e",
+  "immutableMigrations": "0001–0007",
+  "remainingHallFlags": 60
+}

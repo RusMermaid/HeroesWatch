@@ -1,0 +1,353 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-13",
+  "notes": "Baseline rune activation costs only. Skill/perk discounts and repeat-activation modifiers are not additional base-cost rows. No mana cost is inferred.",
+  "additions": [
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm5.resource.wood",
+        "Game_id": "homm5.game",
+        "Resource_id": "resource.wood",
+        "DisplayName": "Wood",
+        "ResourceClass": "Common",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": null
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm5.resource.ore",
+        "Game_id": "homm5.game",
+        "Resource_id": "resource.ore",
+        "DisplayName": "Ore",
+        "ResourceClass": "Common",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": null
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm5.resource.mercury",
+        "Game_id": "homm5.game",
+        "Resource_id": "resource.mercury",
+        "DisplayName": "Mercury",
+        "ResourceClass": "Rare",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": null
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm5.resource.sulfur",
+        "Game_id": "homm5.game",
+        "Resource_id": "resource.sulfur",
+        "DisplayName": "Sulfur",
+        "ResourceClass": "Rare",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": null
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm5.resource.crystal",
+        "Game_id": "homm5.game",
+        "Resource_id": "resource.crystal",
+        "DisplayName": "Crystal",
+        "ResourceClass": "Rare",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": null
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "GameResource",
+      "row": {
+        "_key": "homm5.resource.gems",
+        "Game_id": "homm5.game",
+        "Resource_id": "resource.gems",
+        "DisplayName": "Gems",
+        "ResourceClass": "Rare",
+        "DisplayOrder": null,
+        "MediaAsset_id": null,
+        "IntroducedInExpansion_id": null
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.charge.wood",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.charge",
+        "Resource_id": "resource.wood",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.berserking.ore",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.berserking",
+        "Resource_id": "resource.ore",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.magic.control.gems",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.magic.control",
+        "Resource_id": "resource.gems",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.exorcism.sulfur",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.exorcism",
+        "Resource_id": "resource.sulfur",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.elemental.immunity.mercury",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.elemental.immunity",
+        "Resource_id": "resource.mercury",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.etherealness.crystal",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.etherealness",
+        "Resource_id": "resource.crystal",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.thunderclap.wood",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.thunderclap",
+        "Resource_id": "resource.wood",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.thunderclap.mercury",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.thunderclap",
+        "Resource_id": "resource.mercury",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.resurrection.ore",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.resurrection",
+        "Resource_id": "resource.ore",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.resurrection.gems",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.resurrection",
+        "Resource_id": "resource.gems",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.battle.rage.ore",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.battle.rage",
+        "Resource_id": "resource.ore",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.battle.rage.crystal",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.battle.rage",
+        "Resource_id": "resource.crystal",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.dragonform.wood",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.dragonform",
+        "Resource_id": "resource.wood",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    },
+    {
+      "table": "SpellResourceCostHOMM5",
+      "row": {
+        "_key": "homm5.rune.cost.tote.dragonform.sulfur",
+        "Game_id": "homm5.game",
+        "Spell_id": "homm5.spell.rune.of.dragonform",
+        "Resource_id": "resource.sulfur",
+        "Amount": 1,
+        "Ruleset": "TribesOfTheEast"
+      },
+      "evidence": {
+        "sourceId": "h5-manual-3.1-page-191",
+        "locator": "Runic Magic, PDF/printed p.191, resource icons beside each rune name",
+        "claim": "Base activation resource quantities in the 3.1 ruleset; Hammers of Fate badges identify introduction, not the ruleset."
+      }
+    }
+  ],
+  "fills": [],
+  "sources": [
+    {
+      "id": "h5-manual-3.1-page-191",
+      "title": "Heroes V Manual — Tribes of the East 3.1",
+      "url": "https://h5.heroes.net.pl/uploaded/download/other/Heroes5-Manual-en-3-1.pdf",
+      "provenance": "Community handbook supported by Ubisoft and Nival; retained by the project as its final official-3.1 mechanics reference.",
+      "pdfPage": 191,
+      "printedPage": 191,
+      "sourceBytes": 58182081,
+      "observedETag": "\"377c9c1-6042b7303c15b\"",
+      "visualCheck": "Selective PDF extraction rendered at 2400 pixels; all ten cost labels and fourteen resource icons/quantities inspected."
+    }
+  ]
+}

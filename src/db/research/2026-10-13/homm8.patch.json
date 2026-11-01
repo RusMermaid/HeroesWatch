@@ -1,0 +1,213 @@
+{
+  "formatVersion": 1,
+  "reviewDate": "2026-10-13",
+  "target": {
+    "game": "homm8.game",
+    "title": "Heroes of Might and Magic: Olden Era",
+    "release": "homm8.expansion.base",
+    "build": "25061458",
+    "snapshotDate": "2026-09-29"
+  },
+  "additions": [
+    {
+      "table": "CampaignHOMM8",
+      "row": {
+        "_key": "homm8.campaign.main.story",
+        "Availability": "Available",
+        "AvailableActCount": 1,
+        "NarrativeStructure": "Released Act I is a branching story hub with alternate mission routes recorded through ScenarioConnection.",
+        "Rules": "Only missions present in the build-25061458 cached mission set are represented; unreleased referenced hub nodes are excluded."
+      },
+      "evidence": {
+        "kind": "installed-game",
+        "title": "Heroes of Might and Magic: Olden Era Early Access",
+        "build": "25061458",
+        "snapshotDate": "2026-09-29",
+        "path": "campaigns/mainStory/storyHub.json",
+        "retainedEvidence": "src/db/data/touchups-evidence.json",
+        "corroboration": "src/db/data/heroeswatch.json Campaign.Description explicitly says Released Act I; CampaignScenario and ScenarioConnection retain the released branching graph."
+      }
+    }
+  ],
+  "fills": [],
+  "sources": [
+    {
+      "id": "installed-olden-25061458-campaigns",
+      "kind": "retained-extraction-evidence",
+      "location": "src/db/data/touchups-evidence.json",
+      "scope": "Build-specific campaign, scenario and graph evidence retained from the earlier local Core.zip extraction."
+    },
+    {
+      "id": "installed-olden-25061458-catalog-notes",
+      "kind": "repository-provenance",
+      "location": "src/db/data/remaining-homm8.sources.md",
+      "scope": "Build identity and extraction provenance for the existing H8 catalog."
+    },
+    {
+      "id": "official-olden-game-files",
+      "kind": "official-documentation",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Help:Game_Files",
+      "revision": 18333,
+      "scope": "Lines 26-36 document Core.zip, its four directories, campaigns as single-player data including tutorials, and DB as the JSON source farmed into Cargo. The page does not define individual scenario mode flags."
+    },
+    {
+      "id": "official-native-resource-index-2026-05-13",
+      "kind": "official-game-data-import",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=14420&title=Data:Resource",
+      "revision": 14420,
+      "revisionTimestamp": "2026-05-13T02:48",
+      "scope": "Initial Obelisk-bot Cargo import. Proves native resource IDs astrology_exp, faction_laws_points and starDust existed before the target snapshot; it does not prove build-25061458 balance values."
+    },
+    {
+      "id": "official-native-law-index-2026-05-13",
+      "kind": "official-game-data-import",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=14065&title=Data:Law",
+      "revision": 14065,
+      "revisionTimestamp": "2026-05-13T02:36",
+      "scope": "Initial Obelisk-bot Cargo import. Proves production and test Law native IDs and five-tier organization; it does not prove later balance values."
+    },
+    {
+      "id": "official-unit-angel-near-target",
+      "kind": "official-game-data-import",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=41239&title=Data:Unit/angel",
+      "revision": 41239,
+      "revisionTimestamp": "2026-09-30T16:45",
+      "scope": "Official game-data page one day after the target snapshot. Exposes native UnitAbilityActive angel_1 and UnitAbilityPassive angel_passive_1, but does not expose the underlying game build number."
+    },
+    {
+      "id": "official-unit-angel-upgrade-near-target",
+      "kind": "official-game-data-import",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=41390&title=Data:Unit/angel_upg",
+      "revision": 41390,
+      "revisionTimestamp": "2026-10-02T20:46",
+      "scope": "Official game-data page three days after the target snapshot. Exposes native active IDs angel_upg_1 and angel_upg_2 plus passive angel_upg_passive_1, but does not expose the underlying game build number."
+    },
+    {
+      "id": "official-angel-article-2026-08-06",
+      "kind": "official-reference-page",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/index.php?oldid=38099&title=Angel",
+      "revision": 38099,
+      "revisionTimestamp": "2026-08-06T07:48",
+      "scope": "Predates the target snapshot. Its Angel HP/Attack/Defense/Damage/Initiative/Speed exactly match the retained build-25061458 row and it names Refract and Reflect (1 Focus Charge, 1-round cooldown), Forging Perfection, ranged attack, alternative melee attack, and flying movement."
+    },
+    {
+      "id": "official-cargo-per-patch-process",
+      "kind": "official-documentation",
+      "url": "https://wiki.hoodedhorse.com/Heroes_of_Might_and_Magic_Olden_Era/Help:Applying_Patches",
+      "scope": "Documents that maintainers refresh Cargo from game data and compare the previous and latest Core.zip for each patch. This establishes provenance but does not expose a Steam build number for each Cargo revision."
+    }
+  ],
+  "discoveries": [
+    {
+      "kind": "missing-parent-identities",
+      "finding": "The architecture requires AstrologyHOMM8.AstrologyPointResource_id and InsightResource_id, but the shared Resource catalog lacks parents for native astrology_exp and starDust. The official initial Cargo pages prove those source IDs existed on 2026-05-13, while the retained build-25061458 spell extractor also reads starDust costs.",
+      "impact": "AstrologyHOMM8 cannot satisfy its FKs without adding source-backed shared Resource and GameResource parents or changing the model."
+    },
+    {
+      "kind": "neutral-school-mismatch",
+      "finding": "AstrologyHOMM8 requires a unique NeutralMagicSchool_id, while the retained build extractor deliberately creates only Daylight, Nightshade, Arcane and Primal schools and leaves neutral spells without an invented fifth school.",
+      "impact": "Do not fabricate a neutral-school parent. Reconcile the schema requirement with the actual source model before inserting AstrologyHOMM8."
+    },
+    {
+      "kind": "official-cargo-version-boundary",
+      "finding": "Official Cargo indices are game-derived, but the accessible initial revisions are dated 2026-05-13 and the current CargoCoverage page says it represents the latest extract.",
+      "impact": "Native IDs can corroborate identity continuity; current numerical balance and ability membership cannot be asserted as build 25061458 without a matching revision or retained raw source."
+    },
+    {
+      "kind": "near-target-unit-ability-candidate",
+      "finding": "Official game-data revisions for Angel and Archangel are dated 2026-09-30 and 2026-10-02 and expose native active/passive ability IDs. These dates closely flank the 2026-09-29 target snapshot, but the pages do not state the source Steam build.",
+      "impact": "This is a viable low-download source for creature ability identities once its extraction revision is tied to build 25061458. It is not yet sufficient to populate all 146 creatures or required ability mechanics."
+    },
+    {
+      "kind": "sample-version-alignment",
+      "finding": "The official Angel article revision from 2026-08-06 predates the target and its six retained combat values match build 25061458 exactly (225 HP, 30 Attack, 30 Defense, 50-75 Damage, 8 Initiative, 4 Speed). Its active/passive and attack/movement mechanics are therefore strongly aligned for this sampled creature.",
+      "impact": "The official wiki can support source-backed creature abilities without a full game download, but the sample does not establish version alignment for every unit or justify bulk inference."
+    }
+  ],
+  "blocked": [
+    {
+      "tables": [
+        "CampaignHOMM8"
+      ],
+      "keys": [
+        "homm8.campaign.tutorial",
+        "homm8.campaign.tutorial.challenges"
+      ],
+      "reason": "AvailableActCount is NOT NULL, but retained evidence does not define acts for tutorial groupings. Inapplicable is not proof of zero.",
+      "requiredSource": [
+        "Build-25061458 campaign metadata explicitly defining act count or an architecture decision making AvailableActCount nullable for non-story campaigns."
+      ]
+    },
+    {
+      "tables": [
+        "ScenarioHOMM8"
+      ],
+      "reason": "The 21 parent Scenario identities and graphs are sourced, and the official guide calls campaigns single-player data. However ActNumber, MissionNumber, GameMode and four negative mode flags are required; source-key numbering and absence of multiplayer data do not prove their semantic values. All 21 detail rows are therefore held.",
+      "requiredSource": [
+        "Build-25061458 mission metadata or an official build-matched Cargo revision explicitly exposing act/mission numbers, game mode, hotseat, matchmaking and ranked flags."
+      ]
+    },
+    {
+      "tables": [
+        "GameHOMM8",
+        "Patch"
+      ],
+      "reason": "GameHOMM8 requires a Patch FK and ten non-null mechanics values. The retained repository has no H8 Patch row and no build-25061458 global-settings payload.",
+      "requiredSource": [
+        "Steam appmanifest_3105440.acf for build identity",
+        "Core.zip global combat/focus/law settings defining points per charge, default charge cap, hero skill cap, seal cap and per-tier seal values"
+      ]
+    },
+    {
+      "tables": [
+        "Resource",
+        "GameResource",
+        "ResourceHOMM8",
+        "AstrologyHOMM8"
+      ],
+      "reason": "Official game-derived pages establish native resource identities, but required display parents and build-specific tradeability, mine-production, persistence, scope, thresholds and rules remain unresolved. Current online balance is not substituted.",
+      "requiredSource": [
+        "Build-matched Data:Resource revisions or Core.zip resource definitions",
+        "Build-specific Astrology configuration"
+      ]
+    },
+    {
+      "tables": [
+        "MagicSchoolHOMM8"
+      ],
+      "reason": "School identities, linked skills and tier-five progression are retained, but required UsesObservatory, UsesAstrology and MaximumSpellLevel semantics need build-specific definitions.",
+      "requiredSource": [
+        "Build-matched DB/heroes_skills/skills/skills.json, DB/magics, Magic Observatory and Astrology configuration"
+      ]
+    },
+    {
+      "tables": [
+        "MapHOMM8"
+      ],
+      "reason": "The retained story hubs establish map identity and campaign membership but do not retain required level-count, underground and supported-mode flags.",
+      "requiredSource": [
+        "Build-25061458 campaign mission/map JSON and generator/template definitions"
+      ]
+    },
+    {
+      "tables": [
+        "AbilityHOMM8",
+        "CreatureAbility",
+        "HeroClassAbility"
+      ],
+      "reason": "Official Cargo pages can expose game-derived unit abilities, but an accessible revision matching build 25061458 has not been established. Required active/focus/cooldown and prerequisite semantics cannot be safely backfilled from current pages.",
+      "requiredSource": [
+        "Build-matched official Cargo revision or Core.zip DB/heroes_abilities, unit ability definitions and class/skill prerequisite definitions"
+      ]
+    },
+    {
+      "tables": [
+        "TownScreenBuilding"
+      ],
+      "reason": "Town-screen placement requires build-specific layout coordinates not retained in the catalog.",
+      "requiredSource": [
+        "Core.zip town layout/placement definitions for build 25061458"
+      ]
+    }
+  ]
+}

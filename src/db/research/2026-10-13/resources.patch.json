@@ -1,0 +1,84 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-13",
+  "notes": "Portable, source-backed resource completion patch. Do not apply this file by replacing the cumulative catalog; merge additions and null-only fills, then run the normal validator and import builder. Optional mine, market, and pile fields remain null because no one common value across HOMM1-HOMM5 was established.",
+  "additions": [
+    {
+      "table": "ResourceHOMM1To5",
+      "row": {"_key": "resource.gold", "ResourceClass": "Gold", "DefaultMineYield": null, "DefaultMarketValue": null, "MinMapPile": null, "MaxMapPile": null},
+      "evidence": {"sourceId": "classic-resource-taxonomy", "locator": "Heroes III original player manual, PDF p.17, Resource Mines and Loose Resources; PDF p.57, Resource Information", "claim": "The seven shared classic resource names are gold, wood, ore, crystal, gems, mercury, and sulfur."}
+    },
+    {
+      "table": "ResourceHOMM1To5",
+      "row": {"_key": "resource.wood", "ResourceClass": "Basic", "DefaultMineYield": null, "DefaultMarketValue": null, "MinMapPile": null, "MaxMapPile": null},
+      "evidence": {"sourceId": "classic-resource-taxonomy", "locator": "Heroes III original player manual, PDF p.17, Resource Mines and Loose Resources; PDF p.57, Resource Information", "claim": "Wood is one of the shared classic resources; the existing trusted taxonomy classifies wood as a basic/common resource."}
+    },
+    {
+      "table": "ResourceHOMM1To5",
+      "row": {"_key": "resource.ore", "ResourceClass": "Basic", "DefaultMineYield": null, "DefaultMarketValue": null, "MinMapPile": null, "MaxMapPile": null},
+      "evidence": {"sourceId": "classic-resource-taxonomy", "locator": "Heroes III original player manual, PDF p.17, Resource Mines and Loose Resources; PDF p.57, Resource Information", "claim": "Ore is one of the shared classic resources; the existing trusted taxonomy classifies ore as a basic/common resource."}
+    },
+    {
+      "table": "ResourceHOMM1To5",
+      "row": {"_key": "resource.mercury", "ResourceClass": "Rare", "DefaultMineYield": null, "DefaultMarketValue": null, "MinMapPile": null, "MaxMapPile": null},
+      "evidence": {"sourceId": "classic-resource-taxonomy", "locator": "Heroes III original player manual, PDF p.17, Resource Mines and Loose Resources; PDF p.57, Resource Information", "claim": "Mercury is one of the shared classic resources; the existing trusted taxonomy classifies mercury as a rare resource."}
+    },
+    {
+      "table": "ResourceHOMM1To5",
+      "row": {"_key": "resource.sulfur", "ResourceClass": "Rare", "DefaultMineYield": null, "DefaultMarketValue": null, "MinMapPile": null, "MaxMapPile": null},
+      "evidence": {"sourceId": "classic-resource-taxonomy", "locator": "Heroes III original player manual, PDF p.17, Resource Mines and Loose Resources; PDF p.57, Resource Information", "claim": "Sulfur is one of the shared classic resources; the existing trusted taxonomy classifies sulfur as a rare resource."}
+    },
+    {
+      "table": "ResourceHOMM1To5",
+      "row": {"_key": "resource.crystal", "ResourceClass": "Rare", "DefaultMineYield": null, "DefaultMarketValue": null, "MinMapPile": null, "MaxMapPile": null},
+      "evidence": {"sourceId": "classic-resource-taxonomy", "locator": "Heroes III original player manual, PDF p.17, Resource Mines and Loose Resources; PDF p.57, Resource Information", "claim": "Crystal is one of the shared classic resources; the existing trusted taxonomy classifies crystal as a rare resource."}
+    },
+    {
+      "table": "ResourceHOMM1To5",
+      "row": {"_key": "resource.gems", "ResourceClass": "Rare", "DefaultMineYield": null, "DefaultMarketValue": null, "MinMapPile": null, "MaxMapPile": null},
+      "evidence": {"sourceId": "classic-resource-taxonomy", "locator": "Heroes III original player manual, PDF p.17, Resource Mines and Loose Resources; PDF p.57, Resource Information", "claim": "Gems are one of the shared classic resources; the existing trusted taxonomy classifies gems as a rare resource."}
+    }
+  ],
+  "fills": [
+    {"table": "GameResource", "key": "homm1.resource.gold", "field": "ResourceClass", "expected": null, "value": "Currency", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; shared taxonomy corroborated by the original Heroes III manual", "claim": "The existing H1 membership is Gold, so its normalized GameResource class is Currency."}},
+    {"table": "GameResource", "key": "homm1.resource.wood", "field": "ResourceClass", "expected": null, "value": "Common", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; shared taxonomy corroborated by the original Heroes III manual", "claim": "The existing H1 membership is Wood, so its normalized GameResource class is Common."}},
+    {"table": "GameResource", "key": "homm1.resource.ore", "field": "ResourceClass", "expected": null, "value": "Common", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; shared taxonomy corroborated by the original Heroes III manual", "claim": "The existing H1 membership is Ore, so its normalized GameResource class is Common."}},
+    {"table": "GameResource", "key": "homm1.resource.mercury", "field": "ResourceClass", "expected": null, "value": "Rare", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; shared taxonomy corroborated by the original Heroes III manual", "claim": "The existing H1 membership is Mercury, so its normalized GameResource class is Rare."}},
+    {"table": "GameResource", "key": "homm1.resource.sulfur", "field": "ResourceClass", "expected": null, "value": "Rare", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; shared taxonomy corroborated by the original Heroes III manual", "claim": "The existing H1 membership is Sulfur, so its normalized GameResource class is Rare."}},
+    {"table": "GameResource", "key": "homm1.resource.crystal", "field": "ResourceClass", "expected": null, "value": "Rare", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; shared taxonomy corroborated by the original Heroes III manual", "claim": "The existing H1 membership is Crystal, so its normalized GameResource class is Rare."}},
+    {"table": "GameResource", "key": "homm1.resource.gems", "field": "ResourceClass", "expected": null, "value": "Rare", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; shared taxonomy corroborated by the original Heroes III manual", "claim": "The existing H1 membership is Gems, so its normalized GameResource class is Rare."}},
+    {"table": "GameResource", "key": "homm2.resource.gold", "field": "ResourceClass", "expected": null, "value": "Currency", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; Heroes II Gold manual-backed building-cost coverage", "claim": "The existing H2 membership is Gold, so its normalized GameResource class is Currency."}},
+    {"table": "GameResource", "key": "homm2.resource.wood", "field": "ResourceClass", "expected": null, "value": "Common", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; Heroes II Gold manual-backed building-cost coverage", "claim": "The existing H2 membership is Wood, so its normalized GameResource class is Common."}},
+    {"table": "GameResource", "key": "homm2.resource.ore", "field": "ResourceClass", "expected": null, "value": "Common", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; Heroes II Gold manual-backed building-cost coverage", "claim": "The existing H2 membership is Ore, so its normalized GameResource class is Common."}},
+    {"table": "GameResource", "key": "homm2.resource.mercury", "field": "ResourceClass", "expected": null, "value": "Rare", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; Heroes II Gold manual-backed building-cost coverage", "claim": "The existing H2 membership is Mercury, so its normalized GameResource class is Rare."}},
+    {"table": "GameResource", "key": "homm2.resource.sulfur", "field": "ResourceClass", "expected": null, "value": "Rare", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; Heroes II Gold manual-backed building-cost coverage", "claim": "The existing H2 membership is Sulfur, so its normalized GameResource class is Rare."}},
+    {"table": "GameResource", "key": "homm2.resource.crystal", "field": "ResourceClass", "expected": null, "value": "Rare", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; Heroes II Gold manual-backed building-cost coverage", "claim": "The existing H2 membership is Crystal, so its normalized GameResource class is Rare."}},
+    {"table": "GameResource", "key": "homm2.resource.gems", "field": "ResourceClass", "expected": null, "value": "Rare", "evidence": {"sourceId": "classic-resource-classification", "locator": "H1/H2 official-manual-backed catalog notes in src/db/data/homm1-homm2-catalog.sources.md; Heroes II Gold manual-backed building-cost coverage", "claim": "The existing H2 membership is Gems, so its normalized GameResource class is Rare."}}
+  ],
+  "sources": [
+    {
+      "id": "classic-resource-taxonomy",
+      "kind": "primary_manual",
+      "title": "Heroes III: The Restoration of Erathia - Player Manual",
+      "fileName": "Heroes3_Manual.pdf",
+      "sha256Observed": "94ee8e7055ce6a4f1f8f920ebd8e230c1fcf319f564890831ff6c5fbbae1f9d8",
+      "locators": [
+        {"pdfPage": 17, "heading": "Resource Mines and Loose Resources"},
+        {"pdfPage": 57, "heading": "Resource Information"}
+      ],
+      "notes": "The user supplied this local original manual. Its PDF text and rendered pages name the seven shared classic resources and show the seven mine/resource types. The PDF bytes are not committed to the repository."
+    },
+    {
+      "id": "classic-resource-classification",
+      "kind": "project_primary_source_reconciliation",
+      "title": "HOMM1-HOMM2 official-manual-backed catalog and trusted classic taxonomy",
+      "locators": [
+        "src/db/data/homm1-homm2-catalog.sources.md#sources-and-corrections",
+        "src/db/data/homm3-creatures.sources.md:153-158",
+        "src/db/data/manual-homm1-3.sources.md#source-registry"
+      ],
+      "manualKeys": ["manual.c1d7c0b2da69", "manual.a99f53fdd378"],
+      "notes": "The H1/H2 source note records official-manual-backed building costs and resource amounts, while the existing trusted HOMM3 GameResource taxonomy supplies the normalized class mapping used here: Gold=Currency, Wood/Ore=Common, and Mercury/Sulfur/Crystal/Gems=Rare. Existing H1/H2 GameResource memberships are already complete at seven per game, so this patch adds no duplicate junction rows."
+    }
+  ]
+}

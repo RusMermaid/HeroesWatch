@@ -1,0 +1,221 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-13",
+  "game": "Heroes VI",
+  "scope": "Final-catalog follow-up for six missing Dungeon HeroClassHOMM6 rows, nullable existing creature growth fields, one fully transcribed Spectral Dragon profile, and the remaining Heroes VI creature-detail blockers.",
+  "policy": "No game installation was downloaded, no live database was changed, and no existing non-null value was overwritten. All numeric values in this file are candidates only: the public sources are secondary transcriptions or conflict with one another. Merge only after a primary original-game table, final editor package, or retained game-file extraction corroborates the exact value and final patch scope.",
+  "additions": [],
+  "fills": [],
+  "sources": [
+    {
+      "id": "h6-dungeon-class-tables",
+      "kind": "secondary_game_reference",
+      "accessed": "2026-10-13",
+      "urls": [
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%9A%D0%BB%D0%B8%D0%BD%D0%BE%D0%BA_%D0%A2%D1%8C%D0%BC%D1%8B_%28%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI%29",
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%9A%D0%BE%D0%BB%D0%B4%D1%83%D0%BD_%28%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI%29",
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%A3%D0%B1%D0%B8%D0%B9%D1%86%D0%B0-%D0%B2-%D0%A2%D0%B5%D0%BD%D0%B8_%28%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI%29",
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%9B%D0%BE%D0%B2%D0%BA%D0%B0%D1%87_%28%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI%29",
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%A2%D1%91%D0%BC%D0%BD%D1%8B%D0%B9_%D0%BF%D1%80%D0%BE%D1%80%D0%BE%D0%BA_%28%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI%29",
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%A2%D0%BA%D0%B0%D1%87_%D0%A2%D0%B5%D0%BD%D0%B8_%28%D0%BA%D0%BB%D0%B0%D1%81%D1%81_%D0%B3%D0%B5%D1%80%D0%BE%D1%8F%2C_HoMM_VI%29"
+      ],
+      "supports": [
+        "The Darkblade and Sorcerer pages print initial six-attribute tables.",
+        "The four promoted-class pages identify Shadow Slayer/Trickster as Darkblade Blood/Tears and Dark Prophet/Shadow Weaver as Sorcerer Blood/Tears.",
+        "This is cross-language wiki evidence, not independent primary evidence; all six class rows remain candidate-only."
+      ]
+    },
+    {
+      "id": "h6-unit-tables-atwiki",
+      "kind": "secondary_game_reference",
+      "accessed": "2026-10-13",
+      "urls": ["https://w.atwiki.jp/homm/pages/154.html", "https://w.atwiki.jp/homm/pages/206.html"],
+      "supports": [
+        "The dated Haven table prints Sentinel/Praetorian 9/14 and Sister/Vestal 7/11 weekly growth.",
+        "The dated Dungeon table prints Assassin/Shade 7/11, Stalker/Chakram Dancer 7/10, Shadow Lurker/Shadow Watcher 6/9, Minotaur/Minotaur Guard 3/4, Manticore/Scorpicore 4/5, Faceless/Faceless Puppeteer 3/5, and Shadow Dragon/Black Dragon 1/2.",
+        "These explicit nullable growth candidates are not mergeable as primary facts until checked against final game/editor data."
+      ]
+    },
+    {
+      "id": "h6-defense-formula-manual",
+      "kind": "published_manual_reference",
+      "accessed": "2026-10-13",
+      "url": "https://www.scribd.com/document/88970592/Mmh6-Manual-Eng-0-921",
+      "supports": [
+        "Heroes VI uses hidden integer creature defense values and displays derived resistance percentages.",
+        "A displayed percentage cannot be copied into MightDefense or MagicDefense; integer inversion is safe only when unique."
+      ],
+      "notes": "Published fan manual 0.921, not an official Ubisoft package; already cited by the repository's existing Heroes VI research."
+    },
+    {
+      "id": "h6-spectral-dragon-profile",
+      "kind": "secondary_game_reference_with_file_provenance_note",
+      "accessed": "2026-10-13",
+      "urls": [
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%A4%D0%B0%D0%BD%D1%82%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9_%D0%B4%D1%80%D0%B0%D0%BA%D0%BE%D0%BD",
+        "https://mightandmagic.fandom.com/wiki/Spectral_dragon_%28H6%29"
+      ],
+      "supports": [
+        "The Russian H6 page prints raw 27/28 defense points, 55-61 damage, 315 health, 45 initiative, speed 7 with flying movement, Large size, no range, luck 7, morale 0, and weekly growth 1.",
+        "Its footnote says the cost and growth are present in the game files even though the creature is not recruitable in ordinary play.",
+        "The existing generic row and prior research classify Spectral Dragon as a Necropolis summoned creature."
+      ],
+      "notes": "Candidate-only until the claimed game-file provenance is independently retained or the final editor package is checked."
+    },
+    {
+      "id": "h6-missing-creature-roster",
+      "kind": "secondary_roster_reference",
+      "accessed": "2026-10-13",
+      "url": "https://mightandmagic.fandom.com/wiki/Heroes_VI_creatures",
+      "supports": [
+        "The 16 current missing CreatureHOMM6 identities and individual profile links.",
+        "Candidate damage, health, speed, initiative, range, size, and displayed resistance values for the boss records."
+      ],
+      "notes": "Used for candidate facts and blocker documentation only; not treated as primary package evidence."
+    },
+    {
+      "id": "h6-dungeon-defense-conflict",
+      "kind": "secondary_conflict_record",
+      "accessed": "2026-10-13",
+      "urls": [
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%92%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D1%89%D0%B8%D0%BA_%28HoMM_VI%29",
+        "https://mightandmagic.fandom.com/ru/wiki/%D0%A1%D0%BE%D0%B3%D0%BB%D1%8F%D0%B4%D0%B0%D1%82%D0%B0%D0%B9_%28HoMM_VI%29",
+        "https://w.atwiki.jp/homm/pages/206.html"
+      ],
+      "supports": [
+        "Russian pages print Shadow Lurker and Shadow Watcher Magic Defense as 10.5 (22%), while the Japanese table prints integer 11 (22%).",
+        "The conflict is retained as evidence-only; no detail row is added and no existing scalar is overwritten."
+      ]
+    },
+    {
+      "id": "h6-official-patch-2-1",
+      "kind": "primary_publisher_patch_notes",
+      "accessed": "2026-10-13",
+      "url": "https://store.steampowered.com/oldnews/?appgroupname=Ubisoft+Collection&appids=48240%2C201870%2C208480%2C13520%2C19900%2C33460%2C214250%2C48220%2C207490%2C212630&feed=steam_updates",
+      "supports": [
+        "Ubisoft's published Heroes VI 2.1 notes include creature-specific and ability-specific fixes, including Ahribban, Imperial Griffin, Dreamwalker, and Blazing Glory.",
+        "The final patch history is version-sensitive, but the public notes do not publish the missing boss raw fields."
+      ]
+    }
+  ],
+  "candidateChanges": [
+    {
+      "kind": "class_detail_candidates",
+      "status": "wiki_only_not_mergeable",
+      "table": "HeroClassHOMM6",
+      "reason": "The exact initial values are printed by Russian wiki pages, but there is no independent original-game screenshot, official manual table, patch note, or retained editor package in this checkout. Promotion pages prove path/base identity, not an inheritance rule for numeric defaults.",
+      "candidates": {
+        "homm6.heroclass.darkblade": {"Faction_id": "homm6.faction.dungeon", "BaseHeroClass_id": null, "ReputationPath": "Neutral", "defaults": [3, 1, 2, 1, 1, 1]},
+        "homm6.heroclass.shadow.slayer": {"Faction_id": "homm6.faction.dungeon", "BaseHeroClass_id": "homm6.heroclass.darkblade", "ReputationPath": "Blood", "defaults": [3, 1, 2, 1, 1, 1], "derivation": "Copied from Darkblade; inheritance rule not independently proven."},
+        "homm6.heroclass.trickster": {"Faction_id": "homm6.faction.dungeon", "BaseHeroClass_id": "homm6.heroclass.darkblade", "ReputationPath": "Tears", "defaults": [3, 1, 2, 1, 1, 1], "derivation": "Copied from Darkblade; inheritance rule not independently proven."},
+        "homm6.heroclass.sorcerer": {"Faction_id": "homm6.faction.dungeon", "BaseHeroClass_id": null, "ReputationPath": "Neutral", "defaults": [2, 1, 2, 2, 1, 1]},
+        "homm6.heroclass.dark.prophet": {"Faction_id": "homm6.faction.dungeon", "BaseHeroClass_id": "homm6.heroclass.sorcerer", "ReputationPath": "Blood", "defaults": [2, 1, 2, 2, 1, 1], "derivation": "Copied from Sorcerer; inheritance rule not independently proven."},
+        "homm6.heroclass.shadow.weaver": {"Faction_id": "homm6.faction.dungeon", "BaseHeroClass_id": "homm6.heroclass.sorcerer", "ReputationPath": "Tears", "defaults": [2, 1, 2, 2, 1, 1], "derivation": "Copied from Sorcerer; inheritance rule not independently proven."}
+      },
+      "fieldOrder": ["DefaultMightPower", "DefaultMightDefense", "DefaultMagicPower", "DefaultMagicDefense", "DefaultLeadership", "DefaultDestiny"],
+      "requiredNextEvidence": "Original game UI screenshot of each Dungeon class, a final-game class definition, or a package-backed extraction of the six initial attributes and promotion defaults."
+    },
+    {
+      "kind": "nullable_growth_candidates",
+      "status": "secondary_table_only_not_mergeable",
+      "table": "CreatureHOMM6",
+      "reason": "The atwiki pair tables are explicit but secondary. They support null-only candidates, not final mergeable fills.",
+      "candidates": {
+        "homm6.creature.praetorian.UpgradeGrowth": 14,
+        "homm6.creature.sister.BasicGrowth": 7,
+        "homm6.creature.assassin.BasicGrowth": 7,
+        "homm6.creature.shade.UpgradeGrowth": 11,
+        "homm6.creature.stalker.BasicGrowth": 7,
+        "homm6.creature.chakram.dancer.UpgradeGrowth": 10,
+        "homm6.creature.minotaur.BasicGrowth": 3,
+        "homm6.creature.minotaur.guard.UpgradeGrowth": 4,
+        "homm6.creature.manticore.BasicGrowth": 4,
+        "homm6.creature.scorpicore.UpgradeGrowth": 5,
+        "homm6.creature.faceless.BasicGrowth": 3,
+        "homm6.creature.faceless.puppeteer.UpgradeGrowth": 5,
+        "homm6.creature.shadow.dragon.BasicGrowth": 1,
+        "homm6.creature.black.dragon.UpgradeGrowth": 2
+      },
+      "requiredNextEvidence": "Final package/editor table or original-game UI capture with the same release/patch scope."
+    },
+    {
+      "kind": "complete_profile_candidate",
+      "status": "secondary_transcription_not_mergeable",
+      "table": "CreatureHOMM6",
+      "key": "homm6.creature.spectral.dragon",
+      "reason": "Every scalar is explicit in the Russian page and the generic parent is already classified as a Necropolis summoned creature, but the page is still a secondary transcription.",
+      "candidateRow": {
+        "Faction_id": "homm6.faction.necropolis",
+        "Tier": "Champion",
+        "CreatureKind": "Summoned",
+        "AttackType": "Might",
+        "DamageMin": 55,
+        "DamageMax": 61,
+        "MightDefense": 27,
+        "MagicDefense": 28,
+        "Health": 315,
+        "Speed": 7,
+        "Initiative": 45,
+        "CombatSize": 4,
+        "Range": "None",
+        "Morale": 0,
+        "Luck": 7,
+        "BasicGrowth": 1,
+        "UpgradeGrowth": null,
+        "Movement": "Flying",
+        "Recruitable": false,
+        "DoubleUpgrade": false,
+        "AlternativeUpgrade": false
+      },
+      "requiredNextEvidence": "Retain the referenced game-file record or verify the final editor package before adding it."
+    },
+    {
+      "kind": "creature_detail_blockers",
+      "status": "evidence_only_until_primary_or_package_crosscheck",
+      "table": "CreatureHOMM6",
+      "reason": "Public boss pages expose display resistance percentages and combat labels, while the current detail schema requires integer raw defenses, an enum movement, and numeric occupied-square CombatSize. Several displayed percentages map to multiple integer defenses; textual Huge/Large is not an occupied-square count.",
+      "blockedKeys": [
+        "homm6.creature.abyssal.worm",
+        "homm6.creature.ahribban",
+        "homm6.creature.avatar.of.the.void",
+        "homm6.creature.azkaal",
+        "homm6.creature.breeder.queen",
+        "homm6.creature.daughter.of.malassa",
+        "homm6.creature.dragonwraith",
+        "homm6.creature.enraged.kirin",
+        "homm6.creature.hai.ryou",
+        "homm6.creature.michael",
+        "homm6.creature.mother.namtaru",
+        "homm6.creature.thunderbird",
+        "homm6.creature.uriel",
+        "homm6.creature.shadow.lurker",
+        "homm6.creature.shadow.watcher"
+      ],
+      "publishedProfiles": {
+        "homm6.creature.abyssal.worm": {"attackTypeCandidate": "Magic", "damage": [2750, 3250], "health": 75000, "mightDefenseDisplayedPct": 73, "magicDefenseDisplayedPct": 64, "speed": null, "initiative": null, "luck": null, "range": "None", "sizeText": "Large", "movement": null, "unresolved": ["raw defenses ambiguous", "Speed", "Initiative", "Luck", "Movement"]},
+        "homm6.creature.ahribban": {"attackTypeCandidate": "Magic", "damage": [15250, 15750], "health": 80000, "mightDefenseDisplayedPct": 73, "magicDefenseDisplayedPct": 73, "speed": 99, "initiative": 55, "luck": 50, "range": "None", "sizeText": "Large", "movement": null, "unresolved": ["raw defenses ambiguous", "Movement"]},
+        "homm6.creature.avatar.of.the.void": {"attackTypeCandidate": "Magic", "damage": [7500, 10000], "health": 250000, "mightDefenseDisplayedPct": 69, "magicDefenseDisplayedPct": 69, "speed": 0, "initiative": 10, "luck": 0, "range": "None", "sizeText": "Huge", "movement": null, "unresolved": ["raw defenses ambiguous", "CombatSize", "Movement"]},
+        "homm6.creature.azkaal": {"attackTypeCandidate": "Might", "damage": [1200, 2400], "health": 75000, "mightDefenseDisplayedPct": 64, "magicDefenseDisplayedPct": 64, "speed": 9, "initiative": 55, "luck": 10, "range": "None", "sizeText": "Large", "movement": null, "unresolved": ["raw defenses ambiguous", "Movement"]},
+        "homm6.creature.breeder.queen": {"attackTypeCandidate": "Magic", "damage": [8500, 9000], "health": 100000, "mightDefenseDisplayedPct": 61, "magicDefenseDisplayedPct": 61, "speed": 0, "initiative": 55, "luck": 0, "range": "Full", "sizeText": "Large", "movement": null, "unresolved": ["raw defenses ambiguous", "Movement"]},
+        "homm6.creature.daughter.of.malassa": {"attackTypeCandidate": "Might", "damageText": "6500 (single printed value)", "health": 180000, "mightDefenseDisplayedPct": 64, "magicDefenseDisplayedPct": 64, "speed": 99, "initiative": 50, "luck": 0, "range": "None", "sizeText": "Large", "movement": null, "unresolved": ["raw defenses ambiguous", "DamageMin/DamageMax interpretation", "Movement"]},
+        "homm6.creature.dragonwraith": {"attackTypeCandidate": "Might", "damage": [1000, 1500], "healthText": "70000 (starts at 35000)", "mightDefenseDisplayedPct": 72, "magicDefenseDisplayedPct": 66, "speed": 99, "initiative": 50, "luck": 0, "range": "None", "sizeText": "Huge", "movement": null, "unresolved": ["raw MightDefense ambiguous", "Health interpretation", "CombatSize", "Movement"]},
+        "homm6.creature.enraged.kirin": {"attackTypeCandidate": "Magic", "damage": [2800, 3600], "health": 80000, "mightDefenseRawCandidate": 33, "magicDefenseRawCandidate": 35, "speed": 9, "initiative": 50, "luck": 0, "range": "None", "sizeText": "Huge", "movement": null, "unresolved": ["CombatSize", "Movement"]},
+        "homm6.creature.hai.ryou": {"attackTypeCandidate": "Magic", "damage": [2100, 2400], "health": 75000, "mightDefenseRawCandidate": 25, "magicDefenseRawCandidate": 25, "speed": 9, "initiative": 50, "luck": 0, "range": "None", "sizeText": "Large", "movement": null, "unresolved": ["Movement"]},
+        "homm6.creature.michael": {"attackTypeCandidate": "Might", "damageText": "7500 (single printed value)", "health": 100000, "mightDefenseDisplayedPct": 64, "magicDefenseDisplayedPct": 64, "speed": 100, "initiative": 50, "luck": 0, "range": "None", "sizeText": "Large", "movement": null, "unresolved": ["raw defenses ambiguous", "DamageMin/DamageMax interpretation", "Movement"]},
+        "homm6.creature.mother.namtaru": {"attackTypeCandidate": "Magic", "damage": [4400, 4800], "health": 65000, "mightDefenseRawCandidate": 40, "magicDefenseRawCandidate": 40, "speed": 99, "initiative": 45, "luck": 0, "range": "Full", "sizeText": "Huge", "movement": null, "unresolved": ["CombatSize", "Movement"]},
+        "homm6.creature.thunderbird": {"attackTypeCandidate": "Magic", "damage": [450, 520], "health": 65000, "mightDefenseDisplayedPct": 65, "magicDefenseDisplayedPct": 71, "speed": 99, "initiative": 45, "luck": 0, "range": "None", "sizeText": "Huge", "movementText": "Boss tactics say it never moves; enum has no Stationary", "unresolved": ["raw defenses ambiguous", "CombatSize", "Movement"]},
+        "homm6.creature.uriel": {"attackTypeCandidate": "Might", "damageText": "14000 (single printed value)", "health": 135000, "mightDefenseDisplayedPct": 71, "magicDefenseDisplayedPct": 69, "speed": 8, "initiative": 50, "luck": 0, "range": null, "sizeText": "Large", "movement": null, "unresolved": ["raw defenses ambiguous", "Range", "DamageMin/DamageMax interpretation", "Movement"]},
+        "homm6.creature.shadow.lurker": {"attackTypeCandidate": "Magic", "damage": [3, 6], "health": 18, "mightDefenseRawCandidate": 2, "magicDefenseConflict": [10.5, 11], "speed": 4, "initiative": 30, "combatSizeCandidate": 1, "range": "Full", "luck": 6, "morale": 6, "growthCandidate": 6, "movementCandidate": "Ground (Russian page says on foot)", "unresolved": ["MagicDefense conflict"]},
+        "homm6.creature.shadow.watcher": {"attackTypeCandidate": "Magic", "damage": [4, 7], "health": 22, "mightDefenseRawCandidate": 3, "magicDefenseConflict": [10.5, 11], "speed": 4, "initiative": 35, "combatSizeCandidate": 1, "range": "Full", "luck": 7, "morale": 6, "growthCandidate": 9, "movementCandidate": "Ground (Russian page says on foot)", "unresolved": ["MagicDefense conflict"]}
+      },
+      "requiredNextEvidence": "A final-game/editor package or retained native data extraction containing raw MightDefense/MagicDefense, Movement, and footprint/CombatSize."
+    },
+    {
+      "kind": "schema",
+      "status": "candidate_extension_if_bosses_are_required",
+      "table": "CreatureHOMM6",
+      "reason": "The current enum has Ground/Flying/Teleporting only, while boss gameplay can be stationary or scripted/teleporting, and CombatSize stores occupied squares rather than a textual Huge/Large label.",
+      "minimumChange": "Consider an explicit Stationary/scripted movement representation and a nullable or separately typed footprint before importing boss rows."
+    }
+  ]
+}

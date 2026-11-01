@@ -1,0 +1,3880 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-14",
+  "notes": "H5 creature starting stacks from explicit 3.1 manual panels; additional campaign hero starting skills and specialty labels from the project Might and Magic Wiki. Existing non-null values and shared same-name variant identities are preserved.",
+  "additions": [
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.erasial.skill.logistics",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.erasial",
+        "Skill_id": "homm5.skill.logistics",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-erasial",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Logistics skill label for Erasial; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.segref.skill.irresistible.magic",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.segref",
+        "Skill_id": "homm5.skill.irresistible.magic",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-segref",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Irresistible Magic skill label for Segref; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.segref.skill.dark.magic",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.segref",
+        "Skill_id": "homm5.skill.dark.magic",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-segref",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Dark Magic skill label for Segref; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.glen.skill.counterstrike",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.glen",
+        "Skill_id": "homm5.skill.counterstrike",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-glen",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Counterstrike skill label for Glen; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.glen.skill.war.machines",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.glen",
+        "Skill_id": "homm5.skill.war.machines",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-glen",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic War Machines skill label for Glen; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.giar.skill.counterstrike",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.giar",
+        "Skill_id": "homm5.skill.counterstrike",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-giar",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Counterstrike skill label for Giar; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.giar.skill.attack",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.giar",
+        "Skill_id": "homm5.skill.attack",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-giar",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Attack skill label for Giar; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.ohtar.skill.irresistible.magic",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.ohtar",
+        "Skill_id": "homm5.skill.irresistible.magic",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-ohtar",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Irresistible Magic skill label for Ohtar; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.ohtar.skill.luck",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.ohtar",
+        "Skill_id": "homm5.skill.luck",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-ohtar",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Luck skill label for Ohtar; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.ohtar.skill.attack",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.ohtar",
+        "Skill_id": "homm5.skill.attack",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-ohtar",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Attack skill label for Ohtar; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.gamor.skill.gating",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.gamor",
+        "Skill_id": "homm5.skill.gating",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-gamor",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Gating skill label for Gamor; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.gamor.skill.logistics",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.gamor",
+        "Skill_id": "homm5.skill.logistics",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-gamor",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Logistics skill label for Gamor; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.toulain.skill.blood.rage",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.toulain",
+        "Skill_id": "homm5.skill.blood.rage",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-toulain",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Blood Rage skill label for Toulain; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.toulain.skill.war.machines",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.toulain",
+        "Skill_id": "homm5.skill.war.machines",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-toulain",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic War Machines skill label for Toulain; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.dulgan.skill.blood.rage",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.dulgan",
+        "Skill_id": "homm5.skill.blood.rage",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-dulgan",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Blood Rage skill label for Dulgan; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.dulgan.skill.attack",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.dulgan",
+        "Skill_id": "homm5.skill.attack",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-dulgan",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Attack skill label for Dulgan; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.mangu.skill.blood.rage",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.mangu",
+        "Skill_id": "homm5.skill.blood.rage",
+        "Mastery": "Advanced"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-mangu",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Advanced Blood Rage skill label for Mangu; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.ghost.skill.counterstrike",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.ghost",
+        "Skill_id": "homm5.skill.counterstrike",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-ghost",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Counterstrike skill label for Ghost; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.ghost.skill.leadership",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.ghost",
+        "Skill_id": "homm5.skill.leadership",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-ghost",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Leadership skill label for Ghost; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.ghost.skill.light.magic",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.ghost",
+        "Skill_id": "homm5.skill.light.magic",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-ghost",
+        "locator": "Gameplay / Skills or Abilities",
+        "claim": "Explicit Basic Light Magic skill label for Ghost; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.saint.isabel.skill.counterstrike",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.saint.isabel",
+        "Skill_id": "homm5.skill.counterstrike",
+        "Mastery": "Basic"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-saint-isabel",
+        "locator": "Gameplay / Saint Isabel",
+        "claim": "Explicit Basic Counterstrike skill label for Saint Isabel; no class-default inference."
+      }
+    },
+    {
+      "table": "HeroSkill",
+      "row": {
+        "_key": "homm5.hero.saint.isabel.skill.leadership",
+        "Game_id": "homm5.game",
+        "Hero_id": "homm5.hero.saint.isabel",
+        "Skill_id": "homm5.skill.leadership",
+        "Mastery": "Advanced"
+      },
+      "evidence": {
+        "sourceId": "h5-wiki-saint-isabel",
+        "locator": "Gameplay / Saint Isabel",
+        "claim": "Explicit Advanced Leadership skill label for Saint Isabel; no class-default inference."
+      }
+    }
+  ],
+  "fills": [
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.faiz",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          11
+        ],
+        "locator": "Army & Spells panels for Faiz",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.galib",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          11
+        ],
+        "locator": "Army & Spells panels for Galib",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.havez",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          12
+        ],
+        "locator": "Army & Spells panels for Havez",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.jhora",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          12
+        ],
+        "locator": "Army & Spells panels for Jhora",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.narxes",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.mage",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          13
+        ],
+        "locator": "Army & Spells panels for Narxes",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.nathir",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          13
+        ],
+        "locator": "Army & Spells panels for Nathir",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.nur",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          14
+        ],
+        "locator": "Army & Spells panels for Nur",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.razzak",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 4,
+          "maximum": 6
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 4,
+          "maximum": 6
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 4,
+          "maximum": 6
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          14
+        ],
+        "locator": "Army & Spells panels for Razzak",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.cyrus",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          15
+        ],
+        "locator": "Army & Spells panels for Cyrus",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.maahir",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          15
+        ],
+        "locator": "Army & Spells panels for Maahir",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.zehir",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.gremlin",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.stone.gargoyle",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.iron.golem",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          16
+        ],
+        "locator": "Army & Spells panels for Zehir",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.eruina",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          17
+        ],
+        "locator": "Army & Spells panels for Eruina",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.kythra",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 3,
+          "maximum": 4
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 3,
+          "maximum": 4
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 3,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          17
+        ],
+        "locator": "Army & Spells panels for Kythra",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.lethos",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          18
+        ],
+        "locator": "Army & Spells panels for Lethos",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.sinitar",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          18
+        ],
+        "locator": "Army & Spells panels for Sinitar",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.sorgal",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          19
+        ],
+        "locator": "Army & Spells panels for Sorgal",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.vayshan",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          19
+        ],
+        "locator": "Army & Spells panels for Vayshan",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.yrbeth",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          20
+        ],
+        "locator": "Army & Spells panels for Yrbeth",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.yrwanna",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          20
+        ],
+        "locator": "Army & Spells panels for Yrwanna",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.agbeth",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.assassin",
+          "count": 35
+        },
+        {
+          "creatureKey": "homm5.creature.blood.fury",
+          "count": 22
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur.guard",
+          "count": 8
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          21
+        ],
+        "locator": "Army & Spells panels for Agbeth",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.raelag",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          21,
+          22
+        ],
+        "locator": "Army & Spells panels for Raelag",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ranleth",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          22
+        ],
+        "locator": "Army & Spells panels for Ranleth",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.shadya",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          23
+        ],
+        "locator": "Army & Spells panels for Shadya",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.thralsai",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          23
+        ],
+        "locator": "Army & Spells panels for Thralsai",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ylaya",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.scout",
+          "minimum": 7,
+          "maximum": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blood.maiden",
+          "count": 3
+        },
+        {
+          "creatureKey": "homm5.creature.minotaur",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          24
+        ],
+        "locator": "Army & Spells panels for Ylaya",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.brand",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          25
+        ],
+        "locator": "Army & Spells panels for Brand",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ebba",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 3,
+          "maximum": 4
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 3,
+          "maximum": 4
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 3,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          25
+        ],
+        "locator": "Army & Spells panels for Ebba",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.erling",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.rune.priest",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          26
+        ],
+        "locator": "Army & Spells panels for Erling",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.helmar",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          26
+        ],
+        "locator": "Army & Spells panels for Helmar",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.inga",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          27
+        ],
+        "locator": "Army & Spells panels for Inga",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ingvar",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          27
+        ],
+        "locator": "Army & Spells panels for Ingvar",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.karli",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          28
+        ],
+        "locator": "Army & Spells panels for Karli",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.svea",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          28
+        ],
+        "locator": "Army & Spells panels for Svea",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.hangvul",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.rune.priest",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          29
+        ],
+        "locator": "Army & Spells panels for Hangvul",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.king.tolghar",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          29
+        ],
+        "locator": "Army & Spells panels for King Tolghar",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.rolf",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          30
+        ],
+        "locator": "Army & Spells panels for Rolf",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.wulfstan",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.defender",
+          "minimum": 18,
+          "maximum": 26
+        },
+        {
+          "creatureKey": "homm5.creature.spearwielder",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.bear.rider",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          30
+        ],
+        "locator": "Army & Spells panels for Wulfstan",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.dougal",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          31
+        ],
+        "locator": "Army & Spells panels for Dougal",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ellaine",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          31
+        ],
+        "locator": "Army & Spells panels for Ellaine",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.irina",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.griffin",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          32
+        ],
+        "locator": "Army & Spells panels for Irina",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.klaus",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          32
+        ],
+        "locator": "Army & Spells panels for Klaus",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.laszlo",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 5,
+          "maximum": 6
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 5,
+          "maximum": 6
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 5,
+          "maximum": 6
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          33,
+          40
+        ],
+        "locator": "Army & Spells panels for Laszlo",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.maeve",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          33
+        ],
+        "locator": "Army & Spells panels for Maeve",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.rutger",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          34
+        ],
+        "locator": "Army & Spells panels for Rutger",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.vittorio",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          34
+        ],
+        "locator": "Army & Spells panels for Vittorio",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.alaric",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          35
+        ],
+        "locator": "Army & Spells panels for Alaric",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.andreas",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          35
+        ],
+        "locator": "Army & Spells panels for Andreas",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.benedikt",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          36
+        ],
+        "locator": "Army & Spells panels for Benedikt",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.bertrand",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 5,
+          "maximum": 6
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 5,
+          "maximum": 6
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 5,
+          "maximum": 6
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          36
+        ],
+        "locator": "Army & Spells panels for Bertrand",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.duncan",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          37
+        ],
+        "locator": "Army & Spells panels for Duncan",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.freyda",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          37,
+          38
+        ],
+        "locator": "Army & Spells panels for Freyda",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.gabrielle",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.griffin",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          38
+        ],
+        "locator": "Army & Spells panels for Gabrielle",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.godric",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          39
+        ],
+        "locator": "Army & Spells panels for Godric",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.isabel",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          39,
+          40
+        ],
+        "locator": "Army & Spells panels for Isabel",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.lorenzo",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          41
+        ],
+        "locator": "Army & Spells panels for Lorenzo",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.valeria",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.peasant",
+          "minimum": 22,
+          "maximum": 32
+        },
+        {
+          "creatureKey": "homm5.creature.archer",
+          "minimum": 7,
+          "maximum": 9
+        },
+        {
+          "creatureKey": "homm5.creature.footman",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          43
+        ],
+        "locator": "Army & Spells panels for Valeria",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.alastor",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          44
+        ],
+        "locator": "Army & Spells panels for Alastor",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.deleb",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          44
+        ],
+        "locator": "Army & Spells panels for Deleb",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.grawl",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 4,
+          "maximum": 5
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 4,
+          "maximum": 5
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 4,
+          "maximum": 5
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          45
+        ],
+        "locator": "Army & Spells panels for Grawl",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.grok",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          45
+        ],
+        "locator": "Army & Spells panels for Grok",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.jezebeth",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.succubus",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          46
+        ],
+        "locator": "Army & Spells panels for Jezebeth",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.marbas",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          46
+        ],
+        "locator": "Army & Spells panels for Marbas",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.nebiros",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          47
+        ],
+        "locator": "Army & Spells panels for Nebiros",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.nymus",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          47
+        ],
+        "locator": "Army & Spells panels for Nymus",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.agrael",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          48
+        ],
+        "locator": "Army & Spells panels for Agrael",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.biara",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          48
+        ],
+        "locator": "Army & Spells panels for Biara",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.guarg",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          49
+        ],
+        "locator": "Army & Spells panels for Guarg",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.sovereign",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          50
+        ],
+        "locator": "Army & Spells panels for Sovereign",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.veyer",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.imp",
+          "minimum": 16,
+          "maximum": 23
+        },
+        {
+          "creatureKey": "homm5.creature.horned.demon",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.hell.hound",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          50
+        ],
+        "locator": "Army & Spells panels for Veyer",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.deirdre",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          51
+        ],
+        "locator": "Army & Spells panels for Deirdre",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.kaspar",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          51
+        ],
+        "locator": "Army & Spells panels for Kaspar",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.lucretia",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.vampire",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          52
+        ],
+        "locator": "Army & Spells panels for Lucretia",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.naadir",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          52
+        ],
+        "locator": "Army & Spells panels for Naadir",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.orson",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          53
+        ],
+        "locator": "Army & Spells panels for Orson",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.raven",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          53
+        ],
+        "locator": "Army & Spells panels for Raven",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.vladimir",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          54
+        ],
+        "locator": "Army & Spells panels for Vladimir",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.zoltan",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          54
+        ],
+        "locator": "Army & Spells panels for Zoltan",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.arantir",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          55
+        ],
+        "locator": "Army & Spells panels for Arantir",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.giovanni",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          55
+        ],
+        "locator": "Army & Spells panels for Giovanni",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.markal",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.skeleton",
+          "minimum": 20,
+          "maximum": 29
+        },
+        {
+          "creatureKey": "homm5.creature.zombie",
+          "minimum": 9,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.ghost",
+          "minimum": 0,
+          "maximum": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          56
+        ],
+        "locator": "Army & Spells panels for Markal",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.garuna",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 0,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          58
+        ],
+        "locator": "Army & Spells panels for Garuna",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.gorshak",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.slayer",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          58
+        ],
+        "locator": "Army & Spells panels for Gorshak",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.haggash",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          59
+        ],
+        "locator": "Army & Spells panels for Haggash",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.kilghan",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          59
+        ],
+        "locator": "Army & Spells panels for Kilghan",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.kragh",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 0,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          60
+        ],
+        "locator": "Army & Spells panels for Kragh",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.shak.karukat",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 0,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          60
+        ],
+        "locator": "Army & Spells panels for Shak'Karukat",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.telsek",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 5,
+          "maximum": 7
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          61
+        ],
+        "locator": "Army & Spells panels for Telsek",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.urghat",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 0,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          61
+        ],
+        "locator": "Army & Spells panels for Urghat",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.gotai",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 0,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          62
+        ],
+        "locator": "Army & Spells panels for Gotai",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.kujin",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 0,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          62
+        ],
+        "locator": "Army & Spells panels for Kujin",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.kunyak",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "count": 30
+        },
+        {
+          "creatureKey": "homm5.creature.shaman",
+          "count": 12
+        },
+        {
+          "creatureKey": "homm5.creature.slayer",
+          "count": 3
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          63
+        ],
+        "locator": "Army & Spells panels for Kunyak",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.quroq",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.goblin",
+          "minimum": 25,
+          "maximum": 37
+        },
+        {
+          "creatureKey": "homm5.creature.centaur",
+          "minimum": 8,
+          "maximum": 11
+        },
+        {
+          "creatureKey": "homm5.creature.warrior",
+          "minimum": 0,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          63
+        ],
+        "locator": "Army & Spells panels for Quroq",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.anwen",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.pixie",
+          "minimum": 10,
+          "maximum": 14
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          64
+        ],
+        "locator": "Army & Spells panels for Anwen",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.dirael",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.pixie",
+          "minimum": 10,
+          "maximum": 14
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          64
+        ],
+        "locator": "Army & Spells panels for Dirael",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.gilraen",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          65
+        ],
+        "locator": "Army & Spells panels for Gilraen",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ossir",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 3,
+          "maximum": 4
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 3,
+          "maximum": 4
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 3,
+          "maximum": 4
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          65
+        ],
+        "locator": "Army & Spells panels for Ossir",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.talanar",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.pixie",
+          "minimum": 10,
+          "maximum": 14
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          66
+        ],
+        "locator": "Army & Spells panels for Talanar",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.vinrael",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.pixie",
+          "minimum": 10,
+          "maximum": 14
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          66
+        ],
+        "locator": "Army & Spells panels for Vinrael",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.wyngaal",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.pixie",
+          "minimum": 10,
+          "maximum": 14
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          67
+        ],
+        "locator": "Army & Spells panels for Wyngaal",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ylthin",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.pixie",
+          "minimum": 10,
+          "maximum": 14
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.unicorn",
+          "count": 1
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          67
+        ],
+        "locator": "Army & Spells panels for Ylthin",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.alaron",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.pixie",
+          "minimum": 10,
+          "maximum": 14
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          68
+        ],
+        "locator": "Army & Spells panels for Alaron",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.findan",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.pixie",
+          "minimum": 10,
+          "maximum": 14
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "minimum": 5,
+          "maximum": 7
+        },
+        {
+          "creatureKey": "homm5.creature.hunter",
+          "minimum": 0,
+          "maximum": 2
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          68
+        ],
+        "locator": "Army & Spells panels for Findan",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.tieru",
+      "field": "StartingArmy",
+      "expected": null,
+      "value": [
+        {
+          "creatureKey": "homm5.creature.sprite",
+          "count": 10
+        },
+        {
+          "creatureKey": "homm5.creature.blade.dancer",
+          "count": 16
+        }
+      ],
+      "evidence": {
+        "sourceId": "h5-manual-3.1-starting-armies",
+        "pages": [
+          69
+        ],
+        "locator": "Army & Spells panels for Tieru",
+        "claim": "Every named form shown for this identity gives these creature stacks. Bounds of zero are retained, fixed quantities are count, and repeated creature slots remain separate. War machines are outside the creature-stack field."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.erasial",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Spellbreaker",
+      "evidence": {
+        "sourceId": "h5-wiki-erasial",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Erasial."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.segref",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Dark Mystic",
+      "evidence": {
+        "sourceId": "h5-wiki-segref",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Segref."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.glen",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Siege Engineer",
+      "evidence": {
+        "sourceId": "h5-wiki-glen",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Glen."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.giar",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Cavalry Commander",
+      "evidence": {
+        "sourceId": "h5-wiki-giar",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Giar."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ohtar",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Black Hand",
+      "evidence": {
+        "sourceId": "h5-wiki-ohtar",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Ohtar."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.gamor",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Rusher",
+      "evidence": {
+        "sourceId": "h5-wiki-gamor",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Gamor."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.toulain",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Fist of the Khan",
+      "evidence": {
+        "sourceId": "h5-wiki-toulain",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Toulain."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.dulgan",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Pounder",
+      "evidence": {
+        "sourceId": "h5-wiki-dulgan",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Dulgan."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.mangu",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Blade of the Khan",
+      "evidence": {
+        "sourceId": "h5-wiki-mangu",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Mangu."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.ghost",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Paragon Knight",
+      "evidence": {
+        "sourceId": "h5-wiki-ghost",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Ghost."
+      }
+    },
+    {
+      "table": "HeroHOMM5",
+      "key": "homm5.hero.saint.isabel",
+      "field": "SpecialtyName",
+      "expected": null,
+      "value": "Suzerain",
+      "evidence": {
+        "sourceId": "h5-wiki-saint-isabel",
+        "locator": "Hero Trait",
+        "claim": "Explicit specialization name for Saint Isabel."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "h5-manual-3.1-starting-armies",
+      "title": "Heroes V 3.1 developer-supported community manual",
+      "url": "https://h5.heroes.net.pl/uploaded/download/other/Heroes5-Manual-en-3-1.pdf",
+      "sha256": "7cdd706b9b3e5634a3015e8704c818a92a7127b3f743f7066b8a6295104fd678",
+      "pages": "11-69",
+      "sourceQuality": "developer-supported-community-manual"
+    },
+    {
+      "id": "h5-wiki-erasial",
+      "title": "Might and Magic Wiki: Erasial",
+      "url": "https://mightandmagic.fandom.com/wiki/Erasial?oldid=176320",
+      "revisionId": 176320,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-segref",
+      "title": "Might and Magic Wiki: Segref",
+      "url": "https://mightandmagic.fandom.com/wiki/Segref?oldid=184582",
+      "revisionId": 184582,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-glen",
+      "title": "Might and Magic Wiki: Glen",
+      "url": "https://mightandmagic.fandom.com/wiki/Glen?oldid=176263",
+      "revisionId": 176263,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-giar",
+      "title": "Might and Magic Wiki: Giar",
+      "url": "https://mightandmagic.fandom.com/wiki/Giar?oldid=188436",
+      "revisionId": 188436,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-ohtar",
+      "title": "Might and Magic Wiki: Ohtar",
+      "url": "https://mightandmagic.fandom.com/wiki/Ohtar?oldid=176269",
+      "revisionId": 176269,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-gamor",
+      "title": "Might and Magic Wiki: Gamor",
+      "url": "https://mightandmagic.fandom.com/wiki/Gamor?oldid=176280",
+      "revisionId": 176280,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-toulain",
+      "title": "Might and Magic Wiki: Toulain",
+      "url": "https://mightandmagic.fandom.com/wiki/Toulain?oldid=176277",
+      "revisionId": 176277,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-dulgan",
+      "title": "Might and Magic Wiki: Dulgan",
+      "url": "https://mightandmagic.fandom.com/wiki/Dulgan?oldid=176283",
+      "revisionId": 176283,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-mangu",
+      "title": "Might and Magic Wiki: Mangu",
+      "url": "https://mightandmagic.fandom.com/wiki/Mangu?oldid=176282",
+      "revisionId": 176282,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-ghost",
+      "title": "Might and Magic Wiki: Ghost (hero)",
+      "url": "https://mightandmagic.fandom.com/wiki/Ghost_(hero)?oldid=176262",
+      "revisionId": 176262,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    },
+    {
+      "id": "h5-wiki-saint-isabel",
+      "title": "Might and Magic Wiki: Biara",
+      "url": "https://mightandmagic.fandom.com/wiki/Biara?oldid=176016",
+      "revisionId": 176016,
+      "sourceQuality": "secondary-wiki",
+      "retrieved": "2026-10-14"
+    }
+  ],
+  "review": {
+    "manualPanels": 113,
+    "manualHeroIdentities": 106,
+    "startingArmyFills": 103,
+    "armyVariantConflicts": [
+      {
+        "heroKey": "homm5.hero.nicolai",
+        "forms": [
+          {
+            "page": 41,
+            "specialty": "Suzerain",
+            "army": [
+              {
+                "creatureKey": "homm5.creature.peasant",
+                "minimum": 22,
+                "maximum": 32
+              },
+              {
+                "creatureKey": "homm5.creature.archer",
+                "minimum": 7,
+                "maximum": 9
+              },
+              {
+                "creatureKey": "homm5.creature.footman",
+                "minimum": 0,
+                "maximum": 3
+              }
+            ]
+          },
+          {
+            "page": 56,
+            "specialty": "Reanimator",
+            "army": [
+              {
+                "creatureKey": "homm5.creature.skeleton",
+                "minimum": 20,
+                "maximum": 29
+              },
+              {
+                "creatureKey": "homm5.creature.zombie",
+                "minimum": 9,
+                "maximum": 11
+              },
+              {
+                "creatureKey": "homm5.creature.ghost",
+                "minimum": 0,
+                "maximum": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heroKey": "homm5.hero.orlando",
+        "forms": [
+          {
+            "page": 42,
+            "specialty": "Griffin Trainer",
+            "army": [
+              {
+                "creatureKey": "homm5.creature.peasant",
+                "minimum": 22,
+                "maximum": 32
+              },
+              {
+                "creatureKey": "homm5.creature.archer",
+                "minimum": 7,
+                "maximum": 9
+              },
+              {
+                "creatureKey": "homm5.creature.griffin",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "page": 49,
+            "specialty": "Aura of Swiftness",
+            "army": [
+              {
+                "creatureKey": "homm5.creature.imp",
+                "minimum": 16,
+                "maximum": 23
+              },
+              {
+                "creatureKey": "homm5.creature.horned.demon",
+                "minimum": 9,
+                "maximum": 11
+              },
+              {
+                "creatureKey": "homm5.creature.hell.hound",
+                "minimum": 0,
+                "maximum": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heroKey": "homm5.hero.ornella",
+        "forms": [
+          {
+            "page": 42,
+            "specialty": "Pathfinder",
+            "army": [
+              {
+                "creatureKey": "homm5.creature.peasant",
+                "minimum": 22,
+                "maximum": 32
+              },
+              {
+                "creatureKey": "homm5.creature.archer",
+                "minimum": 7,
+                "maximum": 9
+              },
+              {
+                "creatureKey": "homm5.creature.footman",
+                "minimum": 0,
+                "maximum": 3
+              }
+            ]
+          },
+          {
+            "page": 57,
+            "specialty": "Vampire Princess",
+            "army": [
+              {
+                "creatureKey": "homm5.creature.skeleton",
+                "minimum": 20,
+                "maximum": 29
+              },
+              {
+                "creatureKey": "homm5.creature.zombie",
+                "minimum": 9,
+                "maximum": 11
+              },
+              {
+                "creatureKey": "homm5.creature.vampire",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "remainingScalarStartingStats": 21,
+    "remainingArmyFields": 21,
+    "warMachines": "Omitted from creature stacks; they are not Creature identities in the current H5 catalog."
+  }
+}

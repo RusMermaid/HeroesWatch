@@ -1,0 +1,181 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-13",
+  "game": "Heroes VII",
+  "scope": "Final source-recovery pass for the 19 missing warfare details, 9 missing HeroClassHOMM7 details, 110 missing HeroHOMM7 catalog rows/eligibility values, and H7 CreatureAbility links.",
+  "policy": "No game was downloaded, no package was executed, and no canonical, schema, database, or GitHub file was changed. Empty additions/fills are deliberate: public search found an auditable official-depot file inventory, but not the raw final package bytes or a complete source-backed transcription. Candidate numeric values, rank vectors, movement, footprint, and Hall flags are not invented.",
+  "additions": [],
+  "fills": [],
+  "sources": [
+    {
+      "id": "steamdb_h7_depot_321961_manifest",
+      "kind": "secondary_manifest_index_of_official_game_content",
+      "accessed": "2026-10-13",
+      "url": "https://steamdb.info/depot/321961/subs/",
+      "officialAttribution": "The listed paths are files in the Might & Magic Heroes VII Steam content depot; SteamDB is an independent manifest index, not Ubisoft or Valve.",
+      "versionEvidence": {
+        "depotId": 321961,
+        "buildId": 11478242,
+        "manifestId": "1024892792009479968",
+        "lastPublicUpdateUtc": "2023-06-15T13:24:08Z"
+      },
+      "supports": [
+        "The exact small package names and sizes needed for an auditable final extraction exist in the official game depot.",
+        "H7HeroClasses, H7WarfareUnits, H7WarfareUnitAbilities, creature-ability packages, hero packages, building packages, and H7Config are separate files rather than a reason to download the 16.73 GiB depot.",
+        "The manifest does not expose package field values or hashes without SteamDB sign-in, so it is a recovery inventory, not row-level evidence."
+      ]
+    },
+    {
+      "id": "steamdb_h7_hungarian_localization_manifest",
+      "kind": "secondary_manifest_index_of_official_localization_depot",
+      "accessed": "2026-10-13",
+      "url": "https://steamdb.info/depot/321970/",
+      "officialAttribution": "SteamDB indexes the official Heroes VII Hungarian depot; the index is not the publisher.",
+      "supports": [
+        "Small localization companions exist for H7HeroClasses, H7WarfareUnits, H7WarfareUnits_Fortress, H7WarfareUnitAbilities, H7WarfareUnitAbilities_F, and all seven H7 town-building packages.",
+        "Localization can corroborate object names after extraction, but cannot supply combat stats, ability references, recruitment edges, or Hall-of-Heroes eligibility."
+      ]
+    },
+    {
+      "id": "ubisoft_modding_manual",
+      "kind": "primary_manual",
+      "accessed": "2026-10-13",
+      "url": "https://ubistatic-a.akamaihd.net/0004/prod/images/160407_LT1_Modding/ModdingManual.pdf",
+      "supports": [
+        "H7 is data-driven through archetypes and packages.",
+        "A final package extraction is the appropriate source for creature, ability, building, and hero fields; visual inference and wiki transcription are not substitutes."
+      ]
+    },
+    {
+      "id": "ubisoft_editor_manual",
+      "kind": "primary_manual",
+      "accessed": "2026-10-13",
+      "url": "https://ubistatic-a.akamaihd.net/0004/prod/images/160407_LT1_Modding/EditorManual.pdf",
+      "supports": [
+        "Hero enablement is configured per map and player, so catalog-level IsHallHero and map/player availability must not be conflated.",
+        "The editor exposes the class and hero properties needed to cross-check extracted package rows."
+      ]
+    },
+    {
+      "id": "heroes7_open_source_mod_tooling",
+      "kind": "secondary_open_source_tooling",
+      "accessed": "2026-10-13",
+      "url": "https://github.com/LukaOo/Might-And-Magic-Heroes-VII-Mods",
+      "supports": [
+        "Public H7 modding/UDK tooling confirms that package/script extraction is a legitimate technical route.",
+        "The repository does not contain the official H7 data values and is not used as a source for catalog rows."
+      ]
+    }
+  ],
+  "sourceRecovery": {
+    "publicSearchResult": "No public raw package export, complete audited JSON/CSV transcription, or official row-level table for these missing H7 values was found. The concrete result is the smallest file set to request from an existing licensed H7 installation or editor export.",
+    "requiredFiles": [
+      {
+        "priority": 1,
+        "scope": "19 warfare creature details and warfare abilities",
+        "files": [
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Warfare/H7WarfareUnits.upk", "manifestSize": "40.65 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Warfare/H7WarfareUnits_Fortress.upk", "manifestSize": "9.66 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Warfare/H7WarfareUnitAbilities.upk", "manifestSize": "2.43 MiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Warfare/H7WarfareUnitAbilities_F.upk", "manifestSize": "460.09 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Buildings/H7TownBuildingDungeon.upk", "manifestSize": "278.09 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Buildings/H7TownBuildingSylvan.upk", "manifestSize": "266.25 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Buildings/H7TownBuildingsAcademy.upk", "manifestSize": "259.90 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Buildings/H7TownBuildingsFortress.upk", "manifestSize": "289.05 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Buildings/H7TownBuildingsHaven.upk", "manifestSize": "323.74 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Buildings/H7TownBuildingsNecropolis.upk", "manifestSize": "399.13 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Buildings/H7TownBuildingsStronghold.upk", "manifestSize": "362.78 KiB"}
+        ],
+        "expectedEvidence": [
+          "Warfare archetype identity, rank-specific Attack/Defense/Damage/Health/effect values, initiative and explicit movement/footprint semantics where present.",
+          "Ability object references for each warfare unit.",
+          "Building archetype references or explicit recruitment arrays for the 19 warfare identities."
+        ],
+        "mergeGate": "Only package fields or deterministic package references are mergeable. Do not flatten rank vectors into CreatureHOMM7 scalars, map Stationary to Ground/Flying/Teleporting, or convert textual Large/Huge to CombatSize squares."
+      },
+      {
+        "priority": 2,
+        "scope": "137 detailed H7 creatures without CreatureAbility links",
+        "files": [
+          {"path": "MMH7Game/CookedPC/Editor/Templates/CreatureAbilities/H7CrAbilitiesDefault.upk", "manifestSize": "539.46 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/CreatureAbilities/H7CrAbilitiesSpecial.upk", "manifestSize": "4.02 MiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Creatures/{Academy,Dungeon,Fortress,Haven,Necropolis,Neutral,Stronghold,Sylvan}/Creature_*.upk", "manifestSize": "individual files listed in the depot manifest; approximately 5.74–9.47 KiB for standard archetypes"}
+        ],
+        "expectedEvidence": [
+          "Creature archetype property references to named H7CrAbilities objects.",
+          "Ability kind/effect text sufficient to distinguish passive, activated, triggered, and support mechanics without guessing from names."
+        ],
+        "mergeGate": "A CreatureAbility row requires an explicit package reference. A missing reference is not equivalent to a confirmed zero-ability creature, and the missing-edge count cannot be inferred from 137 creature rows."
+      },
+      {
+        "priority": 3,
+        "scope": "9 missing HeroClassHOMM7 detail rows",
+        "files": [
+          {"path": "MMH7Game/CookedPC/Data/H7HeroClasses.upk", "manifestSize": "160.83 KiB"},
+          {"path": "MMH7Game/CookedPC/Data/H7HeroClasses_2.upk", "manifestSize": "31.50 KiB"},
+          {"path": "MMH7Game/Localization/Content/HUN/H7HeroClasses.HUN", "manifestSize": "8.34 KiB", "role": "name-only corroboration"},
+          {"path": "MMH7Game/Localization/Content/HUN/H7HeroClasses_2.HUN", "manifestSize": "930 B", "role": "name-only corroboration"}
+        ],
+        "keys": [
+          "homm7.heroclass.archon",
+          "homm7.heroclass.embalmer",
+          "homm7.heroclass.engraver",
+          "homm7.heroclass.firebrander",
+          "homm7.heroclass.hell.knight",
+          "homm7.heroclass.jarl",
+          "homm7.heroclass.runelord",
+          "homm7.heroclass.thane",
+          "homm7.heroclass.warlord"
+        ],
+        "expectedEvidence": [
+          "Faction identity, class focus/uniqueness, all four growth percentages, and any package-defined skill weights.",
+          "The same final build/patch scope as the catalog; do not merge a dated pre-expansion table."
+        ],
+        "mergeGate": "All required HeroClassHOMM7 fields must come from one final package revision. Do not combine conflicting secondary tables or fill only two growth values."
+      },
+      {
+        "priority": 4,
+        "scope": "110 missing HeroHOMM7 rows and Hall/availability values",
+        "files": [
+          {"path": "MMH7Game/CookedPC/Data/H7Config.upk", "manifestSize": "91.25 KiB", "role": "global configuration/availability candidate"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7Heroes.upk", "manifestSize": "185.27 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7Heroes_2.upk", "manifestSize": "34.42 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7Heroes_3.upk", "manifestSize": "25.95 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7DefaultHeroes.upk", "manifestSize": "111.30 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7DefaultHeroes_2.upk", "manifestSize": "20.98 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7DuelHeroes.upk", "manifestSize": "75.64 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7StoryHeroes.upk", "manifestSize": "70.74 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7StoryHeroes_2.upk", "manifestSize": "34.80 KiB"},
+          {"path": "MMH7Game/CookedPC/Editor/Templates/Heroes/H7Councilors.upk", "manifestSize": "19.17 KiB"}
+        ],
+        "expectedEvidence": [
+          "Hero code/name/class/faction and any explicit package-level catalog membership.",
+          "Hall-of-Heroes or tavern availability only where the package/config explicitly defines it.",
+          "Map/player-specific enablement separately, if map packages are later supplied; it must not be collapsed into a global false."
+        ],
+        "mergeGate": "Do not create 110 false flags from absence. Preserve null/unknown or add a map/player junction only when the source supplies the scope."
+      }
+    ],
+    "optionalSmallCorroborators": [
+      {"path": "MMH7Game/Localization/Content/HUN/H7WarfareUnits.HUN", "manifestSize": "12.38 KiB", "role": "warfare names only"},
+      {"path": "MMH7Game/Localization/Content/HUN/H7WarfareUnits_Fortress.HUN", "manifestSize": "3.98 KiB", "role": "Fortress warfare names only"},
+      {"path": "MMH7Game/Localization/Content/HUN/H7WarfareUnitAbilities.HUN", "manifestSize": "21.28 KiB", "role": "warfare ability names/descriptions only"},
+      {"path": "MMH7Game/Localization/Content/HUN/H7WarfareUnitAbilities_F.HUN", "manifestSize": "1.34 KiB", "role": "Fortress warfare ability names/descriptions only"}
+    ]
+  },
+  "blockedFacts": [
+    "No mergeable H7 row was emitted because package bytes or an equally auditable final extraction were not publicly available in this pass.",
+    "The SteamDB manifest establishes exact source filenames, sizes, build and manifest identifiers, but not field values.",
+    "No public H6 primary source strong enough to supersede the existing Heroes VI evidence-only blockers was found during the H7-priority search; the existing heroes6.patch.json remains unchanged.",
+    "Do not use UCP/community-mod files as vanilla H7 truth: those packages intentionally change abilities, stats, costs, or availability."
+  ],
+  "verification": {
+    "repositoryDataCounts": {"CreatureHOMM7": 137, "HeroClassHOMM7": 35, "HeroHOMM7": 22, "CreatureAbilityHOMM7": 0},
+    "missingScopes": {"warfareCreatureDetails": 19, "HeroClassHOMM7": 9, "HeroHOMM7CatalogOrEligibility": 110, "detailedH7CreaturesWithoutCreatureAbilityLinks": 137},
+    "publicManifestAudited": true,
+    "sourcePackageLoaded": false,
+    "jsonOrDatabaseWrites": false,
+    "canonicalOrSchemaChanged": false,
+    "safeToMergeDirectly": false
+  }
+}

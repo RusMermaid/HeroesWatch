@@ -1,0 +1,1499 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-13",
+  "notes": "Read-only completion patch from the installed original Heroes III Complete data. It does not replace the cumulative catalog and does not include game binaries or narrative text.",
+  "additions": [],
+  "fills": [
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.armageddon.s.blade.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Catherine's Charge and Shadows of the Forest.",
+        "source": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-armageddonsblade",
+        "locator": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.armageddon.s.blade.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Seeking Armageddon.",
+        "source": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-armageddonsblade",
+        "locator": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.armageddon.s.blade.scenario.5",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Maker of Sorrows.",
+        "source": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-armageddonsblade",
+        "locator": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.armageddon.s.blade.scenario.6",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Return of the King.",
+        "source": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-armageddonsblade",
+        "locator": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.armageddon.s.blade.scenario.7",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing A Blade in the Back.",
+        "source": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-armageddonsblade",
+        "locator": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.armageddon.s.blade.scenario.8",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing To Kill A Hero.",
+        "source": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-armageddonsblade",
+        "locator": "installed-game:H3ab_bmp.lod/AB.H3C#sha256=696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.dragon.s.blood.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Culling the Weak.",
+        "source": "installed-game:H3ab_bmp.lod/BLOOD.H3C#sha256=97be2e75b58b326ccf91c0aa243059483f836f0f7d0896ec9ef1fd19b3d094d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-dragonsblood",
+        "locator": "installed-game:H3ab_bmp.lod/BLOOD.H3C#sha256=97be2e75b58b326ccf91c0aa243059483f836f0f7d0896ec9ef1fd19b3d094d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.dragon.s.blood.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Savaging the Scavengers.",
+        "source": "installed-game:H3ab_bmp.lod/BLOOD.H3C#sha256=97be2e75b58b326ccf91c0aa243059483f836f0f7d0896ec9ef1fd19b3d094d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-dragonsblood",
+        "locator": "installed-game:H3ab_bmp.lod/BLOOD.H3C#sha256=97be2e75b58b326ccf91c0aa243059483f836f0f7d0896ec9ef1fd19b3d094d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.dragon.s.blood.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Blood of the Dragon Father.",
+        "source": "installed-game:H3ab_bmp.lod/BLOOD.H3C#sha256=97be2e75b58b326ccf91c0aa243059483f836f0f7d0896ec9ef1fd19b3d094d2; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-dragonsblood",
+        "locator": "installed-game:H3ab_bmp.lod/BLOOD.H3C#sha256=97be2e75b58b326ccf91c0aa243059483f836f0f7d0896ec9ef1fd19b3d094d2; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.hack.and.slash.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Bashing Skulls.",
+        "source": "installed-game:H3bitmap.lod/CRAG.H3C#sha256=d265bc2dfa0a80f237d16fabe025ed8acc437eff7cd8bad6c190c3601bc42e33; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-hackandslash",
+        "locator": "installed-game:H3bitmap.lod/CRAG.H3C#sha256=d265bc2dfa0a80f237d16fabe025ed8acc437eff7cd8bad6c190c3601bc42e33; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.hack.and.slash.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Black Sheep.",
+        "source": "installed-game:H3bitmap.lod/CRAG.H3C#sha256=d265bc2dfa0a80f237d16fabe025ed8acc437eff7cd8bad6c190c3601bc42e33; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-hackandslash",
+        "locator": "installed-game:H3bitmap.lod/CRAG.H3C#sha256=d265bc2dfa0a80f237d16fabe025ed8acc437eff7cd8bad6c190c3601bc42e33; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.hack.and.slash.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing A Cage in the Hand.",
+        "source": "installed-game:H3bitmap.lod/CRAG.H3C#sha256=d265bc2dfa0a80f237d16fabe025ed8acc437eff7cd8bad6c190c3601bc42e33; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-hackandslash",
+        "locator": "installed-game:H3bitmap.lod/CRAG.H3C#sha256=d265bc2dfa0a80f237d16fabe025ed8acc437eff7cd8bad6c190c3601bc42e33; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.dungeons.and.devils.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing A Devilish Plan and Groundbreaking.",
+        "source": "installed-game:H3bitmap.lod/EVIL1.H3C#sha256=e702c30dd4067060725521396b28956ecb4b2300756284a2756523c99d66d28c; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-dungeonsanddevils",
+        "locator": "installed-game:H3bitmap.lod/EVIL1.H3C#sha256=e702c30dd4067060725521396b28956ecb4b2300756284a2756523c99d66d28c; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.long.live.the.king.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing A Gryphon's Heart.",
+        "source": "installed-game:H3bitmap.lod/EVIL2.H3C#sha256=4510d7440f9df803fe117897897fa1313634bf70014d3181e3f7fc44f52735da; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-longlivetheking",
+        "locator": "installed-game:H3bitmap.lod/EVIL2.H3C#sha256=4510d7440f9df803fe117897897fa1313634bf70014d3181e3f7fc44f52735da; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.long.live.the.king.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing A Gryphon's Heart.",
+        "source": "installed-game:H3bitmap.lod/EVIL2.H3C#sha256=4510d7440f9df803fe117897897fa1313634bf70014d3181e3f7fc44f52735da; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-longlivetheking",
+        "locator": "installed-game:H3bitmap.lod/EVIL2.H3C#sha256=4510d7440f9df803fe117897897fa1313634bf70014d3181e3f7fc44f52735da; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.long.live.the.king.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Corporeal Punishment and Season of Harvest.",
+        "source": "installed-game:H3bitmap.lod/EVIL2.H3C#sha256=4510d7440f9df803fe117897897fa1313634bf70014d3181e3f7fc44f52735da; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-longlivetheking",
+        "locator": "installed-game:H3bitmap.lod/EVIL2.H3C#sha256=4510d7440f9df803fe117897897fa1313634bf70014d3181e3f7fc44f52735da; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.festival.of.life.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Razor Claw.",
+        "source": "installed-game:H3ab_bmp.lod/FESTIVAL.H3C#sha256=bef28f2e6bc3db4c663fa24661ccaee088b14c71ee5c189d7b5a1577fa0aba6e; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-festivaloflife",
+        "locator": "installed-game:H3ab_bmp.lod/FESTIVAL.H3C#sha256=bef28f2e6bc3db4c663fa24661ccaee088b14c71ee5c189d7b5a1577fa0aba6e; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.festival.of.life.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Taming of the wild.",
+        "source": "installed-game:H3ab_bmp.lod/FESTIVAL.H3C#sha256=bef28f2e6bc3db4c663fa24661ccaee088b14c71ee5c189d7b5a1577fa0aba6e; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-festivaloflife",
+        "locator": "installed-game:H3ab_bmp.lod/FESTIVAL.H3C#sha256=bef28f2e6bc3db4c663fa24661ccaee088b14c71ee5c189d7b5a1577fa0aba6e; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.festival.of.life.scenario.1",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Clan War.",
+        "source": "installed-game:H3ab_bmp.lod/FESTIVAL.H3C#sha256=bef28f2e6bc3db4c663fa24661ccaee088b14c71ee5c189d7b5a1577fa0aba6e; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-festivaloflife",
+        "locator": "installed-game:H3ab_bmp.lod/FESTIVAL.H3C#sha256=bef28f2e6bc3db4c663fa24661ccaee088b14c71ee5c189d7b5a1577fa0aba6e; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.unholy.alliance.scenario.5",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Final Peace, Gathering the Legion, Harvest, and Search for a Killer.",
+        "source": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-unholyalliance",
+        "locator": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.unholy.alliance.scenario.6",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Final Peace, Gathering the Legion, Harvest, and Search for a Killer.",
+        "source": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-unholyalliance",
+        "locator": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.unholy.alliance.scenario.7",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Agents of Vengeance and Secrets Revealed.",
+        "source": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-unholyalliance",
+        "locator": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.unholy.alliance.scenario.8",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Wrath of Sandro.",
+        "source": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-unholyalliance",
+        "locator": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.unholy.alliance.scenario.9",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Invasion.",
+        "source": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-unholyalliance",
+        "locator": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.unholy.alliance.scenario.10",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Invasion.",
+        "source": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-unholyalliance",
+        "locator": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.unholy.alliance.scenario.11",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Barbarian Brothers and To Strive, To Seek.",
+        "source": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-unholyalliance",
+        "locator": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.unholy.alliance.scenario.12",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Union.",
+        "source": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-unholyalliance",
+        "locator": "installed-game:H3bitmap.lod/FINAL.H3C#sha256=54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.playing.with.fire.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Farming Towns.",
+        "source": "installed-game:H3ab_bmp.lod/FIRE.H3C#sha256=a7328b41cedbabadc473bab84ba78244ced4f0df07cedf63153dc9ba6e5e4814; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-playingwithfire",
+        "locator": "installed-game:H3ab_bmp.lod/FIRE.H3C#sha256=a7328b41cedbabadc473bab84ba78244ced4f0df07cedf63153dc9ba6e5e4814; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.playing.with.fire.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing March of the Undead.",
+        "source": "installed-game:H3ab_bmp.lod/FIRE.H3C#sha256=a7328b41cedbabadc473bab84ba78244ced4f0df07cedf63153dc9ba6e5e4814; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-playingwithfire",
+        "locator": "installed-game:H3ab_bmp.lod/FIRE.H3C#sha256=a7328b41cedbabadc473bab84ba78244ced4f0df07cedf63153dc9ba6e5e4814; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.foolhardy.waywardness.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Lost at Sea.",
+        "source": "installed-game:H3ab_bmp.lod/FOOL.H3C#sha256=c7bfd33471494cceedfdb39b8b54d7f144ada368482c40a84bb726baa2006763; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-foolhardywaywardness",
+        "locator": "installed-game:H3ab_bmp.lod/FOOL.H3C#sha256=c7bfd33471494cceedfdb39b8b54d7f144ada368482c40a84bb726baa2006763; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.foolhardy.waywardness.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Their End of the Bargain.",
+        "source": "installed-game:H3ab_bmp.lod/FOOL.H3C#sha256=c7bfd33471494cceedfdb39b8b54d7f144ada368482c40a84bb726baa2006763; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-foolhardywaywardness",
+        "locator": "installed-game:H3ab_bmp.lod/FOOL.H3C#sha256=c7bfd33471494cceedfdb39b8b54d7f144ada368482c40a84bb726baa2006763; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.foolhardy.waywardness.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Here There Be Pirates.",
+        "source": "installed-game:H3ab_bmp.lod/FOOL.H3C#sha256=c7bfd33471494cceedfdb39b8b54d7f144ada368482c40a84bb726baa2006763; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-foolhardywaywardness",
+        "locator": "installed-game:H3ab_bmp.lod/FOOL.H3C#sha256=c7bfd33471494cceedfdb39b8b54d7f144ada368482c40a84bb726baa2006763; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.elixir.of.life.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Graduation Exercise.",
+        "source": "installed-game:H3bitmap.lod/GELU.H3C#sha256=6de641aa7cc5859abc0856176a35ca9c7866b43c384e369aa7cb3e779febb2ee; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-elixiroflife",
+        "locator": "installed-game:H3bitmap.lod/GELU.H3C#sha256=6de641aa7cc5859abc0856176a35ca9c7866b43c384e369aa7cb3e779febb2ee; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.elixir.of.life.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Cutthroats.",
+        "source": "installed-game:H3bitmap.lod/GELU.H3C#sha256=6de641aa7cc5859abc0856176a35ca9c7866b43c384e369aa7cb3e779febb2ee; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-elixiroflife",
+        "locator": "installed-game:H3bitmap.lod/GELU.H3C#sha256=6de641aa7cc5859abc0856176a35ca9c7866b43c384e369aa7cb3e779febb2ee; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.elixir.of.life.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Valley of the Dragon Lords.",
+        "source": "installed-game:H3bitmap.lod/GELU.H3C#sha256=6de641aa7cc5859abc0856176a35ca9c7866b43c384e369aa7cb3e779febb2ee; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-elixiroflife",
+        "locator": "installed-game:H3bitmap.lod/GELU.H3C#sha256=6de641aa7cc5859abc0856176a35ca9c7866b43c384e369aa7cb3e779febb2ee; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.new.beginning.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Clearing the Border.",
+        "source": "installed-game:H3bitmap.lod/GEM.H3C#sha256=4fc33395c17a6cd8ba76372cd4b785b742d04c30a5145a3b5a0d833d537a0dc7; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-newbeginning",
+        "locator": "installed-game:H3bitmap.lod/GEM.H3C#sha256=4fc33395c17a6cd8ba76372cd4b785b742d04c30a5145a3b5a0d833d537a0dc7; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.new.beginning.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing After the Amulet.",
+        "source": "installed-game:H3bitmap.lod/GEM.H3C#sha256=4fc33395c17a6cd8ba76372cd4b785b742d04c30a5145a3b5a0d833d537a0dc7; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-newbeginning",
+        "locator": "installed-game:H3bitmap.lod/GEM.H3C#sha256=4fc33395c17a6cd8ba76372cd4b785b742d04c30a5145a3b5a0d833d537a0dc7; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.new.beginning.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Retrieving the Cowl.",
+        "source": "installed-game:H3bitmap.lod/GEM.H3C#sha256=4fc33395c17a6cd8ba76372cd4b785b742d04c30a5145a3b5a0d833d537a0dc7; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-newbeginning",
+        "locator": "installed-game:H3bitmap.lod/GEM.H3C#sha256=4fc33395c17a6cd8ba76372cd4b785b742d04c30a5145a3b5a0d833d537a0dc7; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.long.live.the.queen.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Homecoming.",
+        "source": "installed-game:H3bitmap.lod/GOOD1.H3C#sha256=431edb39815e8d2364e821e0f08d0c56258a32b2cac4e46828567d6f9ddc217e; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-longlivethequeen",
+        "locator": "installed-game:H3bitmap.lod/GOOD1.H3C#sha256=431edb39815e8d2364e821e0f08d0c56258a32b2cac4e46828567d6f9ddc217e; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.long.live.the.queen.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Guardian Angels.",
+        "source": "installed-game:H3bitmap.lod/GOOD1.H3C#sha256=431edb39815e8d2364e821e0f08d0c56258a32b2cac4e46828567d6f9ddc217e; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-longlivethequeen",
+        "locator": "installed-game:H3bitmap.lod/GOOD1.H3C#sha256=431edb39815e8d2364e821e0f08d0c56258a32b2cac4e46828567d6f9ddc217e; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.liberation.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Steadwick's Liberation.",
+        "source": "installed-game:H3bitmap.lod/GOOD2.H3C#sha256=1819007e971efa84a4c4fc336b0bb495e2a6b8e983136fb4fd3b7c192a4696b5; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-liberation",
+        "locator": "installed-game:H3bitmap.lod/GOOD2.H3C#sha256=1819007e971efa84a4c4fc336b0bb495e2a6b8e983136fb4fd3b7c192a4696b5; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.liberation.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Steadwick's Liberation.",
+        "source": "installed-game:H3bitmap.lod/GOOD2.H3C#sha256=1819007e971efa84a4c4fc336b0bb495e2a6b8e983136fb4fd3b7c192a4696b5; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-liberation",
+        "locator": "installed-game:H3bitmap.lod/GOOD2.H3C#sha256=1819007e971efa84a4c4fc336b0bb495e2a6b8e983136fb4fd3b7c192a4696b5; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.liberation.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Deal With the Devil and Neutral Affairs.",
+        "source": "installed-game:H3bitmap.lod/GOOD2.H3C#sha256=1819007e971efa84a4c4fc336b0bb495e2a6b8e983136fb4fd3b7c192a4696b5; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-liberation",
+        "locator": "installed-game:H3bitmap.lod/GOOD2.H3C#sha256=1819007e971efa84a4c4fc336b0bb495e2a6b8e983136fb4fd3b7c192a4696b5; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.song.for.the.father.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Safe Passage.",
+        "source": "installed-game:H3bitmap.lod/GOOD3.H3C#sha256=c6abd108650e3cd18285ac5174661f9351aeec00c2d474a6e56c5f51ce24c52e; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-songforthefather",
+        "locator": "installed-game:H3bitmap.lod/GOOD3.H3C#sha256=c6abd108650e3cd18285ac5174661f9351aeec00c2d474a6e56c5f51ce24c52e; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.song.for.the.father.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing United Front.",
+        "source": "installed-game:H3bitmap.lod/GOOD3.H3C#sha256=c6abd108650e3cd18285ac5174661f9351aeec00c2d474a6e56c5f51ce24c52e; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-songforthefather",
+        "locator": "installed-game:H3bitmap.lod/GOOD3.H3C#sha256=c6abd108650e3cd18285ac5174661f9351aeec00c2d474a6e56c5f51ce24c52e; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.spoils.of.war.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Borderlands and Gold Rush.",
+        "source": "installed-game:H3bitmap.lod/NEUTRAL1.H3C#sha256=0985a91b80613d54ca19169df15ba52c2ea28d178ecb1527aa22e497ca039817; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-spoilsofwar",
+        "locator": "installed-game:H3bitmap.lod/NEUTRAL1.H3C#sha256=0985a91b80613d54ca19169df15ba52c2ea28d178ecb1527aa22e497ca039817; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.rise.of.the.necromancer.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Target.",
+        "source": "installed-game:H3bitmap.lod/SANDRO.H3C#sha256=fd51baf25d4bce4a7429dff9fe127ba0f31ad01c194897dd3c7ebe65d18545b6; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-riseofthenecromancer",
+        "locator": "installed-game:H3bitmap.lod/SANDRO.H3C#sha256=fd51baf25d4bce4a7429dff9fe127ba0f31ad01c194897dd3c7ebe65d18545b6; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.rise.of.the.necromancer.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Master.",
+        "source": "installed-game:H3bitmap.lod/SANDRO.H3C#sha256=fd51baf25d4bce4a7429dff9fe127ba0f31ad01c194897dd3c7ebe65d18545b6; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-riseofthenecromancer",
+        "locator": "installed-game:H3bitmap.lod/SANDRO.H3C#sha256=fd51baf25d4bce4a7429dff9fe127ba0f31ad01c194897dd3c7ebe65d18545b6; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.rise.of.the.necromancer.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Finneas Vilmar.",
+        "source": "installed-game:H3bitmap.lod/SANDRO.H3C#sha256=fd51baf25d4bce4a7429dff9fe127ba0f31ad01c194897dd3c7ebe65d18545b6; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-riseofthenecromancer",
+        "locator": "installed-game:H3bitmap.lod/SANDRO.H3C#sha256=fd51baf25d4bce4a7429dff9fe127ba0f31ad01c194897dd3c7ebe65d18545b6; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.specter.of.power.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Poison Fit for a King.",
+        "source": "installed-game:H3bitmap.lod/SECRET.H3C#sha256=92a74622f2d105ccbaa900850de5b351cf87d5fd88196914ec66b5bf94ad4639; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-specterofpower",
+        "locator": "installed-game:H3bitmap.lod/SECRET.H3C#sha256=92a74622f2d105ccbaa900850de5b351cf87d5fd88196914ec66b5bf94ad4639; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.specter.of.power.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing To Build a Tunnel.",
+        "source": "installed-game:H3bitmap.lod/SECRET.H3C#sha256=92a74622f2d105ccbaa900850de5b351cf87d5fd88196914ec66b5bf94ad4639; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-specterofpower",
+        "locator": "installed-game:H3bitmap.lod/SECRET.H3C#sha256=92a74622f2d105ccbaa900850de5b351cf87d5fd88196914ec66b5bf94ad4639; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.specter.of.power.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Kreegan Alliance.",
+        "source": "installed-game:H3bitmap.lod/SECRET.H3C#sha256=92a74622f2d105ccbaa900850de5b351cf87d5fd88196914ec66b5bf94ad4639; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-specterofpower",
+        "locator": "installed-game:H3bitmap.lod/SECRET.H3C#sha256=92a74622f2d105ccbaa900850de5b351cf87d5fd88196914ec66b5bf94ad4639; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.seeds.of.discontent.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing The Grail.",
+        "source": "installed-game:H3bitmap.lod/SECRET1.H3C#sha256=755b806815dfd57e799c84e49c82e87bdcffbd1f4b0a12a089c32def94a64cc4; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-seedsofdiscontent",
+        "locator": "installed-game:H3bitmap.lod/SECRET1.H3C#sha256=755b806815dfd57e799c84e49c82e87bdcffbd1f4b0a12a089c32def94a64cc4; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.seeds.of.discontent.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing The Road Home.",
+        "source": "installed-game:H3bitmap.lod/SECRET1.H3C#sha256=755b806815dfd57e799c84e49c82e87bdcffbd1f4b0a12a089c32def94a64cc4; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-seedsofdiscontent",
+        "locator": "installed-game:H3bitmap.lod/SECRET1.H3C#sha256=755b806815dfd57e799c84e49c82e87bdcffbd1f4b0a12a089c32def94a64cc4; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.dragon.slayer.scenario.1",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Crystal Dragons.",
+        "source": "installed-game:H3ab_bmp.lod/SLAYER.H3C#sha256=d6d092019fa18435b5cdeac583ac1d8d0a374f079148807c755a830e0bde91da; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-dragonslayer",
+        "locator": "installed-game:H3ab_bmp.lod/SLAYER.H3C#sha256=d6d092019fa18435b5cdeac583ac1d8d0a374f079148807c755a830e0bde91da; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.dragon.slayer.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Crystal Dragons.",
+        "source": "installed-game:H3ab_bmp.lod/SLAYER.H3C#sha256=d6d092019fa18435b5cdeac583ac1d8d0a374f079148807c755a830e0bde91da; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-dragonslayer",
+        "locator": "installed-game:H3ab_bmp.lod/SLAYER.H3C#sha256=d6d092019fa18435b5cdeac583ac1d8d0a374f079148807c755a830e0bde91da; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.dragon.slayer.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Faerie Dragons and Rust Dragons.",
+        "source": "installed-game:H3ab_bmp.lod/SLAYER.H3C#sha256=d6d092019fa18435b5cdeac583ac1d8d0a374f079148807c755a830e0bde91da; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-dragonslayer",
+        "locator": "installed-game:H3ab_bmp.lod/SLAYER.H3C#sha256=d6d092019fa18435b5cdeac583ac1d8d0a374f079148807c755a830e0bde91da; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.birth.of.a.barbarian.scenario.2",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing On the Run.",
+        "source": "installed-game:H3bitmap.lod/YOG.H3C#sha256=c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-birthofabarbarian",
+        "locator": "installed-game:H3bitmap.lod/YOG.H3C#sha256=c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.birth.of.a.barbarian.scenario.3",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing The Meeting.",
+        "source": "installed-game:H3bitmap.lod/YOG.H3C#sha256=c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-birthofabarbarian",
+        "locator": "installed-game:H3bitmap.lod/YOG.H3C#sha256=c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.birth.of.a.barbarian.scenario.4",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing A Tough Start.",
+        "source": "installed-game:H3bitmap.lod/YOG.H3C#sha256=c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-birthofabarbarian",
+        "locator": "installed-game:H3bitmap.lod/YOG.H3C#sha256=c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "CampaignScenario",
+      "key": "homm3.campaign.birth.of.a.barbarian.scenario.5",
+      "field": "AvailabilityCondition",
+      "expected": null,
+      "value": {
+        "description": "Available after completing Falor and Terwen.",
+        "source": "installed-game:H3bitmap.lod/YOG.H3C#sha256=c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc; campaign-header"
+      },
+      "evidence": {
+        "sourceId": "homm3-h3c-birthofabarbarian",
+        "locator": "installed-game:H3bitmap.lod/YOG.H3C#sha256=c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc; campaign-header",
+        "claim": "The native prerequisite bitmask requires all listed source regions before this campaign region becomes available."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.village.hall",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 500
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.town.hall",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 1000
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.city.hall",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 2000
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.capitol",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 4000,
+        "limitPerPlayer": 1
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.fort",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "description": "Adds town walls."
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.citadel",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "creatureGrowthPercent": 50,
+        "description": "Adds a moat and the central arrow tower."
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.castle",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "creatureGrowthPercent": 100,
+        "description": "Strengthens walls and adds two smaller arrow towers."
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.mage.guild.level.1",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "spellLevel": 1,
+        "spellsOfferedAtLevel": 5
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.mage.guild.level.2",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "spellLevel": 2,
+        "spellsOfferedAtLevel": 4
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.mage.guild.level.3",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "spellLevel": 3,
+        "spellsOfferedAtLevel": 3
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.mage.guild.level.4",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "spellLevel": 4,
+        "spellsOfferedAtLevel": 2
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.mage.guild.level.5",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "spellLevel": 5,
+        "spellsOfferedAtLevel": 1
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.marketplace",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "description": "Allows resource trading; exchange rates improve with more controlled marketplaces."
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.tavern",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "description": "Allows hero recruitment, rumors, and access to the Thieves Guild."
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGNEUT.TXT#sha256=84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+        "claim": "The installed common-building table gives the same effect for this Conflux building as for the already populated classic towns."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.castle.colossus",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.rampart.spirit.guardian",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.tower.skyship",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.inferno.deity.of.fire",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.necropolis.soul.prison",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.dungeon.guardian.of.earth",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.stronghold.warlords.monument",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.fortress.carnivorous.plant",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    },
+    {
+      "table": "BuildingHOMM3",
+      "key": "homm3.building.conflux.aurora.borealis",
+      "field": "Effect",
+      "expected": null,
+      "value": {
+        "goldPerDay": 5000,
+        "creatureGrowthPercent": 50
+      },
+      "evidence": {
+        "sourceId": "homm3-installed-special-building-text",
+        "locator": "installed-game:H3bitmap.lod/BLDGSPEC.TXT#sha256=d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+        "claim": "The installed special-building table states that this Grail structure adds 5,000 gold daily and raises weekly creature generation by 50%."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "homm3-h3c-armageddonsblade",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete AB.H3C",
+      "archive": "H3ab_bmp.lod",
+      "member": "AB.H3C",
+      "sha256Observed": "696da49554d346398fa65afed1fc3a3355c3ccfbc5904a1fc5c879736e3a40d2",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-birthofabarbarian",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete YOG.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "YOG.H3C",
+      "sha256Observed": "c2717d2290ba507daa07cf37b95534f51d0cdc435d3a23449b698e987288a6cc",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-dragonsblood",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete BLOOD.H3C",
+      "archive": "H3ab_bmp.lod",
+      "member": "BLOOD.H3C",
+      "sha256Observed": "97be2e75b58b326ccf91c0aa243059483f836f0f7d0896ec9ef1fd19b3d094d2",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-dragonslayer",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete SLAYER.H3C",
+      "archive": "H3ab_bmp.lod",
+      "member": "SLAYER.H3C",
+      "sha256Observed": "d6d092019fa18435b5cdeac583ac1d8d0a374f079148807c755a830e0bde91da",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-dungeonsanddevils",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete EVIL1.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "EVIL1.H3C",
+      "sha256Observed": "e702c30dd4067060725521396b28956ecb4b2300756284a2756523c99d66d28c",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-elixiroflife",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete GELU.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "GELU.H3C",
+      "sha256Observed": "6de641aa7cc5859abc0856176a35ca9c7866b43c384e369aa7cb3e779febb2ee",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-festivaloflife",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete FESTIVAL.H3C",
+      "archive": "H3ab_bmp.lod",
+      "member": "FESTIVAL.H3C",
+      "sha256Observed": "bef28f2e6bc3db4c663fa24661ccaee088b14c71ee5c189d7b5a1577fa0aba6e",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-foolhardywaywardness",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete FOOL.H3C",
+      "archive": "H3ab_bmp.lod",
+      "member": "FOOL.H3C",
+      "sha256Observed": "c7bfd33471494cceedfdb39b8b54d7f144ada368482c40a84bb726baa2006763",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-hackandslash",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete CRAG.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "CRAG.H3C",
+      "sha256Observed": "d265bc2dfa0a80f237d16fabe025ed8acc437eff7cd8bad6c190c3601bc42e33",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-liberation",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete GOOD2.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "GOOD2.H3C",
+      "sha256Observed": "1819007e971efa84a4c4fc336b0bb495e2a6b8e983136fb4fd3b7c192a4696b5",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-longlivetheking",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete EVIL2.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "EVIL2.H3C",
+      "sha256Observed": "4510d7440f9df803fe117897897fa1313634bf70014d3181e3f7fc44f52735da",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-longlivethequeen",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete GOOD1.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "GOOD1.H3C",
+      "sha256Observed": "431edb39815e8d2364e821e0f08d0c56258a32b2cac4e46828567d6f9ddc217e",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-newbeginning",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete GEM.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "GEM.H3C",
+      "sha256Observed": "4fc33395c17a6cd8ba76372cd4b785b742d04c30a5145a3b5a0d833d537a0dc7",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-playingwithfire",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete FIRE.H3C",
+      "archive": "H3ab_bmp.lod",
+      "member": "FIRE.H3C",
+      "sha256Observed": "a7328b41cedbabadc473bab84ba78244ced4f0df07cedf63153dc9ba6e5e4814",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-riseofthenecromancer",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete SANDRO.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "SANDRO.H3C",
+      "sha256Observed": "fd51baf25d4bce4a7429dff9fe127ba0f31ad01c194897dd3c7ebe65d18545b6",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-seedsofdiscontent",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete SECRET1.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "SECRET1.H3C",
+      "sha256Observed": "755b806815dfd57e799c84e49c82e87bdcffbd1f4b0a12a089c32def94a64cc4",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-songforthefather",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete GOOD3.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "GOOD3.H3C",
+      "sha256Observed": "c6abd108650e3cd18285ac5174661f9351aeec00c2d474a6e56c5f51ce24c52e",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-specterofpower",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete SECRET.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "SECRET.H3C",
+      "sha256Observed": "92a74622f2d105ccbaa900850de5b351cf87d5fd88196914ec66b5bf94ad4639",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-spoilsofwar",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete NEUTRAL1.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "NEUTRAL1.H3C",
+      "sha256Observed": "0985a91b80613d54ca19169df15ba52c2ea28d178ecb1527aa22e497ca039817",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-h3c-unholyalliance",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete FINAL.H3C",
+      "archive": "H3bitmap.lod",
+      "member": "FINAL.H3C",
+      "sha256Observed": "54de562f66240d5f69a7633065290dc8b959288939d0efa3987222817fbba5ed",
+      "notes": "Original campaign header parsed in memory. Embedded maps, videos, images, and narrative text are not retained."
+    },
+    {
+      "id": "homm3-installed-building-text",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete common building text",
+      "archive": "H3bitmap.lod",
+      "member": "BLDGNEUT.TXT",
+      "sha256Observed": "84c3d6f2477c21d16e54f11d13b3ee4464d07f33b69206d1921df2b70fc5c2d0",
+      "notes": "Only concise structured mechanics are retained; the source prose is not copied."
+    },
+    {
+      "id": "homm3-installed-special-building-text",
+      "kind": "primary_installed_game_file",
+      "title": "Heroes III Complete special building text",
+      "archive": "H3bitmap.lod",
+      "member": "BLDGSPEC.TXT",
+      "sha256Observed": "d4f1042bec50755a9520d266b1a9b02a7a01d45cc703d0ace06af0648e902fe1",
+      "notes": "Only concise structured Grail mechanics are retained; the source prose is not copied."
+    }
+  ],
+  "verification": {
+    "campaignsParsed": 20,
+    "nativeScenarioPrerequisiteEdges": 75,
+    "catalogScenarioPrerequisiteEdges": 75,
+    "availabilityConditionsAdded": 61,
+    "buildingEffectsAdded": 23,
+    "graphMatchesNative": true
+  },
+  "deferred": [
+    {
+      "table": "HeroHOMM3",
+      "field": "StartingArmy",
+      "reason": "HOTRAITS.TXT has three probability-bearing native slots and includes war machines. The current JSON contract stores creature ranges but not slot inclusion chances or non-creature war machines; importing a partial array would change the meaning.",
+      "proposedContract": {
+        "slots": [
+          {
+            "slot": "positive integer",
+            "creatureKey": "catalog creature key or null",
+            "warMachineKey": "catalog artifact/war-machine key or null",
+            "minimum": "non-negative integer",
+            "maximum": "non-negative integer",
+            "inclusionChancePercent": "0..100"
+          }
+        ]
+      }
+    },
+    {
+      "table": "ScenarioHOMM3",
+      "fields": [
+        "VictoryConditions",
+        "LossConditions",
+        "StartingBonuses",
+        "CarryoverRules"
+      ],
+      "reason": "These JSONB columns are deliberately null-only in the current contract. The H3C/H3M files support typed data, but importing it first requires reviewed closed JSON shapes and validator tests."
+    }
+  ]
+}

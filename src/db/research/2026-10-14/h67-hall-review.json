@@ -1,0 +1,803 @@
+{
+  "reviewDate": "2026-10-14",
+  "definition": "Documented ability to be a standard or explicitly editor-listed Hall hero; not per-map/player enabling.",
+  "source": {
+    "url": "https://mightandmagic.fandom.com/wiki/Template%3AH7char?oldid=171605",
+    "revision": 171605,
+    "sha256": "ba1898e7b2350a874d639cf4cf93c670c2c1736d83510d74b57dddebf4d02126"
+  },
+  "heroes": [
+    {
+      "key": "homm7.hero.aali",
+      "name": "Aali",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.adar.malik",
+      "name": "Adar-Malik",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.aeris",
+      "name": "Aeris",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.agathin",
+      "name": "Agathin",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.agbeth",
+      "name": "Agbeth",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.ajit",
+      "name": "Ajit",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.alesia",
+      "name": "Alesia",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.amari",
+      "name": "Amari",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.amilcar",
+      "name": "Amilcar",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.anastasya",
+      "name": "Anastasya",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.andras",
+      "name": "Andras",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.anga",
+      "name": "Anga",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ann",
+      "name": "Ann",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.asad",
+      "name": "Asad",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ashbeth",
+      "name": "Ashbeth",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.aslaug",
+      "name": "Aslaug",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.bart.brimstone",
+      "name": "Bart Brimstone",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.bilashi",
+      "name": "Bilashi",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.bluebeak",
+      "name": "Bluebeak",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.brigid",
+      "name": "Brigid",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.charna",
+      "name": "Charna",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.christian",
+      "name": "Christian",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ciele",
+      "name": "Ciele",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.cyrus",
+      "name": "Cyrus",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.dagar",
+      "name": "Dagar",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.danan",
+      "name": "Danan",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.darkstorm",
+      "name": "Darkstorm",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.dirael",
+      "name": "Dirael",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.dogwoggle",
+      "name": "Dogwoggle",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.drakon",
+      "name": "Drakon",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.edric",
+      "name": "Edric",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ella",
+      "name": "Ella",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ergal",
+      "name": "Ergal",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.eruina",
+      "name": "Eruina",
+      "IsHallHero": true,
+      "basis": "Previously verified editor-manual list"
+    },
+    {
+      "key": "homm7.hero.etunia",
+      "name": "Etunia",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.fahada",
+      "name": "Fahada",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.fasolt",
+      "name": "Fasolt",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.fredrik",
+      "name": "Fredrik",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.geisli",
+      "name": "Geisli",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.gem",
+      "name": "Gem",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.genevieve.seymour",
+      "name": "Genevieve Seymour",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.gerdi",
+      "name": "Gerdi",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.giovanni",
+      "name": "Giovanni",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.gird",
+      "name": "Gird",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.gloria",
+      "name": "Gloria",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.grainne",
+      "name": "Grainne",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.haegeir",
+      "name": "Haegeir",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.hangvul",
+      "name": "Hangvul",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.hathor",
+      "name": "Hathor",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.hedwig",
+      "name": "Hedwig",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.hisham",
+      "name": "Hisham",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.imani",
+      "name": "Imani",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.ishi",
+      "name": "Ishi",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ivan",
+      "name": "Ivan",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.ivor",
+      "name": "Ivor",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.jengo",
+      "name": "Jengo",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.jenova",
+      "name": "Jenova",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.johari",
+      "name": "Johari",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.jorgen",
+      "name": "Jorgen",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.kari",
+      "name": "Kari",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.kaspar",
+      "name": "Kaspar",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.kengi",
+      "name": "Kengi",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.kente",
+      "name": "Kente",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.kibwe",
+      "name": "Kibwe",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.konrad",
+      "name": "Konrad",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.krysztoff",
+      "name": "Krysztoff",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.lasir",
+      "name": "Lasir",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.lethos",
+      "name": "Lethos",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.lirdan",
+      "name": "Lirdan",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.lucretia",
+      "name": "Lucretia",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ludmilla",
+      "name": "Ludmilla",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.luna",
+      "name": "Luna",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.lyla",
+      "name": "Lyla",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.maahir",
+      "name": "Maahir",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.malathua",
+      "name": "Malathua",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.malwen",
+      "name": "Malwen",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.masfar",
+      "name": "Masfar",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.mateusz",
+      "name": "Mateusz",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.melisande",
+      "name": "Melisande",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.menan",
+      "name": "Menan",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.merikh",
+      "name": "Merikh",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.minasli",
+      "name": "Minasli",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.mirym",
+      "name": "Mirym",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.moander",
+      "name": "Moander",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.murazel",
+      "name": "Murazel",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.naadir",
+      "name": "Naadir",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.nolwenn",
+      "name": "Nolwenn",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.nur",
+      "name": "Nur",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.orna",
+      "name": "Orna",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ossir",
+      "name": "Ossir",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.pherlon",
+      "name": "Pherlon",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.qasim",
+      "name": "Qasim",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.raelag",
+      "name": "Raelag",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.ranleth",
+      "name": "Ranleth",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.rashka",
+      "name": "Rashka",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.reem",
+      "name": "Reem",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.saabira",
+      "name": "Saabira",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.sailin",
+      "name": "Sailin",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.salvin",
+      "name": "Salvin",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.sandalphon",
+      "name": "Sandalphon",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.seamus",
+      "name": "Seamus",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.sephinroth",
+      "name": "Sephinroth",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.serguei",
+      "name": "Serguei",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.shani",
+      "name": "Shani",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.sinitar",
+      "name": "Sinitar",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.sinithala",
+      "name": "Sinithala",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.slyn",
+      "name": "Slyn",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.solmyr",
+      "name": "Solmyr",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.sorshan",
+      "name": "Sorshan",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.stefan",
+      "name": "Stefan",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.svea",
+      "name": "Svea",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.sylrael",
+      "name": "Sylrael",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.sylsai",
+      "name": "Sylsai",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.theodorus",
+      "name": "Theodorus",
+      "IsHallHero": true,
+      "basis": "Previously verified editor-manual list"
+    },
+    {
+      "key": "homm7.hero.tieru",
+      "name": "Tieru",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.tolghar",
+      "name": "Tolghar",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.tomas",
+      "name": "Tomas",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.tyris",
+      "name": "Tyris",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.vayaron",
+      "name": "Vayaron",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.vein",
+      "name": "Vein",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.vilma",
+      "name": "Vilma",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.wilhelm",
+      "name": "Wilhelm",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.wysloth",
+      "name": "Wysloth",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.yasir",
+      "name": "Yasir",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.yeshtar",
+      "name": "Yeshtar",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.ymoril",
+      "name": "Ymoril",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.yog",
+      "name": "Yog",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.yrbeth",
+      "name": "Yrbeth",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.yrris",
+      "name": "Yrris",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.zakera",
+      "name": "Zakera",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    },
+    {
+      "key": "homm7.hero.zenda",
+      "name": "Zenda",
+      "IsHallHero": null,
+      "basis": "Wiki article does not establish Hall eligibility"
+    },
+    {
+      "key": "homm7.hero.zoltan",
+      "name": "Zoltan",
+      "IsHallHero": true,
+      "basis": "Explicit standard roster"
+    }
+  ]
+}

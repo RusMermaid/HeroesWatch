@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-14",
+  "status": "committed",
+  "database": "HeroesWatch.net",
+  "host": "localhost",
+  "port": 5432,
+  "role": "postgres",
+  "owner": "postgres",
+  "serverVersion": "18.4",
+  "schemaVersion": 7,
+  "backup": {
+    "format": "PostgreSQL custom archive",
+    "bytes": 1341656,
+    "sha256": "80ea2b69cee0db5fdc502c2ff471ae6d638cbe1f484eb743e22e5115b0d3edf8",
+    "restoredAndPreflighted": true,
+    "location": "Private local task recovery files; excluded from Git"
+  },
+  "method": "Authenticated pgAdmin query; all SQL files SHA-256 checked before mutation and again before each transactional execution.",
+  "steps": [
+    {
+      "file": "postgres/migrations/0003_nullable_identity_and_campaign_scope.sql",
+      "sha256": "45d2c3c79d4317a1d44e3089ac6f23ac83f0b1863ad59dcae4f665967a295821",
+      "status": "committed"
+    },
+    {
+      "file": "postgres/migrations/0004_creature_tier_terminology.sql",
+      "sha256": "37a0f61de380816653579bbe4774fe4d823b6510d8d0053a91e24f75acf12d4f",
+      "status": "committed"
+    },
+    {
+      "file": "postgres/migrations/0005_creature_numeric_speed.sql",
+      "sha256": "3f3512c3bbea253cc589c475e5eb4017b76a978fcb77e28d53992f41f27558d1",
+      "status": "committed"
+    },
+    {
+      "file": "data/creature-tier-corrections.sql",
+      "sha256": "04808bcc17818b2501529c355da190193f35486891fd85ba5e8f41069629fd01",
+      "status": "committed"
+    },
+    {
+      "file": "data/research-import.sql",
+      "sha256": "4e485961f2045250c4aaeb605bf6e1d4ef7061de77753e363308fc02190a17c5",
+      "status": "committed"
+    },
+    {
+      "file": "postgres/migrations/0006_catalog_guards.sql",
+      "sha256": "151c530ae7ea62ed605d5f42a80e421f84d99581e14226e819ccb372df78ac11",
+      "status": "committed"
+    },
+    {
+      "file": "postgres/migrations/0007_source_detail_profiles.sql",
+      "sha256": "7ecb610ae431a40bd7250ef32a002b39e7a006a437a637c50d9b2eff2047d735",
+      "status": "committed"
+    },
+    {
+      "file": "data/research-gaps-import.sql",
+      "sha256": "10695939977a2a17d809f7209f947391bfb555cd2c1aae5b32cc62461500f956",
+      "status": "committed"
+    }
+  ],
+  "observedResult": "Successfully run. Total query runtime: 20 secs 312 msec. 20 rows affected.",
+  "elapsedSeconds": 20.312,
+  "observedMetrics": {
+    "schemaColumns": 1309,
+    "catalogRows": 45560,
+    "heroes4Abilities": 76,
+    "heroes4CreatureAbilities": 167,
+    "heroes6CreatureAbilities": 577,
+    "heroes7CreatureAbilities": 249,
+    "heroes6CreatureDetails": 107,
+    "heroes6ClassDetails": 32,
+    "heroes7WarfareDetails": 19,
+    "heroes7ClassDetails": 44,
+    "heroes5StartingArmies": 103,
+    "oldenAlternativeAttacks": 9,
+    "oldenSchools": 5,
+    "oldenResources": 11,
+    "oldenAstrology": 1,
+    "oldenMaps": 21,
+    "oldenScenarios": 21,
+    "oldenCampaigns": 3
+  },
+  "reviewQuery": "src/db/data/research-gaps.review.sql",
+  "catalogSha256": "5ea9aeed0b8d37e26e0929f40993c68f4dbd7a7fd0d5c883508261d0bd96e141",
+  "scope": "Observed local deployment only. Exact field and identity comparisons used the restored pre-update backup in isolated PostgreSQL; live observation confirms successful completion and the 20 review metrics."
+}

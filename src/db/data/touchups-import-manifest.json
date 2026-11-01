@@ -1,0 +1,52 @@
+{
+  "formatVersion": 1,
+  "requiresMigration": "postgres/migrations/0006_catalog_guards.sql",
+  "requiresMigrations": [
+    "postgres/migrations/0002_relationship_integrity.sql",
+    "postgres/migrations/0003_nullable_identity_and_campaign_scope.sql",
+    "postgres/migrations/0004_creature_tier_terminology.sql",
+    "postgres/migrations/0005_creature_numeric_speed.sql",
+    "postgres/migrations/0006_catalog_guards.sql"
+  ],
+  "corrections": "data/touchups-corrections.sql",
+  "creatureTierCorrections": "data/creature-tier-corrections.sql",
+  "manualCatchup": "data/manual-import.sql",
+  "parts": [
+    {
+      "file": "data/touchups-import-01.sql",
+      "seedRows": 5380,
+      "rows": 6113
+    },
+    {
+      "file": "data/touchups-import-02.sql",
+      "seedRows": 1000,
+      "rows": 1169
+    },
+    {
+      "file": "data/touchups-import-03.sql",
+      "seedRows": 1000,
+      "rows": 1167
+    },
+    {
+      "file": "data/touchups-import-04.sql",
+      "seedRows": 1000,
+      "rows": 1164
+    },
+    {
+      "file": "data/touchups-import-05.sql",
+      "seedRows": 1000,
+      "rows": 1178
+    },
+    {
+      "file": "data/touchups-import-06.sql",
+      "seedRows": 1000,
+      "rows": 1174
+    },
+    {
+      "file": "data/touchups-import-07.sql",
+      "seedRows": 401,
+      "rows": 532
+    }
+  ],
+  "note": "Apply only missing migrations in the listed order. Apply both guarded correction files, then manual catch-up and all parts; follow with research-import.sql for current research. Each import is transactional and rejects unknown conflicting facts."
+}

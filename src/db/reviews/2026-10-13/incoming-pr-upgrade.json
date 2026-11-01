@@ -1,0 +1,125 @@
+{
+  "database": "final_upgrade",
+  "tableArrays": 176,
+  "comparedRows": 40023,
+  "comparedFields": 237507,
+  "checkedRelationships": 159344,
+  "byGame": [
+    {
+      "game": "HOMM1",
+      "factions": 4,
+      "creatures": 28
+    },
+    {
+      "game": "HOMM2",
+      "factions": 6,
+      "creatures": 66
+    },
+    {
+      "game": "HOMM3",
+      "factions": 9,
+      "creatures": 141
+    },
+    {
+      "game": "HOMM4",
+      "factions": 6,
+      "creatures": 74
+    },
+    {
+      "game": "HOMM5",
+      "factions": 8,
+      "creatures": 177
+    },
+    {
+      "game": "HOMM6",
+      "factions": 6,
+      "creatures": 109
+    },
+    {
+      "game": "HOMM7",
+      "factions": 7,
+      "creatures": 156
+    },
+    {
+      "game": "HOMM8",
+      "factions": 6,
+      "creatures": 146
+    },
+    {
+      "game": "MM1",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MM2",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MM3",
+      "factions": 0,
+      "creatures": 90
+    },
+    {
+      "game": "MM4",
+      "factions": 0,
+      "creatures": 86
+    },
+    {
+      "game": "MM5",
+      "factions": 0,
+      "creatures": 94
+    },
+    {
+      "game": "MM6",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MM7",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MM8",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MM9",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MM10",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MMSX",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MMCRUS",
+      "factions": 6,
+      "creatures": 17
+    },
+    {
+      "game": "MMWARRIORS",
+      "factions": 2,
+      "creatures": 0
+    },
+    {
+      "game": "MMSHIFTERS",
+      "factions": 0,
+      "creatures": 0
+    },
+    {
+      "game": "MMLEGENDS",
+      "factions": 2,
+      "creatures": 31
+    }
+  ],
+  "result": "PASS"
+}

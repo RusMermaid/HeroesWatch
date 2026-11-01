@@ -3,6 +3,10 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { validateJsonColumn, validatePostgresText } from "./json-contracts.mjs";
+import { scenarioHomm3Annotations } from "./scenario-homm3-annotations.mjs";
+import { validateCatalogGuards } from "./catalog-guards.mjs";
+import {validateSourceDetails} from './source-detail-rules.mjs';
 
 function fail(message, errors) {
   errors.push(message);
@@ -23,19 +27,17 @@ function isCalendarDate(value) {
     return false;
   }
   const [year, month, day] = value.split("-").map(Number);
-  if (year < 1 || month < 1 || month > 12 || day < 1 || day > 31) {
-    return false;
-  }
-  const date = new Date(Date.UTC(year, month - 1, day));
-  return (
-    date.getUTCFullYear() === year &&
-    date.getUTCMonth() === month - 1 &&
-    date.getUTCDate() === day
-  );
+  if (year < 1 || month < 1 || month > 12 || day < 1) return false;
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const daysInMonth = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  return day <= daysInMonth[month - 1];
 }
 
-function validateScalar(column, value, isForeignKey) {
+function validateScalar(column, value, isForeignKey, tableName) {
   if (value === null) return column.nullable ? null : "must not be null";
+  if (column.allowedValues && !column.allowedValues.includes(value)) {
+    return `must be one of: ${column.allowedValues.join(", ")}`;
+  }
   if (column.enumValues) {
     if (typeof value !== "string" || !column.enumValues.includes(value)) {
       return `must be one of: ${column.enumValues.join(", ")}`;
@@ -58,13 +60,17 @@ function validateScalar(column, value, isForeignKey) {
   if (column.sqlDesignerType === "BOOLEAN") {
     return typeof value === "boolean" ? null : "must be a boolean";
   }
+  if (column.sqlDesignerType === 'NUMERIC') {
+    return typeof value==='number'&&Number.isFinite(value)&&value>=-32768&&value<=32767 ? null : 'must be a finite number between -32768 and 32767';
+  }
   if (column.sqlDesignerType === "DATE") {
     return isCalendarDate(value)
       ? null
       : "must be a real ISO calendar date (YYYY-MM-DD)";
   }
-  if (column.sqlDesignerType === "JSONB") return null;
-  return typeof value === "string" ? null : "must be a string";
+  if (column.sqlDesignerType === "JSONB") return validateJsonColumn(tableName, column.name, value);
+  if (typeof value !== "string") return "must be a string";
+  return validatePostgresText(value)?.replace(/^value /, "") ?? null;
 }
 
 async function main() {
@@ -81,12 +87,39 @@ async function main() {
 
   const errors = [];
   if (bundle.formatVersion !== 1) fail("formatVersion must be 1", errors);
-  if (!bundle.tables || typeof bundle.tables !== "object") {
+  if (!bundle.tables || typeof bundle.tables !== "object" || Array.isArray(bundle.tables)) {
     fail("tables must be an object", errors);
   }
 
   const tableByName = new Map(schema.tables.map((table) => [table.name, table]));
   const keysByTable = new Map();
+  const primaryRows = new Map();
+  for (const table of schema.tables) {
+    const index = new Map();
+    function addAlias(alias, row) {
+      if (alias == null) return;
+      const previous = index.get(alias);
+      if (previous && previous !== row) {
+        fail(`${table.name} has ambiguous identity alias ${JSON.stringify(alias)} shared by ${previous._key} and ${row._key}`, errors);
+        return;
+      }
+      index.set(alias, row);
+    }
+    for (const row of Array.isArray(bundle.tables?.[table.name]) ? bundle.tables[table.name] : []) {
+      if (!row || typeof row !== "object") continue;
+      addAlias(row._key, row);
+      for (const column of table.primaryKey) addAlias(row[column], row);
+    }
+    primaryRows.set(table.name, index);
+  }
+  function identity(targetTable, column, value, targetRow) {
+    if (value === null || value === undefined) return null;
+    if (targetTable.primaryKey.includes(column)) return targetRow?._key ?? primaryRows.get(targetTable.name).get(value)?._key ?? value;
+    const fk = targetTable.foreignKeys.find((candidate) => candidate.columns.length === 1 && candidate.columns[0] === column);
+    if (fk) return identity(tableByName.get(fk.referencedTable), fk.referencedColumns[0], value);
+    return value;
+  }
+  const foreignTupleIndexes = new Map();
 
   for (const suppliedName of Object.keys(bundle.tables ?? {})) {
     if (!tableByName.has(suppliedName)) {
@@ -115,8 +148,8 @@ async function main() {
         fail(`${label} must be an object`, errors);
         return;
       }
-      if (typeof row._key !== "string" || row._key.length === 0) {
-        fail(`${label} requires a non-empty _key`, errors);
+      if (typeof row._key !== "string" || !/^[a-z0-9]+(?:[._:-][a-z0-9]+)*$/.test(row._key) || row._key.length > 256) {
+        fail(`${label} requires a stable lowercase _key of at most 256 characters (letters, digits, and single . _ : - separators)`, errors);
       } else if (seenKeys.has(row._key)) {
         fail(`${label} duplicates _key ${row._key}`, errors);
       } else {
@@ -126,6 +159,8 @@ async function main() {
       for (const suppliedColumn of Object.keys(row)) {
         if (suppliedColumn !== "_key" && !columnsByName.has(suppliedColumn)) {
           fail(`${label} has unknown field ${suppliedColumn}`, errors);
+        } else if (columnsByName.get(suppliedColumn)?.generatedExpression) {
+          fail(`${label}.${suppliedColumn} is database-generated and must be omitted`, errors);
         }
       }
 
@@ -139,20 +174,32 @@ async function main() {
           }
           continue;
         }
+        if (column.generatedExpression) continue;
         const message = validateScalar(
           column,
           row[column.name],
           foreignKeyColumns.has(column.name),
+          table.name,
         );
         if (message) fail(`${label}.${column.name} ${message}`, errors);
       }
     });
 
-    for (const uniqueColumns of [table.primaryKey, ...table.unique]) {
+    for (const constraint of [
+      { columns: table.primaryKey }, ...table.unique.map((columns) => ({ columns })),
+      ...(table.uniqueConstraints ?? []),
+    ]) {
+      const uniqueColumns = constraint.columns;
       const seen = new Map();
       rows.forEach((row, index) => {
-        const values = uniqueColumns.map((column) => row[column]);
-        if (values.some((value) => value === undefined || value === null)) return;
+        if (!row || typeof row !== "object" || Array.isArray(row)) return;
+        const values = uniqueColumns.map((column) => {
+          const value = row[column] ?? null;
+          const fk = table.foreignKeys.find((candidate) => candidate.columns.length === 1 && candidate.columns[0] === column);
+          const parent = fk && primaryRows.get(fk.referencedTable)?.get(value);
+          return parent ? parent._key : value;
+        });
+        if (!constraint.nullsNotDistinct && values.some((value) => value === null)) return;
         const signature = JSON.stringify(values);
         if (seen.has(signature)) {
           fail(
@@ -168,29 +215,29 @@ async function main() {
 
   for (const table of schema.tables) {
     const rows = bundle.tables?.[table.name] ?? [];
+    if (!Array.isArray(rows)) continue;
     rows.forEach((row, index) => {
+      if (!row || typeof row !== "object" || Array.isArray(row)) return;
       const label = rowLabel(table.name, row, index);
       for (const foreignKey of table.foreignKeys) {
-        const childColumn = foreignKey.columns[0];
-        const parentColumn = foreignKey.referencedColumns[0];
         const parentTable = tableByName.get(foreignKey.referencedTable);
         const parentRows = bundle.tables?.[foreignKey.referencedTable] ?? [];
-        let value = row[childColumn];
-        if (
-          value === undefined &&
-          table.primaryKey.includes(childColumn) &&
-          typeof row._key === "string"
-        ) {
-          value = row._key;
+        const values = foreignKey.columns.map((childColumn) => row[childColumn] ??
+          (table.primaryKey.includes(childColumn) && row[childColumn] === undefined ? row._key : null));
+        // PostgreSQL MATCH SIMPLE: any null component exempts the tuple. Optional
+        // global media links have a separate ownership check below.
+        if (values.some((value) => value === undefined || value === null)) continue;
+        const indexKey = `${parentTable.name}:${foreignKey.referencedColumns.join(",")}`;
+        if (!foreignTupleIndexes.has(indexKey)) {
+          foreignTupleIndexes.set(indexKey, new Set((Array.isArray(parentRows) ? parentRows : []).filter((parentRow) => parentRow && typeof parentRow === "object").map((parentRow) =>
+            JSON.stringify(foreignKey.referencedColumns.map((parentColumn) => identity(parentTable, parentColumn,
+              parentRow[parentColumn] ?? (parentTable.primaryKey.includes(parentColumn) ? parentRow._key : null),
+              parentTable.primaryKey.includes(parentColumn) ? parentRow : undefined))))));
         }
-        if (value === undefined || value === null) continue;
-        const found =
-          typeof value === "string"
-            ? keysByTable.get(foreignKey.referencedTable)?.has(value)
-            : parentRows.some((parentRow) => parentRow[parentColumn] === value);
+        const found = foreignTupleIndexes.get(indexKey).has(JSON.stringify(foreignKey.referencedColumns.map((column, position) => identity(parentTable, column, values[position]))));
         if (!found) {
           fail(
-            `${label}.${childColumn} references missing ${parentTable.name}.${parentColumn}: ${value}`,
+            `${label}.${foreignKey.columns.join(",")} references missing ${parentTable.name}.${foreignKey.referencedColumns.join(",")}: ${values.join(",")}`,
             errors,
           );
         }
@@ -198,6 +245,141 @@ async function main() {
     });
   }
 
+  // Foreign keys prove existence; retain ownership checks for globals and for
+  // diagnostic messages that identify the two conflicting titles.
+  // Shared-PK details inherit ownership from their generic catalog row.
+  function referencedRow(foreignKey, value) {
+    if (value === null || value === undefined) return null;
+    const targetTable = tableByName.get(foreignKey.referencedTable);
+    const targetColumn = foreignKey.referencedColumns[0];
+    if (targetTable?.primaryKey.includes(targetColumn)) {
+      return primaryRows.get(foreignKey.referencedTable)?.get(value) ?? null;
+    }
+    return (bundle.tables?.[foreignKey.referencedTable] ?? []).find((row) => row?.[foreignKey.referencedColumns[0]] === value);
+  }
+  function owner(table, row, visited = new Set()) {
+    if (!row) return null;
+    if (table.name === "Game") return row;
+    const identity = `${table.name}:${row._key}`;
+    if (visited.has(identity)) return null;
+    visited.add(identity);
+    const gameKey = table.foreignKeys.find((fk) => fk.columns.length === 1 && fk.columns[0] === "Game_id");
+    if (gameKey) {
+      const gameValue = row.Game_id ?? (table.primaryKey.includes("Game_id") ? row._key : null);
+      return referencedRow(gameKey, gameValue) ?? null;
+    }
+    const parentKey = table.foreignKeys.find((fk) => fk.columns.length === 1 && table.primaryKey.includes(fk.columns[0]));
+    if (parentKey) {
+      return owner(tableByName.get(parentKey.referencedTable), referencedRow(parentKey, row[parentKey.columns[0]] ?? row._key), visited);
+    }
+    const ownershipColumn = {
+      FactionLaw: "Faction_id",
+      ArtifactSetHOMM5: "IntroducedInExpansion_id",
+      ArtifactSetBonusHOMM5: "ArtifactSetHOMM5_id",
+    }[table.name];
+    const inherited = table.foreignKeys.find((fk) => fk.columns[0] === ownershipColumn);
+    if (inherited && row[ownershipColumn] != null) {
+      return owner(tableByName.get(inherited.referencedTable), referencedRow(inherited, row[ownershipColumn]), visited);
+    }
+    return null;
+  }
+  for (const table of schema.tables) {
+    for (const [index, row] of (Array.isArray(bundle.tables?.[table.name]) ? bundle.tables[table.name] : []).entries()) {
+      if (!row || typeof row !== "object") continue;
+      const game = owner(table, row);
+      const detailGame = table.name === "FactionLaw" ? "HOMM8" : table.name.match(/HOMM[1-8]$/)?.[0];
+      if (detailGame && game && game.SeriesCode !== detailGame) {
+        fail(`${rowLabel(table.name, row, index)} belongs to ${game.SeriesCode}, but ${table.name} requires ${detailGame}`, errors);
+      }
+      for (const foreignKey of table.foreignKeys) {
+        if (foreignKey.columns.length !== 1) continue;
+        const column = foreignKey.columns[0];
+        const value = row[column] ?? (table.primaryKey.includes(column) ? row._key : null);
+        if (value === null || value === undefined) continue;
+        const parentGame = owner(tableByName.get(foreignKey.referencedTable), referencedRow(foreignKey, value));
+        if (detailGame && parentGame && parentGame.SeriesCode !== detailGame) {
+          fail(`${rowLabel(table.name, row, index)}.${column} belongs to ${parentGame.SeriesCode}, but ${table.name} requires ${detailGame}`, errors);
+        }
+        if (game && parentGame && parentGame._key !== game._key) {
+          fail(`${rowLabel(table.name, row, index)}.${column} crosses games (${game.SeriesCode} to ${parentGame.SeriesCode})`, errors);
+        }
+      }
+    }
+  }
+
+  // ScenarioHOMM3 keeps source-native IDs for auditability. Its nested `_key`
+  // strings are import-key annotations, not PostgreSQL FKs: validate them at
+  // bundle ingestion because the importer writes JSONB verbatim and universal
+  // SQL tables do not persist `_key`. Campaign bonus choices currently have no
+  // dedicated relational table.
+  const homm3Game = (bundle.tables?.Game ?? []).find((row) => row?.SeriesCode === "HOMM3");
+  const homm3GameKey = homm3Game?._key ?? homm3Game?.Game_id ?? null;
+  const homm3ResourceKeys = new Set((bundle.tables?.GameResource ?? [])
+    .filter((row) => referenceIdentity("Game", "Game_id", row.Game_id) === homm3GameKey)
+    .map((row) => referenceIdentity("Resource", "Resource_id", row.Resource_id)));
+  function requireHomm3Embedded(tableName, key, label) {
+    const target = primaryRows.get(tableName)?.get(key);
+    if (!target) {
+      fail(`${label} references missing ${tableName}: ${key}`, errors);
+      return;
+    }
+    const game = owner(tableByName.get(tableName), target);
+    if (game && game.SeriesCode !== "HOMM3") fail(`${label} references ${game.SeriesCode} ${tableName}: ${key}`, errors);
+  }
+  for (const [index, row] of (bundle.tables?.ScenarioHOMM3 ?? []).entries()) {
+    const label = rowLabel("ScenarioHOMM3", row, index);
+    for (const reference of scenarioHomm3Annotations(row)) {
+      const referenceLabel = `${label}.${reference.path}`;
+      if (!reference.requiresGameResource) requireHomm3Embedded(reference.table, reference.key, referenceLabel);
+      else if (!primaryRows.get("Resource")?.has(reference.key)) fail(`${referenceLabel} references missing Resource: ${reference.key}`, errors);
+      else if (!homm3ResourceKeys.has(reference.key)) fail(`${referenceLabel} uses a resource unavailable to HOMM3: ${reference.key}`, errors);
+    }
+  }
+
+  // Numbered requirement sets are alternatives. The atoms in one set share an
+  // All/Any mode; the same class/ability can legitimately have multiple sets.
+  const requirementModes = new Map();
+  for (const [index, row] of (bundle.tables?.HeroClassAbilityRequirementGroup ?? []).entries()) {
+    if (!Number.isInteger(row.RequirementSet) || row.RequirementSet < 1) {
+      fail(`${rowLabel("HeroClassAbilityRequirementGroup", row, index)}.RequirementSet must be a positive integer`, errors);
+    }
+  }
+  for (const [index, row] of (bundle.tables?.HeroClassAbility ?? []).entries()) {
+    const label = rowLabel("HeroClassAbility", row, index);
+    const hasSet = row.RequirementSet != null;
+    if (hasSet !== (row.RequirementMode != null)) fail(`${label} requires RequirementSet and RequirementMode together`, errors);
+    if (hasSet && (!Number.isInteger(row.RequirementSet) || row.RequirementSet < 1)) fail(`${label}.RequirementSet must be a positive integer`, errors);
+    if (hasSet) {
+      const group = JSON.stringify([row.Game_id, row.HeroClass_id, row.Ability_id, row.RequirementSet]);
+      if (requirementModes.has(group) && requirementModes.get(group) !== row.RequirementMode) fail(`${label} disagrees with the RequirementMode of its requirement set`, errors);
+      requirementModes.set(group, row.RequirementMode);
+    }
+  }
+
+  for (const [index, row] of (bundle.tables?.FactionSpell ?? []).entries()) {
+    if (row.SelectionWeight != null && (!Number.isInteger(row.SelectionWeight) || row.SelectionWeight < 0)) {
+      fail(`${rowLabel("FactionSpell", row, index)}.SelectionWeight must be a non-negative integer`, errors);
+    }
+  }
+
+  // A Resource catalog row may be global, but a cost must use a resource made
+  // available by GameResource for this title. Also enforced by composite SQL FK.
+  function referenceIdentity(tableName, column, value) {
+    if (typeof value === "string") return value;
+    return (bundle.tables?.[tableName] ?? []).find((row) => row?.[column] === value)?._key ?? value;
+  }
+  const resourceMemberships = new Set((bundle.tables?.GameResource ?? []).map((row) => JSON.stringify([
+    referenceIdentity("Game", "Game_id", row.Game_id), referenceIdentity("Resource", "Resource_id", row.Resource_id),
+  ])));
+  for (const table of schema.tables.filter((table) => /^(Creature|Building|Artifact)ResourceCost$/.test(table.name))) {
+    for (const [index, row] of (bundle.tables?.[table.name] ?? []).entries()) {
+      const tuple = JSON.stringify([referenceIdentity("Game", "Game_id", row.Game_id), referenceIdentity("Resource", "Resource_id", row.Resource_id)]);
+      if (!resourceMemberships.has(tuple)) fail(`${rowLabel(table.name, row, index)} uses a resource unavailable in GameResource for its game`, errors);
+    }
+  }
+
+  if (schema.source?.overlay?.version >= 6 && errors.length === 0) errors.push(...validateCatalogGuards(schema, bundle));
+  if (schema.source?.overlay?.version >= 7 && errors.length === 0) errors.push(...validateSourceDetails(bundle));
   if (errors.length > 0) {
     console.error(`Validation failed with ${errors.length} error(s):`);
     for (const error of errors) console.error(`- ${error}`);

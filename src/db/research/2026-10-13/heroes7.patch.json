@@ -1,0 +1,258 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-13",
+  "game": "Heroes VII",
+  "scope": "Final-catalog follow-up for the 19 missing warfare creature details, 9 missing HeroClassHOMM7 details, and 110 missing HeroHOMM7 rows.",
+  "policy": "No game installation was downloaded, no live database was changed, and no existing non-null fact was overwritten. Only additions and fills are mergeable; candidateChanges and evidenceOnly are review metadata, not import rows.",
+  "additions": [],
+  "fills": [],
+  "sources": [
+    {
+      "id": "ubisoft_editor_manual",
+      "kind": "primary",
+      "url": "https://ubistatic-a.akamaihd.net/0004/prod/images/160407_LT1_Modding/EditorManual.pdf",
+      "accessed": "2026-10-13",
+      "supports": [
+        "The Heroes tab is configured per map and per player.",
+        "The manual screenshot shows the 22 existing base-game rows already recorded as true in HeroHOMM7.",
+        "The manual does not establish global false values for the other 110 heroes."
+      ]
+    },
+    {
+      "id": "ubisoft_modding_manual",
+      "kind": "primary",
+      "url": "https://ubistatic-a.akamaihd.net/0004/prod/images/160407_LT1_Modding/ModdingManual.pdf",
+      "accessed": "2026-10-13",
+      "supports": [
+        "Heroes VII creature content is data-driven through H7Creature archetypes.",
+        "The authoritative values are in game/editor package data and include stats and visuals; this checkout contains no such package."
+      ]
+    },
+    {
+      "id": "ubisoft_shadow_council_fortress_mirror",
+      "kind": "secondary_mirror_of_ubisoft_posts",
+      "url": "https://shadow1705.rssing.com/chan-52808156/latest.php",
+      "accessed": "2026-10-13",
+      "publisherAttribution": "The mirror reproduces Ubisoft's former MMH7 Shadow Council posts; rssing.com itself is not Ubisoft and is not treated as a primary host.",
+      "supports": [
+        "The mirrored Ubisoft-authored Fortress Warfare Units article identifies Runestone, Fire Cannon and Dwarven Ballista.",
+        "The mirrored Ubisoft-authored Fortress Heroes article identifies Warlord, Jarl, Thane, Firebrander, Runelord and Engraver and describes their roles/main skills.",
+        "The mirrored Ubisoft-authored patch notes record patch-level balancing and bug fixes, so numeric data must be tied to a final package/patch revision."
+      ]
+    },
+    {
+      "id": "ubisoft_shadow_council_class_mirror",
+      "kind": "secondary_mirror_of_ubisoft_posts",
+      "url": "https://shadow1705.rssing.com/chan-52808156/all_p8.html",
+      "accessed": "2026-10-13",
+      "publisherAttribution": "This is a third-party mirror of Ubisoft's former MMH7 Shadow Council; the direct Ubisoft host is no longer available to this tool.",
+      "supports": [
+        "The mirrored Ubisoft Skillwheel design article says a hero class is defined by a fixed skillwheel and that faction/class relationships are part of the game design.",
+        "The mirrored Ubisoft-authored Dungeon article explicitly identifies Lyla as Archon; this corroborates the existing Lyla-to-Archon generic Hero.HeroClass_id link."
+      ]
+    },
+    {
+      "id": "heroes_centrum_haven_crosscheck",
+      "kind": "secondary_cross_check",
+      "url": "https://www.heroes-centrum.com/h7/azyl-jednotky",
+      "accessed": "2026-10-13",
+      "supports": [
+        "Independent published baseline stats for Haven Healing Sister, Haven Ballista and Catapult.",
+        "The page reports movement 0 for these warfare units, but the current schema has no Stationary movement value and this does not establish combat square size."
+      ]
+    },
+    {
+      "id": "heroes_centrum_fortress_roster",
+      "kind": "secondary_cross_check",
+      "url": "https://www.heroes-centrum.com/h7/pevnost-jednotky",
+      "accessed": "2026-10-13",
+      "supports": [
+        "Independent roster confirmation for the three Fortress warfare units and their roles."
+      ]
+    },
+    {
+      "id": "gamersky_2015_class_table",
+      "kind": "secondary_cross_check",
+      "url": "https://www.gamersky.com/handbook/201510/671280_24.shtml",
+      "accessed": "2026-10-13",
+      "supports": [
+        "A dated pre-Trial-by-Fire class table gives candidate Archon and Embalmer growth percentages.",
+        "Those candidates were not applied because the catalog's existing research records a class-label conflict and no final package-level verification is available."
+      ]
+    },
+    {
+      "id": "secondary_warfare_rank_crosscheck",
+      "kind": "secondary_cross_check",
+      "url": "https://mightandmagic.fandom.com/wiki/Heroes_VII_creatures",
+      "accessed": "2026-10-13",
+      "supports": [
+        "The roster of all 19 missing warfare identities and their faction placement.",
+        "Individual linked unit pages publish rank-varying attack, defense, health, damage or support values for most of the 19 units.",
+        "These values are retained only as cross-check evidence until the official H7 archetype packages are available."
+      ]
+    }
+  ],
+  "candidateChanges": [
+    {
+      "kind": "schema",
+      "status": "candidate_extension_if_rank_detail_is_required",
+      "mergeable": false,
+      "table": "CreatureWarfareRankHOMM7",
+      "reason": "All 19 warfare records expose rank 1-5 vectors. A single CreatureHOMM7 scalar row would discard data or silently choose an arbitrary rank. Support units also expose healing/protection values rather than ordinary damage. Keep the rank facts normalized and preserve the effect kind.",
+      "minimumColumns": [
+        "CreatureWarfareRankHOMM7_cid TEXT PRIMARY KEY",
+        "Creature_id BIGINT NOT NULL REFERENCES CreatureHOMM7(Creature_id)",
+        "Rank SMALLINT NOT NULL CHECK (Rank BETWEEN 1 AND 5)",
+        "Attack SMALLINT",
+        "Defense SMALLINT",
+        "DamageMin SMALLINT",
+        "DamageMax SMALLINT",
+        "Health INTEGER",
+        "EffectValue INTEGER",
+        "EffectKind TEXT",
+        "UNIQUE (Creature_id, Rank)"
+      ],
+      "candidateRepresentation": "If the package-backed import confirms stationary warfare units and unknown footprint, do not map printed movement 0 to Ground, Flying or Teleporting and do not map textual Large to an arbitrary square count. One possible extension is Stationary plus nullable/explicitly unknown CombatSize, or nullable warfare fields guarded by a Warfare-specific CHECK."
+    },
+    {
+      "kind": "schema",
+      "status": "candidate_extension_if_map_overrides_are_required",
+      "mergeable": false,
+      "table": "MapHeroHOMM7",
+      "reason": "Ubisoft's Editor Manual makes per-map/per-player enablement an override. Existing HeroHOMM7.IsHallHero can remain catalog-level eligibility/default metadata; a map/player junction is optional if the project later captures map-specific overrides. The 110 unknown rows must not be forced to false.",
+      "minimumColumns": [
+        "MapHeroHOMM7_cid TEXT PRIMARY KEY",
+        "Map_id BIGINT NOT NULL REFERENCES Map(Map_id)",
+        "Hero_id BIGINT NOT NULL REFERENCES Hero(Hero_id)",
+        "PlayerNumber SMALLINT NOT NULL CHECK (PlayerNumber BETWEEN 1 AND 8)",
+        "IsEnabled BOOLEAN NOT NULL",
+        "SourceMediaAsset_id BIGINT NULL REFERENCES MediaAsset(MediaAsset_id)",
+        "UNIQUE (Map_id, Hero_id, PlayerNumber)"
+      ],
+      "migrationNote": "The current HeroHOMM7.IsHallHero is NOT NULL. Relax it only if unknown catalog-level eligibility must be represented; otherwise leave the existing 22 documented values intact and add map/player overrides separately. Never backfill unknown heroes as false."
+    },
+    {
+      "kind": "data",
+      "status": "blocked_by_source_package_evidence_only",
+      "table": "HeroClassHOMM7",
+      "reason": "Nine generic class identities exist but the required original-game growth fields are not safely resolved. The dated 2015 secondary table supplies candidates for Archon and Embalmer but conflicts with other secondary values; Fortress classes and Hell Knight require final game/editor package verification.",
+      "blockedKeys": [
+        "homm7.heroclass.archon",
+        "homm7.heroclass.embalmer",
+        "homm7.heroclass.engraver",
+        "homm7.heroclass.firebrander",
+        "homm7.heroclass.hell.knight",
+        "homm7.heroclass.jarl",
+        "homm7.heroclass.runelord",
+        "homm7.heroclass.thane",
+        "homm7.heroclass.warlord"
+      ],
+      "candidateFromDatedSecondaryOnly": {
+        "homm7.heroclass.archon": [5, 25, 25, 45],
+        "homm7.heroclass.embalmer": [10, 15, 35, 40]
+      },
+      "fieldOrder": ["MightGrowthPct", "DefenseGrowthPct", "MagicGrowthPct", "SpiritGrowthPct"],
+      "selectedValues": null,
+      "mergeable": false
+    },
+    {
+      "kind": "data",
+      "status": "blocked_by_map_scope",
+      "table": "HeroHOMM7",
+      "reason": "The official editor proves that map/player enablement can override the catalog. The 22 rows in the documented manual screenshot have positive catalog evidence; the remaining 110 rows have no safe catalog-level eligibility evidence in this checkout and remain absent rather than being assigned false.",
+      "knownTrueKeys": [
+        "homm7.hero.aali", "homm7.hero.asad", "homm7.hero.gloria", "homm7.hero.johari", "homm7.hero.masfar", "homm7.hero.minasli", "homm7.hero.mirym", "homm7.hero.saabira", "homm7.hero.theodorus", "homm7.hero.yasir",
+        "homm7.hero.ashbeth", "homm7.hero.darkstorm", "homm7.hero.eruina", "homm7.hero.lethos", "homm7.hero.sinitar", "homm7.hero.sorshan", "homm7.hero.sylsai", "homm7.hero.yeshtar", "homm7.hero.yrbeth", "homm7.hero.yrris",
+        "homm7.hero.amilcar", "homm7.hero.edric"
+      ],
+      "unknownKeysRemainNull": true,
+      "mergeable": false
+    },
+    {
+      "kind": "relationship_evidence",
+      "status": "existing_catalog_relationships_and_noncolumn_evidence",
+      "mergeable": false,
+      "reason": "The generic Hero rows already point to the unresolved class identities. Existing generic HeroClass descriptions carry the faction/focus labels; the class-detail sidecars cannot be completed until growth values are verified. Ubisoft-authored Fortress material mirrored by rssing.com supplies main-skill descriptions, but the current schema has no MainSkills or ClassMechanics column.",
+      "existingHeroToClass": [
+        ["homm7.hero.anastasya", "homm7.heroclass.embalmer"],
+        ["homm7.hero.lyla", "homm7.heroclass.archon"],
+        ["homm7.hero.aslaug", "homm7.heroclass.warlord"],
+        ["homm7.hero.bart.brimstone", "homm7.heroclass.runelord"],
+        ["homm7.hero.brigid", "homm7.heroclass.runelord"],
+        ["homm7.hero.ergal", "homm7.heroclass.hell.knight"],
+        ["homm7.hero.fasolt", "homm7.heroclass.thane"],
+        ["homm7.hero.fredrik", "homm7.heroclass.jarl"],
+        ["homm7.hero.geisli", "homm7.heroclass.engraver"],
+        ["homm7.hero.gerdi", "homm7.heroclass.engraver"],
+        ["homm7.hero.haegeir", "homm7.heroclass.warlord"],
+        ["homm7.hero.hangvul", "homm7.heroclass.firebrander"],
+        ["homm7.hero.hathor", "homm7.heroclass.jarl"],
+        ["homm7.hero.hedwig", "homm7.heroclass.thane"],
+        ["homm7.hero.kari", "homm7.heroclass.engraver"],
+        ["homm7.hero.raelag", "homm7.heroclass.hell.knight"],
+        ["homm7.hero.svea", "homm7.heroclass.firebrander"],
+        ["homm7.hero.tolghar", "homm7.heroclass.thane"],
+        ["homm7.hero.vilma", "homm7.heroclass.jarl"]
+      ],
+      "fortressMainSkillsFromMirroredUbisoftPosts": {
+        "homm7.heroclass.warlord": ["Warfare", "Offense", "Exploration", "Leadership"],
+        "homm7.heroclass.jarl": ["Economy", "Paragon", "Fire Magic", "Destiny"],
+        "homm7.heroclass.thane": ["Defense", "Fire Magic", "Warcries", "Economy"],
+        "homm7.heroclass.firebrander": ["Fire Magic", "Warfare", "Air Magic", "Exploration"],
+        "homm7.heroclass.runelord": ["Fire Magic", "Paragon", "Prime Magic", "Economy"],
+        "homm7.heroclass.engraver": ["Fire Magic", "Earth Magic", "Defense", "Destiny"]
+      },
+      "catalogFactionsAlreadyPresentInGenericDescriptions": {
+        "homm7.heroclass.archon": "Necropolis",
+        "homm7.heroclass.embalmer": "Necropolis",
+        "homm7.heroclass.hell.knight": "Dungeon",
+        "homm7.heroclass.engraver": "Fortress",
+        "homm7.heroclass.firebrander": "Fortress",
+        "homm7.heroclass.jarl": "Fortress",
+        "homm7.heroclass.runelord": "Fortress",
+        "homm7.heroclass.thane": "Fortress",
+        "homm7.heroclass.warlord": "Fortress"
+      }
+    },
+    {
+      "kind": "warfare_rank_profile",
+      "status": "secondary_cross_check_only_evidence_only",
+      "mergeable": false,
+      "reason": "The following vectors are useful for the next package-backed import, but are not direct additions because current CreatureHOMM7 has no rank child table and does not represent support effects, Stationary movement or unknown square footprint.",
+      "profiles": {
+        "homm7.creature.great.pyramid": {"role":"Siege","attack":[0],"defense":[10,20,30,40,50],"damage":[[70,110],[90,140],[120,180],[160,220],[220,260]],"health":[3000,5000,7000,10000,15000],"initiative":100},
+        "homm7.creature.healing.tent": {"role":"Support","attack":[0],"defense":[5,10,15,20,25],"supportEffect":[30,50,100,200,400],"health":[300,400,500,600,800],"initiative":8,"reportedSize":"Large"},
+        "homm7.creature.small.pyramid": {"role":"Attack","attack":[5,10,15,20,25],"defense":[5,10,15,20,25],"damage":[[16,24],[29,41],[38,52],[42,58],[60,80]],"health":[500,600,700,800,1000],"initiative":15},
+        "homm7.creature.cave.wyvern": {"role":"Unresolved","baseline":{"attack":0,"defense":10,"damage":[70,110],"health":3000,"initiative":100},"rankVector":"unresolved"},
+        "homm7.creature.faceless": {"role":"Support","attack":[0],"defense":[5,10,15,20,25],"supportEffect":[30,45,60,90,120],"health":[300,400,500,600,700],"initiative":35},
+        "homm7.creature.shadow.lurker": {"role":"Unresolved","baseline":{"attack":5,"defense":5,"damage":[16,23],"health":250,"initiative":25},"rankVector":"unresolved"},
+        "homm7.creature.ballista": {"role":"Attack","attack":[5,10,15,20,25],"defense":[10,15,20,25,30],"damage":[[16,24],[29,41],[38,52],[42,58],[60,80]],"health":[250,350,450,550,700],"initiative":19},
+        "homm7.creature.catapult": {"role":"Siege","attack":[0],"defense":[12],"damage":[[75,115],[100,150],[135,195],[180,240],[245,285]],"health":[3900,6500,9100,11700,19500],"initiative":100},
+        "homm7.creature.healing.sister": {"role":"Support","attack":[0],"defense":[10,15,20,25,30],"supportEffect":[30,50,100,150,250],"health":[300,400,500,600,700],"initiative":11},
+        "homm7.creature.namtaru": {"role":"AttackAndSupport","attack":[5,10,15,20,25],"defense":[5,10,15,20,25],"damage":[[16,24],[29,41],[38,52],[42,58],[60,80]],"health":[600,700,800,800,900],"initiative":18,"reportedSize":"Large"},
+        "homm7.creature.spitting.spider": {"role":"Siege","attack":[0],"defense":[8,16,24,32,40],"damage":[[65,105],[80,130],[105,165],[140,200],[195,235]],"health":[2100,3500,4900,6300,10500],"initiative":100,"reportedSize":"Large"},
+        "homm7.creature.dreamwalker": {"role":"Unresolved","baseline":{"attack":5,"defense":5,"damage":[20,28],"health":1500,"initiative":21},"rankVector":"unresolved"},
+        "homm7.creature.tamed.cyclops": {"role":"Siege","attack":[0],"defense":[12,24,36,48,60],"damage":[[75,115],[100,150],[135,195],[180,240],[245,285]],"health":[3900,6500,9100,11700,19500],"initiative":100},
+        "homm7.creature.greater.earth.elemental": {"role":"Siege","attack":[0],"defense":[8,16,24,32,40],"damage":[[65,105],[80,130],[105,165],[140,200],[195,235]],"health":[2100,3500,4900,6300,10500],"initiative":100,"reportedSize":"Large"},
+        "homm7.creature.mother.treant": {"role":"Support","attack":[0],"defense":[5,10,15,20,25],"supportEffect":[20,40,60,120,300],"health":[300,400,500,600,700],"initiative":12,"reportedSize":"Large"},
+        "homm7.creature.sylvan.ballista": {"role":"Attack","attack":[5,10,15,20,25],"defense":[5,10,20,25,35],"damage":[[16,24],[29,41],[38,52],[42,58],[60,80]],"health":[250,350,450,550,700],"initiative":27,"reportedSize":"Large"},
+        "homm7.creature.dwarven.ballista": {"role":"Attack","attack":[5,10,15,20,25],"defense":[10,15,25,30,40],"damage":[[14,22],[25,38],[32,49],[36,54],[50,75]],"health":[300,400,500,600,800],"initiative":17},
+        "homm7.creature.fire.cannon": {"role":"Siege","attack":[0],"defense":[12,24,36,48,60],"damage":[[65,105],[80,130],[105,165],[140,200],[195,235]],"health":[3000,5000,7000,9000,15000],"initiative":100},
+        "homm7.creature.runestone": {"role":"Support","attack":[0],"defense":[5,10,15,20,25],"health":[300,400,500,600,700],"initiative":9,"effectSemantics":"Rune heal is percentage-based in the published ability text; the secondary page's damage-like vector is not imported as damage."}
+      }
+    }
+  ],
+  "blockedFacts": [
+    "No complete source-backed CreatureHOMM7 row can be emitted while Attack/Defense/Damage/Health are rank vectors and Speed, Movement and CombatSize are not authoritative in the available sources.",
+    "No HeroClassHOMM7 row can be emitted from a conflicting secondary table; all required growth fields must be supplied together once final package data is available.",
+    "No HeroHOMM7 false flags can be emitted for the 110 unverified heroes because catalog eligibility is not established for them and map/player enablement is a separate override.",
+    "The correct final source is the installed final H7 editor/game package, not a full-game download by this research task."
+  ],
+  "verification": {
+    "repositoryDataCounts": {"CreatureHOMM7": 137, "HeroClassHOMM7": 35, "HeroHOMM7": 22},
+    "missingCounts": {"CreatureHOMM7": 19, "HeroClassHOMM7": 9, "HeroHOMM7": 110},
+    "jsonOrDatabaseWrites": false,
+    "sourcePackageLoaded": false,
+    "safeToMergeDirectly": false
+  }
+}

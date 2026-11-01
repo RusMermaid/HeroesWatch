@@ -1,0 +1,92 @@
+{
+  "verifiedAtUtc": "2026-10-13T14:23:23Z",
+  "targetPullRequest": "https://github.com/RusMermaid/HeroesWatch/pull/1",
+  "baselineCommit": "2848f0055c6a39ce3ef9b6cea61f717593bf4be5",
+  "schemaOverlayVersion": 5,
+  "contract": {
+    "tables": 176,
+    "columns": 1306,
+    "enums": 159,
+    "foreignKeys": 452,
+    "compositeForeignKeys": 93,
+    "junctions": 29
+  },
+  "catalog": {
+    "rows": 43736,
+    "populatedTables": 139,
+    "games": 23,
+    "creatures": 1215,
+    "heroes": 1118
+  },
+  "nodeTests": {
+    "passed": 94,
+    "failed": 0,
+    "skipped": 0
+  },
+  "postgres": {
+    "version": "18.6 (Homebrew)",
+    "freshImport": "PASS",
+    "repeatImport": "identical rows and IDs",
+    "directIntegrityProbes": "PASS",
+    "concurrentLockOrderCases": 4,
+    "repeatableReadGuard": "PASS",
+    "creatureTierAndGeneratedSpeedChecks": "PASS",
+    "comparedFields": 255398,
+    "checkedNonNullSemanticFkReferences": 174633
+  },
+  "research": {
+    "patches": 14,
+    "addedRows": 3713,
+    "nullFills": 667,
+    "seedRows": 4027,
+    "closedImportRows": 5599
+  },
+  "terminology": {
+    "renamedFields": 309,
+    "h1NumericSpeedConversions": 28,
+    "readOnlySpeedNames": 94,
+    "dragonTiers": {
+      "FAERIE_DRAGON": 8,
+      "RUST_DRAGON": 8,
+      "CRYSTAL_DRAGON": 9,
+      "AZURE_DRAGON": 10
+    }
+  },
+  "prBaselineUpgrade": {
+    "preservedRowsAndIds": 40023,
+    "addedRows": 3713,
+    "nullFills": 667,
+    "changedDragonTiers": 4,
+    "otherValueChangesAfterNormalization": 0,
+    "removedRows": 0,
+    "fullAndResearchRoutesIdentical": true,
+    "afterDataSha256": "ceb12e3f0d38fb213c74d60e2042502dd35ce1d467703e2eb254297222c2170d"
+  },
+  "localDatabase": {
+    "database": "HeroesWatch",
+    "host": "localhost",
+    "port": 5432,
+    "backup": ".codex-tmp/backups/2026-10-13-before-tier.eUR1PR/HeroesWatch.dump",
+    "backupSha256": "9d71c6c5e9c64ee0d30de9cc4ac360337fc86cb46b05345603c2e87ec3def5ce",
+    "backupRestoredAndMatchedLive": true,
+    "preservedRowsAndIds": 43613,
+    "addedRows": 123,
+    "nullFills": 108,
+    "changedDragonTiers": 4,
+    "otherValueChangesAfterNormalization": 0,
+    "removedRows": 0,
+    "exactPostUpgradeReconciliation": "PASS",
+    "afterDataSha256": "b6724cf21a2e195d0df8874e2e19fde7024a3c07424f295a6dbfa0dd7b7a86a6"
+  },
+  "rawFileSha256": {
+    "data/heroeswatch.json": "2b4af0a79bc95afe3ab5c22e18a017ba0338f5854aa42a4e7f10221934ac7f11",
+    "data/catalog.sql": "292bb2d257d694a3487ecc23bd61f7be749be3e27d92532a8eef608da8e00f01",
+    "data/research-import.sql": "a44dacad962c6c552ddd77a02b52e923f68093d6bb79713aa9d04ccd729219ae"
+  },
+  "friendDatabaseModified": false,
+  "sqlDesignerModified": false,
+  "completeGameplayCoverage": false,
+  "remainingData": "COMPLETION.md#remaining-gaps",
+  "remainingGuards": "JUNCTION_AUDIT.md",
+  "remoteCi": "See current PR checks; local verification above used PostgreSQL 18.6."
+}

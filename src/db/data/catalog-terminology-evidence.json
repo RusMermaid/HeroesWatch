@@ -1,0 +1,14 @@
+{
+  "baselineCommit": "2848f0055c6a39ce3ef9b6cea61f717593bf4be5",
+  "beforeParsedSha256": "fde8ec751371296de2b6e6d345668dab3d84df21ab247e50b90d16af75776589",
+  "preparedParsedSha256": "4a36327c2acd2a92ff0e4c23c75d3c9ae91eb7108ab16c8840460d1da1e57e81",
+  "baselineRows": 40023,
+  "renamedLevelToTierFields": 309,
+  "h1SpeedConversions": 28,
+  "h1SpeedMapping": {"Slow": 1, "Medium": 2, "Fast": 3},
+  "dragonTierConfiguration": "creature-tiers.json",
+  "changedDragonTiers": 4,
+  "otherValueChanges": 0,
+  "preparationTool": "../tools/prepare-catalog-v5.mjs",
+  "nextStep": "Apply the 14 patches listed in research-2026-10-13-evidence.json to this prepared baseline."
+}

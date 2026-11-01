@@ -1,0 +1,1311 @@
+{
+  "formatVersion": 1,
+  "sourceRevision": 23355,
+  "rows": [
+    {
+      "rowIndex": 0,
+      "effects": [
+        "Enacting this law grants a single allotment of 2500 Gold, 5 Wood, and 5 Ore."
+      ]
+    },
+    {
+      "rowIndex": 1,
+      "effects": [
+        "Each of your heroes receives 1 additional Sight radius."
+      ]
+    },
+    {
+      "rowIndex": 2,
+      "effects": [
+        "This law yields 250 Astrology points per day."
+      ]
+    },
+    {
+      "rowIndex": 3,
+      "effects": [
+        "Your cities add 4 Swordsman to growth, and those units receive 2 Defense.",
+        "Your cities add 4 Swordsman to growth, and those units receive 4 Defense.",
+        "Your cities add 4 Swordsman to growth, and those units receive 6 Defense."
+      ]
+    },
+    {
+      "rowIndex": 4,
+      "effects": [
+        "Your cities add 4 Crossbowman to growth, and those units receive 2 Attack.",
+        "Your cities add 4 Crossbowman to growth, and those units receive 4 Attack.",
+        "Your cities add 4 Crossbowman to growth, and those units receive 6 Attack."
+      ]
+    },
+    {
+      "rowIndex": 5,
+      "effects": [
+        "Friendly creatures inflict +25% Damage against enemy summoned creatures."
+      ]
+    },
+    {
+      "rowIndex": 6,
+      "effects": [
+        "The law produces 500 Gold per day.",
+        "The law produces 1000 Gold per day."
+      ]
+    },
+    {
+      "rowIndex": 7,
+      "effects": [
+        "Daily Gem production is 1 Gem(s).",
+        "Daily Gem production is 2 Gem(s)."
+      ]
+    },
+    {
+      "rowIndex": 8,
+      "effects": [
+        "Increase each of your heroes' Morale by 1."
+      ]
+    },
+    {
+      "rowIndex": 9,
+      "effects": [
+        "Griffin growth in your cities rises by 2; Griffins gain 5 HP.",
+        "Griffin growth in your cities rises by 2; Griffins gain 10 HP.",
+        "Griffin growth in your cities rises by 2; Griffins gain 15 HP."
+      ]
+    },
+    {
+      "rowIndex": 10,
+      "effects": [
+        "Lightweaver growth in your cities rises by 2; they deal +2 Damage.",
+        "Lightweaver growth in your cities rises by 2; they deal +4 Damage.",
+        "Lightweaver growth in your cities rises by 2; they deal +6 Damage."
+      ]
+    },
+    {
+      "rowIndex": 11,
+      "effects": [
+        "Friendly creatures retain all positive effects for 1 extra round(s).",
+        "Friendly creatures retain all positive effects for 2 extra round(s)."
+      ]
+    },
+    {
+      "rowIndex": 12,
+      "effects": [
+        "Add 1 Initiative to friendly creatures."
+      ]
+    },
+    {
+      "rowIndex": 13,
+      "effects": [
+        "A single enactment pays 5000 Gold, 10 Wood, and 10 Ore."
+      ]
+    },
+    {
+      "rowIndex": 14,
+      "effects": [
+        "Your Gold sources generate +10% more Gold.",
+        "Your Gold sources generate +20% more Gold."
+      ]
+    },
+    {
+      "rowIndex": 15,
+      "effects": [
+        "Your heroes' Daylight spells increase by 1 level(s)."
+      ]
+    },
+    {
+      "rowIndex": 16,
+      "effects": [
+        "You may complete +1 building(s) each day."
+      ]
+    },
+    {
+      "rowIndex": 17,
+      "effects": [
+        "Cavalry growth in your cities rises by 1; their attacks ignore 5% of the target's Defense and they gain 1 Speed.",
+        "Cavalry growth in your cities rises by 1; their attacks ignore 10% of the target's Defense and they gain 1 Speed.",
+        "Cavalry growth in your cities rises by 1; their attacks ignore 15% of the target's Defense and they gain 1 Speed."
+      ]
+    },
+    {
+      "rowIndex": 18,
+      "effects": [
+        "Friendly creatures deal +5% and suffer –5% Melee Damage; for non-Temple friendly creatures, both effects are doubled.",
+        "Friendly creatures deal +10% and suffer –10% Melee Damage; for non-Temple friendly creatures, both effects are doubled."
+      ]
+    },
+    {
+      "rowIndex": 19,
+      "effects": [
+        "Friendly creatures deal +5% and suffer –5% Long Reach and Ranged Damage; for non-Temple friendly creatures, both effects are doubled.",
+        "Friendly creatures deal +10% and suffer –10% Long Reach and Ranged Damage; for non-Temple friendly creatures, both effects are doubled."
+      ]
+    },
+    {
+      "rowIndex": 20,
+      "effects": [
+        "Add 2 Attack to your heroes.",
+        "Add 4 Attack to your heroes."
+      ]
+    },
+    {
+      "rowIndex": 21,
+      "effects": [
+        "Add 2 Defense to your heroes.",
+        "Add 4 Defense to your heroes."
+      ]
+    },
+    {
+      "rowIndex": 22,
+      "effects": [
+        "Add 2 Spell Power to your heroes.",
+        "Add 4 Spell Power to your heroes."
+      ]
+    },
+    {
+      "rowIndex": 23,
+      "effects": [
+        "Add 2 Knowledge to your heroes.",
+        "Add 4 Knowledge to your heroes."
+      ]
+    },
+    {
+      "rowIndex": 24,
+      "effects": [
+        "Inquisitor growth in your cities rises by 1; they ignore 5% of enemy Attack and gain 1 Speed.",
+        "Inquisitor growth in your cities rises by 1; they ignore 10% of enemy Attack and gain 1 Speed.",
+        "Inquisitor growth in your cities rises by 1; they ignore 15% of enemy Attack and gain 1 Speed."
+      ]
+    },
+    {
+      "rowIndex": 25,
+      "effects": [
+        "For friendly creatures, each point of their Morale raises the chance of Morale triggering by 1%.",
+        "For friendly creatures, each point of their Morale raises the chance of Morale triggering by 2%."
+      ]
+    },
+    {
+      "rowIndex": 26,
+      "effects": [
+        "Friendly creatures' counterattacks inflict +50% Damage.",
+        "Friendly creatures' counterattacks inflict +100% Damage."
+      ]
+    },
+    {
+      "rowIndex": 27,
+      "effects": [
+        "A single enactment grants 7500 Gold, 15 Wood, and 15 Ore."
+      ]
+    },
+    {
+      "rowIndex": 28,
+      "effects": [
+        "All your Temple heroes may learn spells from every tier."
+      ]
+    },
+    {
+      "rowIndex": 29,
+      "effects": [
+        "Angel growth in your cities rises by 1; Angels gain 20% of their hero's Attack and Defense as their own Attack and Defense.",
+        "Angel growth in your cities rises by 1; Angels gain 40% of their hero's Attack and Defense as their own Attack and Defense.",
+        "Angel growth in your cities rises by 1; Angels gain 60% of their hero's Attack and Defense as their own Attack and Defense."
+      ]
+    },
+    {
+      "rowIndex": 30,
+      "effects": [
+        "Friendly creatures gain Attack and Defense from 20% of their hero's Spell Power and Knowledge, respectively."
+      ]
+    },
+    {
+      "rowIndex": 31,
+      "effects": [
+        "Friendly heroes cannot suffer negative effects in battles or on the global map."
+      ]
+    },
+    {
+      "rowIndex": 32,
+      "effects": [
+        "A one-time grant on enactment contains 2500 Gold, 5 Wood, and 5 Ore."
+      ]
+    },
+    {
+      "rowIndex": 33,
+      "effects": [
+        "Daily Gold production is 250.",
+        "Daily Gold production is 500."
+      ]
+    },
+    {
+      "rowIndex": 34,
+      "effects": [
+        "Increase your heroes' maximum Necromantic Energy by +500."
+      ]
+    },
+    {
+      "rowIndex": 35,
+      "effects": [
+        "Add 1 Luck to your heroes.",
+        "Add 2 Luck to your heroes."
+      ]
+    },
+    {
+      "rowIndex": 36,
+      "effects": [
+        "Skeleton growth in your cities rises by 4; Skeletons gain 2 Attack and Defense.",
+        "Skeleton growth in your cities rises by 8; Skeletons gain 2 Attack and Defense."
+      ]
+    },
+    {
+      "rowIndex": 37,
+      "effects": [
+        "Wight growth in your cities rises by 4, and their minimum Damage becomes 1 higher.",
+        "Wight growth in your cities rises by 8, and their minimum Damage becomes 1 higher."
+      ]
+    },
+    {
+      "rowIndex": 38,
+      "effects": [
+        "Damage-over-time effects deal +25% damage to enemy creatures.",
+        "Damage-over-time effects deal +50% damage to enemy creatures."
+      ]
+    },
+    {
+      "rowIndex": 39,
+      "effects": [
+        "Your realm produces 1 Mercury per day.",
+        "Your realm produces 2 Mercury per day."
+      ]
+    },
+    {
+      "rowIndex": 40,
+      "effects": [
+        "Add 1 Defense to your heroes.",
+        "Add 2 Defense to your heroes.",
+        "Add 3 Defense to your heroes."
+      ]
+    },
+    {
+      "rowIndex": 41,
+      "effects": [
+        "Increase your heroes' Necromancy Power by 2.5%."
+      ]
+    },
+    {
+      "rowIndex": 42,
+      "effects": [
+        "Your cities' Law-point generation rises by +10%.",
+        "Your cities' Law-point generation rises by +20%.",
+        "Your cities' Law-point generation rises by +30%."
+      ]
+    },
+    {
+      "rowIndex": 43,
+      "effects": [
+        "Undead Pet growth in your cities rises by 2; Undead Pets gain 2 Initiative.",
+        "Undead Pet growth in your cities rises by 4; Undead Pets gain 2 Initiative."
+      ]
+    },
+    {
+      "rowIndex": 44,
+      "effects": [
+        "Graverobber growth in your cities rises by 2; Graverobbers summon +50% units.",
+        "Graverobber growth in your cities rises by 4; Graverobbers summon +50% units."
+      ]
+    },
+    {
+      "rowIndex": 45,
+      "effects": [
+        "Mixed-faction friendly creatures no longer reduce one another's Morale."
+      ]
+    },
+    {
+      "rowIndex": 46,
+      "effects": [
+        "A single enactment grants 5000 Gold, 10 Wood, and 10 Ore."
+      ]
+    },
+    {
+      "rowIndex": 47,
+      "effects": [
+        "Your heroes' Nightshade spells gain 1 level(s)."
+      ]
+    },
+    {
+      "rowIndex": 48,
+      "effects": [
+        "Your heroes' maximum Necromantic Energy rises by +500."
+      ]
+    },
+    {
+      "rowIndex": 49,
+      "effects": [
+        "Own spell upgrades consume –20% Alchemical Dust.",
+        "Own spell upgrades consume –30% Alchemical Dust.",
+        "Own spell upgrades consume –40% Alchemical Dust."
+      ]
+    },
+    {
+      "rowIndex": 50,
+      "effects": [
+        "Own-city Lich growth adds 1; their healing abilities restore 50% more HP.",
+        "Own-city Lich growth adds 2; their healing abilities restore 50% more HP."
+      ]
+    },
+    {
+      "rowIndex": 51,
+      "effects": [
+        "Own-city Dread Knight growth adds 1; maximum Damage rises by 6.",
+        "Own-city Dread Knight growth adds 2; maximum Damage rises by 6."
+      ]
+    },
+    {
+      "rowIndex": 52,
+      "effects": [
+        "Friendly creatures receive 60% greater Vampirism."
+      ]
+    },
+    {
+      "rowIndex": 53,
+      "effects": [
+        "Your Necropolis creature costs are –10% Gold.",
+        "Your Necropolis creature costs are –15% Gold.",
+        "Your Necropolis creature costs are –20% Gold."
+      ]
+    },
+    {
+      "rowIndex": 54,
+      "effects": [
+        "Necropolis heroes under your control always fight on Native Terrain."
+      ]
+    },
+    {
+      "rowIndex": 55,
+      "effects": [
+        "Your heroes receive 2.5% Necromancy Power."
+      ]
+    },
+    {
+      "rowIndex": 56,
+      "effects": [
+        "Own-city Vampire growth adds 1; they gain 25 HP.",
+        "Own-city Vampire growth adds 2; they gain 25 HP."
+      ]
+    },
+    {
+      "rowIndex": 57,
+      "effects": [
+        "Friendly creatures fighting on Native terrain gain 1 Speed.",
+        "Friendly creatures fighting on Native terrain gain 2 Speed."
+      ]
+    },
+    {
+      "rowIndex": 58,
+      "effects": [
+        "Enacting it grants a one-time bundle of 7500 Gold, 15 Wood, and 15 Ore."
+      ]
+    },
+    {
+      "rowIndex": 59,
+      "effects": [
+        "All enemy Magic School spells lose 1 level(s)."
+      ]
+    },
+    {
+      "rowIndex": 60,
+      "effects": [
+        "Maximum Necromantic Energy for your heroes rises by +500."
+      ]
+    },
+    {
+      "rowIndex": 61,
+      "effects": [
+        "Friendly creatures gain +1 counterattack per round."
+      ]
+    },
+    {
+      "rowIndex": 62,
+      "effects": [
+        "Enemy non-Necropolis creatures deal –5% and take +5% Damage; your non-Necropolis creatures receive the inverse modifiers.",
+        "Enemy non-Necropolis creatures deal –10% and take +10% Damage; your non-Necropolis creatures receive the inverse modifiers."
+      ]
+    },
+    {
+      "rowIndex": 63,
+      "effects": [
+        "For enemy creatures, each Morale or Luck point lowers its corresponding trigger chance by 1%.",
+        "For enemy creatures, each Morale or Luck point lowers its corresponding trigger chance by 2%."
+      ]
+    },
+    {
+      "rowIndex": 64,
+      "effects": [
+        "Enacting it grants a one-time bundle of 2500 Gold, 5 Wood, and 5 Ore."
+      ]
+    },
+    {
+      "rowIndex": 65,
+      "effects": [
+        "Daily production equals 500 Gold."
+      ]
+    },
+    {
+      "rowIndex": 66,
+      "effects": [
+        "Grant 1 Knowledge to your heroes.",
+        "Grant 2 Knowledge to your heroes.",
+        "Grant 3 Knowledge to your heroes."
+      ]
+    },
+    {
+      "rowIndex": 67,
+      "effects": [
+        "Own-city Faun growth adds 2; Fauns deal +50% Melee Damage.",
+        "Own-city Faun growth adds 4; Fauns deal +50% Melee Damage.",
+        "Own-city Faun growth adds 6; Fauns deal +50% Melee Damage."
+      ]
+    },
+    {
+      "rowIndex": 68,
+      "effects": [
+        "Own-city Hoplet growth adds 2; Hoplets always deal maximum Damage.",
+        "Own-city Hoplet growth adds 4; Hoplets always deal maximum Damage.",
+        "Own-city Hoplet growth adds 6; Hoplets always deal maximum Damage."
+      ]
+    },
+    {
+      "rowIndex": 69,
+      "effects": [
+        "Daily production yields 1 Crystal(s).",
+        "Daily production yields 2 Crystal(s)."
+      ]
+    },
+    {
+      "rowIndex": 70,
+      "effects": [
+        "Daily output includes 250 Astrology Points."
+      ]
+    },
+    {
+      "rowIndex": 71,
+      "effects": [
+        "For the player, hero costs for you are –40% Gold."
+      ]
+    },
+    {
+      "rowIndex": 72,
+      "effects": [
+        "Own-city Vine Iriyad growth adds 2; they gain 5 HP.",
+        "Own-city Vine Iriyad growth adds 2; they gain 10 HP.",
+        "Own-city Vine Iriyad growth adds 2; they gain 15 HP."
+      ]
+    },
+    {
+      "rowIndex": 73,
+      "effects": [
+        "Friendly creatures inflict 25% more Damage with Lucky Strikes.",
+        "Friendly creatures inflict 50% more Damage with Lucky Strikes."
+      ]
+    },
+    {
+      "rowIndex": 74,
+      "effects": [
+        "While fighting in your controlled area, friendly creatures gain 2 Attack and Defense.",
+        "While fighting in your controlled area, friendly creatures gain 4 Attack and Defense.",
+        "While fighting in your controlled area, friendly creatures gain 6 Attack and Defense."
+      ]
+    },
+    {
+      "rowIndex": 75,
+      "effects": [
+        "Enacting it grants a one-time bundle of 5000 Gold, 10 Wood, and 10 Ore."
+      ]
+    },
+    {
+      "rowIndex": 76,
+      "effects": [
+        "Construction consumes –20% Wood for your buildings.",
+        "Construction consumes –40% Wood for your buildings."
+      ]
+    },
+    {
+      "rowIndex": 77,
+      "effects": [
+        "For the player, each Grove-city Mage Guild upgrade unlocks +1 spell(s) in the Observatory.",
+        "For the player, each Grove-city Mage Guild upgrade unlocks +2 spell(s) in the Observatory."
+      ]
+    },
+    {
+      "rowIndex": 78,
+      "effects": [
+        "Enemies lack detailed information about your armies; inspection instead shows random numbers of random Grove units."
+      ]
+    },
+    {
+      "rowIndex": 79,
+      "effects": [
+        "Own-city Naiad growth adds 2; they gain 1 Speed and Initiative.",
+        "Own-city Naiad growth adds 2; they gain 2 Speed and Initiative.",
+        "Own-city Naiad growth adds 2; they gain 3 Speed and Initiative."
+      ]
+    },
+    {
+      "rowIndex": 80,
+      "effects": [
+        "For friendly creatures, every negative effect persists for 1 fewer round(s)."
+      ]
+    },
+    {
+      "rowIndex": 81,
+      "effects": [
+        "Creature growth at your external dwellings rises by +100%.",
+        "Creature growth at your external dwellings rises by +200%."
+      ]
+    },
+    {
+      "rowIndex": 82,
+      "effects": [
+        "All temporary spells available to your heroes—including scrolls, artifacts, etc.—gain 1 level(s).",
+        "All temporary spells available to your heroes—including scrolls, artifacts, etc.—gain 2 level(s).",
+        "All temporary spells available to your heroes—including scrolls, artifacts, etc.—gain 3 level(s)."
+      ]
+    },
+    {
+      "rowIndex": 83,
+      "effects": [
+        "All battle-spell cooldowns for your heroes fall by 1 round(s)."
+      ]
+    },
+    {
+      "rowIndex": 84,
+      "effects": [
+        "Enemy heroes are unable to flee or surrender."
+      ]
+    },
+    {
+      "rowIndex": 85,
+      "effects": [
+        "Own-city Herbomancer growth adds 1; their abilities cost –1 Focus Charge(s).",
+        "Own-city Herbomancer growth adds 2; their abilities cost –1 Focus Charge(s).",
+        "Own-city Herbomancer growth adds 3; their abilities cost –1 Focus Charge(s)."
+      ]
+    },
+    {
+      "rowIndex": 86,
+      "effects": [
+        "Own-city Qilin growth adds 1; Qilins deal +3 Damage.",
+        "Own-city Qilin growth adds 1; Qilins deal +6 Damage.",
+        "Own-city Qilin growth adds 1; Qilins deal +9 Damage."
+      ]
+    },
+    {
+      "rowIndex": 87,
+      "effects": [
+        "Friendly creatures gain +1% Lucky Strike chance per Luck point.",
+        "Friendly creatures gain +2% Lucky Strike chance per Luck point.",
+        "Friendly creatures gain +3% Lucky Strike chance per Luck point."
+      ]
+    },
+    {
+      "rowIndex": 88,
+      "effects": [
+        "Enacting it grants a one-time bundle of 7500 Gold, 15 Wood, and 15 Ore."
+      ]
+    },
+    {
+      "rowIndex": 89,
+      "effects": [
+        "Your Heroic Strikes inflict +20 base Damage."
+      ]
+    },
+    {
+      "rowIndex": 90,
+      "effects": [
+        "Grove heroes under your control gain 2 sight radius and 15 Movement points.",
+        "Grove heroes under your control gain 4 sight radius and 30 Movement points."
+      ]
+    },
+    {
+      "rowIndex": 91,
+      "effects": [
+        "Each battle round grants you 1 Focus Charge(s)."
+      ]
+    },
+    {
+      "rowIndex": 92,
+      "effects": [
+        "Own-city Phoenix growth adds 1; maximum Damage rises by 10.",
+        "Own-city Phoenix growth adds 1; maximum Damage rises by 15.",
+        "Own-city Phoenix growth adds 1; maximum Damage rises by 20."
+      ]
+    },
+    {
+      "rowIndex": 93,
+      "effects": [
+        "Fauns, Hoplets, and Herbomancers under your control gain 2 Speed and Initiative."
+      ]
+    },
+    {
+      "rowIndex": 94,
+      "effects": [
+        "Your vine Iriyad, Naiad, Qilin, and Phoenix abilities cost –1 Focus Charge(s)."
+      ]
+    },
+    {
+      "rowIndex": 95,
+      "effects": [
+        "Enacting it grants a one-time bundle of 2500 Gold, 5 Wood, and 5 Ore."
+      ]
+    },
+    {
+      "rowIndex": 96,
+      "effects": [
+        "Higher-level Law requirements are reduced by 2.",
+        "Higher-level Law requirements are reduced by 4."
+      ]
+    },
+    {
+      "rowIndex": 97,
+      "effects": [
+        "Spells cast by your Hive heroes cost –1 mana.",
+        "Spells cast by your Hive heroes cost –2 mana.",
+        "Spells cast by your Hive heroes cost –3 mana."
+      ]
+    },
+    {
+      "rowIndex": 98,
+      "effects": [
+        "At the beginning of each battle, start with +1 Focus Charge(s)."
+      ]
+    },
+    {
+      "rowIndex": 99,
+      "effects": [
+        "Friendly creatures receive 1 Attack.",
+        "Friendly creatures receive 2 Attack.",
+        "Friendly creatures receive 3 Attack."
+      ]
+    },
+    {
+      "rowIndex": 100,
+      "effects": [
+        "Friendly creatures receive 1 Defense.",
+        "Friendly creatures receive 2 Defense.",
+        "Friendly creatures receive 3 Defense."
+      ]
+    },
+    {
+      "rowIndex": 101,
+      "effects": [
+        "When summoned Fire Larvae die, their death damage is +50%."
+      ]
+    },
+    {
+      "rowIndex": 102,
+      "effects": [
+        "Daily output is 250 Gold.",
+        "Daily output is 500 Gold.",
+        "Daily output is 750 Gold."
+      ]
+    },
+    {
+      "rowIndex": 103,
+      "effects": [
+        "The law provides 1 Crystal(s) daily.",
+        "The law provides 2 Crystal(s) daily."
+      ]
+    },
+    {
+      "rowIndex": 104,
+      "effects": [
+        "Your Hive heroes receive exact information on neutral squads within [ 3 × hero’s sight ] squares."
+      ]
+    },
+    {
+      "rowIndex": 105,
+      "effects": [
+        "Parasite growth in your cities rises by 4; they receive 1 HP.",
+        "Parasite growth in your cities rises by 4; they receive 2 HP."
+      ]
+    },
+    {
+      "rowIndex": 106,
+      "effects": [
+        "Locust growth in your cities rises by 4; they receive 1 Speed.",
+        "Locust growth in your cities rises by 4; they receive 2 Speed."
+      ]
+    },
+    {
+      "rowIndex": 107,
+      "effects": [
+        "Hornet growth in your cities rises by 2; they receive 1 Initiative.",
+        "Hornet growth in your cities rises by 2; they receive 2 Initiative."
+      ]
+    },
+    {
+      "rowIndex": 108,
+      "effects": [
+        "Enactment grants a one-time bundle of 5000 Gold, 10 Wood, and 10 Ore."
+      ]
+    },
+    {
+      "rowIndex": 109,
+      "effects": [
+        "External dwellings inside your controlled area produce upgraded creatures."
+      ]
+    },
+    {
+      "rowIndex": 110,
+      "effects": [
+        "Your heroes’ Primal spells advance by 1 level(s)."
+      ]
+    },
+    {
+      "rowIndex": 111,
+      "effects": [
+        "In your cities, Scorpion growth rises by 2; they gain 1 Morale and Luck.",
+        "In your cities, Scorpion growth rises by 2; they gain 3 Morale and Luck."
+      ]
+    },
+    {
+      "rowIndex": 112,
+      "effects": [
+        "In your cities, Reaver growth rises by 1; they gain 1 Morale and 1 Luck.",
+        "In your cities, Reaver growth rises by 1; they gain 5 Morale and 1 Luck."
+      ]
+    },
+    {
+      "rowIndex": 113,
+      "effects": [
+        "In your cities, Waurms growth rises by 1; they gain 1 Morale and 1 Luck.",
+        "In your cities, Waurms growth rises by 1; they gain 5 Morale and 1 Luck."
+      ]
+    },
+    {
+      "rowIndex": 114,
+      "effects": [
+        "Summoned Fire Larvae draw adjacent enemies’ attacks ahead of other units."
+      ]
+    },
+    {
+      "rowIndex": 115,
+      "effects": [
+        "External dwellings increase respective creature growth in your cities by 50%.",
+        "External dwellings increase respective creature growth in your cities by 100%."
+      ]
+    },
+    {
+      "rowIndex": 116,
+      "effects": [
+        "Your Hive heroes get exact information about enemy heroes and cities within [ 3 × hero’s sight ] squares."
+      ]
+    },
+    {
+      "rowIndex": 117,
+      "effects": [
+        "Your cities’ Hive Queen growth rises by 1; they deal +5 Damage and gain 25 HP.",
+        "Your cities’ Hive Queen growth rises by 1; they deal +10 Damage and gain 50 HP."
+      ]
+    },
+    {
+      "rowIndex": 118,
+      "effects": [
+        "In battles outside your controlled area, friendly Hive creatures gain 2 Attack and Defense.",
+        "In battles outside your controlled area, friendly Hive creatures gain 4 Attack and Defense.",
+        "In battles outside your controlled area, friendly Hive creatures gain 6 Attack and Defense."
+      ]
+    },
+    {
+      "rowIndex": 119,
+      "effects": [
+        "Enactment grants a one-time bundle of 7500 Gold, 15 Wood, and 15 Ore."
+      ]
+    },
+    {
+      "rowIndex": 120,
+      "effects": [
+        "Your Hive-creature upgrades cost –10% Gold; upgraded-creature recruitment gets the same discount.",
+        "Your Hive-creature upgrades cost –20% Gold; upgraded-creature recruitment gets the same discount."
+      ]
+    },
+    {
+      "rowIndex": 121,
+      "effects": [
+        "Your Hive heroes inflict +10% Magic Damage.",
+        "Your Hive heroes inflict +20% Magic Damage.",
+        "Your Hive heroes inflict +30% Magic Damage."
+      ]
+    },
+    {
+      "rowIndex": 122,
+      "effects": [
+        "For friendly creatures, each point of their Morale or Luck adds 1% to the respective trigger chance.",
+        "For friendly creatures, each point of their Morale or Luck adds 2% to the respective trigger chance.",
+        "For friendly creatures, each point of their Morale or Luck adds 3% to the respective trigger chance."
+      ]
+    },
+    {
+      "rowIndex": 123,
+      "effects": [
+        "Friendly creatures inflict +1 Damage.",
+        "Friendly creatures inflict +2 Damage."
+      ]
+    },
+    {
+      "rowIndex": 124,
+      "effects": [
+        "Summoned Fire Larvae launch a pair of attacks."
+      ]
+    },
+    {
+      "rowIndex": 125,
+      "effects": [
+        "Enactment grants a one-time bundle of 2500 Gold, 5 Wood, and 5 Ore."
+      ]
+    },
+    {
+      "rowIndex": 126,
+      "effects": [
+        "Artifact destruction yields +10% Alchemical Dust.",
+        "Artifact destruction yields +20% Alchemical Dust.",
+        "Artifact destruction yields +30% Alchemical Dust."
+      ]
+    },
+    {
+      "rowIndex": 127,
+      "effects": [
+        "Each morning, your Schism heroes recover +5% mana.",
+        "Each morning, your Schism heroes recover +10% mana.",
+        "Each morning, your Schism heroes recover +15% mana."
+      ]
+    },
+    {
+      "rowIndex": 128,
+      "effects": [
+        "In your cities, Ra’Shoth growth rises by 4; they gain 1 Initiative.",
+        "In your cities, Ra’Shoth growth rises by 8; they gain 1 Initiative."
+      ]
+    },
+    {
+      "rowIndex": 129,
+      "effects": [
+        "Friendly Tier-1 creatures convert 10% of their hero’s Attack and Spell Power into Attack, and 10% of Defense and Knowledge into Defense."
+      ]
+    },
+    {
+      "rowIndex": 130,
+      "effects": [
+        "On their Native Terrain, friendly creatures gain 1 Attack and Defense.",
+        "On their Native Terrain, friendly creatures gain 2 Attack and Defense.",
+        "On their Native Terrain, friendly creatures gain 3 Attack and Defense."
+      ]
+    },
+    {
+      "rowIndex": 131,
+      "effects": [
+        "The law produces 250 Gold each day.",
+        "The law produces 500 Gold each day."
+      ]
+    },
+    {
+      "rowIndex": 132,
+      "effects": [
+        "The law produces 1 Mercury each day.",
+        "The law produces 2 Mercury each day."
+      ]
+    },
+    {
+      "rowIndex": 133,
+      "effects": [
+        "Your heroes receive +10% XP.",
+        "Your heroes receive +20% XP."
+      ]
+    },
+    {
+      "rowIndex": 134,
+      "effects": [
+        "Add +1 Spell Power to your heroes.",
+        "Add +2 Spell Power to your heroes.",
+        "Add +3 Spell Power to your heroes."
+      ]
+    },
+    {
+      "rowIndex": 135,
+      "effects": [
+        "In your cities, Cultist growth rises by 4; they deal +1 Damage."
+      ]
+    },
+    {
+      "rowIndex": 136,
+      "effects": [
+        "In your cities, Aga’Shoth Rider growth rises by 2; they gain 5 HP."
+      ]
+    },
+    {
+      "rowIndex": 137,
+      "effects": [
+        "Friendly Tier-2 creatures convert 10% of their hero’s Attack and Spell Power into Attack, and 10% of Defense and Knowledge into Defense."
+      ]
+    },
+    {
+      "rowIndex": 138,
+      "effects": [
+        "Friendly Tier-3 creatures convert 10% of their hero’s Attack and Spell Power into Attack, and 10% of Defense and Knowledge into Defense."
+      ]
+    },
+    {
+      "rowIndex": 139,
+      "effects": [
+        "Enactment grants a one-time bundle of 5000 Gold, 10 Wood, and 10 Ore."
+      ]
+    },
+    {
+      "rowIndex": 140,
+      "effects": [
+        "Your cities generate +1 Wood and Ore.",
+        "Your cities generate +2 Wood and Ore."
+      ]
+    },
+    {
+      "rowIndex": 141,
+      "effects": [
+        "Your heroes’ Arcane spells advance by 1 level."
+      ]
+    },
+    {
+      "rowIndex": 142,
+      "effects": [
+        "Your Schism hero spells and friendly-creature abilities produce +10% units.",
+        "Your Schism hero spells and friendly-creature abilities produce +20% units.",
+        "Your Schism hero spells and friendly-creature abilities produce +30% units."
+      ]
+    },
+    {
+      "rowIndex": 143,
+      "effects": [
+        "In your cities, Grand Shoth growth rises by 2; they gain 1 Speed.",
+        "In your cities, Grand Shoth growth rises by 4; they gain 1 Speed."
+      ]
+    },
+    {
+      "rowIndex": 144,
+      "effects": [
+        "Friendly Tier-4 creatures convert 10% of their hero’s Attack and Spell Power into Attack, and 10% of Defense and Knowledge into Defense."
+      ]
+    },
+    {
+      "rowIndex": 145,
+      "effects": [
+        "All effects from your heroes or friendly creatures persist for 1 additional round(s).",
+        "All effects from your heroes or friendly creatures persist for 2 additional round(s)."
+      ]
+    },
+    {
+      "rowIndex": 146,
+      "effects": [
+        "Daily output is 500 Astrology points.",
+        "Daily output is 1000 Astrology points.",
+        "Daily output is 1500 Astrology points."
+      ]
+    },
+    {
+      "rowIndex": 147,
+      "effects": [
+        "All battle spells cast by enemy heroes gain 1 round of cooldown."
+      ]
+    },
+    {
+      "rowIndex": 148,
+      "effects": [
+        "In your Schism cities, you may use Involuntary Summons twice each week."
+      ]
+    },
+    {
+      "rowIndex": 149,
+      "effects": [
+        "At each day’s start, your Schism heroes begin at maximum Communion level."
+      ]
+    },
+    {
+      "rowIndex": 150,
+      "effects": [
+        "Concubus growth in your cities rises by 1; Concubus units gain 4 Attack and Defense."
+      ]
+    },
+    {
+      "rowIndex": 151,
+      "effects": [
+        "Arbitrator growth in your cities rises by 1; Arbitrators deal +4 Damage."
+      ]
+    },
+    {
+      "rowIndex": 152,
+      "effects": [
+        "Friendly Tier-5 creatures receive 10% of their hero’s Attack and Spell Power as Attack, and 10% of their Defense and Knowledge as Defense."
+      ]
+    },
+    {
+      "rowIndex": 153,
+      "effects": [
+        "Friendly Tier-6 creatures receive 10% of their hero’s Attack and Spell Power as Attack, and 10% of their Defense and Knowledge as Defense."
+      ]
+    },
+    {
+      "rowIndex": 154,
+      "effects": [
+        "Enactment grants a one-time allotment of 7500 Gold, 15 Wood, and 15 Ore."
+      ]
+    },
+    {
+      "rowIndex": 155,
+      "effects": [
+        "At every battle round, the enemy loses 1 Focus Charge(s)."
+      ]
+    },
+    {
+      "rowIndex": 156,
+      "effects": [
+        "All friendly creatures consider every Terrain Native."
+      ]
+    },
+    {
+      "rowIndex": 157,
+      "effects": [
+        "Abyssal Envoy growth in your cities rises by 1, and Abyssal Envoys gain 2 Speed and Initiative.",
+        "Abyssal Envoy growth in your cities rises by 2, and Abyssal Envoys gain 2 Speed and Initiative."
+      ]
+    },
+    {
+      "rowIndex": 158,
+      "effects": [
+        "Friendly Tier-7 creatures receive 10% of their hero’s Attack and Spell Power as Attack, and 10% of their Defense and Knowledge as Defense."
+      ]
+    },
+    {
+      "rowIndex": 159,
+      "effects": [
+        "All enemy creatures forfeit 1 Speed and Initiative."
+      ]
+    },
+    {
+      "rowIndex": 160,
+      "effects": [
+        "Enactment supplies a one-time allotment of 2500 Gold, 5 Wood, and 5 Ore."
+      ]
+    },
+    {
+      "rowIndex": 161,
+      "effects": [
+        "Daily generation totals 500 Astrology points."
+      ]
+    },
+    {
+      "rowIndex": 162,
+      "effects": [
+        "For your heroes, Law-point generation is +10%.",
+        "For your heroes, Law-point generation is +20%."
+      ]
+    },
+    {
+      "rowIndex": 163,
+      "effects": [
+        "Using their Fighting Style, your Troglodytes deal 1.5 times more Damage; their minimum Damage rises by 1.",
+        "Using their Fighting Style, your Troglodytes deal 1.5 times more Damage; their minimum Damage rises by 2."
+      ]
+    },
+    {
+      "rowIndex": 164,
+      "effects": [
+        "Tier-1 creature growth in your cities rises by 4."
+      ]
+    },
+    {
+      "rowIndex": 165,
+      "effects": [
+        "Magic Damage taken by friendly creatures is –5%.",
+        "Magic Damage taken by friendly creatures is –10%.",
+        "Magic Damage taken by friendly creatures is –15%."
+      ]
+    },
+    {
+      "rowIndex": 166,
+      "effects": [
+        "The law yields 250 Gold each day.",
+        "The law yields 500 Gold each day."
+      ]
+    },
+    {
+      "rowIndex": 167,
+      "effects": [
+        "Daily Gem output is 1 Gem(s).",
+        "Daily Gem output is 2 Gem(s)."
+      ]
+    },
+    {
+      "rowIndex": 168,
+      "effects": [
+        "Enactment grants a one-time allotment of 75 Alchemical Dust."
+      ]
+    },
+    {
+      "rowIndex": 169,
+      "effects": [
+        "Maximum mana for your heroes increases by +15."
+      ]
+    },
+    {
+      "rowIndex": 170,
+      "effects": [
+        "With their Fighting Style, your Infiltrators deal 1.5 times more Damage and gain 2 HP.",
+        "With their Fighting Style, your Infiltrators deal 1.5 times more Damage and gain 4 HP."
+      ]
+    },
+    {
+      "rowIndex": 171,
+      "effects": [
+        "Using their Fighting Style, your Onyx Dancers deal 1.5 times more Damage and gain 2 Attack and Defense.",
+        "Using their Fighting Style, your Onyx Dancers deal 1.5 times more Damage and gain 4 Attack and Defense."
+      ]
+    },
+    {
+      "rowIndex": 172,
+      "effects": [
+        "Tier-2 creature growth in your cities rises by 4."
+      ]
+    },
+    {
+      "rowIndex": 173,
+      "effects": [
+        "Tier-3 creature growth in your cities rises by 2."
+      ]
+    },
+    {
+      "rowIndex": 174,
+      "effects": [
+        "Enactment grants a one-time allotment of 5000 Gold, 10 Wood, and 10 Ore."
+      ]
+    },
+    {
+      "rowIndex": 175,
+      "effects": [
+        "Construction of your buildings costs –20% Ore.",
+        "Construction of your buildings costs –40% Ore."
+      ]
+    },
+    {
+      "rowIndex": 176,
+      "effects": [
+        "Your heroes receive 10 Movement points.",
+        "Your heroes receive 20 Movement points."
+      ]
+    },
+    {
+      "rowIndex": 177,
+      "effects": [
+        "Every external building or structure under your control gains +2 sight radius.",
+        "Every external building or structure under your control gains +4 sight radius.",
+        "Every external building or structure under your control gains +6 sight radius."
+      ]
+    },
+    {
+      "rowIndex": 178,
+      "effects": [
+        "With their Fighting Style, your Minotaurs deal 1.5 times more Damage; they gain 1 Speed and Initiative and deal +2 Damage.",
+        "With their Fighting Style, your Minotaurs deal 1.5 times more Damage; they gain 1 Speed and Initiative and deal +4 Damage."
+      ]
+    },
+    {
+      "rowIndex": 179,
+      "effects": [
+        "Using their Fighting Style, your Medusae deal 1.5 times more Damage, gain 1 Initiative, and gain 4 Attack and Defense.",
+        "Using their Fighting Style, your Medusae deal 1.5 times more Damage, gain 2 Initiative, and gain 4 Attack and Defense."
+      ]
+    },
+    {
+      "rowIndex": 180,
+      "effects": [
+        "All enemy creatures forfeit 1 Initiative."
+      ]
+    },
+    {
+      "rowIndex": 181,
+      "effects": [
+        "Tier-4 creature growth in your cities rises by 2."
+      ]
+    },
+    {
+      "rowIndex": 182,
+      "effects": [
+        "All Marketplace price markups are removed."
+      ]
+    },
+    {
+      "rowIndex": 183,
+      "effects": [
+        "Your heroes receive 1 Attack, Defense, and Spell Power.",
+        "Your heroes receive 2 Attack, Defense, and Spell Power."
+      ]
+    },
+    {
+      "rowIndex": 184,
+      "effects": [
+        "Enactment grants a one-time allotment of 150 Alchemical Dust."
+      ]
+    },
+    {
+      "rowIndex": 185,
+      "effects": [
+        "During Diplomacy, your heroes’ Persuasion Power rises by 10%.",
+        "During Diplomacy, your heroes’ Persuasion Power rises by 20%."
+      ]
+    },
+    {
+      "rowIndex": 186,
+      "effects": [
+        "With their Fighting Style, your Hydras deal 1.5 times more Damage and gain 1 Speed plus 25 HP.",
+        "With their Fighting Style, your Hydras deal 1.5 times more Damage and gain 2 Speed plus 25 HP."
+      ]
+    },
+    {
+      "rowIndex": 187,
+      "effects": [
+        "Tier-5 creature growth in your cities rises by 1."
+      ]
+    },
+    {
+      "rowIndex": 188,
+      "effects": [
+        "Tier-6 creature growth in your cities rises by 1."
+      ]
+    },
+    {
+      "rowIndex": 189,
+      "effects": [
+        "Enactment grants a one-time allotment of 7500 Gold, 15 Wood, and 15 Ore."
+      ]
+    },
+    {
+      "rowIndex": 190,
+      "effects": [
+        "Spells cast by your heroes receive 1 level(s).",
+        "Spells cast by your heroes receive 2 level(s)."
+      ]
+    },
+    {
+      "rowIndex": 191,
+      "effects": [
+        "The limit on your Focus Charges rises by 1."
+      ]
+    },
+    {
+      "rowIndex": 192,
+      "effects": [
+        "Using their Fighting Style, your Cave Dragons deal 1.5 times more Damage; they gain 4 Attack and Defense, plus 1 Speed and Initiative.",
+        "Using their Fighting Style, your Cave Dragons deal 1.5 times more Damage; they gain 8 Attack and Defense, plus 2 Speed and Initiative."
+      ]
+    },
+    {
+      "rowIndex": 193,
+      "effects": [
+        "Tier-7 creature growth in your cities rises by 1."
+      ]
+    }
+  ]
+}

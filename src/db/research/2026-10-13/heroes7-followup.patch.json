@@ -1,0 +1,136 @@
+{
+  "formatVersion": 1,
+  "researchDate": "2026-10-13",
+  "game": "HOMM7",
+  "scope": "Heroes VII follow-up audit of recoverable relationships and source-package gaps; this file supplements, but does not replace, heroes7.patch.json.",
+  "policy": "No shared catalog, schema, database, or GitHub files are modified. Only additions and fills would be mergeable; this follow-up contains no merge rows because the primary sources do not expose the missing values.",
+  "additions": [],
+  "fills": [],
+  "sources": [
+    {
+      "id": "ubisoft_editor_manual",
+      "kind": "primary_manual",
+      "url": "https://ubistatic-a.akamaihd.net/0004/prod/images/160407_LT1_Modding/EditorManual.pdf",
+      "locator": "PDF section 10.5 Heroes; Hero Tool section 6",
+      "supports": [
+        "Hall-of-Heroes enablement is configured per map and player.",
+        "The editor exposes Faction, Damage Type, Skill Class, Specialization, Starting Skill and Starting Army as distinct hero properties.",
+        "The visible 22-hero table corroborates the existing positive HeroHOMM7 rows and their generic HeroClass_id relationships."
+      ]
+    },
+    {
+      "id": "ubisoft_modding_manual",
+      "kind": "primary_manual",
+      "url": "https://ubistatic-a.akamaihd.net/0004/prod/images/160407_LT1_Modding/ModdingManual.pdf",
+      "locator": "Revision 12673, sections 1.1-1.2",
+      "supports": [
+        "Heroes VII content is data-driven through archetypes and package data.",
+        "The authoritative missing creature/hero mechanics therefore require a small final package export, not a visual inference."
+      ]
+    },
+    {
+      "id": "ubisoft_store_h7",
+      "kind": "primary_publisher_page",
+      "url": "https://www.ubisoft.com/en-au/games/might-and-magic-heroes-vii/editions/ultimate",
+      "supports": [
+        "Confirms the main game, Lost Tales of Axeoth and Trial by Fire scope and the seven-faction product context.",
+        "Does not publish map dimensions, creature ability links, or faction spell availability."
+      ]
+    },
+    {
+      "id": "ubisoft_shadow_council_mirror",
+      "kind": "secondary_mirror_of_ubisoft_posts",
+      "url": "https://shadow1705.rssing.com/chan-52808156/latest.php",
+      "supports": [
+        "The third-party mirror reproduces Ubisoft-authored town-screen and Fortress warfare posts.",
+        "Those posts are useful candidate evidence for some warfare-building links, but are not treated as primary package evidence here."
+      ]
+    }
+  ],
+  "evidenceOnly": {
+    "existingOfficiallyCorroboratedRelationships": {
+      "hallHeroRows": 22,
+      "genericHeroClassLinksMatchedToEditorScreenshot": 22,
+      "missingClassGrowthRows": 9,
+      "note": "The editor screenshot corroborates existing catalog relationships; it does not provide new mergeable values."
+    },
+    "currentH7RelationshipInventory": {
+      "HeroClassAbility": 2489,
+      "BuildingCreature": 112,
+      "CreatureResourceCost": 184,
+      "CreatureUpgrade": 56,
+      "CampaignHero": 10,
+      "CampaignScenario": 43,
+      "ScenarioConnection": 32,
+      "CreatureAbility": 0,
+      "FactionSpell": 0,
+      "MapHOMM7": 0,
+      "ScenarioHOMM7": 0
+    },
+    "buildingRecruitmentAudit": {
+      "scope": "19 H7 warfare creature identities",
+      "exactNamedMatches": [],
+      "reviewedInputs": [
+        "Existing H7 Building rows and their descriptions",
+        "Existing H7 BuildingHOMM7 rows and their Effect values",
+        "src/db/data/homm7*.sources.md and H7 review SQL registries",
+        "Existing H7 BuildingCreature rows and heroeswatch.json"
+      ],
+      "result": "No reviewed input explicitly names a warfare creature as recruited by a specific building. The catalog has plausible special-building names and 12 warfare resource-cost rows, but neither a building name nor a cost proves a BuildingCreature edge. The third-party mirror of Ubisoft-authored town-screen posts names some candidate mappings, but is not a primary package/source registry and does not cover all 19 identities. No BuildingCreature additions are therefore emitted.",
+      "status": "not_mergeable"
+    },
+    "candidateMissingJunctions": [
+      {
+        "table": "BuildingCreature",
+        "scope": "19 H7 warfare creature identities",
+        "status": "not_mergeable",
+        "reason": "The current catalog has no warfare-building links. The editor manual documents that warfare units are recruitable content, but does not identify each faction's building-to-unit mapping. The mirrored Ubisoft town-screen posts name some mappings, but are not primary game data and do not cover all 19 units.",
+        "keys": [
+          "homm7.creature.ballista", "homm7.creature.catapult", "homm7.creature.cave.wyvern", "homm7.creature.dreamwalker", "homm7.creature.dwarven.ballista", "homm7.creature.faceless", "homm7.creature.fire.cannon", "homm7.creature.great.pyramid", "homm7.creature.greater.earth.elemental", "homm7.creature.healing.sister", "homm7.creature.healing.tent", "homm7.creature.mother.treant", "homm7.creature.namtaru", "homm7.creature.runestone", "homm7.creature.shadow.lurker", "homm7.creature.small.pyramid", "homm7.creature.spitting.spider", "homm7.creature.sylvan.ballista", "homm7.creature.tamed.cyclops"
+        ]
+      },
+      {
+        "table": "CreatureAbility",
+        "scope": "137 detailed H7 creatures without CreatureAbility links",
+        "status": "not_mergeable",
+        "reason": "No primary H7 manual or editor documentation in scope enumerates the creature ability-to-creature graph. The official Modding Manual establishes that archetypes hold stats/visuals, but not the final ability assignments. Do not copy visual or wiki-only claims into this junction."
+      },
+      {
+        "table": "FactionSpell",
+        "scope": "7 H7 factions and 69 H7 spells",
+        "status": "not_mergeable",
+        "reason": "The current catalog has no H7 FactionSpell rows. The official manuals consulted establish magic-school and editor concepts but do not publish a complete faction availability matrix with primary locators."
+      },
+      {
+        "table": "MapHOMM7",
+        "scope": "43 generic H7 map rows",
+        "status": "not_mergeable",
+        "reason": "MapHOMM7 requires LevelCount, MapKind, HasUnderground and HasTearOfAsha. Campaign/scenario names and CampaignScenario ordering are already present, but the primary docs do not expose these per-map values. No map dimensions or underground flags are inferred from names."
+      },
+      {
+        "table": "ScenarioHOMM7",
+        "scope": "43 generic H7 scenarios",
+        "status": "not_mergeable",
+        "reason": "All ScenarioHOMM7 fields are optional except the shared key, so emitting 43 empty detail rows would add no information. Victory/loss conditions, starting state, carryover and level caps require scenario/package exports."
+      }
+    ],
+    "packageExportNeeded": {
+      "minimumUsefulArtifacts": [
+        "Final H7HeroClasses package export for the 9 missing growth vectors.",
+        "Final H7 creature archetype/ability references for warfare rank profiles and CreatureAbility links.",
+        "Final town/building archetype references for warfare recruitment links.",
+        "Final map/scenario metadata or editor exports for MapHOMM7 and ScenarioHOMM7 fields."
+      ],
+      "downloadPolicy": "Do not download the full game; a user-supplied or already-installed small package export is sufficient."
+    }
+  },
+  "verification": {
+    "repositoryDataReadOnly": true,
+    "primaryDocumentationOpened": ["EditorManual.pdf", "ModdingManual.pdf", "Ubisoft H7 Ultimate page"],
+    "mergeableAdditions": 0,
+    "mergeableFills": 0,
+    "schemaChanged": false,
+    "liveDatabaseChanged": false,
+    "githubChanged": false
+  }
+}

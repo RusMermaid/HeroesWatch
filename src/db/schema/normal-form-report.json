@@ -17,9 +17,9 @@
   "scope": "All non-*_cid tables",
   "sourceSha256": "b04dd68ee09f7a1f86c055a2e3d01c690daf2791343ad7ca33bc637c59a58673",
   "summary": {
-    "cidExempt": 26,
+    "cidExempt": 29,
     "passing": 147,
-    "tables": 173
+    "tables": 176
   },
   "tables": [
     {
@@ -159,6 +159,43 @@
       "reason": "Single-column primary key; recognized composite alternate keys passed the recorded semantic audit.",
       "status": "2NF-audited",
       "table": "AdventureObject"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObjectCreature_cid"
+        ],
+        [
+          "Game_id",
+          "AdventureObject_id",
+          "Creature_id",
+          "Relation"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObjectCreature_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "AdventureObjectCreature"
+    },
+    {
+      "candidateKeys": [
+        [
+          "AdventureObjectFaction_cid"
+        ],
+        [
+          "Game_id",
+          "AdventureObject_id",
+          "Faction_id"
+        ]
+      ],
+      "primaryKey": [
+        "AdventureObjectFaction_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "AdventureObjectFaction"
     },
     {
       "candidateKeys": [
@@ -1266,6 +1303,32 @@
       "reason": "Explicit user exemption for *_cid junction structures.",
       "status": "exempt-_cid",
       "table": "HeroClassAbility"
+    },
+    {
+      "candidateKeys": [
+        [
+          "HeroClassAbilityRequirementGroup_cid"
+        ],
+        [
+          "Game_id",
+          "HeroClass_id",
+          "Ability_id",
+          "RequirementSet"
+        ],
+        [
+          "Game_id",
+          "HeroClass_id",
+          "Ability_id",
+          "RequirementSet",
+          "RequirementMode"
+        ]
+      ],
+      "primaryKey": [
+        "HeroClassAbilityRequirementGroup_cid"
+      ],
+      "reason": "Explicit user exemption for *_cid junction structures.",
+      "status": "exempt-_cid",
+      "table": "HeroClassAbilityRequirementGroup"
     },
     {
       "candidateKeys": [

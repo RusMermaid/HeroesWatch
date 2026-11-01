@@ -17,7 +17,7 @@ Kind: **catalog**. Primary key: `Ability_id`.
 | `Description` | `TEXT` | No |  |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Ability_id)`, `(Game_id, Code)`.
 
 ## AbilityHOMM1
 
@@ -128,14 +128,43 @@ Kind: **catalog**. Primary key: `AdventureObject_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `AdventureObject_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, AdventureObject_id)`, `(Game_id, Code)`.
+
+## AdventureObjectCreature
+
+Kind: **junction**. Primary key: `AdventureObjectCreature_cid`.
+
+| Field | PostgreSQL type | Required | Key / relationship |
+|---|---|---:|---|
+| `AdventureObjectCreature_cid` | `TEXT` | Yes | PK |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → AdventureObject.Game_id; FK → Creature.Game_id |
+| `AdventureObject_id` | `BIGINT` | Yes | FK → AdventureObject.AdventureObject_id; FK → AdventureObject.AdventureObject_id |
+| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id; FK → Creature.Creature_id |
+| `Relation` | `ENUM(Recruits | Guards | Transforms)` | Yes |  |
+| `Notes` | `TEXT` | No |  |
+
+Alternate unique keys: `(Game_id, AdventureObject_id, Creature_id, Relation)`.
+
+## AdventureObjectFaction
+
+Kind: **junction**. Primary key: `AdventureObjectFaction_cid`.
+
+| Field | PostgreSQL type | Required | Key / relationship |
+|---|---|---:|---|
+| `AdventureObjectFaction_cid` | `TEXT` | Yes | PK |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → AdventureObject.Game_id; FK → Faction.Game_id |
+| `AdventureObject_id` | `BIGINT` | Yes | FK → AdventureObject.AdventureObject_id; FK → AdventureObject.AdventureObject_id |
+| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id; FK → Faction.Faction_id |
+| `Notes` | `TEXT` | No |  |
+
+Alternate unique keys: `(Game_id, AdventureObject_id, Faction_id)`.
 
 ## AdventureObjectHOMM1
 
@@ -271,14 +300,14 @@ Kind: **catalog**. Primary key: `Artifact_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Artifact_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Artifact_id)`, `(Game_id, Code)`.
 
 ## ArtifactComponent
 
@@ -287,11 +316,13 @@ Kind: **junction**. Primary key: `ArtifactComponent_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `ArtifactComponent_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `CompositeArtifact_id` | `BIGINT` | Yes | FK → Artifact.Artifact_id |
-| `ComponentArtifact_id` | `BIGINT` | Yes | FK → Artifact.Artifact_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Artifact.Game_id; FK → Artifact.Game_id |
+| `CompositeArtifact_id` | `BIGINT` | Yes | FK → Artifact.Artifact_id; FK → Artifact.Artifact_id |
+| `ComponentArtifact_id` | `BIGINT` | Yes | FK → Artifact.Artifact_id; FK → Artifact.Artifact_id |
 
 Alternate unique keys: `(Game_id, CompositeArtifact_id, ComponentArtifact_id)`.
+
+Check: `"CompositeArtifact_id" <> "ComponentArtifact_id"`.
 
 ## ArtifactHOMM1
 
@@ -426,12 +457,14 @@ Kind: **junction**. Primary key: `ArtifactResourceCost_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `ArtifactResourceCost_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Artifact_id` | `BIGINT` | Yes | FK → Artifact.Artifact_id |
-| `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Artifact.Game_id; FK → GameResource.Game_id |
+| `Artifact_id` | `BIGINT` | Yes | FK → Artifact.Artifact_id; FK → Artifact.Artifact_id |
+| `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id; FK → GameResource.Resource_id |
 | `Amount` | `INTEGER` | Yes |  |
 
 Alternate unique keys: `(Game_id, Artifact_id, Resource_id)`.
+
+Check: `"Amount" >= 0`.
 
 ## ArtifactSetBonusHOMM5
 
@@ -444,6 +477,8 @@ Kind: **catalog**. Primary key: `ArtifactSetBonusHOMM5_id`.
 | `RequiredPieceCount` | `SMALLINT` | Yes |  |
 | `HeroClass_id` | `BIGINT` | No | FK → HeroClass.HeroClass_id |
 | `Effect` | `JSONB` | Yes |  |
+
+Additional unique key: `(ArtifactSetHOMM5_id, RequiredPieceCount, HeroClass_id)`; NULL values compare as equal.
 
 ## ArtifactSetHOMM5
 
@@ -465,8 +500,8 @@ Kind: **game-detail**. Primary key: `Game_id`.
 
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
-| `Game_id` | `BIGINT` | Yes | PK; FK → Game.Game_id |
-| `NeutralMagicSchool_id` | `BIGINT` | Yes | FK → MagicSchool.MagicSchool_id; UNIQUE |
+| `Game_id` | `BIGINT` | Yes | PK; FK → Game.Game_id; FK → MagicSchool.Game_id |
+| `NeutralMagicSchool_id` | `BIGINT` | Yes | FK → MagicSchool.MagicSchool_id; FK → MagicSchool.MagicSchool_id; UNIQUE |
 | `AstrologyPointResource_id` | `BIGINT` | Yes | FK → Resource.Resource_id |
 | `InsightResource_id` | `BIGINT` | Yes | FK → Resource.Resource_id |
 | `MaximumSpellLevel` | `SMALLINT` | Yes |  |
@@ -485,15 +520,15 @@ Kind: **catalog**. Primary key: `Building_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Building_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Category` | `ENUM(Hall | Fortification | MageGuild | Dwelling | Horde | Grail | Economy | Special | Other)` | No |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Building_id)`, `(Game_id, Code)`.
 
 ## BuildingCreature
 
@@ -502,9 +537,9 @@ Kind: **junction**. Primary key: `BuildingCreature_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `BuildingCreature_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Building_id` | `BIGINT` | Yes | FK → Building.Building_id |
-| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Building.Game_id; FK → Creature.Game_id |
+| `Building_id` | `BIGINT` | Yes | FK → Building.Building_id; FK → Building.Building_id |
+| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id; FK → Creature.Creature_id |
 | `Relation` | `ENUM(Produces | Recruits | Upgrades)` | Yes |  |
 
 Alternate unique keys: `(Game_id, Building_id, Creature_id, Relation)`.
@@ -632,12 +667,14 @@ Kind: **junction**. Primary key: `BuildingRequirement_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `BuildingRequirement_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Building_id` | `BIGINT` | Yes | FK → Building.Building_id |
-| `RequiredBuilding_id` | `BIGINT` | Yes | FK → Building.Building_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Building.Game_id; FK → Building.Game_id |
+| `Building_id` | `BIGINT` | Yes | FK → Building.Building_id; FK → Building.Building_id |
+| `RequiredBuilding_id` | `BIGINT` | Yes | FK → Building.Building_id; FK → Building.Building_id |
 | `Condition` | `JSONB` | No |  |
 
 Alternate unique keys: `(Game_id, Building_id, RequiredBuilding_id)`.
+
+Check: `"Building_id" <> "RequiredBuilding_id"`.
 
 ## BuildingResourceCost
 
@@ -646,12 +683,14 @@ Kind: **junction**. Primary key: `BuildingResourceCost_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `BuildingResourceCost_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Building_id` | `BIGINT` | Yes | FK → Building.Building_id |
-| `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Building.Game_id; FK → GameResource.Game_id |
+| `Building_id` | `BIGINT` | Yes | FK → Building.Building_id; FK → Building.Building_id |
+| `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id; FK → GameResource.Resource_id |
 | `Amount` | `INTEGER` | Yes |  |
 
 Alternate unique keys: `(Game_id, Building_id, Resource_id)`.
+
+Check: `"Amount" >= 0`.
 
 ## BuildingUpgrade
 
@@ -660,11 +699,13 @@ Kind: **junction**. Primary key: `BuildingUpgrade_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `BuildingUpgrade_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `BaseBuilding_id` | `BIGINT` | Yes | FK → Building.Building_id |
-| `UpgradedBuilding_id` | `BIGINT` | Yes | FK → Building.Building_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Building.Game_id; FK → Building.Game_id |
+| `BaseBuilding_id` | `BIGINT` | Yes | FK → Building.Building_id; FK → Building.Building_id |
+| `UpgradedBuilding_id` | `BIGINT` | Yes | FK → Building.Building_id; FK → Building.Building_id |
 
 Alternate unique keys: `(Game_id, BaseBuilding_id, UpgradedBuilding_id)`.
+
+Check: `"BaseBuilding_id" <> "UpgradedBuilding_id"`.
 
 ## Campaign
 
@@ -673,14 +714,14 @@ Kind: **catalog**. Primary key: `Campaign_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Campaign_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Expansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
+| `Expansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Description` | `TEXT` | No |  |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Campaign_id)`, `(Game_id, Code)`.
 
 ## CampaignHero
 
@@ -689,14 +730,14 @@ Kind: **junction**. Primary key: `CampaignHero_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `CampaignHero_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Campaign_id` | `BIGINT` | Yes | FK → Campaign.Campaign_id |
-| `Hero_id` | `BIGINT` | Yes | FK → Hero.Hero_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → CampaignScenario.Game_id; FK → Campaign.Game_id; FK → Hero.Game_id; FK → Scenario.Game_id |
+| `Campaign_id` | `BIGINT` | Yes | FK → Campaign.Campaign_id; FK → CampaignScenario.Campaign_id; FK → Campaign.Campaign_id |
+| `Hero_id` | `BIGINT` | Yes | FK → Hero.Hero_id; FK → Hero.Hero_id |
 | `IsCampaignHero` | `BOOLEAN` | Yes |  |
 | `CampaignRole` | `ENUM(Protagonist | Antagonist | Commander | Advisor | Supporting | Other)` | No |  |
-| `StartingScenario_id` | `BIGINT` | No | FK → Scenario.Scenario_id |
+| `StartingScenario_id` | `BIGINT` | No | FK → Scenario.Scenario_id; FK → CampaignScenario.Scenario_id; FK → Scenario.Scenario_id |
 
-Alternate unique keys: `(Game_id, Campaign_id, Hero_id)`.
+Alternate unique keys: `(Game_id, Campaign_id, Hero_id)`, `(Game_id, CampaignHero_cid)`.
 
 ## CampaignHOMM1
 
@@ -742,7 +783,7 @@ Kind: **game-detail**. Primary key: `Campaign_id`.
 |---|---|---:|---|
 | `Campaign_id` | `BIGINT` | Yes | PK; FK → Campaign.Campaign_id |
 | `Availability` | `ENUM(Available | Planned | Unavailable)` | Yes |  |
-| `AvailableActCount` | `SMALLINT` | Yes |  |
+| `AvailableActCount` | `SMALLINT` | No |  |
 | `NarrativeStructure` | `TEXT` | No |  |
 | `Rules` | `TEXT` | No |  |
 
@@ -753,9 +794,9 @@ Kind: **junction**. Primary key: `CampaignScenario_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `CampaignScenario_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Campaign_id` | `BIGINT` | Yes | FK → Campaign.Campaign_id |
-| `Scenario_id` | `BIGINT` | Yes | FK → Scenario.Scenario_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Campaign.Game_id; FK → Scenario.Game_id |
+| `Campaign_id` | `BIGINT` | Yes | FK → Campaign.Campaign_id; FK → Campaign.Campaign_id |
+| `Scenario_id` | `BIGINT` | Yes | FK → Scenario.Scenario_id; FK → Scenario.Scenario_id |
 | `SortOrder` | `SMALLINT` | No |  |
 | `AvailabilityCondition` | `JSONB` | No |  |
 
@@ -768,14 +809,14 @@ Kind: **catalog**. Primary key: `Creature_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Creature_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Creature_id)`.
 
 ## CreatureAbility
 
@@ -784,9 +825,9 @@ Kind: **junction**. Primary key: `CreatureAbility_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `CreatureAbility_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id |
-| `Ability_id` | `BIGINT` | Yes | FK → Ability.Ability_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Ability.Game_id; FK → Creature.Game_id |
+| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id; FK → Creature.Creature_id |
+| `Ability_id` | `BIGINT` | Yes | FK → Ability.Ability_id; FK → Ability.Ability_id |
 | `Parameters` | `JSONB` | No |  |
 
 Alternate unique keys: `(Game_id, Creature_id, Ability_id)`.
@@ -799,18 +840,21 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 |---|---|---:|---|
 | `Creature_id` | `BIGINT` | Yes | PK; FK → Creature.Creature_id |
 | `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id |
-| `Level` | `SMALLINT` | No |  |
+| `Tier` | `SMALLINT` | No |  |
 | `Attack` | `SMALLINT` | Yes |  |
 | `Defense` | `SMALLINT` | Yes |  |
 | `DamageMin` | `SMALLINT` | Yes |  |
 | `DamageMax` | `SMALLINT` | Yes |  |
 | `Health` | `INTEGER` | Yes |  |
-| `Speed` | `ENUM(Slow | Medium | Fast)` | Yes |  |
+| `Speed` | `SMALLINT` | Yes |  |
+| `SpeedName` | `TEXT` | Generated | GENERATED ALWAYS AS (CASE "Speed" WHEN 1 THEN 'Slow' WHEN 2 THEN 'Medium' WHEN 3 THEN 'Fast' END) STORED; read-only in import JSON |
 | `Movement` | `ENUM(Ground | Flying)` | Yes |  |
 | `Shots` | `SMALLINT` | No |  |
 | `Growth` | `SMALLINT` | No |  |
 | `GoldCost` | `INTEGER` | No |  |
 | `Recruitable` | `BOOLEAN` | Yes |  |
+
+Check: `"Speed" IN (1, 2, 3)`.
 
 ## CreatureHOMM2
 
@@ -820,13 +864,14 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 |---|---|---:|---|
 | `Creature_id` | `BIGINT` | Yes | PK; FK → Creature.Creature_id |
 | `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id |
-| `Level` | `SMALLINT` | No |  |
+| `Tier` | `SMALLINT` | No |  |
 | `Attack` | `SMALLINT` | Yes |  |
 | `Defense` | `SMALLINT` | Yes |  |
 | `DamageMin` | `SMALLINT` | Yes |  |
 | `DamageMax` | `SMALLINT` | Yes |  |
 | `Health` | `INTEGER` | Yes |  |
 | `Speed` | `SMALLINT` | Yes |  |
+| `SpeedName` | `TEXT` | Generated | GENERATED ALWAYS AS (CASE "Speed" WHEN 2 THEN 'Very Slow' WHEN 3 THEN 'Slow' WHEN 4 THEN 'Average' WHEN 5 THEN 'Fast' WHEN 6 THEN 'Very Fast' WHEN 7 THEN 'Ultra Fast' END) STORED; read-only in import JSON |
 | `Movement` | `ENUM(Ground | Flying)` | Yes |  |
 | `Size` | `SMALLINT` | Yes |  |
 | `Shots` | `SMALLINT` | No |  |
@@ -834,6 +879,8 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 | `GoldCost` | `INTEGER` | No |  |
 | `Recruitable` | `BOOLEAN` | Yes |  |
 | `DoubleUpgrade` | `BOOLEAN` | Yes |  |
+
+Check: `"Speed" IN (2, 3, 4, 5, 6, 7)`.
 
 ## CreatureHOMM3
 
@@ -844,7 +891,7 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 | `Creature_id` | `BIGINT` | Yes | PK; FK → Creature.Creature_id |
 | `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id |
 | `Alignment` | `ENUM(Good | Neutral | Evil)` | No |  |
-| `Level` | `SMALLINT` | No |  |
+| `Tier` | `SMALLINT` | No |  |
 | `Attack` | `SMALLINT` | No |  |
 | `Defense` | `SMALLINT` | No |  |
 | `DamageMin` | `SMALLINT` | No |  |
@@ -869,7 +916,7 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 |---|---|---:|---|
 | `Creature_id` | `BIGINT` | Yes | PK; FK → Creature.Creature_id |
 | `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id |
-| `Level` | `SMALLINT` | Yes |  |
+| `Tier` | `SMALLINT` | Yes |  |
 | `Attack` | `SMALLINT` | Yes |  |
 | `Defense` | `SMALLINT` | Yes |  |
 | `DamageMin` | `SMALLINT` | Yes |  |
@@ -928,21 +975,31 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 | `AttackType` | `ENUM(Might | Magic)` | Yes |  |
 | `DamageMin` | `SMALLINT` | Yes |  |
 | `DamageMax` | `SMALLINT` | Yes |  |
-| `MightDefense` | `SMALLINT` | Yes |  |
-| `MagicDefense` | `SMALLINT` | Yes |  |
+| `MightDefense` | `SMALLINT` | No |  |
+| `MagicDefense` | `NUMERIC` | No |  |
 | `Health` | `INTEGER` | Yes |  |
-| `Speed` | `SMALLINT` | Yes |  |
-| `Initiative` | `SMALLINT` | Yes |  |
-| `CombatSize` | `SMALLINT` | Yes |  |
-| `Range` | `ENUM(None | Half | Full)` | Yes |  |
+| `Speed` | `SMALLINT` | No |  |
+| `Initiative` | `SMALLINT` | No |  |
+| `CombatSize` | `SMALLINT` | No |  |
+| `Range` | `ENUM(None | Half | Full)` | No |  |
 | `Morale` | `SMALLINT` | No |  |
-| `Luck` | `SMALLINT` | Yes |  |
+| `Luck` | `SMALLINT` | No |  |
 | `BasicGrowth` | `SMALLINT` | No |  |
 | `UpgradeGrowth` | `SMALLINT` | No |  |
-| `Movement` | `ENUM(Ground | Flying | Teleporting)` | Yes |  |
+| `Movement` | `ENUM(Ground | Flying | Teleporting)` | No |  |
 | `Recruitable` | `BOOLEAN` | Yes |  |
 | `DoubleUpgrade` | `BOOLEAN` | Yes |  |
 | `AlternativeUpgrade` | `BOOLEAN` | Yes |  |
+| `MightResistancePercent` | `SMALLINT` | No |  |
+| `MagicResistancePercent` | `SMALLINT` | No |  |
+
+Check: `"MagicDefense" BETWEEN -32768 AND 32767`.
+
+Check: `"MagicResistancePercent" BETWEEN 0 AND 100`.
+
+Check: `"MightResistancePercent" BETWEEN 0 AND 100`.
+
+Check: `"CreatureKind" NOT IN ('Town', 'Neutral') OR ("MightDefense" IS NOT NULL AND "MagicDefense" IS NOT NULL AND "CombatSize" IS NOT NULL AND "Movement" IS NOT NULL AND "Speed" IS NOT NULL AND "Initiative" IS NOT NULL AND "Luck" IS NOT NULL AND "Range" IS NOT NULL)`.
 
 ## CreatureHOMM7
 
@@ -954,22 +1011,27 @@ Kind: **game-detail**. Primary key: `Creature_id`.
 | `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id |
 | `Tier` | `ENUM(Core | Elite | Champion)` | No |  |
 | `CreatureKind` | `ENUM(Town | Neutral | Summoned | Warfare | Other)` | Yes |  |
-| `WarfareRole` | `ENUM(Attack | Support | Siege)` | No |  |
-| `Attack` | `SMALLINT` | Yes |  |
-| `Defense` | `SMALLINT` | Yes |  |
-| `DamageMin` | `SMALLINT` | Yes |  |
-| `DamageMax` | `SMALLINT` | Yes |  |
-| `Health` | `INTEGER` | Yes |  |
-| `Speed` | `SMALLINT` | Yes |  |
+| `WarfareRole` | `ENUM(Attack | Support | Siege | AttackAndSupport)` | No |  |
+| `Attack` | `SMALLINT` | No |  |
+| `Defense` | `SMALLINT` | No |  |
+| `DamageMin` | `SMALLINT` | No |  |
+| `DamageMax` | `SMALLINT` | No |  |
+| `Health` | `INTEGER` | No |  |
+| `Speed` | `SMALLINT` | No |  |
 | `Initiative` | `SMALLINT` | Yes |  |
-| `CombatSize` | `SMALLINT` | Yes |  |
+| `CombatSize` | `SMALLINT` | No |  |
 | `Shots` | `SMALLINT` | No |  |
 | `Mana` | `SMALLINT` | No |  |
 | `WeeklyGrowth` | `SMALLINT` | No |  |
-| `Movement` | `ENUM(Ground | Flying | Teleporting)` | Yes |  |
+| `Movement` | `ENUM(Ground | Flying | Teleporting | Stationary)` | No |  |
 | `Recruitable` | `BOOLEAN` | Yes |  |
 | `DoubleUpgrade` | `BOOLEAN` | Yes |  |
 | `AlternativeUpgrade` | `BOOLEAN` | Yes |  |
+| `WarfareStats` | `JSONB` | No |  |
+
+Check: `"CreatureKind" = 'Warfare' OR ("Attack" IS NOT NULL AND "Defense" IS NOT NULL AND "DamageMin" IS NOT NULL AND "DamageMax" IS NOT NULL AND "Health" IS NOT NULL AND "Speed" IS NOT NULL AND "CombatSize" IS NOT NULL AND "Movement" IS NOT NULL)`.
+
+Check: `("WarfareStats" IS NULL OR "CreatureKind" = 'Warfare') AND ("CreatureKind" <> 'Warfare' OR "WarfareRole" IS NOT NULL)`.
 
 ## CreatureHOMM8
 
@@ -1006,12 +1068,14 @@ Kind: **junction**. Primary key: `CreatureResourceCost_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `CreatureResourceCost_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id |
-| `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Creature.Game_id; FK → GameResource.Game_id |
+| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id; FK → Creature.Creature_id |
+| `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id; FK → GameResource.Resource_id |
 | `Amount` | `INTEGER` | Yes |  |
 
 Alternate unique keys: `(Game_id, Creature_id, Resource_id)`.
+
+Check: `"Amount" >= 0`.
 
 ## CreatureSpell
 
@@ -1020,9 +1084,9 @@ Kind: **junction**. Primary key: `CreatureSpell_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `CreatureSpell_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id |
-| `Spell_id` | `BIGINT` | Yes | FK → Spell.Spell_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Creature.Game_id; FK → Spell.Game_id |
+| `Creature_id` | `BIGINT` | Yes | FK → Creature.Creature_id; FK → Creature.Creature_id |
+| `Spell_id` | `BIGINT` | Yes | FK → Spell.Spell_id; FK → Spell.Spell_id |
 | `Mastery` | `ENUM(None | Basic | Advanced | Expert | Master | Grandmaster)` | No |  |
 | `Charges` | `SMALLINT` | No |  |
 | `ManaCostOverride` | `SMALLINT` | No |  |
@@ -1037,11 +1101,13 @@ Kind: **junction**. Primary key: `CreatureUpgrade_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `CreatureUpgrade_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `BaseCreature_id` | `BIGINT` | Yes | FK → Creature.Creature_id |
-| `UpgradedCreature_id` | `BIGINT` | Yes | FK → Creature.Creature_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Creature.Game_id; FK → Creature.Game_id |
+| `BaseCreature_id` | `BIGINT` | Yes | FK → Creature.Creature_id; FK → Creature.Creature_id |
+| `UpgradedCreature_id` | `BIGINT` | Yes | FK → Creature.Creature_id; FK → Creature.Creature_id |
 
 Alternate unique keys: `(Game_id, BaseCreature_id, UpgradedCreature_id)`.
+
+Check: `"BaseCreature_id" <> "UpgradedCreature_id"`.
 
 ## Expansion
 
@@ -1057,7 +1123,7 @@ Kind: **catalog**. Primary key: `Expansion_id`.
 | `ReleaseDate` | `DATE` | No |  |
 | `Description` | `TEXT` | No |  |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Expansion_id)`.
 
 ## Faction
 
@@ -1066,14 +1132,14 @@ Kind: **catalog**. Primary key: `Faction_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Faction_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Faction_id)`.
 
 ## FactionHOMM1
 
@@ -1197,9 +1263,9 @@ Kind: **junction**. Primary key: `FactionMagicSchoolHOMM5_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `FactionMagicSchoolHOMM5_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id |
-| `MagicSchool_id` | `BIGINT` | Yes | FK → MagicSchool.MagicSchool_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Faction.Game_id; FK → MagicSchool.Game_id |
+| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id; FK → Faction.Faction_id |
+| `MagicSchool_id` | `BIGINT` | Yes | FK → MagicSchool.MagicSchool_id; FK → MagicSchool.MagicSchool_id |
 | `Ruleset` | `ENUM(BaseGame | HammersOfFate | TribesOfTheEast)` | Yes |  |
 | `AccessType` | `ENUM(Guild | Runic | Warcry | Forbidden)` | Yes |  |
 | `GuaranteedSlotsPerCircle` | `JSONB` | No |  |
@@ -1213,9 +1279,9 @@ Kind: **junction**. Primary key: `FactionNativeTerrainHOMM5_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `FactionNativeTerrainHOMM5_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id |
-| `Terrain_id` | `BIGINT` | Yes | FK → Terrain.Terrain_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Faction.Game_id; FK → Terrain.Game_id |
+| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id; FK → Faction.Faction_id |
+| `Terrain_id` | `BIGINT` | Yes | FK → Terrain.Terrain_id; FK → Terrain.Terrain_id |
 | `IgnoreMovementPenalty` | `BOOLEAN` | Yes |  |
 | `CombatBonus` | `JSONB` | No |  |
 
@@ -1228,12 +1294,15 @@ Kind: **junction**. Primary key: `FactionSpell_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `FactionSpell_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id |
-| `Spell_id` | `BIGINT` | Yes | FK → Spell.Spell_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Faction.Game_id; FK → Spell.Game_id |
+| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id; FK → Faction.Faction_id |
+| `Spell_id` | `BIGINT` | Yes | FK → Spell.Spell_id; FK → Spell.Spell_id |
 | `OccurrenceChance` | `SMALLINT` | No |  |
+| `SelectionWeight` | `INTEGER` | No |  |
 
 Alternate unique keys: `(Game_id, Faction_id, Spell_id)`.
+
+Check: `"SelectionWeight" >= 0`.
 
 ## Game
 
@@ -1256,8 +1325,8 @@ Kind: **game-detail**. Primary key: `Game_id`.
 
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
-| `Game_id` | `BIGINT` | Yes | PK; FK → Game.Game_id |
-| `CurrentPatch_id` | `BIGINT` | Yes | FK → Patch.Patch_id |
+| `Game_id` | `BIGINT` | Yes | PK; FK → Game.Game_id; FK → Patch.Game_id |
+| `CurrentPatch_id` | `BIGINT` | Yes | FK → Patch.Patch_id; FK → Patch.Patch_id |
 | `ReleaseStatus` | `ENUM(EarlyAccess | FullRelease)` | Yes |  |
 | `CombatGrid` | `ENUM(Hex)` | Yes |  |
 | `FocusPointsPerCharge` | `SMALLINT` | Yes |  |
@@ -1277,13 +1346,13 @@ Kind: **junction**. Primary key: `GameResource_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `GameResource_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id |
 | `DisplayName` | `TEXT` | No |  |
 | `ResourceClass` | `ENUM(Currency | Common | Rare | Precious | Other)` | No |  |
 | `DisplayOrder` | `SMALLINT` | No |  |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 
 Alternate unique keys: `(Game_id, Resource_id)`.
 
@@ -1294,16 +1363,16 @@ Kind: **catalog**. Primary key: `Hero_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Hero_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `HeroClass_id` | `BIGINT` | No | FK → HeroClass.HeroClass_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → HeroClass.Game_id; FK → Expansion.Game_id |
+| `HeroClass_id` | `BIGINT` | No | FK → HeroClass.HeroClass_id; FK → HeroClass.HeroClass_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Biography` | `TEXT` | No |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `PortraitMediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Hero_id)`.
 
 ## HeroClass
 
@@ -1312,15 +1381,15 @@ Kind: **catalog**. Primary key: `HeroClass_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `HeroClass_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Archetype` | `ENUM(Might | Magic | Hybrid | Other)` | No |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, HeroClass_id)`.
 
 ## HeroClassAbility
 
@@ -1329,15 +1398,36 @@ Kind: **junction**. Primary key: `HeroClassAbility_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `HeroClassAbility_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `HeroClass_id` | `BIGINT` | Yes | FK → HeroClass.HeroClass_id |
-| `Skill_id` | `BIGINT` | No | FK → Skill.Skill_id |
-| `Ability_id` | `BIGINT` | Yes | FK → Ability.Ability_id |
-| `RequiredAbility_id` | `BIGINT` | No | FK → Ability.Ability_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → HeroClassAbilityRequirementGroup.Game_id; FK → Ability.Game_id; FK → HeroClass.Game_id; FK → Ability.Game_id; FK → Skill.Game_id |
+| `HeroClass_id` | `BIGINT` | Yes | FK → HeroClass.HeroClass_id; FK → HeroClassAbilityRequirementGroup.HeroClass_id; FK → HeroClass.HeroClass_id |
+| `Skill_id` | `BIGINT` | No | FK → Skill.Skill_id; FK → Skill.Skill_id |
+| `Ability_id` | `BIGINT` | Yes | FK → Ability.Ability_id; FK → HeroClassAbilityRequirementGroup.Ability_id; FK → Ability.Ability_id |
+| `RequiredAbility_id` | `BIGINT` | No | FK → Ability.Ability_id; FK → Ability.Ability_id |
 | `MinimumMastery` | `ENUM(Novice | Basic | Advanced | Expert | Master | Grandmaster)` | No |  |
-| `RequirementSet` | `SMALLINT` | No |  |
-| `RequirementMode` | `ENUM(All | Any)` | No |  |
+| `RequirementSet` | `SMALLINT` | No | FK → HeroClassAbilityRequirementGroup.RequirementSet |
+| `RequirementMode` | `ENUM(All | Any)` | No | FK → HeroClassAbilityRequirementGroup.RequirementMode |
 | `AvailabilityKind` | `ENUM(Standard | Special | Ultimate)` | No |  |
+
+Additional unique key: `(Game_id, HeroClass_id, Ability_id, RequirementSet, RequiredAbility_id, Skill_id, MinimumMastery)`; NULL values compare as equal.
+
+Check: `("RequirementSet" IS NULL AND "RequirementMode" IS NULL) OR ("RequirementSet" IS NOT NULL AND "RequirementSet" > 0 AND "RequirementMode" IS NOT NULL)`.
+
+## HeroClassAbilityRequirementGroup
+
+Kind: **junction**. Primary key: `HeroClassAbilityRequirementGroup_cid`.
+
+| Field | PostgreSQL type | Required | Key / relationship |
+|---|---|---:|---|
+| `HeroClassAbilityRequirementGroup_cid` | `TEXT` | Yes | PK |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Ability.Game_id; FK → HeroClass.Game_id |
+| `HeroClass_id` | `BIGINT` | Yes | FK → HeroClass.HeroClass_id; FK → HeroClass.HeroClass_id |
+| `Ability_id` | `BIGINT` | Yes | FK → Ability.Ability_id; FK → Ability.Ability_id |
+| `RequirementSet` | `SMALLINT` | Yes |  |
+| `RequirementMode` | `ENUM(All | Any)` | Yes |  |
+
+Alternate unique keys: `(Game_id, HeroClass_id, Ability_id, RequirementSet)`, `(Game_id, HeroClass_id, Ability_id, RequirementSet, RequirementMode)`.
+
+Check: `"RequirementSet" > 0`.
 
 ## HeroClassHOMM1
 
@@ -1477,9 +1567,9 @@ Kind: **junction**. Primary key: `HeroClassPrimarySkillHOMM4_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `HeroClassPrimarySkillHOMM4_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `HeroClass_id` | `BIGINT` | Yes | FK → HeroClass.HeroClass_id |
-| `Skill_id` | `BIGINT` | Yes | FK → Skill.Skill_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → HeroClass.Game_id; FK → Skill.Game_id |
+| `HeroClass_id` | `BIGINT` | Yes | FK → HeroClass.HeroClass_id; FK → HeroClass.HeroClass_id |
+| `Skill_id` | `BIGINT` | Yes | FK → Skill.Skill_id; FK → Skill.Skill_id |
 | `RuleType` | `ENUM(SinglePrimary | DominantPair | AnyMagic)` | Yes |  |
 | `RequiredCount` | `SMALLINT` | Yes |  |
 | `Priority` | `SMALLINT` | No |  |
@@ -1592,9 +1682,9 @@ Kind: **junction**. Primary key: `HeroSkill_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `HeroSkill_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Hero_id` | `BIGINT` | Yes | FK → Hero.Hero_id |
-| `Skill_id` | `BIGINT` | Yes | FK → Skill.Skill_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Hero.Game_id; FK → Skill.Game_id |
+| `Hero_id` | `BIGINT` | Yes | FK → Hero.Hero_id; FK → Hero.Hero_id |
+| `Skill_id` | `BIGINT` | Yes | FK → Skill.Skill_id; FK → Skill.Skill_id |
 | `Mastery` | `ENUM(Novice | Basic | Advanced | Expert | Master | Grandmaster)` | Yes |  |
 
 Alternate unique keys: `(Game_id, Hero_id, Skill_id)`.
@@ -1606,17 +1696,17 @@ Kind: **catalog**. Primary key: `Lore_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Lore_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Title` | `TEXT` | Yes |  |
 | `LoreKind` | `ENUM(Universe | Game | Faction | Character | Campaign | Scenario | Map | Event | Other)` | Yes |  |
 | `Body` | `TEXT` | Yes |  |
 | `Summary` | `TEXT` | No |  |
 | `SourceLinks` | `JSONB` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Lore_id)`.
 
 ## LoreFull
 
@@ -1625,18 +1715,21 @@ Kind: **junction**. Primary key: `LoreFull_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `LoreFull_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Lore_id` | `BIGINT` | Yes | FK → Lore.Lore_id |
-| `Hero_id` | `BIGINT` | No | FK → Hero.Hero_id |
-| `CampaignHero_cid` | `TEXT` | No | FK → CampaignHero.CampaignHero_cid |
-| `Campaign_id` | `BIGINT` | No | FK → Campaign.Campaign_id |
-| `Scenario_id` | `BIGINT` | No | FK → Scenario.Scenario_id |
-| `Map_id` | `BIGINT` | No | FK → Map.Map_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Campaign.Game_id; FK → CampaignHero.Game_id; FK → Faction.Game_id; FK → Hero.Game_id; FK → Lore.Game_id; FK → Map.Game_id; FK → Scenario.Game_id |
+| `Lore_id` | `BIGINT` | Yes | FK → Lore.Lore_id; FK → Lore.Lore_id |
+| `Hero_id` | `BIGINT` | No | FK → Hero.Hero_id; FK → Hero.Hero_id |
+| `CampaignHero_cid` | `TEXT` | No | FK → CampaignHero.CampaignHero_cid; FK → CampaignHero.CampaignHero_cid |
+| `Campaign_id` | `BIGINT` | No | FK → Campaign.Campaign_id; FK → Campaign.Campaign_id |
+| `Scenario_id` | `BIGINT` | No | FK → Scenario.Scenario_id; FK → Scenario.Scenario_id |
+| `Map_id` | `BIGINT` | No | FK → Map.Map_id; FK → Map.Map_id |
 | `LinkRole` | `ENUM(Subject | Mentions | Source | Related | Chronology | Location)` | No |  |
 | `SortOrder` | `SMALLINT` | No |  |
 | `Notes` | `TEXT` | No |  |
+| `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id; FK → Faction.Faction_id |
 
-Alternate unique keys: `(Game_id, Lore_id, Hero_id, CampaignHero_cid, Campaign_id, Scenario_id, Map_id, LinkRole)`.
+Additional unique key: `(Game_id, Lore_id, Hero_id, CampaignHero_cid, Campaign_id, Scenario_id, Map_id, LinkRole, Faction_id)`; NULL values compare as equal.
+
+Check: `num_nonnulls("Hero_id", "CampaignHero_cid", "Campaign_id", "Scenario_id", "Map_id", "Faction_id") >= 1`.
 
 ## MagicSchool
 
@@ -1651,7 +1744,7 @@ Kind: **catalog**. Primary key: `MagicSchool_id`.
 | `Description` | `TEXT` | No |  |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, MagicSchool_id)`.
 
 ## MagicSchoolHOMM4
 
@@ -1721,7 +1814,7 @@ Kind: **catalog**. Primary key: `Map_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Map_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Width` | `SMALLINT` | No |  |
@@ -1729,9 +1822,9 @@ Kind: **catalog**. Primary key: `Map_id`.
 | `PlayerCount` | `SMALLINT` | No |  |
 | `Description` | `TEXT` | No |  |
 | `MapFileMediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Map_id)`.
 
 ## MapHOMM1
 
@@ -1824,16 +1917,16 @@ Kind: **game-detail**. Primary key: `Map_id`.
 |---|---|---:|---|
 | `Map_id` | `BIGINT` | Yes | PK; FK → Map.Map_id |
 | `MapKind` | `ENUM(Campaign | Scenario | Skirmish | RandomTemplate | Other)` | Yes |  |
-| `LevelCount` | `SMALLINT` | Yes |  |
-| `HasUnderground` | `BOOLEAN` | Yes |  |
-| `SupportsClassic` | `BOOLEAN` | Yes |  |
-| `SupportsSingleHero` | `BOOLEAN` | Yes |  |
-| `SupportsArena` | `BOOLEAN` | Yes |  |
+| `LevelCount` | `SMALLINT` | No |  |
+| `HasUnderground` | `BOOLEAN` | No |  |
+| `SupportsClassic` | `BOOLEAN` | No |  |
+| `SupportsSingleHero` | `BOOLEAN` | No |  |
+| `SupportsArena` | `BOOLEAN` | No |  |
 | `SupportsSinglePlayer` | `BOOLEAN` | Yes |  |
-| `SupportsMultiplayer` | `BOOLEAN` | Yes |  |
-| `SupportsHotseat` | `BOOLEAN` | Yes |  |
-| `SupportsMatchmaking` | `BOOLEAN` | Yes |  |
-| `SupportsRanked` | `BOOLEAN` | Yes |  |
+| `SupportsMultiplayer` | `BOOLEAN` | No |  |
+| `SupportsHotseat` | `BOOLEAN` | No |  |
+| `SupportsMatchmaking` | `BOOLEAN` | No |  |
+| `SupportsRanked` | `BOOLEAN` | No |  |
 | `DefinitionVersion` | `TEXT` | No |  |
 | `TemplateDefinition` | `JSONB` | No |  |
 | `Rules` | `TEXT` | No |  |
@@ -1845,9 +1938,9 @@ Kind: **junction**. Primary key: `MapObjectPresence_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `MapObjectPresence_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Map_id` | `BIGINT` | Yes | FK → Map.Map_id |
-| `AdventureObject_id` | `BIGINT` | Yes | FK → AdventureObject.AdventureObject_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → AdventureObject.Game_id; FK → Map.Game_id |
+| `Map_id` | `BIGINT` | Yes | FK → Map.Map_id; FK → Map.Map_id |
+| `AdventureObject_id` | `BIGINT` | Yes | FK → AdventureObject.AdventureObject_id; FK → AdventureObject.AdventureObject_id |
 
 Alternate unique keys: `(Game_id, Map_id, AdventureObject_id)`.
 
@@ -1858,9 +1951,9 @@ Kind: **junction**. Primary key: `MapTerrain_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `MapTerrain_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Map_id` | `BIGINT` | Yes | FK → Map.Map_id |
-| `Terrain_id` | `BIGINT` | Yes | FK → Terrain.Terrain_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Map.Game_id; FK → Terrain.Game_id |
+| `Map_id` | `BIGINT` | Yes | FK → Map.Map_id; FK → Map.Map_id |
+| `Terrain_id` | `BIGINT` | Yes | FK → Terrain.Terrain_id; FK → Terrain.Terrain_id |
 
 Alternate unique keys: `(Game_id, Map_id, Terrain_id)`.
 
@@ -1887,7 +1980,7 @@ Kind: **catalog**. Primary key: `MediaAsset_id`.
 | `SourceEdition` | `TEXT` | No |  |
 | `Description` | `TEXT` | No |  |
 
-Alternate unique keys: `(Game_id, Code)`.
+Additional unique key: `(Game_id, Code)`; NULL values compare as equal.
 
 ## Patch
 
@@ -1896,15 +1989,17 @@ Kind: **catalog**. Primary key: `Patch_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Patch_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Expansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
+| `Expansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `Version` | `TEXT` | Yes |  |
 | `Platform` | `TEXT` | No |  |
 | `ReleaseDate` | `DATE` | No |  |
 | `Changes` | `JSONB` | No |  |
 | `Notes` | `TEXT` | No |  |
 
-Alternate unique keys: `(Game_id, Version, Platform)`.
+Alternate unique keys: `(Game_id, Patch_id)`.
+
+Additional unique key: `(Game_id, Version, Platform)`; NULL values compare as equal.
 
 ## Resource
 
@@ -1941,9 +2036,9 @@ Kind: **game-detail**. Primary key: `Resource_id`.
 | `Resource_id` | `BIGINT` | Yes | PK; FK → Resource.Resource_id |
 | `ResourceRole` | `ENUM(Stockpile | Upgrade | Quest | Meter)` | Yes |  |
 | `Scope` | `ENUM(Kingdom | Hero | Combat | Map)` | Yes |  |
-| `IsTradeable` | `BOOLEAN` | Yes |  |
-| `IsMineProduced` | `BOOLEAN` | Yes |  |
-| `IsPersistent` | `BOOLEAN` | Yes |  |
+| `IsTradeable` | `BOOLEAN` | No |  |
+| `IsMineProduced` | `BOOLEAN` | No |  |
+| `IsPersistent` | `BOOLEAN` | No |  |
 | `DefaultDailyIncome` | `INTEGER` | No |  |
 | `Mechanics` | `TEXT` | No |  |
 
@@ -1954,14 +2049,14 @@ Kind: **catalog**. Primary key: `Scenario_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Scenario_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Map_id` | `BIGINT` | Yes | FK → Map.Map_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id; FK → Map.Game_id |
+| `Map_id` | `BIGINT` | Yes | FK → Map.Map_id; FK → Map.Map_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Scenario_id)`.
 
 ## ScenarioConnection
 
@@ -1970,13 +2065,15 @@ Kind: **junction**. Primary key: `ScenarioConnection_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `ScenarioConnection_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `FromScenario_id` | `BIGINT` | Yes | FK → Scenario.Scenario_id |
-| `ToScenario_id` | `BIGINT` | Yes | FK → Scenario.Scenario_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Scenario.Game_id; FK → Scenario.Game_id |
+| `FromScenario_id` | `BIGINT` | Yes | FK → Scenario.Scenario_id; FK → Scenario.Scenario_id |
+| `ToScenario_id` | `BIGINT` | Yes | FK → Scenario.Scenario_id; FK → Scenario.Scenario_id |
 | `ConnectionKind` | `ENUM(Required | Choice | Branch | Merge | Optional)` | No |  |
 | `Condition` | `JSONB` | No |  |
 
 Alternate unique keys: `(Game_id, FromScenario_id, ToScenario_id)`.
+
+Check: `"FromScenario_id" <> "ToScenario_id"`.
 
 ## ScenarioHOMM1
 
@@ -2083,10 +2180,10 @@ Kind: **game-detail**. Primary key: `Scenario_id`.
 | `ScenarioKind` | `ENUM(Campaign | Standalone | Tutorial | Challenge | Other)` | Yes |  |
 | `GameMode` | `ENUM(Classic | SingleHero | Arena | Scenario | Other)` | Yes |  |
 | `AllowsSinglePlayer` | `BOOLEAN` | Yes |  |
-| `AllowsMultiplayer` | `BOOLEAN` | Yes |  |
-| `AllowsHotseat` | `BOOLEAN` | Yes |  |
-| `SupportsMatchmaking` | `BOOLEAN` | Yes |  |
-| `SupportsRanked` | `BOOLEAN` | Yes |  |
+| `AllowsMultiplayer` | `BOOLEAN` | No |  |
+| `AllowsHotseat` | `BOOLEAN` | No |  |
+| `SupportsMatchmaking` | `BOOLEAN` | No |  |
+| `SupportsRanked` | `BOOLEAN` | No |  |
 | `Objectives` | `TEXT` | No |  |
 | `Scripts` | `JSONB` | No |  |
 | `StartingState` | `TEXT` | No |  |
@@ -2099,8 +2196,8 @@ Kind: **catalog**. Primary key: `Screenshot_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Screenshot_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Expansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
+| `Expansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `MediaAsset_id` | `BIGINT` | Yes | FK → MediaAsset.MediaAsset_id |
@@ -2116,14 +2213,14 @@ Kind: **catalog**. Primary key: `Skill_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Skill_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Skill_id)`.
 
 ## SkillHOMM2
 
@@ -2209,15 +2306,15 @@ Kind: **catalog**. Primary key: `Soundtrack_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Soundtrack_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Campaign.Game_id; FK → Faction.Game_id; FK → Terrain.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `TrackNumber` | `SMALLINT` | No |  |
 | `Composer` | `TEXT` | No |  |
 | `Context` | `ENUM(MainMenu | Town | Terrain | Combat | Campaign | Event | Outcome | Other)` | No |  |
-| `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id |
-| `Terrain_id` | `BIGINT` | No | FK → Terrain.Terrain_id |
-| `Campaign_id` | `BIGINT` | No | FK → Campaign.Campaign_id |
+| `Faction_id` | `BIGINT` | No | FK → Faction.Faction_id; FK → Faction.Faction_id |
+| `Terrain_id` | `BIGINT` | No | FK → Terrain.Terrain_id; FK → Terrain.Terrain_id |
+| `Campaign_id` | `BIGINT` | No | FK → Campaign.Campaign_id; FK → Campaign.Campaign_id |
 | `MediaAsset_id` | `BIGINT` | Yes | FK → MediaAsset.MediaAsset_id |
 | `DurationSeconds` | `INTEGER` | No |  |
 | `Description` | `TEXT` | No |  |
@@ -2308,14 +2405,14 @@ Kind: **catalog**. Primary key: `Spell_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Spell_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Spell_id)`.
 
 ## SpellHOMM1
 
@@ -2450,9 +2547,9 @@ Kind: **junction**. Primary key: `SpellMagicSchool_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `SpellMagicSchool_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Spell_id` | `BIGINT` | Yes | FK → Spell.Spell_id |
-| `MagicSchool_id` | `BIGINT` | Yes | FK → MagicSchool.MagicSchool_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → MagicSchool.Game_id; FK → Spell.Game_id |
+| `Spell_id` | `BIGINT` | Yes | FK → Spell.Spell_id; FK → Spell.Spell_id |
+| `MagicSchool_id` | `BIGINT` | Yes | FK → MagicSchool.MagicSchool_id; FK → MagicSchool.MagicSchool_id |
 
 Alternate unique keys: `(Game_id, Spell_id, MagicSchool_id)`.
 
@@ -2463,13 +2560,15 @@ Kind: **junction**. Primary key: `SpellResourceCostHOMM5_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `SpellResourceCostHOMM5_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Spell_id` | `BIGINT` | Yes | FK → Spell.Spell_id |
-| `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Spell.Game_id; FK → GameResource.Game_id |
+| `Spell_id` | `BIGINT` | Yes | FK → Spell.Spell_id; FK → Spell.Spell_id |
+| `Resource_id` | `BIGINT` | Yes | FK → Resource.Resource_id; FK → GameResource.Resource_id |
 | `Amount` | `INTEGER` | Yes |  |
 | `Ruleset` | `ENUM(BaseGame | HammersOfFate | TribesOfTheEast)` | Yes |  |
 
 Alternate unique keys: `(Game_id, Spell_id, Resource_id, Ruleset)`.
+
+Check: `"Amount" >= 0`.
 
 ## Terrain
 
@@ -2478,15 +2577,15 @@ Kind: **catalog**. Primary key: `Terrain_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Terrain_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Expansion.Game_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `Kind` | `ENUM(Basic | Magical | Overlay | Water | Other)` | Yes |  |
 | `Description` | `TEXT` | No |  |
-| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id |
+| `IntroducedInExpansion_id` | `BIGINT` | No | FK → Expansion.Expansion_id; FK → Expansion.Expansion_id |
 | `MediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, Terrain_id)`.
 
 ## TerrainHOMM1
 
@@ -2564,8 +2663,8 @@ Kind: **catalog**. Primary key: `TownScreen_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `TownScreen_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Faction.Game_id |
+| `Faction_id` | `BIGINT` | Yes | FK → Faction.Faction_id; FK → Faction.Faction_id |
 | `Code` | `TEXT` | Yes |  |
 | `Name` | `TEXT` | Yes |  |
 | `BackgroundMediaAsset_id` | `BIGINT` | No | FK → MediaAsset.MediaAsset_id |
@@ -2573,7 +2672,7 @@ Kind: **catalog**. Primary key: `TownScreen_id`.
 | `Height` | `INTEGER` | No |  |
 | `Description` | `TEXT` | No |  |
 
-Alternate unique keys: `(Game_id, Code)`.
+Alternate unique keys: `(Game_id, Code)`, `(Game_id, TownScreen_id)`.
 
 ## TownScreenBuilding
 
@@ -2582,9 +2681,9 @@ Kind: **junction**. Primary key: `TownScreenBuilding_cid`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `TownScreenBuilding_cid` | `TEXT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `TownScreen_id` | `BIGINT` | Yes | FK → TownScreen.TownScreen_id |
-| `Building_id` | `BIGINT` | Yes | FK → Building.Building_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Building.Game_id; FK → TownScreen.Game_id |
+| `TownScreen_id` | `BIGINT` | Yes | FK → TownScreen.TownScreen_id; FK → TownScreen.TownScreen_id |
+| `Building_id` | `BIGINT` | Yes | FK → Building.Building_id; FK → Building.Building_id |
 | `Hotspot` | `JSONB` | No |  |
 
 Alternate unique keys: `(Game_id, TownScreen_id, Building_id)`.
@@ -2596,9 +2695,9 @@ Kind: **catalog**. Primary key: `Video_id`.
 | Field | PostgreSQL type | Required | Key / relationship |
 |---|---|---:|---|
 | `Video_id` | `BIGINT` | Yes | PK |
-| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id |
-| `Campaign_id` | `BIGINT` | No | FK → Campaign.Campaign_id |
-| `Scenario_id` | `BIGINT` | No | FK → Scenario.Scenario_id |
+| `Game_id` | `BIGINT` | Yes | FK → Game.Game_id; FK → Campaign.Game_id; FK → Scenario.Game_id |
+| `Campaign_id` | `BIGINT` | No | FK → Campaign.Campaign_id; FK → Campaign.Campaign_id |
+| `Scenario_id` | `BIGINT` | No | FK → Scenario.Scenario_id; FK → Scenario.Scenario_id |
 | `Code` | `TEXT` | Yes |  |
 | `Kind` | `ENUM(Intro | CampaignCinematic | Ending | Other)` | Yes |  |
 | `Name` | `TEXT` | Yes |  |

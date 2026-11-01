@@ -1,0 +1,15 @@
+# Keep review focused on source contracts and data; generated outputs remain available.
+src/db/HeroesWatch.sql linguist-generated=true
+src/db/postgres/schema.sql linguist-generated=true
+src/db/schema/heroeswatch.schema.json linguist-generated=true
+src/db/schema/data.schema.json linguist-generated=true
+src/db/schema/normal-form-report.json linguist-generated=true
+src/db/DATA_DICTIONARY.md linguist-generated=true
+src/db/data/catalog.sql linguist-generated=true
+src/db/data/manual-import.sql linguist-generated=true
+src/db/data/research-import.sql linguist-generated=true
+src/db/data/research-gaps-import.sql linguist-generated=true
+src/db/data/h67-profile-enrichment.sql linguist-generated=true
+src/db/research/**/*.patch.json text eol=lf
+src/db/data/touchups-import-*.sql linguist-generated=true
+src/db/data/creature-tier-corrections.sql linguist-generated=true

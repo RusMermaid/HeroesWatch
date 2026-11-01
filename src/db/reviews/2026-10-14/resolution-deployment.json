@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-14",
+  "status": "committed",
+  "database": "HeroesWatch.net",
+  "owner": "postgres",
+  "connectionRole": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "serverVersion": "18.4",
+  "schemaVersion": 8,
+  "catalogRows": 45616,
+  "catalogSha256": "a542494bd30d3040fadbf266cfaf35013cba2dc39afac1441e00a46f5b720d5e",
+  "elapsedSeconds": 6.253,
+  "backup": {
+    "format": "PostgreSQL custom archive",
+    "sha256": "860a91b28961524f302d7f7d3bb9a7153f2cbf11b5a89979c8e17990803391c3",
+    "restoredAndTested": true,
+    "stored": "Private local recovery files; excluded from Git"
+  },
+  "steps": [
+    {
+      "file": "postgres/migrations/0008_fractional_magic_defense.sql",
+      "sha256": "5d69f88fe59d805f6cd4bc58df46e1f94c9748add84ef465e32d524629971ef5",
+      "result": "committed"
+    },
+    {
+      "file": "data/h67-profile-enrichment.sql",
+      "sha256": "6a5c1a9445bcd9f0265963a8c382f2f9dd588cafbca5cd7542e25e724d1c0549",
+      "result": "committed"
+    },
+    {
+      "file": "data/research-gaps-import.sql",
+      "sha256": "afcd139fa2dde89823ea97883a25d0314e4e874e7c52a352eb80f7c481e66afd",
+      "result": "committed"
+    }
+  ],
+  "observation": "The control script reached its final read-only SELECT after all three COMMIT statements. pgAdmin reported query complete in 6.253 seconds and returned 12 summary rows.",
+  "observedMetrics": {
+    "supportedHallFlags": 72,
+    "unknownHallFlags": 60,
+    "viClassDetails": 36,
+    "viCreatureProfiles": 109,
+    "lurkerMagicDefense": 10.5,
+    "watcherMagicDefense": 10.5,
+    "healingSisterDefense": [
+      5,
+      10,
+      15,
+      20,
+      25
+    ],
+    "dreamwalkerLevel5Healing": 600
+  },
+  "reviewQuery": "src/db/data/h67-resolution.review.sql",
+  "scope": "Local Windows PostgreSQL update only. Exact field and ID comparisons used the restored actual backup; live inspection confirmed the displayed summary. Source disagreements remain in the research audit."
+}
