@@ -1,6 +1,6 @@
 # Heroes Watch website
 
-A minimal C# ASP.NET Core Razor Pages application. The home page displays **Hello Heroes Watch** and `/healthz` returns `Healthy`.
+A minimal C# ASP.NET Core Razor Pages application. The home page displays **Hello Heroes Watch** in a navy header above the classic brown textures, with pale blue interface edging. `/healthz` returns `Healthy`.
 
 ## Remote development in Rider
 
@@ -31,3 +31,5 @@ dotnet bin/publish/HeroesWatch.Web.dll
 `UseAppHost=false` produces portable managed output. Install the ASP.NET Core 10 runtime on the destination. Build output and Rider workspace state are ignored by Git.
 
 The VPS-specific service and reverse proxy configuration live in `deploy/`. The website does not yet access the existing database in `../db`.
+
+The interface textures are stored in `wwwroot/images`; their original sources and checksums are recorded in [TEXTURES.md](TEXTURES.md).

@@ -66,7 +66,6 @@
     "database": "HeroesWatch",
     "host": "localhost",
     "port": 5432,
-    "backup": ".codex-tmp/backups/2026-10-13-before-tier.eUR1PR/HeroesWatch.dump",
     "backupSha256": "9d71c6c5e9c64ee0d30de9cc4ac360337fc86cb46b05345603c2e87ec3def5ce",
     "backupRestoredAndMatchedLive": true,
     "preservedRowsAndIds": 43613,

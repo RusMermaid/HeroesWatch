@@ -8,7 +8,7 @@
 Reviewed [PR #1](https://github.com/RusMermaid/HeroesWatch/pull/1), **Populate
 Heroes catalogs and strengthen database integrity**, at
 `2848f0055c6a39ce3ef9b6cea61f717593bf4be5`. It is open and unmerged.
-The corrections below are local on `codex/heroeswatch-final-review`; they have
+The corrections below were prepared locally; they have
 not been pushed, merged, or applied to a working database.
 
 ## Outcome

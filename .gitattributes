@@ -13,3 +13,7 @@ src/db/data/h67-profile-enrichment.sql linguist-generated=true
 src/db/research/**/*.patch.json text eol=lf
 src/db/data/touchups-import-*.sql linguist-generated=true
 src/db/data/creature-tier-corrections.sql linguist-generated=true
+
+# Classify C# and Razor source as C#.
+*.cs linguist-language=C#
+*.cshtml linguist-language=C#

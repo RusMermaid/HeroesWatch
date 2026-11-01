@@ -6,7 +6,7 @@ Published files are stored under `/opt/heroeswatch/releases/`; `/opt/heroeswatch
 
 ## Existing shared services
 
-Xray already owns public port 443 for VPN traffic. Do not replace that listener or its client configuration. The intended website HTTPS path is domain SNI -> Xray TLS -> nginx on `127.0.0.1:18081` -> ASP.NET Core on `127.0.0.1:5080`. The existing IP certificate stays first and the existing download fallback stays on port 18080.
+Xray already owns public port 443 for VPN traffic. Do not replace that listener or its client configuration. The website HTTPS path is domain SNI -> Xray TLS -> nginx on `127.0.0.1:18081` -> ASP.NET Core on `127.0.0.1:5080`. The existing IP certificate stays first and the existing download fallback stays on port 18080.
 
 Nginx serves HTTP-01 certificate challenges from `/var/lib/heroeswatch-acme` on public port 80. The existing acme.sh IP-certificate renewal uses this webroot. Preserve its short-lived certificate profile, renewal schedule and reload hook.
 
@@ -25,7 +25,7 @@ The first-install server backup is `/root/heroeswatch-setup/backups/20261101-ini
 
 ## Rider remote development
 
-The full Git checkout is `/srv/heroeswatch/source`, owned by the restricted `heroesdev` account. Rider connects through SSH port 22022 and opens `/srv/heroeswatch/source/src/web/HeroesWatch.sln`. Git origin is the existing HeroesWatch GitHub repository; the website starter is on `web/initial-site`. Normal Commit, Push and Pull actions synchronize source. IDE preferences synchronization is separate.
+The full Git checkout is `/srv/heroeswatch/source`, owned by the restricted `heroesdev` account. Rider connects through SSH port 22022 and opens `/srv/heroeswatch/source/src/web/HeroesWatch.sln`. Git origin is the existing HeroesWatch GitHub repository; the live baseline is on `main`; use feature branches for further work. Normal Commit, Push and Pull actions synchronize source. IDE preferences synchronization is separate.
 
 `heroeswatch-ide.service` runs the matching Rider 2025.3.3 backend and starts at boot. The local Rider/Gateway launcher opens its thin client. Keep Gateway running while connected. The backend has a 3 GiB RAM limit and up to 3 GiB swap; a 4 GiB swap file is available on the VPS. The Java heap is configured separately at 1 GiB in the development account. These settings were added after the initial IDE startup exceeded its earlier memory cap.
 

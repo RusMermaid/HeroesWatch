@@ -23,7 +23,7 @@ function fixture(catalog = emptyCatalog()) {
   // Windows sandbox temp redirection can prohibit the atomic rename exercised
   // here. Keep the real write/rename assertions inside the writable workspace.
   const parent = process.platform === "win32"
-    ? path.resolve(directory, "../../../.codex-tmp/research-tool-tests") : os.tmpdir();
+    ? path.resolve(directory, "../../../.local-tmp/research-tool-tests") : os.tmpdir();
   fs.mkdirSync(parent, { recursive: true });
   const root = fs.mkdtempSync(path.join(parent, "heroeswatch-research-tool-test-"));
   const patchDir = path.join(root, "patches");

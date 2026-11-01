@@ -1,0 +1,57 @@
+html {
+    min-height: 100%;
+    background-color: #4d3423;
+}
+
+body {
+    --page-inset: clamp(0.625rem, 1.4vw, 1.25rem);
+    display: flow-root;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin: 0;
+    color: #edf4f8;
+    font-family: Georgia, "Times New Roman", serif;
+    background-color: #4d3423;
+    background-image: url("../images/hwwoam-background-light.png");
+    background-repeat: repeat;
+}
+
+main {
+    box-sizing: border-box;
+    min-height: calc(100vh - var(--page-inset) - var(--page-inset));
+    min-height: calc(100svh - var(--page-inset) - var(--page-inset));
+    margin: var(--page-inset);
+    padding: 5px;
+    border: 1px solid #b8dcf1;
+    background-color: #302015;
+    background-image: url("../images/hwwoam-background-dark.png");
+    background-repeat: repeat;
+    box-shadow:
+        0 0 0 1px #435d7c,
+        0 0 0 2px #080a10,
+        0 0 0 3px #8fb4ce,
+        inset 0 0 0 1px #435d7c;
+}
+
+h1 {
+    display: grid;
+    min-height: 80px;
+    box-sizing: border-box;
+    place-items: center;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid #b8dcf1;
+    color: #edf4f8;
+    background: linear-gradient(#1c2b52, #111b3f 52%, #0c142c);
+    box-shadow:
+        0 0 0 1px #435d7c,
+        0 0 0 2px #080a10,
+        0 0 0 3px #8fb4ce,
+        inset 0 1px #6686a4,
+        inset 0 -1px #283d59;
+    font-size: clamp(1.5rem, 2.8vw, 2.15rem);
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0 1px 2px #070b17;
+}

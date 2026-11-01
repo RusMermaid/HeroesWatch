@@ -3,7 +3,7 @@
 // --input selects the pre-merge catalog when reproducing an already merged patch.
 import fs from 'node:fs';
 import { createHash } from 'node:crypto';
-const root='src/db/research/2026-10-14',cache='.codex-tmp/gaps-2026-10-14/homm67';
+const root='src/db/research/2026-10-14',cache='.local-tmp/gaps-2026-10-14/homm67';
 const manifest=JSON.parse(fs.readFileSync(`${root}/heroes6-7.wiki-revisions.json`));
 const inputAt=process.argv.indexOf('--input');
 const input=inputAt<0?'src/db/data/heroeswatch.json':process.argv[inputAt+1];

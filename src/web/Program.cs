@@ -5,6 +5,8 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 app.MapGet("/healthz", () => Results.Text("Healthy", "text/plain"));
 app.MapRazorPages();
 
