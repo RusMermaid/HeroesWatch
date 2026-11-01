@@ -23,7 +23,7 @@ if(process.argv.includes('--homm2-skill-text-fix')){
  console.log('Wrote 14 corrected SkillHOMM2 rows.');
  process.exit(0);
 }
-const ROOT=process.cwd(),CACHE=path.join(ROOT,'.codex-tmp/remaining-early');
+const ROOT=process.cwd(),CACHE=path.join(ROOT,'.local-tmp/remaining-early');
 const creatureTierConfiguration=JSON.parse(fs.readFileSync(path.join(ROOT,'src/db/data/creature-tiers.json')));
 const creatureTierOverrides=Object.fromEntries(creatureTierConfiguration.tiers.map(({code,value})=>[code,value]));
 const homm1Speed={Slow:1,Medium:2,Fast:3};

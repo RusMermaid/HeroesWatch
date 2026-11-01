@@ -1,6 +1,6 @@
 // Builds reviewed factual catalog fragments from the cached VI/VII wiki source.
 import fs from 'node:fs';
-const dir='.codex-tmp/research-homm678';
+const dir='.local-tmp/research-homm678';
 const outputDir='src/db/data/research';
 const schema=JSON.parse(fs.readFileSync('src/db/schema/heroeswatch.schema.json'));
 const safe=s=>s.replace(/[^a-zA-Z0-9]/g,'-');

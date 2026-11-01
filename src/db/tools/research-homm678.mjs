@@ -1,7 +1,7 @@
 // Research aid: fetch factual wiki tables for the VI/VII catalog fragments.
 // Temporary wikitext stays in .tmp files and is not a distributable dataset.
 import fs from 'node:fs/promises';
-const dir = '.codex-tmp/research-homm678';
+const dir = '.local-tmp/research-homm678';
 await fs.mkdir(dir, {recursive:true});
 const api = 'https://mightandmagic.fandom.com/api.php';
 const safe = s => s.replace(/[^a-zA-Z0-9]/g, '-');

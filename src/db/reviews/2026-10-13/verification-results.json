@@ -3,7 +3,6 @@
   "pullRequest": "https://github.com/RusMermaid/HeroesWatch/pull/1",
   "reviewedHead": "2848f0055c6a39ce3ef9b6cea61f717593bf4be5",
   "priorCatalogCommit": "225a96b318886c01bd75e371e1c10d66b29f90df",
-  "correctionBranch": "codex/heroeswatch-final-review",
   "deliveryState": "Local uncommitted corrections; not pushed, merged or deployed",
   "nodeVersion": "24.19.0",
   "postgresVersionTested": "18.6 (Homebrew)",

@@ -294,6 +294,6 @@ for(const h of ['humans','necros','nature','demons','unfrozen','dungeon'].flatMa
 for(const rows of Object.values(tables))rows.sort((a,b)=>a._key.localeCompare(b._key));
 fs.mkdirSync('src/db/data/research',{recursive:true});
 fs.writeFileSync('src/db/data/research/remaining-homm8.json',JSON.stringify({tables},null,2)+'\n');
-fs.writeFileSync('.codex-tmp/remaining-homm8-unresolved.json',JSON.stringify(ignored,null,2)+'\n');
+fs.writeFileSync('.local-tmp/remaining-homm8-unresolved.json',JSON.stringify(ignored,null,2)+'\n');
 console.log(Object.fromEntries(Object.entries(tables).map(([t,rows])=>[t,rows.length])));
 console.log('Unresolved/filtered source records:',ignored.length);

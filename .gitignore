@@ -38,7 +38,7 @@ ScaffoldingReadMe.txt
 
 # dotenv environment variables file
 .env
-.codex-tmp/
+.local-tmp/
 src/db/data/research/
 src/db/manuals/files/
 
@@ -63,3 +63,11 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+.idea/
+
+.vs/
+
+*.DotSettings.user
+
+._*

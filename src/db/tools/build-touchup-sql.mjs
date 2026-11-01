@@ -10,7 +10,7 @@ const args=process.argv.slice(2);
 if(args.some(a=>a!=='--check'))throw Error('Usage: node src/db/tools/build-touchup-sql.mjs [--check]');
 const read=p=>JSON.parse(fs.readFileSync(path.join(dbRoot,p),'utf8'));
 const catalog=read('data/heroeswatch.json'),schema=read('schema/heroeswatch.schema.json'),audit=read('data/touchups-evidence.json');
-const temp=path.resolve(dbRoot,'../../.codex-tmp/touchups/imports');fs.mkdirSync(temp,{recursive:true});
+const temp=path.resolve(dbRoot,'../../.local-tmp/touchups/imports');fs.mkdirSync(temp,{recursive:true});
 const quote=s=>"E'"+s.replaceAll('\\','\\\\').replaceAll("'","''")+"'";
 const correctionLines=['-- Reviewed label corrections. Apply migrations through 0006 first, then these corrections and creature-tier-corrections.sql before current content imports.',
  '-- Changes are guarded by their recorded old values; unknown edits abort.',

@@ -19,7 +19,7 @@ const batch = {
   notes: 'Manual additions and enriched rows, plus complete FK dependencies. Derived from the cumulative catalog and manual-content-evidence.json. Apply to the existing schema using the normal conflict-preserving importer.',
   tables: selectContentClosure(catalog, schema, [...evidence.addedRows, ...evidence.filledFields]),
 };
-const temporaryDirectory = path.resolve(dbRoot, '../../.codex-tmp');
+const temporaryDirectory = path.resolve(dbRoot, '../../.local-tmp');
 fs.mkdirSync(temporaryDirectory, {recursive: true});
 const input = path.join(temporaryDirectory, 'manual-import.json');
 fs.writeFileSync(input, JSON.stringify(batch, null, 2) + '\n');

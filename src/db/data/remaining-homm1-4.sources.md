@@ -136,6 +136,6 @@ and the three components of the Battle Garb of Anduran.
 ## Assembly
 
 `src/db/tools/research-remaining-homm1-4.mjs` assembles the fragment using cached
-factual references in the ignored `.codex-tmp/remaining-early` directory. It
+factual references in the ignored `.local-tmp/remaining-early` directory. It
 reads the cumulative bundle to reuse existing identities and emits only new
 rows. The parent delivery task merges this fragment before transactional import.
