@@ -1,0 +1,24 @@
+[Unit]
+Description=Heroes Watch Rider remote development
+After=network.target
+
+[Service]
+Type=simple
+User=heroesdev
+Group=heroesdev
+WorkingDirectory=/srv/heroeswatch/source
+Environment=RIDER_VM_OPTIONS=/home/heroesdev/.config/JetBrains/Rider2025.3/rider64.vmoptions
+ExecStart=/home/heroesdev/.cache/JetBrains/RemoteDev/dist/Rider-2025.3.3/bin/remote-dev-server.sh run /srv/heroeswatch/source/src/web/HeroesWatch.sln --ssh-link-host 159.198.39.12 --ssh-link-user heroesdev --ssh-link-port 22022
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=45
+MemoryHigh=2500M
+MemoryMax=3G
+MemorySwapMax=3G
+CPUQuota=300%
+TasksMax=1024
+NoNewPrivileges=yes
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
