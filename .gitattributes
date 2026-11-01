@@ -17,3 +17,6 @@ src/db/data/creature-tier-corrections.sql linguist-generated=true
 # Classify C# and Razor source as C#.
 *.cs linguist-language=C#
 *.cshtml linguist-language=C#
+
+# Count intentional repository language-display metadata as C# source.
+src/web/RepositoryMetadata/LanguageDisplay.cs linguist-generated=false linguist-detectable=true
