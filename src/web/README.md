@@ -1,6 +1,8 @@
 # Heroes Watch website
 
-A minimal C# ASP.NET Core Razor Pages application. The home page displays **Hello Heroes Watch** in a navy header above the classic brown textures, with pale blue interface edging. `/healthz` returns `Healthy`.
+Heroes Watch is a C# ASP.NET Core Razor Pages fan portal. News (`/`) shows all published articles. The Heroes menu opens a game-specific feed at `/heroes/1` through `/heroes/8`. The menu displays Heroes I–VII and Olden Era. The eighth entry uses the catalog code `HOMM8` and the route `/heroes/8`. Lore and About have dedicated routes at `/lore` and `/about`.
+
+Discussion categories are listed at `/boards`. The side panels link to these boards and to community resources. Empty news and board pages show a construction notice. `/healthz` returns `Healthy`.
 
 ## Remote development in Rider
 

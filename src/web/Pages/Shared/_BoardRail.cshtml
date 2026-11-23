@@ -1,0 +1,18 @@
+@{
+    var currentBoard = ViewContext.RouteData.Values["board"] as string;
+}
+
+<aside class="rail board-rail" aria-labelledby="board-rail-heading">
+    <section class="rail-panel">
+        <h2 class="rail-heading" id="board-rail-heading">Discussion boards</h2>
+        <ul class="rail-links">
+            @foreach (var board in HeroesWatch.Web.Pages.BoardsModel.Boards)
+            {
+                <li>
+                    <a asp-page="/Boards" asp-route-board="@board.Slug"
+                       aria-current="@(string.Equals(board.Slug, currentBoard, StringComparison.OrdinalIgnoreCase) ? "page" : null)">@board.Title</a>
+                </li>
+            }
+        </ul>
+    </section>
+</aside>

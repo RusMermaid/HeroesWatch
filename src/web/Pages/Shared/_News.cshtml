@@ -1,0 +1,21 @@
+@model HeroesWatch.Web.Pages.IndexModel
+
+<h1 class="section-heading">@Model.Heading</h1>
+
+@if (Model.Articles.Count == 0)
+{
+    var noticeText = Model.SelectedGame is null
+        ? "News from across the Heroes series will appear here."
+        : $"News about {Model.SelectedGame.Label} will appear here.";
+    @await Html.PartialAsync("_ConstructionNotice", noticeText)
+}
+else
+{
+    @foreach (var article in Model.Articles)
+    {
+        <article>
+            <h2>@article.Title</h2>
+            <p>@article.Summary</p>
+        </article>
+    }
+}
