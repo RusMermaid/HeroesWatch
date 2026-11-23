@@ -34,5 +34,5 @@ jobs:
         run: dotnet build src/web/HeroesWatch.sln --configuration Release --no-restore
       - name: Publish portable application
         run: dotnet publish src/web/HeroesWatch.Web.csproj --configuration Release --no-build --no-self-contained --output "${{ runner.temp }}/heroeswatch-web"
-      - name: Check published Heroes menu
+      - name: Check published site navigation
         run: ${{ runner.os == 'Windows' && 'python' || 'python3' }} src/web/tests/game_navigation.py "${{ runner.temp }}/heroeswatch-web"
