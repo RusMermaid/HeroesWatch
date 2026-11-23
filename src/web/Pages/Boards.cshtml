@@ -1,0 +1,28 @@
+@page "/boards/{board?}"
+@model HeroesWatch.Web.Pages.BoardsModel
+
+@{
+    var title = Model.SelectedBoard?.Title ?? "Discussion boards";
+    ViewData["Title"] = title;
+}
+
+<h1 class="section-heading">@title</h1>
+
+@if (Model.SelectedBoard is { } selectedBoard)
+{
+    @await Html.PartialAsync("_ConstructionNotice", selectedBoard.Description)
+}
+else
+{
+    @await Html.PartialAsync("_ConstructionNotice", "There are no discussion topics yet.")
+
+    <ul class="board-directory">
+        @foreach (var board in HeroesWatch.Web.Pages.BoardsModel.Boards)
+        {
+            <li>
+                <a asp-page="/Boards" asp-route-board="@board.Slug">@board.Title</a>
+                <p>@board.Description</p>
+            </li>
+        }
+    </ul>
+}

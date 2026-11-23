@@ -1,0 +1,53 @@
+@using HeroesWatch.Web.Pages
+@{
+    var currentPage = ViewContext.RouteData.Values["page"] as string;
+    var isGamePage = currentPage == "/Heroes";
+    var selectedGame = (ViewData.Model as IndexModel)?.SelectedGame;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] | Heroes Watch</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
+    <script src="~/js/navigation.js" asp-append-version="true" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="site-frame">
+        <header class="masthead">
+            <a class="wordmark" asp-page="/Index">
+                <span class="wordmark-seal" aria-hidden="true"></span>
+                <span class="greeting">Hello</span>
+                <span class="site-name">Heroes Watch</span>
+            </a>
+        </header>
+
+        <nav class="primary-nav" aria-label="Main navigation">
+            <a class="tab" asp-page="/Index" aria-current="@(currentPage == "/Index" ? "page" : null)"><span>News</span></a>
+            <details class="heroes-menu">
+                <summary class="@(isGamePage ? "tab is-current" : "tab")"><span>Heroes</span></summary>
+                <div class="version-menu" role="group" aria-label="Game version">
+                    <a class="game-link" asp-page="/Index" aria-current="@(currentPage == "/Index" ? "page" : null)"><span>All</span></a>
+                    @foreach (var game in GameVersion.Supported)
+                    {
+                        <a class="game-link" asp-page="/Heroes" asp-route-version="@game.Number"
+                           aria-current="@(game == selectedGame ? "page" : null)"><span>@game.Label</span></a>
+                    }
+                </div>
+            </details>
+            <a class="tab" asp-page="/Lore" aria-current="@(currentPage == "/Lore" ? "page" : null)"><span>Lore</span></a>
+            <a class="tab" asp-page="/About" aria-current="@(currentPage == "/About" ? "page" : null)"><span>About</span></a>
+        </nav>
+
+        <div class="portal-body">
+            <main id="main-content" tabindex="-1">
+                @RenderBody()
+            </main>
+            <partial name="_BoardRail" />
+            <partial name="_CommunityRail" />
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+@page "/heroes/{version:int:range(1,8)}"
+@model HeroesWatch.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = Model.Heading;
+}
+
+<partial name="_News" model="Model" />

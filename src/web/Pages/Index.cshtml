@@ -1,15 +1,7 @@
 @page
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Heroes Watch</title>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true">
-</head>
-<body>
-    <main>
-        <h1>Hello Heroes Watch</h1>
-    </main>
-</body>
-</html>
+@model HeroesWatch.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = Model.Heading;
+}
+
+<partial name="_News" model="Model" />
